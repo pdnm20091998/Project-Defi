@@ -10,10 +10,9 @@ import * as React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Switch, Route, BrowserRouter } from 'react-router-dom';
 
-import { GlobalStyle } from '../styles/global-styles';
+import { GlobalStyle } from 'styles/global-styles';
 
-import { HomePage } from './pages/HomePage/Loadable';
-import { NotFoundPage } from './pages/NotFoundPage/Loadable';
+import { HomePage } from './pages/Home/HomePage/Loadable';
 import { useTranslation } from 'react-i18next';
 
 export function App() {
@@ -29,8 +28,7 @@ export function App() {
       </Helmet>
 
       <Switch>
-        <Route exact path={process.env.PUBLIC_URL + '/'} component={HomePage} />
-        <Route component={NotFoundPage} />
+        <Route exact path="/" component={HomePage} />
       </Switch>
       <GlobalStyle />
     </BrowserRouter>
