@@ -1,6 +1,7 @@
 import styled from 'styled-components/macro';
 const DefiButton = styled.button<{
   padding?: string;
+  margin?: string;
   width?: string;
   height?: string;
 }>`
@@ -16,6 +17,7 @@ const DefiButton = styled.button<{
   border-radius: 1000px;
   border: none;
   cursor: pointer;
-  padding: 0px ${props => props.padding};
+  padding: ${props => props.padding};
+  margin: ${props => props.margin};
 `;
 export default DefiButton;
