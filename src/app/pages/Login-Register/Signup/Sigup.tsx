@@ -1,151 +1,151 @@
-import styled from 'styled-components/macro';
 import PasswordIcon from '../assets/img/showoff.png';
 import ShowIcon from '../assets/img/show.png';
 import DefiButton from '../../../components/DefiButton/DefiButton';
 import { useState } from 'react';
+import {
+  Label,
+  InputField,
+  Description,
+  DescriptionSd,
+  Center,
+  Validation,
+} from './style';
+import { Form } from 'react-bootstrap';
+import validator from 'validator';
 
-const Label = styled.p`
-  font-weight: 500;
-  font-size: 14px;
-  color: #ffff;
-  margin-bottom: 6px;
-  margin-top: 24px;
-`;
-const Description = styled.p`
-  font-size: 14px;
-  font-weight: 500;
-  line-height: 24px;
-  color: #ffffff;
-  max-width: 715px;
-  margin: 12px 0 0 0;
-  strong {
-    color: #dba83d;
-  }
-`;
-const InputField = styled.div`
-  width: 100%;
-  height: 44px;
-  border: 1px solid #74767b;
-  box-sizing: border-box;
-  border-radius: 22px;
-  :hover {
-    border: 1px solid #fff;
-  }
-  :focus {
-    border: 1px solid #dba83d;
-  }
-  .email__field {
-    display: flex;
-    flex: 1 1 auto;
-  }
-  .email__input {
-    display: flex;
-    flex: 1 1 auto;
-    padding: 21px 20px;
-    background-color: transparent;
-    color: #a2a3a7;
-    border: none;
-    outline: none;
-    height: 34px;
-  }
-  .password__field {
-    display: flex;
-  }
-  .password__input {
-    flex: 1 1 auto;
-    padding: 21px 20px;
-    background-color: transparent;
-    color: #a2a3a7;
-    border: none;
-    outline: none;
-    height: 34px;
-  }
-  .password__icon {
-    width: 22px;
-    height: 19px;
-    cursor: pointer;
-    margin: 13px;
-  }
-`;
 export default function Signup() {
   const [values, setValues] = useState(true);
   const [valuesConfirm, setValuesConfirm] = useState(true);
+  const [nameError, setNameError] = useState(true);
+  const [emailError, setEmailError] = useState(true);
+  const [passwordError, setPasswordError] = useState(true);
+  const [confirmPassword, setconfirmPassword] = useState(true);
+
+  const [pass, setPass] = useState('');
   const handleClickShowPassword = () => {
     setValues(!values);
   };
   const handleClickShowConfirmPassword = () => {
     setValuesConfirm(!valuesConfirm);
   };
+  const validateName = e => {
+    var name = e.target.value;
+    var reg =
+      /^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$/u;
+    var test = reg.test(name);
+    if (test) {
+      setNameError(true);
+    } else {
+      setNameError(false);
+    }
+  };
+  const validateEmail = e => {
+    var email = e.target.value;
+    if (validator.isEmail(email)) {
+      setEmailError(true);
+    } else {
+      setEmailError(false);
+    }
+  };
+  const validatePassword = e => {
+    var pass = e.target.value;
+    setPass(pass);
+    var reg = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/;
+    var test = reg.test(pass);
+    if (test) {
+      setPasswordError(true);
+    } else {
+      setPasswordError(false);
+    }
+  };
+  const validateConfirmPassword = e => {
+    var confirm = e.target.value;
+    if (confirm === pass) {
+      setconfirmPassword(true);
+    } else {
+      setconfirmPassword(false);
+    }
+  };
+
   return (
     <>
-      <Label>Name</Label>
-      <InputField>
-        <div className="email__field">
-          {' '}
-          <input
-            className="email__input"
-            type="text"
-            placeholder="Enter name"
-          ></input>
-        </div>
-      </InputField>
-      <Label>Email</Label>
-      <InputField>
-        <div className="email__field">
-          {' '}
-          <input
-            className="email__input"
-            type="email"
-            placeholder="Enter email"
-          ></input>
-        </div>
-      </InputField>
-      <Label>Password</Label>
-      <InputField>
-        <div className="password__field">
-          {' '}
-          <input
-            className="password__input"
-            type={values ? 'password' : 'text'}
-            placeholder="Enter password"
-          ></input>
-          <img
-            onClick={handleClickShowPassword}
-            className="password__icon"
-            src={values ? PasswordIcon : ShowIcon}
-            alt="Hide Password"
-          />
-        </div>
-      </InputField>
-      <Label>Confirm Password</Label>
-      <InputField>
-        <div className="password__field">
-          {' '}
-          <input
-            className="password__input"
-            type={valuesConfirm ? 'password' : 'text'}
-            placeholder="Confirm Password"
-          ></input>
-          <img
-            onClick={handleClickShowConfirmPassword}
-            className="password__icon"
-            src={valuesConfirm ? PasswordIcon : ShowIcon}
-            alt="Hide Password"
-          />
-        </div>
-      </InputField>
-      <Description>
-        We will not share or sell your information to 3rd parties.
-      </Description>
-      <Description>
-        By clicking on <strong>Create Account</strong>, you agree to DeFi For
-        You’s Terms and Conditions of Use.
-      </Description>
-      <div>
-        <DefiButton width={'174px'} height={'48px'}>
-          Create Account
-        </DefiButton>
-      </div>
+      <Form>
+        <Label>Name</Label>
+        <InputField color={nameError ? '#74767b' : '#ff5252'}>
+          <div className="email__field">
+            {' '}
+            <input
+              onChange={e => validateName(e)}
+              className="email__input"
+              type="text"
+              placeholder="Enter name"
+            ></input>
+          </div>
+        </InputField>
+        <Label>Email</Label>
+        <InputField color={emailError ? '#74767b' : '#ff5252'}>
+          <div className="email__field">
+            {' '}
+            <input
+              onChange={e => validateEmail(e)}
+              className="email__input"
+              type="email"
+              placeholder="Enter email"
+            ></input>
+          </div>
+          <Validation>{emailError ? '' : 'Invalid email'}</Validation>
+        </InputField>
+        <Label>Password</Label>
+        <InputField color={passwordError ? '#74767b' : '#ff5252'}>
+          <div className="password__field">
+            {' '}
+            <input
+              onChange={e => validatePassword(e)}
+              className="password__input"
+              type={values ? 'password' : 'text'}
+              placeholder="Enter password"
+            ></input>
+            <img
+              onClick={handleClickShowPassword}
+              className="password__icon"
+              src={values ? PasswordIcon : ShowIcon}
+              alt="Hide Password"
+            />
+          </div>
+          <Validation>{passwordError ? '' : 'Invalid password'}</Validation>
+        </InputField>
+        <Label>Confirm Password</Label>
+        <InputField color={confirmPassword ? '#74767b' : '#ff5252'}>
+          <div className="password__field">
+            {' '}
+            <input
+              onChange={e => validateConfirmPassword(e)}
+              className="password__input"
+              type={valuesConfirm ? 'password' : 'text'}
+              placeholder="Confirm Password"
+            ></input>
+            <img
+              onClick={handleClickShowConfirmPassword}
+              className="password__icon"
+              src={valuesConfirm ? PasswordIcon : ShowIcon}
+              alt="Hide Password"
+            />
+          </div>
+          <Validation>{confirmPassword ? '' : 'Invalid password'}</Validation>
+        </InputField>
+        <Description>
+          We will not share or sell your information to 3rd parties.
+        </Description>
+        <DescriptionSd>
+          By clicking on <strong>Create Account</strong>, you agree to DeFi For
+          You’s Terms and Conditions of Use.
+        </DescriptionSd>
+        <Center>
+          <DefiButton type="submit" width={'174px'} height={'48px'}>
+            Create Account
+          </DefiButton>
+        </Center>
+      </Form>
     </>
   );
 }

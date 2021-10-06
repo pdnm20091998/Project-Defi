@@ -1,109 +1,83 @@
-import styled from 'styled-components/macro';
 import PasswordIcon from '../assets/img/showoff.png';
 import ShowIcon from '../assets/img/show.png';
 import DefiButton from '../../../components/DefiButton/DefiButton';
 import { useState } from 'react';
+import { Label, InputField, Forgot, Center, Validation } from './style';
+import validator from 'validator';
+import { Form } from 'react-bootstrap';
 
-const Label = styled.p`
-  font-weight: 500;
-  font-size: 14px;
-  color: #ffff;
-  margin-bottom: 6px;
-  margin-top: 24px;
-`;
-const Forgot = styled(Label)`
-  display: flex;
-  justify-content: flex-end;
-  margin-top: 16px;
-`;
-const InputField = styled.div`
-  width: 100%;
-  height: 44px;
-  border: 1px solid #74767b;
-  box-sizing: border-box;
-  border-radius: 22px;
-  :hover {
-    border: 1px solid #fff;
-  }
-  :focus {
-    border: 1px solid #dba83d;
-  }
-  .email__field {
-    display: flex;
-    flex: 1 1 auto;
-  }
-  .email__input {
-    display: flex;
-    flex: 1 1 auto;
-    padding: 21px 20px;
-    background-color: transparent;
-    color: #a2a3a7;
-    border: none;
-    outline: none;
-    height: 34px;
-  }
-  .password__field {
-    display: flex;
-  }
-  .password__input {
-    flex: 1 1 auto;
-    padding: 21px 20px;
-    background-color: transparent;
-    color: #a2a3a7;
-    border: none;
-    outline: none;
-    height: 34px;
-  }
-  .password__icon {
-    width: 22px;
-    height: 19px;
-    margin: 13px;
-    cursor: pointer;
-  }
-`;
 export default function Login() {
   const [values, setValues] = useState(true);
+  const [emailError, setEmailError] = useState(true);
+  const [passwordError, setPasswordError] = useState(true);
+
   const handleClickShowPassword = () => {
     setValues(!values);
   };
+
+  const validateEmail = e => {
+    var email = e.target.value;
+    if (validator.isEmail(email)) {
+      setEmailError(true);
+    } else {
+      setEmailError(false);
+    }
+  };
+  const validatePassword = e => {
+    var pass = e.target.value;
+    var reg = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/;
+    var test = reg.test(pass);
+    if (test) {
+      setPasswordError(true);
+    } else {
+      setPasswordError(false);
+    }
+  };
+
   return (
     <>
-      <Label>Email</Label>
-      <InputField>
-        <div className="email__field">
-          {' '}
-          <input
-            className="email__input"
-            type="email"
-            placeholder="Enter email"
-          ></input>
+      <Form>
+        <Label>Email</Label>
+        <InputField color={emailError ? '#74767b' : '#ff5252'}>
+          <div className="email__field">
+            {' '}
+            <input
+              onChange={e => validateEmail(e)}
+              className="email__input"
+              type="email"
+              placeholder="Enter email"
+            ></input>
+          </div>
+          <Validation>{emailError ? '' : 'Invalid email'}</Validation>
+        </InputField>
+        <Label>Password</Label>
+        <InputField color={passwordError ? '#74767b' : '#ff5252'}>
+          <div className="password__field">
+            {' '}
+            <input
+              onChange={e => validatePassword(e)}
+              className="password__input"
+              type={values ? 'password' : 'text'}
+              placeholder="Enter password"
+            ></input>
+            <img
+              onClick={handleClickShowPassword}
+              className="password__icon"
+              src={values ? PasswordIcon : ShowIcon}
+              alt="Hide Password"
+            />
+          </div>
+          <Validation>{passwordError ? '' : 'Invalid password'}</Validation>
+        </InputField>
+        <div>
+          <Forgot>Forgot your password?</Forgot>
         </div>
-      </InputField>
-      <Label>Password</Label>
-      <InputField>
-        <div className="password__field">
-          {' '}
-          <input
-            className="password__input"
-            type={values ? 'password' : 'text'}
-            placeholder="Enter password"
-          ></input>
-          <img
-            onClick={handleClickShowPassword}
-            className="password__icon"
-            src={values ? PasswordIcon : ShowIcon}
-            alt="Hide Password"
-          />
-        </div>
-      </InputField>
-      <div>
-        <Forgot>Forgot your password?</Forgot>
-      </div>
-      <div>
-        <DefiButton width={'117px'} height={'48px'}>
-          Login
-        </DefiButton>
-      </div>
+        <Center>
+          <DefiButton type="submit" width={'117px'} height={'48px'}>
+            Login
+          </DefiButton>
+        </Center>
+      </Form>
     </>
   );
 }

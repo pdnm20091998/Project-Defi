@@ -19,5 +19,14 @@ const DefiButton = styled.button<{
   cursor: pointer;
   padding: ${props => props.padding};
   margin: ${props => props.margin};
+  :hover {
+    background: linear-gradient(
+      221deg,
+      rgba(189, 135, 39, 1) 22%,
+      rgba(255, 213, 116, 1) 47%,
+      rgba(254, 202, 80, 1) 57%,
+      rgba(189, 135, 39, 1) 79%
+    );
+  }
 `;
 export default DefiButton;

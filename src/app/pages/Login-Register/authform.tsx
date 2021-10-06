@@ -1,15 +1,18 @@
 import React from 'react';
 import Frame from './assets/img/Frame.png';
-// import Navbar from './Navbar/Navbar';
 import Title from './Title/Title';
 import Login from './Login/Login';
 import Signup from './Signup/Sigup';
 import { Container, Row, Col, Tabs, Tab } from 'react-bootstrap';
 import styled from 'styled-components/macro';
-import Navbar from '../Home/NavBar/index';
+import Navbar from './Navbar/Navbar';
 
 const Img = styled.img`
-  width: 100%;
+  max-width: 100%;
+  height: auto;
+  @media (min-width: 992px) {
+    margin-left: 52px;
+  }
 `;
 
 export default function AuthForm() {
@@ -22,7 +25,7 @@ export default function AuthForm() {
           <Col
             className="form"
             xs={{ span: 12, order: 2 }}
-            md={{ span: 5, order: 1 }}
+            lg={{ span: 6, order: 1 }}
           >
             <Tabs
               defaultActiveKey="profile"
@@ -37,10 +40,7 @@ export default function AuthForm() {
               </Tab>
             </Tabs>
           </Col>
-          <Col
-            xs={{ span: 12, order: 1 }}
-            md={{ span: 6, order: 2, offset: 1 }}
-          >
+          <Col xs={{ span: 12, order: 1 }} lg={{ span: 6, order: 2 }}>
             <Img src={Frame} alt="Frame" />
           </Col>
         </Row>

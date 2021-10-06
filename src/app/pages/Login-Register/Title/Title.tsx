@@ -16,7 +16,7 @@ const Description = styled.p`
   font-weight: 500;
   line-height: 24px;
   color: #ffffff;
-  max-width: 715px;
+  max-width: 650px;
   margin-bottom: 24px;
   strong {
     color: #dba83d;
