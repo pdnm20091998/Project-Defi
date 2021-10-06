@@ -1,0 +1,27 @@
+.active {
+  color: #dba83d !important;
+  position: relative;
+}
+.active::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 1px;
+  width: 50%;
+  border-bottom: 1px solid#dba83d;
+}
+.displayBtn {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .remove {
+    display: none;
+  }
+}
+@media (max-width: 1024px) {
+  .displayBtn {
+    display: inline-block;
+  }
+}

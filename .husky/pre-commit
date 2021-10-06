@@ -1,6 +1,6 @@
 #!/bin/sh
 . "$(dirname "$0")/_/husky.sh"
 
-yarn checkTs
-yarn lint-staged
+npm run checkTs
+# yarn lint-staged
 
