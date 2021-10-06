@@ -1,11 +1,12 @@
 import React from 'react';
 import Frame from './assets/img/Frame.png';
-import Navbar from './Navbar/Navbar';
+// import Navbar from './Navbar/Navbar';
 import Title from './Title/Title';
 import Login from './Login/Login';
 import Signup from './Signup/Sigup';
 import { Container, Row, Col, Tabs, Tab } from 'react-bootstrap';
 import styled from 'styled-components/macro';
+import Navbar from '../Home/NavBar/index';
 
 const Img = styled.img`
   width: 100%;

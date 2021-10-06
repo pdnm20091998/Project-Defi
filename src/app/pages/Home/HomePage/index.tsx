@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Helmet } from 'react-helmet-async';
-import GlobalStyle from '../../../components/Global/Global';
 import NavBar from '../NavBar';
+import Banner from './Banner/Banner';
 export function HomePage() {
   return (
     <>
@@ -9,8 +9,8 @@ export function HomePage() {
         <title>Home Page</title>
         <meta name="description" content="A Boilerplate application homepage" />
       </Helmet>
-      <GlobalStyle />
-      {/* <NavBar /> */}
+      <NavBar />
+      <Banner />
       <span>HomePage container</span>
     </>
   );

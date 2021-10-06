@@ -30,7 +30,7 @@ const Div = styled.div`
   padding: 20px;
   background: #232732;
   color: #fff;
-  @media (min-width: 1536px) {
+  /* @media (min-width: 1536px) {
     .xl-container {
       width: 100%;
     }
@@ -68,8 +68,8 @@ const Div = styled.div`
       .xl-container {
         max-width: 1536px;
       }
-    }
-  }
+    } */
+  /* } */
 `;
 const Content = styled.div`
   .banner {
@@ -111,7 +111,7 @@ function Banner(props: Props) {
   return (
     <Main>
       <Div className="pawn-lend-borrow xl md">
-        <Content className="pawn-lend-borrow__content xl-container mx-auto container-xs">
+        <Content className="pawn-lend-borrow__content 2xl:container mx-auto container-xs">
           <BannerLeft />
           <PawnTabs />
         </Content>
