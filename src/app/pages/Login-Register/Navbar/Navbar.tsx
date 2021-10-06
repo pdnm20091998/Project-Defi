@@ -1,1 +1,7 @@
-import styled from 'styled-components/macro';
+export default function navbar() {
+  return (
+    <>
+      <div>Navbar</div>
+    </>
+  );
+}
