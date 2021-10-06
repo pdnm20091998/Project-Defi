@@ -10,7 +10,7 @@ export function HomePage() {
         <meta name="description" content="A Boilerplate application homepage" />
       </Helmet>
       <GlobalStyle />
-      <NavBar />
+      {/* <NavBar /> */}
       <span>HomePage container</span>
     </>
   );
