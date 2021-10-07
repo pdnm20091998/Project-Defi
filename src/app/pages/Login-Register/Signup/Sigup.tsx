@@ -2,6 +2,9 @@ import PasswordIcon from '../assets/img/showoff.png';
 import ShowIcon from '../assets/img/show.png';
 import DefiButton from '../../../components/DefiButton/DefiButton';
 import { useState } from 'react';
+import { Form } from 'react-bootstrap';
+import validator from 'validator';
+import ReCAPTCHA from 'react-google-recaptcha';
 import {
   Label,
   InputField,
@@ -10,8 +13,6 @@ import {
   Center,
   Validation,
 } from './style';
-import { Form } from 'react-bootstrap';
-import validator from 'validator';
 
 export default function Signup() {
   const [values, setValues] = useState(true);
@@ -22,12 +23,14 @@ export default function Signup() {
   const [confirmPassword, setconfirmPassword] = useState(true);
 
   const [pass, setPass] = useState('');
+  // Show password
   const handleClickShowPassword = () => {
     setValues(!values);
   };
   const handleClickShowConfirmPassword = () => {
     setValuesConfirm(!valuesConfirm);
   };
+  //Validate name
   const validateName = e => {
     var name = e.target.value;
     var reg =
@@ -39,6 +42,7 @@ export default function Signup() {
       setNameError(false);
     }
   };
+  //Validate email
   const validateEmail = e => {
     var email = e.target.value;
     if (validator.isEmail(email)) {
@@ -47,6 +51,7 @@ export default function Signup() {
       setEmailError(false);
     }
   };
+  //Validate password
   const validatePassword = e => {
     var pass = e.target.value;
     setPass(pass);
@@ -58,6 +63,7 @@ export default function Signup() {
       setPasswordError(false);
     }
   };
+  //Validate confirm password
   const validateConfirmPassword = e => {
     var confirm = e.target.value;
     if (confirm === pass) {
@@ -140,6 +146,7 @@ export default function Signup() {
           By clicking on <strong>Create Account</strong>, you agree to DeFi For
           You’s Terms and Conditions of Use.
         </DescriptionSd>
+        <ReCAPTCHA sitekey="6LfNh7IcAAAAANlttyrvXXR9DwRC0MsyO5mA4g8o" />,
         <Center>
           <DefiButton type="submit" width={'174px'} height={'48px'}>
             Create Account

@@ -10,11 +10,11 @@ export default function Login() {
   const [values, setValues] = useState(true);
   const [emailError, setEmailError] = useState(true);
   const [passwordError, setPasswordError] = useState(true);
-
+  //show password
   const handleClickShowPassword = () => {
     setValues(!values);
   };
-
+  // Validate email
   const validateEmail = e => {
     var email = e.target.value;
     if (validator.isEmail(email)) {
@@ -23,6 +23,7 @@ export default function Login() {
       setEmailError(false);
     }
   };
+  //Validate password
   const validatePassword = e => {
     var pass = e.target.value;
     var reg = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/;
