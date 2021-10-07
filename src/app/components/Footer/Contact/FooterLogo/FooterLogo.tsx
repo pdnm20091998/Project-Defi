@@ -9,7 +9,7 @@ export default function FooterLogo() {
   return (
     <Stack gap={3}>
       <Logo width={'203px'} />
-      <Div className="d-flex">
+      <Div>
         <img src={globe} width="24px" alt="globe" />
         <P className="ms-2 me-1">English (United States)</P>
         <FontAwesomeIcon icon={faArrowRight} color="#9FA6B2" />
