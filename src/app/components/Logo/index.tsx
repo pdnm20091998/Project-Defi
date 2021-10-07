@@ -9,6 +9,7 @@ import logo from './assests/logo.svg';
 interface Props {
   width?: string;
   height?: string;
+  className?: string;
 }
 
 export default function Logo(props: Props) {
@@ -18,7 +19,7 @@ export default function Logo(props: Props) {
       width={props.width}
       height={props.height}
       alt="logo"
-      className="d-inline-block"
+      className={`d-inline-block ${props.className}`}
     />
   );
 }
