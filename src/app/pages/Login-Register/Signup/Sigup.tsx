@@ -19,7 +19,8 @@ export default function Signup() {
   const [valuesConfirm, setValuesConfirm] = useState(true);
   const [nameError, setNameError] = useState(true);
   const [emailError, setEmailError] = useState(true);
-  const [passwordError, setPasswordError] = useState(true);
+  const [passwordError, setPasswordError] = useState('');
+  const [bodercolor, setBodercolor] = useState('#74767b');
   const [confirmPassword, setconfirmPassword] = useState(true);
 
   const [pass, setPass] = useState('');
@@ -55,12 +56,20 @@ export default function Signup() {
   const validatePassword = e => {
     var pass = e.target.value;
     setPass(pass);
-    var reg = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/;
+    var reg =
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
     var test = reg.test(pass);
-    if (test) {
-      setPasswordError(true);
+    if (pass.length < 8 && pass.length > 255) {
+      setPasswordError(
+        'Password length should be between 8 to 255 characters.',
+      );
+      setBodercolor('#ff5252');
+    } else if (!test) {
+      setPasswordError('Contain at least one capital letter and one number');
+      setBodercolor('#ff5252');
     } else {
-      setPasswordError(false);
+      setPasswordError('');
+      setBodercolor('#74767b');
     }
   };
   //Validate confirm password
@@ -87,6 +96,7 @@ export default function Signup() {
               placeholder="Enter name"
             ></input>
           </div>
+          <Validation>{nameError ? '' : 'Invalid name'}</Validation>
         </InputField>
         <Label>Email</Label>
         <InputField color={emailError ? '#74767b' : '#ff5252'}>
@@ -102,7 +112,7 @@ export default function Signup() {
           <Validation>{emailError ? '' : 'Invalid email'}</Validation>
         </InputField>
         <Label>Password</Label>
-        <InputField color={passwordError ? '#74767b' : '#ff5252'}>
+        <InputField color={bodercolor}>
           <div className="password__field">
             {' '}
             <input
@@ -118,7 +128,7 @@ export default function Signup() {
               alt="Hide Password"
             />
           </div>
-          <Validation>{passwordError ? '' : 'Invalid password'}</Validation>
+          <Validation>{passwordError}</Validation>
         </InputField>
         <Label>Confirm Password</Label>
         <InputField color={confirmPassword ? '#74767b' : '#ff5252'}>

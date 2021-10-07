@@ -1,18 +1,30 @@
-import React, { useState } from 'react';
-import { Switch, Route, Link, useRouteMatch } from 'react-router-dom';
+import React from 'react';
+import {
+  Switch,
+  Route,
+  Link,
+  useRouteMatch,
+  useLocation,
+} from 'react-router-dom';
 import Frame from './assets/img/Frame.png';
 import Title from './Title/Title';
 import Login from './Login/Login';
 import Signup from './Signup/Sigup';
 import { Container, Row, Col } from 'react-bootstrap';
 import styled from 'styled-components/macro';
-import Navbar from './Navbar/Navbar';
+import Navbar from '../Home/NavBar/index';
 
 const Img = styled.img`
   max-width: 100%;
   height: auto;
   @media (min-width: 992px) {
     margin-left: 52px;
+  }
+`;
+const Content = styled.div`
+  @media (max-width: 576px) {
+    margin-left: 16px;
+    margin-right: 16px;
   }
 `;
 const Tab = styled.div<{
@@ -47,64 +59,64 @@ const Tab = styled.div<{
 `;
 export default function AuthForm() {
   let { path, url } = useRouteMatch();
-  const [activeSignup, setActiveSignup] = useState(false);
-  const [activeLogin, setActiveLogin] = useState(true);
-  const TabSignup = () => {
-    setActiveSignup(true);
-    setActiveLogin(false);
-  };
-  const TabLogin = () => {
-    setActiveSignup(false);
-    setActiveLogin(true);
-  };
+  let location = useLocation();
   return (
     <>
       <Navbar />
-      <Container className="px-0">
-        <Title />
-        <Row>
-          <Col
-            className="form"
-            xs={{ span: 12, order: 2 }}
-            lg={{ span: 6, order: 1 }}
-          >
-            <Tab>
-              <span>
-                <Link
-                  onClick={TabSignup}
-                  className={activeSignup ? 'signup active' : 'signup'}
-                  to={`${url}/tab=1`}
-                >
-                  Sign up
-                </Link>
-              </span>
-              <span>
-                <Link
-                  onClick={TabLogin}
-                  className={activeLogin ? 'login active' : 'login'}
-                  to={`${url}/tab=2`}
-                >
-                  Log in
-                </Link>
-              </span>
-            </Tab>
-            <Switch>
-              <Route exact path={path}>
-                <Login />
-              </Route>
-              <Route path={`${path}/tab=2`}>
-                <Login />
-              </Route>
-              <Route path={`${path}/tab=1`}>
-                <Signup />
-              </Route>
-            </Switch>
-          </Col>
-          <Col xs={{ span: 12, order: 1 }} lg={{ span: 6, order: 2 }}>
-            <Img src={Frame} alt="Frame" />
-          </Col>
-        </Row>
-      </Container>
+      <Content>
+        <Container className="px-0">
+          <Title />
+          <Row>
+            <Col
+              className="form"
+              xs={{ span: 12, order: 2 }}
+              lg={{ span: 6, order: 1 }}
+            >
+              <Tab>
+                <span>
+                  <Link
+                    className={
+                      location.pathname === '/login/tab=1'
+                        ? 'signup active'
+                        : 'signup'
+                    }
+                    to={`${url}/tab=1`}
+                  >
+                    Sign up
+                  </Link>
+                </span>
+                <span>
+                  <Link
+                    className={
+                      location.pathname === '/login/tab=2' ||
+                      location.pathname === '/login'
+                        ? 'login active'
+                        : 'login'
+                    }
+                    to={`${url}/tab=2`}
+                  >
+                    Log in
+                  </Link>
+                </span>
+              </Tab>
+              <Switch>
+                <Route exact path={path}>
+                  <Login />
+                </Route>
+                <Route path={`${path}/tab=2`}>
+                  <Login />
+                </Route>
+                <Route path={`${path}/tab=1`}>
+                  <Signup />
+                </Route>
+              </Switch>
+            </Col>
+            <Col xs={{ span: 12, order: 1 }} lg={{ span: 6, order: 2 }}>
+              <Img src={Frame} alt="Frame" />
+            </Col>
+          </Row>
+        </Container>
+      </Content>
     </>
   );
 }
