@@ -10,10 +10,6 @@ import { Borrow } from './Borrow/index';
 import { Lend } from './Lend/index';
 interface Props {}
 const Div = styled.div`
-  @media screen and (max-width: 991px) {
-    width: 100%;
-  }
-  width: 39%;
   .tabs {
     padding: 4px;
     border: none;
