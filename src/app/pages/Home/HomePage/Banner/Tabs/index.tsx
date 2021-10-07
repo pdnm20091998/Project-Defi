@@ -13,9 +13,11 @@ const Div = styled.div`
   .tabs {
     padding: 4px;
     border: none;
+    padding-bottom: 12px;
+
     .nav-item {
       display: flex;
-      align-items: end;
+      align-items: center;
       text-align: center;
     }
     .nav-link {
@@ -41,7 +43,10 @@ const Div = styled.div`
       border: none;
       background: #282c37;
       border-radius: 1000px;
-
+      flex-wrap: nowrap;
+      @media (max-width: 480px) {
+        width: 50%;
+      }
       .nav-item {
         font-weight: 500;
         font-size: 16px;
@@ -58,7 +63,7 @@ const Div = styled.div`
         color: #ffffff;
         font-style: normal;
         transition: color 0.5s ease-in;
-        padding: 16px 24px;
+        padding: 1rem 1.5rem;
       }
       .active {
         background: linear-gradient(

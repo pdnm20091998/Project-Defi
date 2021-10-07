@@ -48,28 +48,47 @@ const Main = styled.div`
 export function Crypto(props: Props) {
   return (
     <Main>
-      <Container>
+      <div>
         <Row>
           <Col>
-            <Form name="Collateral" placeholder="Enter amount"></Form>
-            <P>Or</P>
-            <Button>Choose Existing collateral</Button>
-            <Form name="Duration" placeholder="Duration"></Form>
-            <Form name="Loan amount" placeholder="Enter amount"></Form>
-            <P className="mt">
-              Recommended amount <img src={img} alt="" />
-            </P>
-            <DefiButton
-              className="search"
-              width="100%"
-              height="54px"
-              margin="60px 0px 0px"
-            >
-              <img src={imgSearch} alt="" /> Search
-            </DefiButton>
+            <Form
+              name="Collateral"
+              placeholder="Enter amount"
+              filter="Currency"
+              arr="data"
+            ></Form>
+            <Container fluid="lg">
+              <P>Or</P>
+              <Button>Choose Existing collateral</Button>
+            </Container>
+            <Form
+              name="Duration"
+              placeholder="Duration"
+              filter="Duration"
+              arr="week"
+            ></Form>
+            <Form
+              name="Loan amount"
+              placeholder="Enter amount"
+              arr="data2"
+              filter="Loan"
+            ></Form>
+            <Container fluid="lg">
+              <P className="mt">
+                Recommended amount <img src={img} alt="" />
+              </P>
+              <DefiButton
+                className="search"
+                width="100%"
+                height="54px"
+                margin="60px 0px 0px"
+              >
+                <img src={imgSearch} alt="" /> Search
+              </DefiButton>
+            </Container>
           </Col>
         </Row>
-      </Container>
+      </div>
     </Main>
   );
 }

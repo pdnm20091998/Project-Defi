@@ -8,15 +8,17 @@
 
 import * as React from 'react';
 import { Helmet } from 'react-helmet-async';
-import { Switch, Route, BrowserRouter } from 'react-router-dom';
+import { Switch, Route, BrowserRouter, Redirect } from 'react-router-dom';
 
 import { GlobalStyle } from 'styles/global-styles';
 import AuthForm from './pages/Login-Register/authform';
 import { HomePage } from './pages/Home/HomePage/Loadable';
 import { useTranslation } from 'react-i18next';
+import { useState } from 'react';
 
 export function App() {
   const { i18n } = useTranslation();
+  const [loggedIn, setLoggedIn] = useState(true);
   return (
     <BrowserRouter>
       <Helmet
@@ -28,7 +30,10 @@ export function App() {
       </Helmet>
 
       <Switch>
-        <Route exact path="/" component={HomePage} />
+        <Route exact path="/">
+          {loggedIn ? <Redirect to="/pawn" /> : <AuthForm />}
+        </Route>
+        <Route path="/pawn" component={HomePage} />
         <Route path="/login" component={AuthForm} />
       </Switch>
       <GlobalStyle />
