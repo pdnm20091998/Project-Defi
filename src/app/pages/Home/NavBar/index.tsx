@@ -19,6 +19,7 @@ import {
   faAngleLeft,
 } from '@fortawesome/free-solid-svg-icons';
 import avatar from './assests/Vector.svg';
+import { Link } from 'react-router-dom';
 
 interface Props {}
 
@@ -58,36 +59,46 @@ export default function NavBar(props: Props) {
     setOpen(!open);
   }
   return (
-    <Div>
+    <Div className={styles.container}>
       {t('')}
       {/*  {t(...messages.someThing())}  */}
       <Navbar expand="xl">
         <Container fluid>
-          <Navbar.Brand>
-            <Logo />
+          <Navbar.Brand className="me-auto">
+            <Logo className={styles.logo} />
           </Navbar.Brand>
           <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className="me-auto ms-5">
-              <NavLink className={`pe-3 ${styles.active}`}>Pawn</NavLink>
-              <NavLink className="pe-3">Borrow</NavLink>
-              <NavLink className="pe-3">Lend</NavLink>
-              <NavLink className="pe-3">NFT</NavLink>
-              <NavLink className="pe-3">My account</NavLink>
-              <NavLink>FAQ</NavLink>
+            <Nav className="me-auto ms-auto">
+              <NavLink href="#" className={`pe-3 ${styles.active}`}>
+                Pawn
+              </NavLink>
+              <NavLink href="#" className="pe-3">
+                Borrow
+              </NavLink>
+              <NavLink href="#" className="pe-3">
+                Lend
+              </NavLink>
+              <NavLink href="#" className="pe-3">
+                NFT
+              </NavLink>
+              <NavLink href="#" className="pe-3">
+                My account
+              </NavLink>
+              <NavLink href="#">FAQ</NavLink>
             </Nav>
           </Navbar.Collapse>
           <Form>
             <DefiButton className={styles.remove} width="190px" height="36px">
-              Become a Pawnshop
+              <MyLink to="#">Become a Pawnshop</MyLink>
             </DefiButton>
             <NavButton width="100px" className={`ms-3 ${styles.remove}`}>
-              Buy DFY
+              <MyLink to="#">Buy DFY</MyLink>
             </NavButton>
             <NavButton width="100px" className="ms-3">
-              Connect
+              <MyLink to="#">Connect</MyLink>
             </NavButton>
             <NavButton width="80px" className={`ms-3 ${styles.remove}`}>
-              Login
+              <MyLink to="/login">Login</MyLink>
             </NavButton>
             {clicked === true ? (
               <FontAwesomeIcon
@@ -124,7 +135,7 @@ export default function NavBar(props: Props) {
             rounded
           />
           <NavButton width="80px" className="mt-2 mx-auto d-block">
-            Login
+            <MyLink to="/login">Login</MyLink>
           </NavButton>
           <NavLink>Pawn</NavLink>
           <NavLink>Staking</NavLink>
@@ -221,8 +232,8 @@ export default function NavBar(props: Props) {
 }
 
 const Div = styled.div`
-  height: 100px;
   background: #232732;
+  border-bottom: 1px solid rgba(125, 111, 125, 0.2);
 `;
 const NavLink = styled(Nav.Link)`
   color: #d1d1d3 !important;
@@ -235,10 +246,16 @@ const NavLink = styled(Nav.Link)`
 `;
 const MiniNav = styled(Nav)`
   background: #171a23;
-  position: relative;
+  position: absolute;
   display: block;
+  width: 100%;
+  z-index: 1;
 `;
 const MyDropDown = styled(NavLink)`
-  padding: 0.5rem 0 0.5rem 1rem;
+  padding: 0.5rem 0 0 1rem;
   cursor: pointer;
+`;
+const MyLink = styled(Link)`
+  color: inherit;
+  text-decoration: none;
 `;

@@ -24,6 +24,7 @@ export const GlobalStyle = createGlobalStyle`
   label {
     font-family: 'Montserrat', sans-serif;
     line-height: 1.5em;
+    margin: 0;
   }
 
   input, select {
