@@ -18,7 +18,6 @@ import { useState } from 'react';
 
 export function App() {
   const { i18n } = useTranslation();
-  const [loggedIn, setLoggedIn] = useState(true);
   return (
     <BrowserRouter>
       <Helmet
@@ -31,7 +30,7 @@ export function App() {
 
       <Switch>
         <Route exact path="/">
-          {loggedIn ? <Redirect to="/pawn" /> : <AuthForm />}
+          <Redirect to="/pawn" />
         </Route>
         <Route path="/pawn" component={HomePage} />
         <Route path="/login" component={AuthForm} />
