@@ -13,10 +13,10 @@ function Banner(props: Props) {
     <Main>
       <Container fluid="xxl">
         <Row>
-          <Col lg="6">
+          <Col lg="5">
             <BannerLeft />
           </Col>
-          <Col lg="6">
+          <Col lg={{ span: 6, offset: 1 }}>
             <PawnTabs />
           </Col>
         </Row>
