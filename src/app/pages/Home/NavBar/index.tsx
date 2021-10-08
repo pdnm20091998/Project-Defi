@@ -64,8 +64,10 @@ export default function NavBar(props: Props) {
       {/*  {t(...messages.someThing())}  */}
       <Navbar expand="xl">
         <Container fluid>
-          <Navbar.Brand className="me-auto">
-            <Logo className={styles.logo} />
+          <Navbar.Brand as="div" className="me-auto">
+            <Link to="/">
+              <Logo className={styles.logo} />
+            </Link>
           </Navbar.Brand>
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto ms-xxl-5 ms-xl-2">
@@ -258,4 +260,7 @@ const MyDropDown = styled(NavLink)`
 const MyLink = styled(Link)`
   color: inherit;
   text-decoration: none;
+  &:hover {
+    color: inherit;
+  }
 `;
