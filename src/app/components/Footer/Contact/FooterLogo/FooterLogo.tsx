@@ -5,11 +5,14 @@ import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import { Stack } from 'react-bootstrap';
 import globe from '../assests/globe.svg';
 import mail from '../assests/mail.svg';
+import { Link } from 'react-router-dom';
 export default function FooterLogo() {
   return (
     <Stack gap={3}>
-      <Logo width={'203px'} />
-      <Div className="d-flex">
+      <Link to="/">
+        <Logo width={'203px'} />
+      </Link>
+      <Div>
         <img src={globe} width="24px" alt="globe" />
         <P className="ms-2 me-1">English (United States)</P>
         <FontAwesomeIcon icon={faArrowRight} color="#9FA6B2" />

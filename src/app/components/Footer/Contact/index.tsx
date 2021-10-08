@@ -2,25 +2,34 @@ import React from 'react';
 import { Col, Row } from 'react-bootstrap';
 import FooterLogo from './FooterLogo/FooterLogo';
 import HanoiOffice from './HanoiOffice/HanoiOffice';
+import LondonOffice from './LondonOffice/LondonOffice';
+import About from './About/About';
+import SocialMedia from './SocialMedia/SosialMedia';
+import Navigation from './Navigation/Navigation';
 export default function Contact() {
   return (
-    <div className="wrapper" style={{ height: '200px' }}>
+    <div className="mb-4">
       <Row>
         <Col md={4} xs={12}>
           <FooterLogo />
         </Col>
         <Col md={8} xs={12}>
           <Row>
-            <Col md={6} xs={12}>
+            <Col md={7} xs={12}>
               <HanoiOffice />
-              <div>office london</div>
+              <LondonOffice />
             </Col>
-            <Col md={6} xs={{ span: 12, order: 'last' }}>
-              <div>find on</div>
-              <div>navigation</div>
+            <Col
+              md={5}
+              xs={{ span: 8, order: 'last' }}
+              sm={{ span: 6, order: 'last' }}
+            >
+              <SocialMedia />
+
+              <Navigation />
             </Col>
             <Col md={{ span: 12, order: 'last' }} xs={12}>
-              about defi for u
+              <About />
             </Col>
           </Row>
         </Col>

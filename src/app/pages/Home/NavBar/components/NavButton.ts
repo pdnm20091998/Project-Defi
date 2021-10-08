@@ -10,6 +10,9 @@ const NavButton = styled.button<{
   font-size: 14px;
   font-weight: 500;
   background: none;
+  &:hover {
+    opacity: 0.8;
+  }
 `;
 
 export default NavButton;
