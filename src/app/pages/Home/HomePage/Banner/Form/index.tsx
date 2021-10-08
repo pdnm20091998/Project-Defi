@@ -4,34 +4,62 @@
  *
  */
 import styled from 'styled-components/macro';
-
+import { useState, useEffect } from 'react';
 import ComboBox from 'react-responsive-combo-box';
 import DefiButton from '../../../../../components/DefiButton/DefiButton';
 import { Container, Row, Col } from 'react-bootstrap';
 import 'react-responsive-combo-box/dist/index.css';
+import { getAsset } from '../../../../../../api/homePageApi.js';
+import XRP from '../assets/coin/XRP.png';
+import ETH from '../assets/coin/ETH.png';
+import LTC from '../assets/coin/LTC.png';
+import BTC from '../assets/coin/BTC.png';
+import DFY from '../assets/coin/DFY.png';
+import BNB from '../assets/coin/BNB.png';
+import DOT from '../assets/coin/DOT.png';
+import ADA from '../assets/coin/ADA.png';
+
 interface ComboBoxProps {
   name?: string;
   array?: string;
 }
 const ComboBoxExample = (props: ComboBoxProps) => {
+  let collateral: any[] = [];
+  let loan: any[] = [];
+  let collateralOption: any[] = ['All'];
+  let loanOption: any[] = ['All'];
+  const resultAsset = () => {
+    getAsset()
+      .then(asset => asset.data)
+      .then((e: any) => {
+        e.data.map(o => {
+          o.isWhitelistCollateral && collateral.push(o);
+          o.isWhitelistSupply && loan.push(o);
+          return o;
+        });
+      })
+      .then(() => {
+        collateral.forEach(e => {
+          e && collateralOption.push(`${e.symbol}`);
+        });
+        loan.forEach(e => {
+          e && loanOption.push(e.symbol);
+        });
+      })
+
+      .catch(e => e);
+  };
   const options = {
-    data: [
-      'All',
-      'BNC',
-      'ETC',
-      'ZEC',
-      'XRP',
-      'LTC',
-      'MKR',
-      'BAT',
-      'ETH',
-      'DFY',
-      'USDT',
-      'FIL',
-    ],
-    data2: ['All', 'BNC', 'ETC', 'ZEC', 'XRP', 'LTC'],
+    data: collateralOption,
+    data2: loanOption,
     week: ['All', 'Weeks', 'Months'],
   };
+  async function asyncCall() {
+    await resultAsset();
+  }
+
+  asyncCall();
+
   return (
     <div className="drop">
       <ComboBox
@@ -40,6 +68,9 @@ const ComboBoxExample = (props: ComboBoxProps) => {
         defaultValue={`${props.array ? options[props.array][0] : []}`}
         placeholder={props.name}
         options={props.array ? options[props.array] : []}
+        onBlur={e => {
+          return <div>hello {e}</div>;
+        }}
         enableAutocomplete
       />
     </div>

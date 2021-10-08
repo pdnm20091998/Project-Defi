@@ -7,33 +7,66 @@ import * as React from 'react';
 import styled from 'styled-components/macro';
 import { Container, Row, Col } from 'react-bootstrap';
 import { Form } from '../../Form/index';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import DefiButton from '../../../../../../components/DefiButton/DefiButton';
 import imgSearch from '../../assets/search.svg';
 import imgClose from '../../assets/x.svg';
 import { MultiSelect } from 'react-multi-select-component';
-const options = [
-  { label: 'BNC ', value: 'BNC' },
-  { label: 'ETC ', value: 'ETC' },
-  { label: 'ZEC ', value: 'ZEC' },
-  { label: 'XRP ', value: 'XRP' },
-  { label: 'LTC ', value: 'LTC' },
-  { label: 'MKR ', value: 'MKR' },
-  { label: 'BAT ', value: 'BAT' },
-  { label: 'DFY ', value: 'DFY' },
-  { label: 'ETH ', value: 'ETH' },
-  { label: 'USDT ', value: 'USDT' },
-  { label: 'FIL ', value: 'FIL' },
-];
+import { getAsset } from '../../../../../../../api/homePageApi.js';
+import XRP from '../../assets/coin/XRP.png';
+import ETH from '../../assets/coin/ETH.png';
+import LTC from '../../assets/coin/LTC.png';
+import BTC from '../../assets/coin/BTC.png';
+import DFY from '../../assets/coin/DFY.png';
+import BNB from '../../assets/coin/BNB.png';
+import DOT from '../../assets/coin/DOT.png';
+import ADA from '../../assets/coin/ADA.png';
+interface OptionsItem {
+  label: string;
+  value: string;
+}
+const options: Array<OptionsItem> = [];
+const optionsItems: any[] = [];
 
 const DefaultItemRenderer = ({ checked, option, onClick, disabled }) => (
   <div onClick={onClick} className={`item-renderer ${disabled && 'disabled'}`}>
+    {/* <img src={ADA} alt="" /> */}
     <span>{option.label}</span>
   </div>
 );
 
 const Example = () => {
   const [selected, setSelected] = useState([]);
+  useEffect(() => {
+    const resultAsset = () => {
+      getAsset()
+        .then(asset => asset.data)
+        .then((e: any) => {
+          e.data.map((o: any) => {
+            o.isWhitelistCollateral && optionsItems.push(o);
+            return o;
+          });
+          return optionsItems;
+        })
+        .then(o => {
+          o.forEach(e => {
+            options.push({
+              label: e.symbol,
+              value: e.symbol,
+            });
+          });
+          return options;
+        })
+        .catch(e => e);
+    };
+    async function asyncCall() {
+      await resultAsset();
+    }
+
+    asyncCall();
+  }, []);
+  // console.log(ETH);
+
   const customValueRenderer = selected => {
     return selected.length
       ? selected.map(({ label }) => {
