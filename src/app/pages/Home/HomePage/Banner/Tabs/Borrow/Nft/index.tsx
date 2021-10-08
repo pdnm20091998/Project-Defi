@@ -30,12 +30,17 @@ export function Nft(props: Props) {
           <Col sm="12" className="d-flex justify-content-center my-5 pt-2 ">
             <img src={img} alt="" />
           </Col>
-          <Col sm="12" className="d-flex justify-content-center mb-4">
-            <DefiButton width="30%" height="48px">
+          <Col
+            lg={{ span: 4, offset: 4 }}
+            md={{ span: 12 }}
+            xs={{ span: 12 }}
+            className="d-flex justify-content-center mb-4"
+          >
+            <DefiButton width="100%" height="48px">
               Find NFT lenders
             </DefiButton>
           </Col>
-          <Col sm="12" className="d-flex justify-content-center mt-2">
+          <Col sm="12" className="d-flex justify-content-center mt-2 mb-5">
             <P>
               Don’t have hard NFT?
               <Link className="link" to="/?">

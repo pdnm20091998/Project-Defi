@@ -52,6 +52,7 @@
         "react-google-recaptcha": "2.1.0",
         "react-helmet-async": "1.0.9",
         "react-i18next": "11.11.1",
+        "react-multi-select-component": "4.1.13",
         "react-recaptcha-google": "1.1.1",
         "react-redux": "7.2.4",
         "react-responsive-combo-box": "1.2.9",
