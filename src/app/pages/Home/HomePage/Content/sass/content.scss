@@ -1,0 +1,55 @@
+@mixin setSizeTextLeft {
+    .content__item {
+        text-align: left;
+        margin-bottom: 50px;
+        .content__text {
+            padding-left: 27px;
+            .content__title {
+                font-size: 16px;
+            }
+            .content__info {
+                font-size: 14px;
+            }
+        }
+    }
+}
+
+@mixin setSizeTextRight {
+    .content__item {
+        margin-bottom: 50px;
+        text-align: right;
+        flex-direction: row-reverse;
+        .content__text {
+            padding-right: 27px;
+            .content__title {
+                font-size: 16px;
+            }
+            .content__info {
+                font-size: 14px;
+            }
+        }
+    }
+}
+
+@media screen and (max-width:540px) {
+    .content__col {
+        &:nth-child(1),
+        &:nth-child(3) {
+            @include setSizeTextLeft;
+        }
+        &:nth-child(2),
+        &:nth-child(4) {
+            @include setSizeTextRight;
+        }
+        .content__item {
+            display: flex;
+        }
+        .content__info {
+            margin: 0;
+        }
+    }
+    .title {
+        font-size: 24px;
+        margin-bottom: 48px;
+    }
+}

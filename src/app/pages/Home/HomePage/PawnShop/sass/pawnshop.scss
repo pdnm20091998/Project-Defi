@@ -1,0 +1,35 @@
+@media screen and (max-width:991px) {
+    .pawnShop {
+        padding: 40px 90px !important;
+        .pawnShop__info {
+            width: 80% !important;
+        }
+    }
+}
+
+@media screen and (max-width:768px) {
+    .pawnShop {
+        padding: 40px 50px !important;
+        .pawnShop__title {
+            font-size: 16px !important;
+        }
+        .pawnShop__info {
+            font-size: 12px !important;
+        }
+    }
+}
+
+@media screen and (max-width:540px) {
+    .pawnShop {
+        padding: 20px !important;
+        .pawnShop__title {
+            margin: 0 !important;
+            font-size: 16px !important;
+        }
+        .pawnShop__info {
+            width: 90% !important;
+            font-size: 12px !important;
+            margin-bottom: 12px !important;
+        }
+    }
+}
