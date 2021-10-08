@@ -85,7 +85,9 @@ const Main = styled.div`
     color: #fff;
     .dropdown-container {
       background-color: transparent !important;
-
+      .dropdown-heading {
+        height: auto;
+      }
       .options::-webkit-scrollbar-track {
         -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
         background-color: #2f3543;
@@ -198,7 +200,7 @@ export function Lend(props: Props) {
               arr="week"
             ></Form>
             <Container fluid="lg">
-              <P>Collateral</P>
+              <P className="pb-2">Collateral</P>
               <div className="tabsRadio d-flex ">
                 <label className="tabsRadio__Crypto tab col-6">
                   <input
@@ -221,13 +223,27 @@ export function Lend(props: Props) {
                 </label>
               </div>
               {component === 'Crypto' ? (
-                <Example />
+                <div>
+                  <Row>
+                    <Example />
+                  </Row>
+                  <Row>
+                    <DefiButton
+                      className="search mb-lg-5 mb-sm-3 mb-xs-3"
+                      width="100%"
+                      height="3.4rem"
+                      margin="38px 0px"
+                    >
+                      <img src={imgSearch} alt="" /> Search
+                    </DefiButton>
+                  </Row>
+                </div>
               ) : (
                 <DefiButton
-                  className="search"
+                  className="search mb-lg-5 mb-sm-3 mb-xs-3"
                   width="100%"
                   height="54px"
-                  margin="38px 0px 124px 0px"
+                  margin="38px 0px"
                 >
                   <img src={imgSearch} alt="" />
                   Search
