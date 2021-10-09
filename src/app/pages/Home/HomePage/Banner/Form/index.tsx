@@ -20,34 +20,31 @@ const ComboBoxExample = (props: ComboBoxProps) => {
   let loan: any[] = [];
   let collateralOption: any[] = ['All'];
   let loanOption: any[] = ['All'];
-  useEffect(() => {
-    const resultAsset = () => {
-      getAsset()
-        .then(asset => asset.data)
-        .then((e: any) => {
-          e.data.map(o => {
-            o.isWhitelistCollateral && collateral.push(o);
-            o.isWhitelistSupply && loan.push(o);
-            return o;
-          });
-        })
-        .then(() => {
-          collateral.forEach(e => {
-            collateralOption.push(`${e.symbol}`);
-          });
-          loan.forEach(e => {
-            loanOption.push(e.symbol);
-          });
-        })
+  const resultAsset = () => {
+    getAsset()
+      .then(asset => asset.data)
+      .then((e: any) => {
+        e.data.map(o => {
+          o.isWhitelistCollateral && collateral.push(o);
+          o.isWhitelistSupply && loan.push(o);
+          return o;
+        });
+      })
+      .then(() => {
+        collateral.forEach(e => {
+          collateralOption.push(`${e.symbol}`);
+        });
+        loan.forEach(e => {
+          loanOption.push(e.symbol);
+        });
+      })
 
-        .catch(e => e);
-    };
-
-    async function asyncCall() {
-      await resultAsset();
-    }
-    asyncCall();
-  }, []);
+      .catch(e => e);
+  };
+  async function asyncCall() {
+    await resultAsset();
+  }
+  asyncCall();
 
   const options = {
     data: collateralOption,
