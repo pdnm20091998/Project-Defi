@@ -142,9 +142,9 @@ const Div = styled.div`
           .option:hover {
             background-color: #2a303c !important;
           }
-          .option[toggleFocus] {
+          /* .option[toggleFocus] {
             background-color: #2c4059 !important;
-          }
+          } */
         }
       }
       ._WbEAz ::-webkit-scrollbar-track {

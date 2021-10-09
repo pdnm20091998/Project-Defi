@@ -48,12 +48,12 @@ const Main = styled.div`
       display: block;
       border-radius: 5px;
       padding: 5px 20px 5px 15px;
-      opacity: 0;
+      transform: scale(0);
       -webkit-transition: all 1s;
       transition: all 1s;
     }
     &[title]:hover:after {
-      opacity: 1;
+      transform: scale(1);
       -webkit-transition: all 1s;
       transition: all 1s;
     }
