@@ -12,6 +12,7 @@ import imgSearch from '../../../assets/search.svg';
 import DefiButton from '../../../../../../../components/DefiButton/DefiButton';
 import { Container, Row, Col } from 'react-bootstrap';
 import { Form } from '../../../Form/index';
+import { Link } from 'react-router-dom';
 interface Props {}
 
 const P = styled.p`
@@ -100,14 +101,16 @@ export function Crypto(props: Props) {
               >
                 Recommended amount <img src={img} alt="" />
               </P>
-              <div className="">
-                <DefiButton
-                  className="search my-sm-5 mb-xs-5"
-                  width="100%"
-                  height="54px"
-                >
-                  <img src={imgSearch} alt="" /> Search
-                </DefiButton>
+              <div>
+                <Link to="/resultBorrowCrypto">
+                  <DefiButton
+                    className="search my-sm-5 mb-xs-5"
+                    width="100%"
+                    height="54px"
+                  >
+                    <img src={imgSearch} alt="" /> Search
+                  </DefiButton>
+                </Link>
               </div>
             </Container>
           </Col>

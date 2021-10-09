@@ -13,14 +13,7 @@ import imgSearch from '../../assets/search.svg';
 import imgClose from '../../assets/x.svg';
 import { MultiSelect } from 'react-multi-select-component';
 import { getAsset } from '../../../../../../../api/homePageApi.js';
-import XRP from '../../assets/coin/XRP.png';
-import ETH from '../../assets/coin/ETH.png';
-import LTC from '../../assets/coin/LTC.png';
-import BTC from '../../assets/coin/BTC.png';
-import DFY from '../../assets/coin/DFY.png';
-import BNB from '../../assets/coin/BNB.png';
-import DOT from '../../assets/coin/DOT.png';
-import ADA from '../../assets/coin/ADA.png';
+import { Link } from 'react-router-dom';
 interface OptionsItem {
   label: string;
   value: string;
@@ -29,12 +22,19 @@ const options: Array<OptionsItem> = [];
 const optionsItems: any[] = [];
 
 const DefaultItemRenderer = ({ checked, option, onClick, disabled }) => (
-  <div onClick={onClick} className={`item-renderer ${disabled && 'disabled'}`}>
-    {/* <img src={ADA} alt="" /> */}
-    <span>{option.label}</span>
+  <div
+    key={option.label}
+    onClick={onClick}
+    className={`item-renderer ${disabled && 'disabled'}`}
+  >
+    <img
+      className="icon"
+      src={`https://staging.app.defiforyou.uk/_nuxt/img/${option.value}`}
+      alt=""
+    />
+    <P>{option.label}</P>
   </div>
 );
-
 const Example = () => {
   const [selected, setSelected] = useState([]);
   useEffect(() => {
@@ -48,12 +48,79 @@ const Example = () => {
           });
           return optionsItems;
         })
-        .then(o => {
+        .then((o: any[]) => {
           o.forEach(e => {
-            options.push({
-              label: e.symbol,
-              value: e.symbol,
-            });
+            let img: string;
+            if (options.length < 9) {
+              switch (e.symbol) {
+                case 'XRP':
+                  img = 'XRP.7ff389b.png';
+                  options.push({
+                    label: e.symbol,
+                    value: img,
+                  });
+                  break;
+                case 'ETH':
+                  img = 'ETH.d810d23.png';
+                  options.push({
+                    label: e.symbol,
+                    value: img,
+                  });
+                  break;
+                case 'LTC':
+                  img = 'LTC.4b4595e.png';
+                  options.push({
+                    label: e.symbol,
+                    value: img,
+                  });
+                  break;
+                case 'BTC':
+                  img = 'BTC.fba89d5.png';
+                  options.push({
+                    label: e.symbol,
+                    value: img,
+                  });
+                  break;
+                case 'DFY':
+                  img = 'DFY.a0b985b.png';
+                  options.push({
+                    label: e.symbol,
+                    value: img,
+                  });
+                  break;
+                case 'BNB':
+                  img = 'BNB.978ee2b.png';
+                  options.push({
+                    label: e.symbol,
+                    value: img,
+                  });
+                  break;
+                case 'DOT':
+                  img = 'DOT.69cb9b6.png';
+                  options.push({
+                    label: e.symbol,
+                    value: img,
+                  });
+                  break;
+                case 'ADA':
+                  img = 'ADA.4647c52.png';
+                  options.push({
+                    label: e.symbol,
+                    value: img,
+                  });
+                  break;
+                case 'WBNB':
+                  img = 'WBNB.978ee2b.png';
+                  options.push({
+                    label: e.symbol,
+                    value: img,
+                  });
+                  break;
+
+                default:
+                  break;
+              }
+            }
           });
           return options;
         })
@@ -62,18 +129,25 @@ const Example = () => {
     async function asyncCall() {
       await resultAsset();
     }
-
     asyncCall();
+    return () => resultAsset();
   }, []);
-  // console.log(ETH);
 
   const customValueRenderer = selected => {
     return selected.length
-      ? selected.map(({ label }) => {
+      ? selected.map(({ label, value }) => {
           return (
-            <div>
-              <span className="selectedItem">
-                {label} <img src={imgClose} alt="" />
+            <div key={label}>
+              <span className="selectedItem ">
+                <div className="d-flex me-2">
+                  <img
+                    className="icon__value"
+                    src={`https://staging.app.defiforyou.uk/_nuxt/img/${value}`}
+                    alt=""
+                  />
+                  <P>{label}</P>
+                </div>
+                <img src={imgClose} alt="" />
               </span>
             </div>
           );
@@ -116,10 +190,22 @@ const Main = styled.div`
     --rmsc-h: 44px;
     --rmsc-main: #dba83d;
     color: #fff;
+    .icon {
+      width: 20px;
+      height: 20px;
+      margin-right: 5px;
+      &__value {
+        width: 20px;
+        height: 20px;
+        margin: 5px;
+      }
+    }
     .dropdown-container {
       background-color: transparent !important;
       .dropdown-heading {
         height: auto;
+      }
+      .options {
       }
       .options::-webkit-scrollbar-track {
         -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
@@ -143,7 +229,8 @@ const Main = styled.div`
         border: none;
         background: rgba(255, 255, 255, 0.1);
         border-radius: 16.5px;
-        padding: 6px 30px;
+        padding-right: 10px;
+        min-height: 33px;
         box-sizing: border-box;
         display: flex;
         justify-content: space-space-evenly;
@@ -153,6 +240,9 @@ const Main = styled.div`
   }
 
   .tabsRadio {
+    .true {
+      color: #dba83d;
+    }
     .tab {
       display: block;
       position: relative;
@@ -178,7 +268,7 @@ const Main = styled.div`
       }
       .checkmark {
         position: absolute;
-        top: 0;
+        top: -4px;
         left: 0;
         height: 24px;
         width: 24px;
@@ -202,6 +292,9 @@ const Main = styled.div`
         }
       }
     }
+    &__Crypto {
+      margin-right: 25%;
+    }
   }
   .search {
     font-style: normal;
@@ -210,10 +303,17 @@ const Main = styled.div`
     line-height: 24px;
   }
 `;
-const P = styled.p``;
+const P = styled.p`
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 20px;
+  display: flex;
+  align-items: center;
+`;
 interface Props {}
 export function Lend(props: Props) {
-  const [component, setComponent] = useState('Crypto');
+  const [component, setComponent] = useState(true);
   return (
     <Main>
       <div>
@@ -234,53 +334,57 @@ export function Lend(props: Props) {
             ></Form>
             <Container fluid="lg">
               <P className="pb-2">Collateral</P>
-              <div className="tabsRadio d-flex ">
-                <label className="tabsRadio__Crypto tab col-6">
+              <div className="tabsRadio d-flex my-3">
+                <label className="tabsRadio__Crypto tab ">
                   <input
                     type="radio"
                     name="radio"
-                    onClick={() => setComponent('Crypto')}
+                    onClick={() => setComponent(true)}
                     defaultChecked={true}
                   />
-                  Crypto
+                  <P className={component ? 'true' : ''}>Crypto</P>
                   <span className="checkmark"></span>
                 </label>
-                <label className="tabsRadio__NFT tab col-6">
+                <label className="tabsRadio__NFT tab">
                   <input
                     type="radio"
                     name="radio"
-                    onClick={() => setComponent('NFT')}
+                    onClick={() => setComponent(false)}
                   />
-                  NFT
+                  <P className={!component ? 'true' : ''}>NFT</P>
                   <span className="checkmark"></span>
                 </label>
               </div>
-              {component === 'Crypto' ? (
+              {component ? (
                 <div>
                   <Row>
                     <Example />
                   </Row>
                   <Row>
-                    <DefiButton
-                      className="search mb-lg-5 mb-sm-3 mb-xs-3"
-                      width="100%"
-                      height="3.4rem"
-                      margin="38px 0px"
-                    >
-                      <img src={imgSearch} alt="" /> Search
-                    </DefiButton>
+                    <Link to="/resultLendCrypto">
+                      <DefiButton
+                        className="search mb-lg-5 mb-sm-3 mb-xs-3"
+                        width="100%"
+                        height="3.4rem"
+                        margin="38px 0px"
+                      >
+                        <img src={imgSearch} alt="" /> Search
+                      </DefiButton>
+                    </Link>
                   </Row>
                 </div>
               ) : (
-                <DefiButton
-                  className="search mb-lg-5 mb-sm-3 mb-xs-3"
-                  width="100%"
-                  height="54px"
-                  margin="38px 0px"
-                >
-                  <img src={imgSearch} alt="" />
-                  Search
-                </DefiButton>
+                <Link to="/resultLendNFT">
+                  <DefiButton
+                    className="search mb-lg-5 mb-sm-3 mb-xs-3"
+                    width="100%"
+                    height="54px"
+                    margin="38px 0px"
+                  >
+                    <img src={imgSearch} alt="" />
+                    Search
+                  </DefiButton>
+                </Link>
               )}
             </Container>
           </Col>
