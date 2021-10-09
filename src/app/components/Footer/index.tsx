@@ -17,10 +17,9 @@ export default function Footer() {
   );
 }
 const Div = styled.div`
-  background: #171a23;
-  // background-image: url(${decorator});
-  // background-repeat: no-repeat;
-  // background-position-y: 12%;
+  background-color: #171a23;
+  background-image: url(${decorator});
+  background-repeat: no-repeat;
 `;
 const MyContainer = styled(Container)`
   background: #13171f;

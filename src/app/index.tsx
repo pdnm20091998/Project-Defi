@@ -14,7 +14,6 @@ import { GlobalStyle } from 'styles/global-styles';
 import AuthForm from './pages/Login-Register/authform';
 import { HomePage } from './pages/Home/HomePage/Loadable';
 import { useTranslation } from 'react-i18next';
-import { useState } from 'react';
 
 export function App() {
   const { i18n } = useTranslation();
