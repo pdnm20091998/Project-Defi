@@ -18,8 +18,6 @@ interface OptionsItem {
   label: string;
   value: string;
 }
-const options: Array<OptionsItem> = [];
-const optionsItems: any[] = [];
 
 const DefaultItemRenderer = ({ checked, option, onClick, disabled }) => (
   <div
@@ -27,16 +25,31 @@ const DefaultItemRenderer = ({ checked, option, onClick, disabled }) => (
     onClick={onClick}
     className={`item-renderer ${disabled && 'disabled'}`}
   >
-    <img
-      className="icon"
-      src={`https://staging.app.defiforyou.uk/_nuxt/img/${option.value}`}
-      alt=""
-    />
+    {option.value && (
+      <img
+        className="icon"
+        src={`https://staging.app.defiforyou.uk/_nuxt/img/${option.value}`}
+        alt=""
+      />
+    )}
     <P>{option.label}</P>
   </div>
 );
+const dataSymbol = {
+  XRP: 'XRP.7ff389b.png',
+  ETH: 'ETH.d810d23.png',
+  LTC: 'LTC.4b4595e.png',
+  BTC: 'BTC.fba89d5.png',
+  DFY: 'DFY.a0b985b.png',
+  BNB: 'BNB.978ee2b.png',
+  DOT: 'DOT.69cb9b6.png',
+  ADA: 'ADA.4647c52.png',
+  WBNB: 'WBNB.978ee2b.png',
+};
 const Example = () => {
   const [selected, setSelected] = useState([]);
+  const [options, setOptions] = useState<Array<OptionsItem>>([]);
+  const optionsItems: any[] = [];
   useEffect(() => {
     const resultAsset = () => {
       getAsset()
@@ -49,80 +62,13 @@ const Example = () => {
           return optionsItems;
         })
         .then((o: any[]) => {
-          o.forEach(e => {
-            let img: string;
-            if (options.length < 9) {
-              switch (e.symbol) {
-                case 'XRP':
-                  img = 'XRP.7ff389b.png';
-                  options.push({
-                    label: e.symbol,
-                    value: img,
-                  });
-                  break;
-                case 'ETH':
-                  img = 'ETH.d810d23.png';
-                  options.push({
-                    label: e.symbol,
-                    value: img,
-                  });
-                  break;
-                case 'LTC':
-                  img = 'LTC.4b4595e.png';
-                  options.push({
-                    label: e.symbol,
-                    value: img,
-                  });
-                  break;
-                case 'BTC':
-                  img = 'BTC.fba89d5.png';
-                  options.push({
-                    label: e.symbol,
-                    value: img,
-                  });
-                  break;
-                case 'DFY':
-                  img = 'DFY.a0b985b.png';
-                  options.push({
-                    label: e.symbol,
-                    value: img,
-                  });
-                  break;
-                case 'BNB':
-                  img = 'BNB.978ee2b.png';
-                  options.push({
-                    label: e.symbol,
-                    value: img,
-                  });
-                  break;
-                case 'DOT':
-                  img = 'DOT.69cb9b6.png';
-                  options.push({
-                    label: e.symbol,
-                    value: img,
-                  });
-                  break;
-                case 'ADA':
-                  img = 'ADA.4647c52.png';
-                  options.push({
-                    label: e.symbol,
-                    value: img,
-                  });
-                  break;
-                case 'WBNB':
-                  img = 'WBNB.978ee2b.png';
-                  options.push({
-                    label: e.symbol,
-                    value: img,
-                  });
-                  break;
-
-                default:
-                  break;
-              }
-            }
+          const tmpOption = o.map(item => {
+            return {
+              label: item.symbol,
+              value: dataSymbol[item.symbol],
+            };
           });
-          return options;
+          setOptions(tmpOption);
         })
         .catch(e => e);
     };
@@ -130,7 +76,6 @@ const Example = () => {
       await resultAsset();
     }
     asyncCall();
-    return () => resultAsset();
   }, []);
 
   const customValueRenderer = selected => {
@@ -311,7 +256,9 @@ const P = styled.p`
   display: flex;
   align-items: center;
 `;
-interface Props {}
+interface Props {
+  dataAsset?: Array<object>;
+}
 export function Lend(props: Props) {
   const [component, setComponent] = useState(true);
   return (
@@ -325,6 +272,7 @@ export function Lend(props: Props) {
               filter="Currency"
               arr="data"
               button={true}
+              dataAsset={props.dataAsset}
             ></Form>
             <Form
               name="Duration"

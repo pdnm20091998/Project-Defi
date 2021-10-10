@@ -9,43 +9,30 @@ import ComboBox from 'react-responsive-combo-box';
 import DefiButton from '../../../../../components/DefiButton/DefiButton';
 import { Container, Row, Col } from 'react-bootstrap';
 import 'react-responsive-combo-box/dist/index.css';
-import { getAsset } from '../../../../../../api/homePageApi.js';
 
 interface ComboBoxProps {
   name?: string;
   array?: string;
+  dataAsset?: Array<object>;
 }
 const ComboBoxExample = (props: ComboBoxProps) => {
   let collateral: any[] = [];
   let loan: any[] = [];
   let collateralOption: any[] = ['All'];
   let loanOption: any[] = ['All'];
-  const resultAsset = () => {
-    getAsset()
-      .then(asset => asset.data)
-      .then((e: any) => {
-        e.data.map(o => {
-          o.isWhitelistCollateral && collateral.push(o);
-          o.isWhitelistSupply && loan.push(o);
-          return o;
-        });
-      })
-      .then(() => {
-        collateral.forEach(e => {
-          collateralOption.push(`${e.symbol}`);
-        });
-        loan.forEach(e => {
-          loanOption.push(e.symbol);
-        });
-      })
-
-      .catch(e => e);
-  };
-  async function asyncCall() {
-    await resultAsset();
+  const data = props.dataAsset;
+  if (data) {
+    data.map((e: any) => {
+      e.isWhitelistCollateral && collateral.push(e);
+      e.isWhitelistSupply && loan.push(e);
+    });
+    collateral.forEach(e => {
+      collateralOption.push(`${e.symbol}`);
+    });
+    loan.forEach(e => {
+      loanOption.push(e.symbol);
+    });
   }
-  asyncCall();
-
   const options = {
     data: collateralOption,
     data2: loanOption,
@@ -184,6 +171,7 @@ interface Props {
   button?: boolean;
   filter?: string;
   arr?: string;
+  dataAsset?: any;
 }
 export function Form(props: Props) {
   return (
@@ -211,7 +199,11 @@ export function Form(props: Props) {
               </InputField>
             </Col>
             <Col sm="4" xs="4">
-              <ComboBoxExample name={props.filter} array={props.arr} />
+              <ComboBoxExample
+                name={props.filter}
+                array={props.arr}
+                dataAsset={props.dataAsset}
+              />
             </Col>
           </Div>
         </Row>

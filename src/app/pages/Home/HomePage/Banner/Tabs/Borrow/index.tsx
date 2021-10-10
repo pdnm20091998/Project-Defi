@@ -15,7 +15,9 @@ import {
   useRouteMatch,
   useLocation,
 } from 'react-router-dom';
-interface Props {}
+interface Props {
+  dataAsset?: Array<object>;
+}
 const Div = styled.div`
   background: #171a23;
   border-radius: 30px;
@@ -97,13 +99,13 @@ export function Borrow(props: Props) {
         </Col>
         <Switch>
           <Route exact path={path}>
-            <Crypto />
+            <Crypto dataAsset={props.dataAsset} />
           </Route>
           <Route path={`${path}/tab=2`}>
             <Nft />
           </Route>
           <Route path={`${path}/tab=1`}>
-            <Crypto />
+            <Crypto dataAsset={props.dataAsset} />
           </Route>
         </Switch>
       </div>

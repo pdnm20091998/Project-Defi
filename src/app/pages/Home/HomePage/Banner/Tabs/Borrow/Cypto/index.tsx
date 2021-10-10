@@ -13,7 +13,9 @@ import DefiButton from '../../../../../../../components/DefiButton/DefiButton';
 import { Container, Row, Col } from 'react-bootstrap';
 import { Form } from '../../../Form/index';
 import { Link } from 'react-router-dom';
-interface Props {}
+interface Props {
+  dataAsset?: Array<object>;
+}
 
 const P = styled.p`
   margin-bottom: 5px;
@@ -77,6 +79,7 @@ export function Crypto(props: Props) {
               filter="Currency"
               arr="data"
               button={true}
+              dataAsset={props.dataAsset}
             ></Form>
             <Container fluid="lg">
               <P>Or</P>
@@ -87,12 +90,14 @@ export function Crypto(props: Props) {
               placeholder="Duration"
               filter="Duration"
               arr="week"
+              dataAsset={props.dataAsset}
             ></Form>
             <Form
               name="Loan amount"
               placeholder="Enter amount"
               arr="data2"
               filter="Loan"
+              dataAsset={props.dataAsset}
             ></Form>
             <Container fluid="lg">
               <P

@@ -9,7 +9,9 @@ import { Container, Row, Col } from 'react-bootstrap';
 import img from '../../../assets/Frame1.svg';
 import DefiButton from '../../../../../../../components/DefiButton/DefiButton';
 import { Link } from 'react-router-dom';
-interface Props {}
+interface Props {
+  dataAsset?: any;
+}
 const Div = styled.div`
   font-style: normal;
   font-weight: 500;
