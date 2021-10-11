@@ -48,6 +48,7 @@ export const InputField = styled.div<{
     border: none;
     outline: none;
     height: 34px;
+    border-radius: 22px;
   }
   .password__field {
     display: flex;
@@ -60,6 +61,7 @@ export const InputField = styled.div<{
     border: none;
     outline: none;
     height: 34px;
+    border-radius: 22px;
   }
   .password__icon {
     width: 22px;

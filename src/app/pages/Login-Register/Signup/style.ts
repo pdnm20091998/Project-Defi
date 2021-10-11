@@ -23,9 +23,7 @@ export const DescriptionSd = styled(Description)`
 `;
 export const Center = styled.div`
   text-align: center;
-  .regis-btn {
-    margin-top: 44px;
-  }
+  margin-top: 54px;
 `;
 export const Validation = styled.span`
   color: #ff5252;
@@ -44,15 +42,12 @@ export const InputField = styled.div<{
   :hover {
     border: 1px solid #fff;
   }
-  :focus {
-    border: 1px solid #dba83d;
-  }
   .email__field {
     display: flex;
     flex: 1 1 auto;
   }
   .email__input {
-    display: flex;
+    border-radius: 22px;
     flex: 1 1 auto;
     padding: 21px 20px;
     background-color: transparent;
@@ -66,6 +61,7 @@ export const InputField = styled.div<{
   }
   .password__input {
     flex: 1 1 auto;
+    border-radius: 22px;
     padding: 21px 20px;
     background-color: transparent;
     color: #a2a3a7;
