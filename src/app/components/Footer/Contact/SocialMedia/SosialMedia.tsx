@@ -15,12 +15,24 @@ export default function SocialMedia() {
       <Title>Find us on</Title>
 
       <Div>
-        <img src={github} alt="github" />
-        <img src={telegram} alt="telegram" />
-        <img src={facebook} alt="facebook" />
-        <img src={youtube} alt="youtube" />
-        <img src={linkedin} alt="linkedin" />
-        <img src={twitter} alt="twitter" />
+        <a href="https://github.com/defi-vn/">
+          <img src={github} alt="github" />
+        </a>
+        <a href="https://t.me/DeFiForYou_English">
+          <img src={telegram} alt="telegram" />
+        </a>
+        <a href="https://www.facebook.com/DeFiForYouDFY">
+          <img src={facebook} alt="facebook" />
+        </a>
+        <a href="https://www.youtube.com/channel/UCGaSCU17Zo_2CzJNaBeUHaA/featured">
+          <img src={youtube} alt="youtube" />
+        </a>
+        <a href="https://www.linkedin.com/company/defiforyou">
+          <img src={linkedin} alt="linkedin" />
+        </a>
+        <a href="https://twitter.com/Defiforyou">
+          <img src={twitter} alt="twitter" />
+        </a>
       </Div>
     </Stack>
   );

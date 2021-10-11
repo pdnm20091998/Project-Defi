@@ -19,11 +19,15 @@ export default function FooterLogo() {
       </Div>
       <Div>
         <img src={mail} width="24px" alt="mail" />
-        <P className="ms-2">ask@defiforyou.uk</P>
+        <A href="mailto:ask@defiforyou.uk" className="ms-2">
+          ask@defiforyou.uk
+        </A>
       </Div>
       <Div>
         <img src={mail} width="24px" alt="mail" />
-        <P className="ms-2">support@defiforyou.uk</P>
+        <A href="mailto:support@defiforyou.uk" className="ms-2">
+          support@defiforyou.uk
+        </A>
       </Div>
     </Stack>
   );
@@ -36,4 +40,13 @@ const P = styled.p`
 const Div = styled.div`
   display: flex;
   align-items: center;
+`;
+const A = styled.a`
+  text-decoration: none;
+  color: #9fa6b2;
+  font-size: 14px;
+  font-weight: 500;
+  &:hover {
+    color: #9fa6b2;
+  }
 `;

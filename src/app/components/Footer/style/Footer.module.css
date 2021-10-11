@@ -1,11 +1,9 @@
 .bg {
-  background-image: url('../assests/decorator.svg');
-  background-repeat: no-repeat;
   background-position-y: 12%;
 }
 @media (max-width: 768px) {
   .bg {
     background-position-y: 3%;
-    background-size: 50%;
+    background-size: 70%;
   }
 }
