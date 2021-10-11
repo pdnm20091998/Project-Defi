@@ -77,19 +77,22 @@ export default function NavBar(props: Props) {
           </Navbar.Brand>
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto ms-xxl-5 ms-xl-2">
-              <NavLink href="#" className={`pe-3 ps-0 ${styles.active}`}>
+              <NavLink
+                href="#"
+                className={`pe-3 ps-0 ${styles.linkColor} ${styles.active}`}
+              >
                 Pawn
               </NavLink>
-              <NavLink href="#" className="pe-3 ps-0">
+              <NavLink href="#" className={`pe-3 ps-0 ${styles.linkColor}`}>
                 Borrow
               </NavLink>
-              <NavLink href="#" className="pe-3 ps-0">
+              <NavLink href="#" className={`pe-3 ps-0 ${styles.linkColor}`}>
                 Lend
               </NavLink>
-              <NavLink href="#" className="pe-3 ps-0">
+              <NavLink href="#" className={`pe-3 ps-0 ${styles.linkColor}`}>
                 NFT
               </NavLink>
-              <NavLink href="#" className="pe-3 ps-0">
+              <NavLink href="#" className={`pe-3 ps-0 ${styles.linkColor}`}>
                 My account
               </NavLink>
               <NavLink href="#">FAQ</NavLink>
@@ -125,9 +128,11 @@ export default function NavBar(props: Props) {
                 <InforUser />
               </div>
             ) : (
+                          <MyLink to="/login">
               <NavButton width="80px" className={`ms-3 ${styles.remove}`}>
-                <MyLink to="/login">Login</MyLink>
+                Login
               </NavButton>
+            </MyLink>
             )}
             {clicked === true ? (
               <FontAwesomeIcon
@@ -168,17 +173,20 @@ export default function NavBar(props: Props) {
               {JSON.parse(localStorage.getItem('name') || '')}
             </div>
           ) : (
+          <MyLink to="/login">
             <NavButton width="80px" className="mt-2 mx-auto d-block">
-              <MyLink to="/login">Login</MyLink>
+              Login
             </NavButton>
+          </MyLink>
           )}
-          <NavLink>Pawn</NavLink>
-          <NavLink>Staking</NavLink>
-          <NavLink>NFT</NavLink>
+          <NavLink className={styles.linkColor}>Pawn</NavLink>
+          <NavLink className={styles.linkColor}>Staking</NavLink>
+          <NavLink className={styles.linkColor}>NFT</NavLink>
           <MyDropDown
             as="div"
             style={{ background: bgColor }}
             onClick={handleOpenAcc}
+            className={styles.linkColor}
           >
             My account
             {accOpen === true ? (
@@ -206,8 +214,8 @@ export default function NavBar(props: Props) {
                   )}
                   {borrow === true && (
                     <>
-                      <NavLink>Collateral</NavLink>
-                      <NavLink>Contracts</NavLink>
+                      <NavLink className={styles.linkColor}>Collateral</NavLink>
+                      <NavLink className={styles.linkColor}>Contracts</NavLink>
                     </>
                   )}
                 </MyDropDown>
@@ -226,14 +234,20 @@ export default function NavBar(props: Props) {
                   )}
                   {lend === true && (
                     <>
-                      <NavLink>Offers sent</NavLink>
-                      <NavLink>Contracts</NavLink>
-                      <NavLink>Pawnshop Loan Package</NavLink>
-                      <NavLink>Loan Requests</NavLink>
+                      <NavLink className={styles.linkColor}>
+                        Offers sent
+                      </NavLink>
+                      <NavLink className={styles.linkColor}>Contracts</NavLink>
+                      <NavLink className={styles.linkColor}>
+                        Pawnshop Loan Package
+                      </NavLink>
+                      <NavLink className={styles.linkColor}>
+                        Loan Requests
+                      </NavLink>
                     </>
                   )}
                 </MyDropDown>
-                <NavLink>Staking</NavLink>
+                <NavLink className={styles.linkColor}>Staking</NavLink>
                 <MyDropDown as="div" onClick={handleOpenNFT}>
                   NFT
                   {NFT === true ? (
@@ -249,15 +263,17 @@ export default function NavBar(props: Props) {
                   )}
                   {NFT === true && (
                     <>
-                      <NavLink>NFT List</NavLink>
-                      <NavLink>NFT Auction</NavLink>
+                      <NavLink className={styles.linkColor}>NFT List</NavLink>
+                      <NavLink className={styles.linkColor}>
+                        NFT Auction
+                      </NavLink>
                     </>
                   )}
                 </MyDropDown>
               </>
             )}
           </MyDropDown>
-          <NavLink>FAQ</NavLink>
+          <NavLink className={styles.linkColor}>FAQ</NavLink>
           {/* <NavLink>Change password</NavLink>
           <NavLink>Log out</NavLink> */}
         </MiniNav>
@@ -276,7 +292,6 @@ const Div = styled.div`
   }
 `;
 const NavLink = styled(Nav.Link)`
-  color: #d1d1d3 !important;
   font-size: 16px;
   font-weight: 500;
   &:hover,

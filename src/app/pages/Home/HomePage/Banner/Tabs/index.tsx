@@ -8,7 +8,9 @@ import styled from 'styled-components/macro';
 import { Tabs, Tab } from 'react-bootstrap';
 import { Borrow } from './Borrow/index';
 import { Lend } from './Lend/index';
-interface Props {}
+interface Props {
+  dataAsset?: Array<object>;
+}
 const Div = styled.div`
   .tabs {
     padding: 4px;
@@ -92,10 +94,10 @@ export function PawnTabs(props: Props) {
         className="tabs"
       >
         <Tab eventKey="Borrow" title="Borrow">
-          <Borrow />
+          <Borrow dataAsset={props.dataAsset} />
         </Tab>
         <Tab eventKey="Lend" title="Lend">
-          <Lend />
+          <Lend dataAsset={props.dataAsset} />
         </Tab>
       </Tabs>
     </Div>

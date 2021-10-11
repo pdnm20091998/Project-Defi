@@ -10,14 +10,14 @@ export default function HanoiOffice() {
     <Stack className="mt-5 mt-md-0" gap={3}>
       <Title>DeFi For You - Hanoi Office</Title>
       <Stack gap={2}>
-        <Div>
+        <A href="tel:+84964366605">
           <PhoneNumber>+84 9643 66605</PhoneNumber>
           <img className="ms-3" src={flagvn} alt="flagvn" />
-        </Div>
-        <Div>
+        </A>
+        <A href="tel:+84964441735">
           <PhoneNumber>+84 9644 41735</PhoneNumber>
           <img className="ms-3" src={flaguk} alt="flaguk" />
-        </Div>
+        </A>
         <Des fontWeight="500">
           BT NQ 25-15 Vinhomes Riverside, Long Bien, Hanoi, Vietnam
         </Des>
@@ -25,7 +25,9 @@ export default function HanoiOffice() {
     </Stack>
   );
 }
-const Div = styled.div`
+
+const A = styled.a`
   display: flex;
   align-items: center;
+  text-decoration: none;
 `;
