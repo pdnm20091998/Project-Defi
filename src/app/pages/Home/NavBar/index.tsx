@@ -11,6 +11,7 @@ import Logo from '../../../components/Logo';
 import { Collapse, Container, Form, Image, Nav, Navbar } from 'react-bootstrap';
 import DefiButton from 'app/components/DefiButton/DefiButton';
 import NavButton from './components/NavButton';
+import SignupButton from './components/signupBtn';
 import styles from './style/NavBar.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -19,7 +20,10 @@ import {
   faAngleLeft,
 } from '@fortawesome/free-solid-svg-icons';
 import avatar from './assests/Vector.svg';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
+import Btn from './assests/button1.png';
+import { getToken, getNameLocal } from '../../../components/common/common';
+import InforUser from './components/InforUser';
 
 interface Props {}
 
@@ -34,6 +38,8 @@ export default function NavBar(props: Props) {
   const [NFT, setNFT] = useState(false);
   const [bg, setBg] = useState(false);
   let bgColor = bg ? '#282C37' : 'inherit';
+  let location = useLocation();
+
   function handleOpenAcc(e) {
     e.preventDefault();
     setAccOpen(!accOpen);
@@ -87,21 +93,42 @@ export default function NavBar(props: Props) {
                 My account
               </NavLink>
               <NavLink href="#">FAQ</NavLink>
+              {location.pathname === '/login/tab=2' ||
+              location.pathname === '/login' ? (
+                <SignupButton>
+                  <Link to="/login/tab=1"></Link>
+                  <img src={Btn} alt="" />
+                </SignupButton>
+              ) : (
+                ''
+              )}
             </Nav>
           </Navbar.Collapse>
-          <Form>
-            <DefiButton className={styles.remove} width="190px" height="36px">
-              <MyLink to="#">Become a Pawnshop</MyLink>
-            </DefiButton>
+          <Form style={{ display: 'flex' }}>
+            {location.pathname === '/login/tab=2' ||
+            location.pathname === '/login' ||
+            location.pathname === '/login/tab=1' ? (
+              ''
+            ) : (
+              <DefiButton className={styles.remove} width="190px" height="36px">
+                <MyLink to="#">Become a Pawnshop</MyLink>
+              </DefiButton>
+            )}
             <NavButton width="100px" className={`ms-3 ${styles.remove}`}>
               <MyLink to="#">Buy DFY</MyLink>
             </NavButton>
             <NavButton width="100px" className="ms-3">
               <MyLink to="#">Connect</MyLink>
             </NavButton>
-            <NavButton width="80px" className={`ms-3 ${styles.remove}`}>
-              <MyLink to="/login">Login</MyLink>
-            </NavButton>
+            {getToken() ? (
+              <div className={`ms-3 ${styles.remove}`}>
+                <InforUser />
+              </div>
+            ) : (
+              <NavButton width="80px" className={`ms-3 ${styles.remove}`}>
+                <MyLink to="/login">Login</MyLink>
+              </NavButton>
+            )}
             {clicked === true ? (
               <FontAwesomeIcon
                 className={`ms-2 ${styles.displayBtn}`}
@@ -136,9 +163,15 @@ export default function NavBar(props: Props) {
             className="d-block mx-auto pt-2"
             rounded
           />
-          <NavButton width="80px" className="mt-2 mx-auto d-block">
-            <MyLink to="/login">Login</MyLink>
-          </NavButton>
+          {getNameLocal() ? (
+            <div className="center">
+              {JSON.parse(localStorage.getItem('name') || '')}
+            </div>
+          ) : (
+            <NavButton width="80px" className="mt-2 mx-auto d-block">
+              <MyLink to="/login">Login</MyLink>
+            </NavButton>
+          )}
           <NavLink>Pawn</NavLink>
           <NavLink>Staking</NavLink>
           <NavLink>NFT</NavLink>
@@ -236,6 +269,11 @@ export default function NavBar(props: Props) {
 const Div = styled.div`
   background: #232732;
   border-bottom: 1px solid rgba(125, 111, 125, 0.2);
+  .center {
+    margin-top: 8px;
+    text-align: center;
+    color: #d1d1d3;
+  }
 `;
 const NavLink = styled(Nav.Link)`
   color: #d1d1d3 !important;

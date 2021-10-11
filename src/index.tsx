@@ -20,14 +20,17 @@ import { App } from 'app';
 
 import { HelmetProvider } from 'react-helmet-async';
 
-import { configureAppStore } from 'store/configureStore';
+import configureStore from 'store/configureStore';
 
 import reportWebVitals from 'reportWebVitals';
 
 // Initialize languages
 import './locales/i18n';
 
-const store = configureAppStore();
+import rootSaga from './app/saga/index';
+
+const store = configureStore();
+store.runSaga(rootSaga);
 const MOUNT_NODE = document.getElementById('root') as HTMLElement;
 
 ReactDOM.render(

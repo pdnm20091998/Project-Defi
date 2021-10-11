@@ -27,12 +27,9 @@ const Content = styled.div`
     margin-left: 16px;
     margin-right: 16px;
   }
+  margin-bottom: 113px;
 `;
-const Tab = styled.div<{
-  color?: string;
-  borderbottom?: any;
-  fontweight?: number;
-}>`
+const Tab = styled.div`
   font-style: normal;
   font-weight: 500;
   font-size: 30px;

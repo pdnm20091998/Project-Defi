@@ -1,75 +1,98 @@
+import React from 'react';
 import PasswordIcon from '../assets/img/showoff.png';
 import ShowIcon from '../assets/img/show.png';
 import DefiButton from '../../../components/DefiButton/DefiButton';
 import { useState } from 'react';
 import { Label, InputField, Forgot, Center, Validation } from './style';
-import validator from 'validator';
 import { Form } from 'react-bootstrap';
+import { useHistory } from 'react-router-dom';
+import { useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as Yup from 'yup';
+import { useDispatch, useSelector } from 'react-redux';
+import { loginUserAction } from '../../../actions/authActions';
+import { RootState } from '../../../reducer/reducers';
 
+type UserSubmitForm = {
+  email: string;
+  password: string;
+};
 export default function Login() {
   const [values, setValues] = useState(true);
-  const [emailError, setEmailError] = useState(true);
-  const [passwordError, setPasswordError] = useState('');
-  const [bodercolor, setBodercolor] = useState('#74767b');
+  const dispatch = useDispatch();
+  let history = useHistory();
+  const user = useSelector((state: RootState) => state.auth);
+  console.log(user);
+  //validate
+  const validationSchema = Yup.object().shape({
+    email: Yup.string().required('Email is required').email('Email is invalid'),
+    password: Yup.string()
+      .required('Password is required')
+      .min(8, 'Password must be at least 8 characters')
+      .max(255, 'Password must not exceed 255 characters')
+      .matches(
+        /(?=.*?[0-9])/,
+        'Password should contain at least one digit(0-9)',
+      )
+      .matches(
+        /(?=.*?[A-Z])/,
+        'Password should contain at least one uppercase letter(A-Z).',
+      )
+      .matches(
+        /(?=.*?[a-z])/,
+        'Password should contain at least one lowercase letter(a-z)',
+      )
+      .matches(
+        /(?=.*?[#?!@$%^&*-])/,
+        'Password should contain at least one special character ( @, #, %, &, !, $, etc….).',
+      ),
+  });
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<UserSubmitForm>({
+    resolver: yupResolver(validationSchema),
+  });
+
+  const onSubmit = (data: UserSubmitForm) => {
+    const dataLogin = JSON.parse(JSON.stringify(data));
+    const username = dataLogin.email;
+    const password = dataLogin.password;
+    const logindata = { username, password, history };
+    dispatch(loginUserAction(logindata));
+  };
+
   //show password
   const handleClickShowPassword = () => {
     setValues(!values);
   };
-  // Validate email
-  const validateEmail = e => {
-    var email = e.target.value;
-    if (validator.isEmail(email)) {
-      setEmailError(true);
-    } else {
-      setEmailError(false);
-    }
-  };
-  //Validate password
-  const validatePassword = e => {
-    var pass = e.target.value;
-    var reg =
-      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
-    var test = reg.test(pass);
-    if (pass.length < 8 && pass.length > 255) {
-      setPasswordError(
-        'Password length should be between 8 to 255 characters.',
-      );
-      setBodercolor('#ff5252');
-    } else if (!test) {
-      setPasswordError('Contain at least one capital letter and one number');
-      setBodercolor('#ff5252');
-    } else {
-      setPasswordError('');
-      setBodercolor('#74767b');
-    }
-  };
-
   return (
     <>
-      <Form>
+      <Form onSubmit={handleSubmit(onSubmit)}>
         <Label>Email</Label>
-        <InputField color={emailError ? '#74767b' : '#ff5252'}>
+        <InputField color={errors.email ? '#ff5252' : '#74767b'}>
           <div className="email__field">
             {' '}
             <input
-              onChange={e => validateEmail(e)}
               className="email__input"
               type="email"
               placeholder="Enter email"
+              {...register('email')}
             ></input>
           </div>
-          <Validation>{emailError ? '' : 'Invalid email'}</Validation>
+          <Validation>{errors.email?.message}</Validation>
         </InputField>
         <Label>Password</Label>
-        <InputField color={bodercolor}>
+        <InputField color={errors.password ? '#ff5252' : '#74767b'}>
           <div className="password__field">
             {' '}
             <input
-              onChange={e => validatePassword(e)}
               className="password__input"
               type={values ? 'password' : 'text'}
               placeholder="Enter password"
-            ></input>
+              {...register('password')}
+            />
             <img
               onClick={handleClickShowPassword}
               className="password__icon"
@@ -77,7 +100,7 @@ export default function Login() {
               alt="Hide Password"
             />
           </div>
-          <Validation>{passwordError}</Validation>
+          <Validation>{errors.password?.message}</Validation>
         </InputField>
         <div>
           <Forgot>Forgot your password?</Forgot>
