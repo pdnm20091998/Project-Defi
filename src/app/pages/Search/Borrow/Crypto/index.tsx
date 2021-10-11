@@ -4,11 +4,11 @@ import Footer from '../../../../components/Footer/index';
 const H1 = styled.h1`
   color: #fff;
 `;
-export default function ResultLendNFT() {
+export default function ResultBorrowCrypto() {
   return (
     <>
       <Navbar />
-      <H1>ResultLendNFT</H1>
+      <H1>ResultBorrowCrypto</H1>
       <Footer />
     </>
   );

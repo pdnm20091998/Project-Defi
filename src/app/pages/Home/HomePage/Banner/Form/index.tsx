@@ -4,39 +4,52 @@
  *
  */
 import styled from 'styled-components/macro';
-import { useState } from 'react';
-
+import { useState, useEffect } from 'react';
 import ComboBox from 'react-responsive-combo-box';
 import DefiButton from '../../../../../components/DefiButton/DefiButton';
 import { Container, Row, Col } from 'react-bootstrap';
+import 'react-responsive-combo-box/dist/index.css';
+
 interface ComboBoxProps {
   name?: string;
   array?: string;
+  dataAsset?: Array<object>;
 }
 const ComboBoxExample = (props: ComboBoxProps) => {
+  let collateral: any[] = [];
+  let loan: any[] = [];
+  let collateralOption: any[] = ['All'];
+  let loanOption: any[] = ['All'];
+  const data = props.dataAsset;
+  if (data) {
+    data.map((e: any) => {
+      e.isWhitelistCollateral && collateral.push(e);
+      e.isWhitelistSupply && loan.push(e);
+    });
+    collateral.forEach(e => {
+      collateralOption.push(`${e.symbol}`);
+    });
+    loan.forEach(e => {
+      loanOption.push(e.symbol);
+    });
+  }
   const options = {
-    data: [
-      'BNC',
-      'ETC',
-      'ZEC',
-      'XRP',
-      'LTC',
-      'MKR',
-      'BAT',
-      'ETH',
-      'DFY',
-      'USDT',
-      'FIL',
-    ],
-    data2: ['BNC', 'ETC', 'ZEC', 'XRP', 'LTC'],
-    week: ['Weeks', 'Months'],
+    data: collateralOption,
+    data2: loanOption,
+    week: ['All', 'Weeks', 'Months'],
   };
+
   return (
     <div className="drop">
       <ComboBox
-        // defaultIndex={1}
+        className={`option`}
+        selectedOptionColor="#2c4059"
+        defaultValue={`${props.array ? options[props.array][0] : []}`}
         placeholder={props.name}
         options={props.array ? options[props.array] : []}
+        onBlur={e => {
+          return <div>hello {e}</div>;
+        }}
         enableAutocomplete
       />
     </div>
@@ -47,8 +60,8 @@ const Div = styled.div`
   align-items: center;
   flex: 1 1 auto;
   margin: -12px;
-  .error {
-    border: 2px solid #dc3545 !important;
+  .text {
+    min-height: 24px;
   }
   .input {
     position: relative;
@@ -113,6 +126,12 @@ const Div = styled.div`
           ._2iQTD {
             background: #2d3341 !important;
           }
+          .option:hover {
+            background-color: #2a303c !important;
+          }
+          /* .option[toggleFocus] {
+            background-color: #2c4059 !important;
+          } */
         }
       }
       ._WbEAz ::-webkit-scrollbar-track {
@@ -140,9 +159,6 @@ const Div = styled.div`
 const P = styled.p`
   color: #fff;
 `;
-const Error = styled.p`
-  color: #dc3545;
-`;
 const InputField = styled.div`
   width: 100%;
   height: 44px;
@@ -155,23 +171,9 @@ interface Props {
   button?: boolean;
   filter?: string;
   arr?: string;
+  dataAsset?: any;
 }
 export function Form(props: Props) {
-  const [change, setChange] = useState(true);
-  const [invalid, setInvalid] = useState(true);
-  const handleOnChange = e => {
-    if (typeof e === 'string') {
-      setChange(true);
-      setInvalid(true);
-      if (e === '') {
-        setChange(false);
-        setInvalid(false);
-      }
-    }
-  };
-  const handleOnClick = (e: any) => {
-    setChange(false);
-  };
   return (
     <>
       <Container fluid="lg">
@@ -185,11 +187,7 @@ export function Form(props: Props) {
                     type="number"
                     id="tentacles"
                     name="tentacles"
-                    className={
-                      change ? 'input input-slot' : 'error input input-slot'
-                    }
-                    onClick={e => handleOnClick(e)}
-                    onChange={e => handleOnChange(e.target.value.toString())}
+                    className="input input-slot"
                     placeholder={props.placeholder}
                   ></input>
                   {props.button && (
@@ -201,11 +199,15 @@ export function Form(props: Props) {
               </InputField>
             </Col>
             <Col sm="4" xs="4">
-              <ComboBoxExample name={props.filter} array={props.arr} />
+              <ComboBoxExample
+                name={props.filter}
+                array={props.arr}
+                dataAsset={props.dataAsset}
+              />
             </Col>
           </Div>
         </Row>
-        {!invalid ? <Error>Invalid amount</Error> : ''}
+        <div className="pt-3 pb-2"></div>
       </Container>
     </>
   );
