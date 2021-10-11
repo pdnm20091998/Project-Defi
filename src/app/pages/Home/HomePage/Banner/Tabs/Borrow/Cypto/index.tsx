@@ -12,7 +12,10 @@ import imgSearch from '../../../assets/search.svg';
 import DefiButton from '../../../../../../../components/DefiButton/DefiButton';
 import { Container, Row, Col } from 'react-bootstrap';
 import { Form } from '../../../Form/index';
-interface Props {}
+import { Link } from 'react-router-dom';
+interface Props {
+  dataAsset?: Array<object>;
+}
 
 const P = styled.p`
   margin-bottom: 5px;
@@ -37,6 +40,25 @@ const Main = styled.div`
   }
   .mt {
     margin-top: 6px;
+    &[title]:after {
+      position: absolute;
+      content: attr(title);
+      background-color: #c9cacd83;
+      border: none;
+      padding: 5px;
+      color: #ffffff;
+      display: block;
+      border-radius: 5px;
+      padding: 5px 20px 5px 15px;
+      transform: scale(0);
+      -webkit-transition: all 1s;
+      transition: all 1s;
+    }
+    &[title]:hover:after {
+      transform: scale(1);
+      -webkit-transition: all 1s;
+      transition: all 1s;
+    }
   }
   .search {
     font-style: normal;
@@ -56,35 +78,45 @@ export function Crypto(props: Props) {
               placeholder="Enter amount"
               filter="Currency"
               arr="data"
+              button={true}
+              dataAsset={props.dataAsset}
             ></Form>
             <Container fluid="lg">
               <P>Or</P>
-              <Button>Choose Existing collateral</Button>
+              <Button className="mb-3">Choose Existing collateral</Button>
             </Container>
             <Form
               name="Duration"
               placeholder="Duration"
               filter="Duration"
               arr="week"
+              dataAsset={props.dataAsset}
             ></Form>
             <Form
               name="Loan amount"
               placeholder="Enter amount"
               arr="data2"
               filter="Loan"
+              dataAsset={props.dataAsset}
             ></Form>
             <Container fluid="lg">
-              <P className="mt">
+              <P
+                className="mt"
+                title="To get a loan quickly, you should set the desired loan amount between 50-70% of the collateral value"
+              >
                 Recommended amount <img src={img} alt="" />
               </P>
-              <DefiButton
-                className="search"
-                width="100%"
-                height="54px"
-                margin="60px 0px 0px"
-              >
-                <img src={imgSearch} alt="" /> Search
-              </DefiButton>
+              <div>
+                <Link to="/resultBorrowCrypto">
+                  <DefiButton
+                    className="search my-sm-5 mb-xs-5"
+                    width="100%"
+                    height="54px"
+                  >
+                    <img src={imgSearch} alt="" /> Search
+                  </DefiButton>
+                </Link>
+              </div>
             </Container>
           </Col>
         </Row>

@@ -31,7 +31,6 @@ export function HomePage() {
       <Content />
       <Explore />
       <PawnShop />
-      <span>HomePage container</span>
       <Footer />
     </>
   );

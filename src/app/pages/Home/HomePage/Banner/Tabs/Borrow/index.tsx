@@ -8,9 +8,16 @@ import styled from 'styled-components/macro';
 import { Container, Row, Col } from 'react-bootstrap';
 import { Crypto } from './Cypto/index';
 import { Nft } from './Nft/index';
-import { Link, Switch, Route, useRouteMatch } from 'react-router-dom';
-import { useState } from 'react';
-interface Props {}
+import {
+  Link,
+  Switch,
+  Route,
+  useRouteMatch,
+  useLocation,
+} from 'react-router-dom';
+interface Props {
+  dataAsset?: Array<object>;
+}
 const Div = styled.div`
   background: #171a23;
   border-radius: 30px;
@@ -44,6 +51,7 @@ const Div = styled.div`
       cursor: pointer;
       border-radius: 27px;
       transition: 0.5s ease-in;
+      text-decoration: none;
     }
   }
 `;
@@ -54,7 +62,7 @@ const Tab = styled.span`
 
 export function Borrow(props: Props) {
   let { path, url } = useRouteMatch();
-  const [active, setActive] = useState('crypto');
+  let location = useLocation();
   return (
     <Div>
       <div>
@@ -64,36 +72,40 @@ export function Borrow(props: Props) {
         >
           <div className="Tabs d-flex justify-content-center align-items-center">
             <div>
-              <Link onClick={() => setActive('crypto')} to={`${url}/tab=1`}>
-                <Tab
-                  className={`Tabs__tab ${active === 'crypto' ? 'active' : ''}`}
+              <Tab>
+                <Link
+                  className={`Tabs__tab ${
+                    location.pathname === '/pawn/tab=1' ? 'active' : ''
+                  } ${location.pathname === '/pawn' ? 'active' : ''}`}
+                  to={`${url}/tab=1`}
                 >
                   Cryptocurrency
-                </Tab>
-              </Link>
+                </Link>
+              </Tab>
             </div>
             <div>
-              <Link onClick={() => setActive('NFT')} to={`${url}/tab=2`}>
-                <Tab
-                  className={
-                    active === 'NFT' ? ' active Tabs__tab' : 'Tabs__tab'
-                  }
+              <Tab>
+                <Link
+                  className={`Tabs__tab ${
+                    location.pathname === '/pawn/tab=2' ? 'active' : ''
+                  }`}
+                  to={`${url}/tab=2`}
                 >
                   NFT
-                </Tab>
-              </Link>
+                </Link>
+              </Tab>
             </div>
           </div>
         </Col>
         <Switch>
           <Route exact path={path}>
-            <Crypto />
+            <Crypto dataAsset={props.dataAsset} />
           </Route>
           <Route path={`${path}/tab=2`}>
             <Nft />
           </Route>
           <Route path={`${path}/tab=1`}>
-            <Crypto />
+            <Crypto dataAsset={props.dataAsset} />
           </Route>
         </Switch>
       </div>
