@@ -12,7 +12,7 @@ import DefiButton from '../../../../../../components/DefiButton/DefiButton';
 import imgSearch from '../../assets/search.svg';
 import imgClose from '../../assets/x.svg';
 import { MultiSelect } from 'react-multi-select-component';
-import { getAsset } from '../../../../../../../api/homePageApi.js';
+import { getAsset } from '../../../../../../service/auth.service';
 import { Link } from 'react-router-dom';
 interface OptionsItem {
   label: string;
