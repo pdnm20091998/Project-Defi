@@ -4,6 +4,7 @@ import FilterComponent from './FilterComponents';
 import { AiFillCloseCircle } from 'react-icons/ai';
 interface Props {
   dataAsset?: Array<object>;
+  handleClose: Function;
 }
 const imgObject = {
   XRP: '/XRP.7ff389b.png',
@@ -53,12 +54,16 @@ export default function FilterLend(props: Props) {
       }
       return 0;
     });
+  const { handleClose } = props;
+  const handleExitMenu = () => {
+    handleClose();
+  };
   return (
     <Wrapper>
       <div className="container">
         <div className="header">
           <span>Reset filter</span>
-          <div className="exitMenu">
+          <div className="exitMenu" onClick={handleExitMenu}>
             <AiFillCloseCircle />
           </div>
         </div>
@@ -105,13 +110,13 @@ const Wrapper = styled.div`
 
     .exitMenu {
       position: absolute;
-      top: 0;
+      top: 0px;
       right: 16px;
       font-size: 30px;
       cursor: pointer;
       display: none;
 
-      @media screen and (max-width: 600px) {
+      @media screen and (max-width: 1024px) {
         display: block;
       }
     }

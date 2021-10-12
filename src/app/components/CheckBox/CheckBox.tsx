@@ -5,10 +5,39 @@ import styled from 'styled-components';
 interface IProps {
   name: string;
   title?: string;
+  type?: 'checkCoin';
   img?: string;
 }
 
-const Div = styled.div`
+const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
+
+function CheckBoxField(props: IProps) {
+  const { name, title, type, img } = props;
+  return (
+    <Wrapper>
+      <Checkbox
+        {...label}
+        name={name}
+        sx={{
+          color: '#fff',
+          '&.Mui-checked': {
+            color: '#DBA83D',
+          },
+        }}
+      />
+      {img !== undefined ? (
+        <>
+          <img src={img} alt="ảnh" />
+          <p>{title}</p>
+        </>
+      ) : (
+        <p>{title}</p>
+      )}
+    </Wrapper>
+  );
+}
+
+const Wrapper = styled.div`
   display: flex;
   align-items: center;
 
@@ -26,29 +55,5 @@ const Div = styled.div`
     height: 20px;
   }
 `;
-function CheckBox(props: IProps) {
-  const { name, title, img } = props;
-  return (
-    <Div>
-      <Checkbox
-        name={name}
-        sx={{
-          color: '#fff',
-          '&.Mui-checked': {
-            color: '#DBA83D',
-          },
-        }}
-      />
-      {img ? (
-        <>
-          <img src={img} alt="ảnh" />
-          <p>{title}</p>
-        </>
-      ) : (
-        <p>{title}</p>
-      )}
-    </Div>
-  );
-}
 
-export default CheckBox;
+export default CheckBoxField;

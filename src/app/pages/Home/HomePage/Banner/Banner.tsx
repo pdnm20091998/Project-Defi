@@ -24,9 +24,11 @@ function Banner(props: Props) {
     };
     async function asyncCall() {
       const data = await resultAsset();
-      data.data.forEach(data => {
-        dataAsset.push(data);
-      });
+      if (data.data) {
+        data.data.forEach(data => {
+          dataAsset.push(data);
+        });
+      }
       return dataAsset;
     }
     asyncCall().then(e => {

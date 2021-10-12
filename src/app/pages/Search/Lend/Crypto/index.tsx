@@ -11,6 +11,9 @@ import imgStar from './assets/Star.svg';
 import Filter from './Filter/index';
 import { Pagination } from './Pagination/index';
 import { Advertisement } from './Advertisement';
+import { useMediaQuery } from '@mui/material';
+import FilterLendMobile from './Filter/FilterLendMobie';
+import IconFilter from './assets/Group 6152.svg';
 const Div = styled.div`
   background-color: #171a23;
   border-bottom: 1px solid rgba(125, 111, 125, 0.2);
@@ -44,9 +47,6 @@ const Div = styled.div`
         background-color: #475674;
       }
     }
-    &__head {
-      background: rgba(40, 44, 55, 0.5);
-    }
     tr {
       border: 4px solid #171a23;
       td {
@@ -62,6 +62,7 @@ const Div = styled.div`
       font-weight: 600;
       font-size: 14px;
       line-height: 17px;
+      background: rgba(40, 44, 55, 0.5);
     }
     &__body {
       font-style: normal;
@@ -123,7 +124,8 @@ export default function ResultLendCrypto() {
   const paginate = pageNumber => setCurrentPage(pageNumber);
   const dataAsset: Array<object> = [];
   const [dataasset, setDataAsset] = useState<Array<object>>([]);
-
+  const isNoneFilter = useMediaQuery('(max-width:1024px)');
+  const [openFilter, setOpenFilter] = useState(false);
   useEffect(() => {
     const resultAsset = () => {
       const data = getAsset()
@@ -133,9 +135,11 @@ export default function ResultLendCrypto() {
     };
     async function asyncCall() {
       const data = await resultAsset();
-      data.data.forEach(data => {
-        dataAsset.push(data);
-      });
+      if (data.data) {
+        data.data.forEach(data => {
+          dataAsset.push(data);
+        });
+      }
       return dataAsset;
     }
     asyncCall().then(e => {
@@ -157,13 +161,81 @@ export default function ResultLendCrypto() {
         return e.content;
       });
   }, []);
+  const handleClose = () => {};
+  const closeFilter = () => {
+    setOpenFilter(false);
+  };
+  const Wrapper = styled.div`
+    .wrapper {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+
+      width: 100%;
+
+      position: relative;
+
+      .icon-filter {
+        width: 30px;
+        height: 30px;
+        position: absolute;
+        right: 0px;
+        cursor: pointer;
+        display: none;
+        padding-right: 50px;
+        @media (max-width: 767px) {
+          right: 16px;
+        }
+      }
+
+      @media (max-width: 767px) {
+        width: 100%;
+        margin: 0px auto;
+      }
+
+      @media (min-width: 768px) {
+        width: 768px;
+        margin: 0px auto;
+      }
+
+      @media (max-width: 1024px) {
+        flex-direction: column;
+
+        .icon-filter {
+          display: block;
+          z-index: 1;
+        }
+      }
+
+      @media (min-width: 1025px) {
+        width: 1024px;
+        margin: 0px auto;
+      }
+
+      @media (min-width: 1280px) {
+        width: 1280px;
+        margin: 0px auto;
+      }
+
+      @media (min-width: 1536px) {
+        max-width: 1536px;
+        margin: 0px auto;
+      }
+    }
+  `;
+
   return (
-    <>
+    <Wrapper>
       <Navbar />
       <Div>
         <Container>
           <Row>
-            <Col sm="9">
+            <div className="wrapper">
+              <div className="icon-filter" onClick={() => setOpenFilter(true)}>
+                <img src={IconFilter} alt="filter" />
+              </div>
+            </div>
+            <Col lg="9" sm="12">
               <SumCollateral sum={total} />
               <Table className="table mt-sm-4">
                 <thead className="table__head">
@@ -301,13 +373,21 @@ export default function ResultLendCrypto() {
                 paginate={paginate}
               />
             </Col>
-            <Col sm="3">
-              <Filter dataAsset={imgAsset} />
+            <Col lg="3">
+              {isNoneFilter ? (
+                <FilterLendMobile
+                  dataAsset={imgAsset}
+                  open={openFilter}
+                  closeFilter={closeFilter}
+                />
+              ) : (
+                <Filter dataAsset={imgAsset} handleClose={handleClose} />
+              )}
             </Col>
           </Row>
         </Container>
       </Div>
       <Footer />s
-    </>
+    </Wrapper>
   );
 }
