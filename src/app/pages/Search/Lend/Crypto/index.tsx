@@ -314,8 +314,8 @@ export default function ResultLendCrypto() {
                               <td className="d-flex justify-content-center">
                                 <DefiButton
                                   width="60%"
-                                  height="50%"
                                   margin="14px 23px 14px 64px"
+                                  padding="9.5px 0px"
                                 >
                                   Send Offer
                                 </DefiButton>
@@ -370,8 +370,8 @@ export default function ResultLendCrypto() {
                             <td className="d-flex justify-content-center">
                               <DefiButton
                                 width="60%"
-                                height="50%"
                                 margin="14px 23px 14px 64px"
+                                padding="9.5px 0px"
                               >
                                 Send Offer
                               </DefiButton>
