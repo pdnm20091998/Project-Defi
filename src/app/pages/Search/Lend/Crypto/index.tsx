@@ -38,11 +38,11 @@ const Div = styled.div`
     .Advertisement {
       margin: 20px 0px;
     }
+    .items:hover {
+      background-color: #475674;
+    }
     tr {
       border: 4px solid #171a23;
-      &:hover {
-        background-color: #475674;
-      }
       td {
         border-bottom: none;
       }
@@ -175,7 +175,7 @@ export default function ResultLendCrypto() {
                       if (index % 4 === 0 && index % 8 !== 0) {
                         return (
                           <>
-                            <tr key={index}>
+                            <tr key={index} className="items">
                               <td className="Id">
                                 <P>{index + 1}</P>
                               </td>
@@ -232,7 +232,7 @@ export default function ResultLendCrypto() {
                         );
                       } else {
                         return (
-                          <tr key={index}>
+                          <tr key={index} className="items">
                             <td className="Id">
                               <P>{index + 1}</P>
                             </td>
