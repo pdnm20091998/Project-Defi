@@ -55,14 +55,3 @@ export const loginUserService = request => {
 export const logout = () => {
   localStorage.removeItem('user');
 };
-
-export const getAsset = async () => {
-  return await axios.get(
-    'https://staginggw.defiforyou.uk/defi-pawn-crypto-service/public-api/v1.0.0/crypto-asset',
-  );
-};
-export const getResultLenCrypto = async () => {
-  return await axios.get(
-    'https://staginggw.defiforyou.uk/defi-pawn-crypto-service/public-api/v1.0.0/collaterals/search',
-  );
-};

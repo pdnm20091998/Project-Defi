@@ -3,13 +3,14 @@ import styled from 'styled-components/macro';
 import Navbar from '../../../Home/NavBar/index';
 import Footer from '../../../../components/Footer/index';
 import { Container, Col, Row, Table } from 'react-bootstrap';
-import { getResultLenCrypto, getAsset } from '../../../../service/auth.service';
+import { getResultLenCrypto } from '../../../../service/apiLendCrypto/apiLendCypto';
+import { getAsset } from '../../../../service/apiAsset/apiAsset';
 import { useEffect, useState } from 'react';
 import { SumCollateral } from './SumCollateral/SumCollateral';
 import DefiButton from '../../../../components/DefiButton/DefiButton';
 import imgStar from './assets/Star.svg';
 import Filter from './Filter/index';
-import { Pagination } from './Pagination/index';
+import { Pagination } from './Pagination/Pagination';
 import { Advertisement } from './Advertisement';
 import { useMediaQuery } from '@mui/material';
 import FilterLendMobile from './Filter/FilterLendMobie';
@@ -18,6 +19,7 @@ const Div = styled.div`
   background-color: #171a23;
   border-bottom: 1px solid rgba(125, 111, 125, 0.2);
   padding-top: 30px;
+
   .page-item {
     margin: 0px 6px;
 
@@ -112,20 +114,73 @@ const imgObject = {
   USDC: '/USDC.10ea0ad.png',
   DAI: '/DAI.71410d0.png',
 };
+const Wrapper = styled.div`
+  .wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 
+    width: 100%;
+
+    position: relative;
+
+    .icon-filter {
+      width: 30px;
+      height: 30px;
+      position: absolute;
+      right: 0px;
+      cursor: pointer;
+      display: none;
+      padding-right: 50px;
+      @media (max-width: 767px) {
+        right: 16px;
+      }
+    }
+
+    @media (max-width: 767px) {
+      width: 100%;
+      margin: 0px auto;
+    }
+
+    @media (min-width: 768px) {
+      width: 768px;
+      margin: 0px auto;
+    }
+
+    @media (max-width: 1024px) {
+      flex-direction: column;
+
+      .icon-filter {
+        display: block;
+        z-index: 1;
+      }
+    }
+
+    @media (min-width: 1025px) {
+      width: 1024px;
+      margin: 0px auto;
+    }
+
+    @media (min-width: 1280px) {
+      width: 1280px;
+      margin: 0px auto;
+    }
+
+    @media (min-width: 1536px) {
+      max-width: 1536px;
+      margin: 0px auto;
+    }
+  }
+`;
 export default function ResultLendCrypto() {
-  const [total, setTotal] = useState();
+  const [total, setTotal] = useState(0);
   const [dataApi, setDataApi] = useState<Array<object>>([]);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [postsPerPage] = useState(10);
-  const indexOfLastPost = currentPage * postsPerPage;
-  const indexOfFirstPost = indexOfLastPost - postsPerPage;
-  const currentPosts: any = dataApi.slice(indexOfFirstPost, indexOfLastPost);
-  const paginate = pageNumber => setCurrentPage(pageNumber);
   const dataAsset: Array<object> = [];
   const [dataasset, setDataAsset] = useState<Array<object>>([]);
   const isNoneFilter = useMediaQuery('(max-width:1024px)');
   const [openFilter, setOpenFilter] = useState(false);
+  console.log(dataApi);
+
   useEffect(() => {
     const resultAsset = () => {
       const data = getAsset()
@@ -148,7 +203,7 @@ export default function ResultLendCrypto() {
   }, []);
   const imgAsset = [...dataasset];
   useEffect(() => {
-    getResultLenCrypto()
+    getResultLenCrypto(0, 10)
       .then((result: any) => {
         return result.data;
       })
@@ -165,65 +220,20 @@ export default function ResultLendCrypto() {
   const closeFilter = () => {
     setOpenFilter(false);
   };
-  const Wrapper = styled.div`
-    .wrapper {
-      display: flex;
-      flex-direction: row;
-      justify-content: space-between;
-
-      width: 100%;
-
-      position: relative;
-
-      .icon-filter {
-        width: 30px;
-        height: 30px;
-        position: absolute;
-        right: 0px;
-        cursor: pointer;
-        display: none;
-        padding-right: 50px;
-        @media (max-width: 767px) {
-          right: 16px;
-        }
-      }
-
-      @media (max-width: 767px) {
-        width: 100%;
-        margin: 0px auto;
-      }
-
-      @media (min-width: 768px) {
-        width: 768px;
-        margin: 0px auto;
-      }
-
-      @media (max-width: 1024px) {
-        flex-direction: column;
-
-        .icon-filter {
-          display: block;
-          z-index: 1;
-        }
-      }
-
-      @media (min-width: 1025px) {
-        width: 1024px;
-        margin: 0px auto;
-      }
-
-      @media (min-width: 1280px) {
-        width: 1280px;
-        margin: 0px auto;
-      }
-
-      @media (min-width: 1536px) {
-        max-width: 1536px;
-        margin: 0px auto;
-      }
-    }
-  `;
-
+  const handlePageChange = e => {
+    getResultLenCrypto(e, 10)
+      .then((result: any) => {
+        return result.data;
+      })
+      .then((data: any) => {
+        return data.data;
+      })
+      .then((e: any) => {
+        setTotal(e.total);
+        setDataApi(e.content);
+        return e.content;
+      });
+  };
   return (
     <Wrapper>
       <Navbar />
@@ -249,8 +259,13 @@ export default function ResultLendCrypto() {
                   </tr>
                 </thead>
                 <tbody className="table__body">
-                  {currentPosts &&
-                    currentPosts.map((data?: any, index?: any) => {
+                  {dataApi &&
+                    dataApi.map((data?: any, index?: any) => {
+                      const walletAddress = data.walletAddress;
+                      const shortAddress = `${walletAddress.slice(
+                        0,
+                        5,
+                      )}...${walletAddress.slice(-5)}`;
                       if (index % 4 === 0 && index % 8 !== 0) {
                         return (
                           <>
@@ -259,7 +274,7 @@ export default function ResultLendCrypto() {
                                 <P>{index + 1}</P>
                               </td>
                               <td className="d-flex flex-column">
-                                <Address>{data.walletAddress}</Address>
+                                <Address>{shortAddress}</Address>
                                 <Start>
                                   <img className="pe-2" src={imgStar} alt="" />
                                   {data.reputation} {' | '}
@@ -316,7 +331,7 @@ export default function ResultLendCrypto() {
                               <P>{index + 1}</P>
                             </td>
                             <td className="d-flex flex-column">
-                              <Address>{data.walletAddress}</Address>
+                              <Address>{shortAddress}</Address>
                               <Start>
                                 <img className="pe-2" src={imgStar} alt="" />
                                 {data.reputation} {' | '}
@@ -368,9 +383,8 @@ export default function ResultLendCrypto() {
                 </tbody>
               </Table>
               <Pagination
-                postsPerPage={postsPerPage}
-                totalPosts={dataApi.length}
-                paginate={paginate}
+                totalPage={total}
+                changePage={e => handlePageChange(e)}
               />
             </Col>
             <Col lg="3">

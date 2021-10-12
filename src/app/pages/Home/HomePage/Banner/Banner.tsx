@@ -2,7 +2,7 @@ import styled from 'styled-components/macro';
 import { BannerLeft } from './banner/index';
 import { PawnTabs } from './Tabs/index';
 import { Container, Col, Row } from 'react-bootstrap';
-import { getAsset } from '../../../../service/auth.service';
+import { getAsset } from '../../../../service/apiAsset/apiAsset';
 import { useEffect, useState } from 'react';
 
 interface Props {}
