@@ -38,8 +38,14 @@ const Div = styled.div`
     .Advertisement {
       margin: 20px 0px;
     }
-    .items:hover {
-      background-color: #475674;
+    .items {
+      background: #282c37;
+      &:hover {
+        background-color: #475674;
+      }
+    }
+    &__head {
+      background: rgba(40, 44, 55, 0.5);
     }
     tr {
       border: 4px solid #171a23;
@@ -167,6 +173,7 @@ export default function ResultLendCrypto() {
                     <th>Collateral</th>
                     <th>Loan currency</th>
                     <th>Duration</th>
+                    <th></th>
                   </tr>
                 </thead>
                 <tbody className="table__body">
