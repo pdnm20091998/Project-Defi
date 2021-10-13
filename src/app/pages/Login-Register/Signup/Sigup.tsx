@@ -84,7 +84,9 @@ export default function Signup() {
   const handleClickShowConfirmPassword = () => {
     setValuesConfirm(!valuesConfirm);
   };
+  // get value Captcha
   const onChange = value => {
+    // console.log(value);
     setRecaptcha(value);
   };
   return (
@@ -162,7 +164,7 @@ export default function Signup() {
           You’s Terms and Conditions of Use.
         </DescriptionSd>
         <ReCAPTCHA
-          sitekey="6LfNh7IcAAAAANlttyrvXXR9DwRC0MsyO5mA4g8o"
+          sitekey="6LcSG9EaAAAAABvbpHkdugGmjEWeYPp6NoPPDEvt"
           onChange={onChange}
         />
         <Center>

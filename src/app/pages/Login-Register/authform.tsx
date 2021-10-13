@@ -1,4 +1,3 @@
-import React from 'react';
 import {
   Switch,
   Route,
@@ -13,7 +12,6 @@ import Signup from './Signup/Sigup';
 import { Container, Row, Col } from 'react-bootstrap';
 import styled from 'styled-components/macro';
 import Navbar from '../Home/NavBar/index';
-import Footer from '../../components/Footer/index';
 
 const Img = styled.img`
   max-width: 100%;
@@ -115,7 +113,6 @@ export default function AuthForm() {
           </Row>
         </Container>
       </Content>
-      <Footer />
     </>
   );
 }

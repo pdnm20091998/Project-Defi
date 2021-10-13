@@ -7,7 +7,6 @@ import Divider from '@mui/material/Divider';
 import Avatar from '@mui/material/Avatar';
 import styled from 'styled-components/macro';
 import { getNameLocal } from '../../../../components/common/common';
-
 import { useSelector } from 'react-redux';
 import { RootState } from '../../../../reducer/reducers';
 

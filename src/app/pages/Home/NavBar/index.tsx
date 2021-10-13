@@ -128,11 +128,11 @@ export default function NavBar(props: Props) {
                 <InforUser />
               </div>
             ) : (
-                          <MyLink to="/login">
-              <NavButton width="80px" className={`ms-3 ${styles.remove}`}>
-                Login
-              </NavButton>
-            </MyLink>
+              <MyLink to="/login">
+                <NavButton width="80px" className={`ms-3 ${styles.remove}`}>
+                  Login
+                </NavButton>
+              </MyLink>
             )}
             {clicked === true ? (
               <FontAwesomeIcon
@@ -173,11 +173,11 @@ export default function NavBar(props: Props) {
               {JSON.parse(localStorage.getItem('name') || '')}
             </div>
           ) : (
-          <MyLink to="/login">
-            <NavButton width="80px" className="mt-2 mx-auto d-block">
-              Login
-            </NavButton>
-          </MyLink>
+            <MyLink to="/login">
+              <NavButton width="80px" className="mt-2 mx-auto d-block">
+                Login
+              </NavButton>
+            </MyLink>
           )}
           <NavLink className={styles.linkColor}>Pawn</NavLink>
           <NavLink className={styles.linkColor}>Staking</NavLink>

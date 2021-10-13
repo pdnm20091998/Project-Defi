@@ -19,23 +19,7 @@ export const loginUserService = request => {
     .then((response: any) => {
       const history = request.user.history;
       if (response.data.access_token) {
-        localStorage.setItem(
-          'token',
-          JSON.stringify(response.data.access_token),
-        );
-
-        axios
-          .get(
-            'https://staginggw.defiforyou.uk/defi-user-service/api/v1.0.0/users/profile',
-            {
-              headers: {
-                Authorization: `Bearer ${response.data.access_token}`,
-              },
-            },
-          )
-          .then((res: any) => {
-            localStorage.setItem('name', JSON.stringify(res.data.data.name));
-          });
+        localStorage.setItem('token', response.data.access_token);
         history.push('/');
       }
       return response.data;
@@ -49,6 +33,22 @@ export const loginUserService = request => {
           'This account has not been activated yet. Please confirm email to activate your account',
         );
       }
+    });
+};
+export const getUser = request => {
+  const token = request;
+  return axios
+    .get(
+      'https://staginggw.defiforyou.uk/defi-user-service/api/v1.0.0/users/profile',
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      },
+    )
+    .then((res: any) => {
+      localStorage.setItem('name', JSON.stringify(res.data.data.name));
+      return res.data;
     });
 };
 
