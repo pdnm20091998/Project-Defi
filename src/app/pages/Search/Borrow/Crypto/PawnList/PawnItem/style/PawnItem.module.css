@@ -1,0 +1,31 @@
+.negaMargin {
+  margin-top: -7rem;
+}
+@media (max-width: 1199px) {
+  .negaMargin {
+    margin-top: -4rem;
+  }
+}
+@media (max-width: 991px) {
+  .negaMargin {
+    margin-top: 0;
+  }
+  .text_small {
+    font-size: 14px !important;
+  }
+  .small_title {
+    font-size: 18px !important;
+  }
+}
+@media (max-width: 767px) {
+  .text_small {
+    font-size: 14px;
+  }
+  .border_bot {
+    border-bottom: 1px solid #45484f;
+    border-right: none !important;
+  }
+  .percent {
+    font-size: 24px !important;
+  }
+}

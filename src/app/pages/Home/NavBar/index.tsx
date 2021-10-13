@@ -95,7 +95,9 @@ export default function NavBar(props: Props) {
               <NavLink href="#" className={`pe-3 ps-0 ${styles.linkColor}`}>
                 My account
               </NavLink>
-              <NavLink href="#">FAQ</NavLink>
+              <NavLink href="#" className={styles.linkColor}>
+                FAQ
+              </NavLink>
               {location.pathname === '/login/tab=2' ||
               location.pathname === '/login' ? (
                 <SignupButton>
@@ -107,7 +109,7 @@ export default function NavBar(props: Props) {
               )}
             </Nav>
           </Navbar.Collapse>
-          <Form style={{ display: 'flex' }}>
+          <MyForm>
             {location.pathname === '/login/tab=2' ||
             location.pathname === '/login' ||
             location.pathname === '/login/tab=1' ? (
@@ -128,11 +130,11 @@ export default function NavBar(props: Props) {
                 <InforUser />
               </div>
             ) : (
-                          <MyLink to="/login">
-              <NavButton width="80px" className={`ms-3 ${styles.remove}`}>
-                Login
-              </NavButton>
-            </MyLink>
+              <MyLink to="/login">
+                <NavButton width="80px" className={`ms-3 ${styles.remove}`}>
+                  Login
+                </NavButton>
+              </MyLink>
             )}
             {clicked === true ? (
               <FontAwesomeIcon
@@ -155,7 +157,7 @@ export default function NavBar(props: Props) {
                 aria-expanded={open}
               ></FontAwesomeIcon>
             )}
-          </Form>
+          </MyForm>
         </Container>
       </Navbar>
       <Collapse in={open}>
@@ -173,15 +175,15 @@ export default function NavBar(props: Props) {
               {JSON.parse(localStorage.getItem('name') || '')}
             </div>
           ) : (
-          <MyLink to="/login">
-            <NavButton width="80px" className="mt-2 mx-auto d-block">
-              Login
-            </NavButton>
-          </MyLink>
+            <MyLink to="/login">
+              <NavButton width="80px" className="mt-2 mx-auto d-block">
+                Login
+              </NavButton>
+            </MyLink>
           )}
-          <NavLink className={styles.linkColor}>Pawn</NavLink>
-          <NavLink className={styles.linkColor}>Staking</NavLink>
-          <NavLink className={styles.linkColor}>NFT</NavLink>
+          <Nav.Link className={styles.linkColor}>Pawn</Nav.Link>
+          <Nav.Link className={styles.linkColor}>Staking</Nav.Link>
+          <Nav.Link className={styles.linkColor}>NFT</Nav.Link>
           <MyDropDown
             as="div"
             style={{ background: bgColor }}
@@ -214,8 +216,12 @@ export default function NavBar(props: Props) {
                   )}
                   {borrow === true && (
                     <>
-                      <NavLink className={styles.linkColor}>Collateral</NavLink>
-                      <NavLink className={styles.linkColor}>Contracts</NavLink>
+                      <Nav.Link className={styles.linkColor}>
+                        Collateral
+                      </Nav.Link>
+                      <Nav.Link className={styles.linkColor}>
+                        Contracts
+                      </Nav.Link>
                     </>
                   )}
                 </MyDropDown>
@@ -234,20 +240,22 @@ export default function NavBar(props: Props) {
                   )}
                   {lend === true && (
                     <>
-                      <NavLink className={styles.linkColor}>
+                      <Nav.Link className={styles.linkColor}>
                         Offers sent
-                      </NavLink>
-                      <NavLink className={styles.linkColor}>Contracts</NavLink>
-                      <NavLink className={styles.linkColor}>
+                      </Nav.Link>
+                      <Nav.Link className={styles.linkColor}>
+                        Contracts
+                      </Nav.Link>
+                      <Nav.Link className={styles.linkColor}>
                         Pawnshop Loan Package
-                      </NavLink>
-                      <NavLink className={styles.linkColor}>
+                      </Nav.Link>
+                      <Nav.Link className={styles.linkColor}>
                         Loan Requests
-                      </NavLink>
+                      </Nav.Link>
                     </>
                   )}
                 </MyDropDown>
-                <NavLink className={styles.linkColor}>Staking</NavLink>
+                <Nav.Link className={styles.linkColor}>Staking</Nav.Link>
                 <MyDropDown as="div" onClick={handleOpenNFT}>
                   NFT
                   {NFT === true ? (
@@ -263,17 +271,17 @@ export default function NavBar(props: Props) {
                   )}
                   {NFT === true && (
                     <>
-                      <NavLink className={styles.linkColor}>NFT List</NavLink>
-                      <NavLink className={styles.linkColor}>
+                      <Nav.Link className={styles.linkColor}>NFT List</Nav.Link>
+                      <Nav.Link className={styles.linkColor}>
                         NFT Auction
-                      </NavLink>
+                      </Nav.Link>
                     </>
                   )}
                 </MyDropDown>
               </>
             )}
           </MyDropDown>
-          <NavLink className={styles.linkColor}>FAQ</NavLink>
+          <Nav.Link className={styles.linkColor}>FAQ</Nav.Link>
           {/* <NavLink>Change password</NavLink>
           <NavLink>Log out</NavLink> */}
         </MiniNav>
@@ -306,7 +314,7 @@ const MiniNav = styled(Nav)`
   width: 100%;
   z-index: 1;
 `;
-const MyDropDown = styled(NavLink)`
+const MyDropDown = styled(Nav.Link)`
   padding: 0.5rem 0 0 1rem;
   cursor: pointer;
 `;
@@ -316,4 +324,8 @@ const MyLink = styled(Link)`
   &:hover {
     color: inherit;
   }
+`;
+const MyForm = styled(Form)`
+  display: flex;
+  align-items: center;
 `;

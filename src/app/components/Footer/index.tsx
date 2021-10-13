@@ -20,6 +20,7 @@ const Div = styled.div`
   background-color: #171a23;
   background-image: url(${decorator});
   background-repeat: no-repeat;
+  border-top: 1px solid rgba(125, 111, 125, 0.2);
 `;
 const MyContainer = styled(Container)`
   background: #13171f;
