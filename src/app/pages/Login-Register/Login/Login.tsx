@@ -9,20 +9,18 @@ import { useHistory } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { loginUserAction } from '../../../actions/authActions';
-import { RootState } from '../../../reducer/reducers';
 
 type UserSubmitForm = {
   email: string;
   password: string;
 };
+
 export default function Login() {
   const [values, setValues] = useState(true);
   const dispatch = useDispatch();
   let history = useHistory();
-  const user = useSelector((state: RootState) => state.auth);
-  console.log(user);
   //validate
   const validationSchema = Yup.object().shape({
     email: Yup.string().required('Email is required').email('Email is invalid'),

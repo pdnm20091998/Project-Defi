@@ -1,7 +1,7 @@
 export const getToken = () => {
   const userToken = localStorage.getItem('token');
   if (userToken) {
-    return JSON.parse(userToken);
+    return userToken;
   } else {
     return null;
   }
