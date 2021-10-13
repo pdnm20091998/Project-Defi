@@ -10,7 +10,7 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
 import { useDispatch } from 'react-redux';
-import { loginUserAction } from '../../../actions/authActions';
+import { loginUserAction } from '../../../actions/auth/authActions';
 
 type UserSubmitForm = {
   email: string;

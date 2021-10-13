@@ -1,4 +1,4 @@
-import { REGISTER_USER, LOGIN_USER } from './types';
+import { REGISTER_USER, LOGIN_USER } from '../types';
 
 export const registerUserAction = user => {
   return {

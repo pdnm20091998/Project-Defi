@@ -13,7 +13,7 @@ import { RootState } from '../../../../reducer/reducers';
 export default function InforUser() {
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
-  const user = useSelector((state: RootState) => state.auth);
+  const user = useSelector((state: RootState) => state.user);
 
   const Customized = styled.div`
     color: #fff;

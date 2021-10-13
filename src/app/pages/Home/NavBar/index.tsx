@@ -64,6 +64,10 @@ export default function NavBar(props: Props) {
     setClicked(!clicked);
     setOpen(!open);
   }
+  const handleLogout = () => {
+    localStorage.clear();
+    window.location.href = '/';
+  };
   return (
     <Div className={styles.container}>
       {t('')}
@@ -282,8 +286,14 @@ export default function NavBar(props: Props) {
             )}
           </MyDropDown>
           <Nav.Link className={styles.linkColor}>FAQ</Nav.Link>
-          {/* <NavLink>Change password</NavLink>
-          <NavLink>Log out</NavLink> */}
+          {getNameLocal() ? (
+            <>
+              <NavLink>Change password</NavLink>
+              <NavLink onClick={handleLogout}>Log out</NavLink>
+            </>
+          ) : (
+            ''
+          )}
         </MiniNav>
       </Collapse>
     </Div>

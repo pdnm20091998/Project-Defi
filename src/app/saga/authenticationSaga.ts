@@ -3,7 +3,7 @@ import {
   registerUserService,
   loginUserService,
   getUser,
-} from '../service/auth.service';
+} from '../service/apiAuth/auth.service';
 import {
   REGISTER_SUCCESS,
   REGISTER_FAIL,
@@ -23,9 +23,10 @@ export function* registerSaga(payload) {
 export function* LoginSaga(payload) {
   try {
     const response = yield call(loginUserService, payload);
-    const token = response.access_token;
-    const getUserinfor = yield call(getUser, token);
-    yield put({ type: GET_USER, payload: getUserinfor });
+    if (response.access_token) {
+      const getUserinfor = yield call(getUser, response.access_token);
+      yield put({ type: GET_USER, payload: getUserinfor });
+    }
     yield put({ type: LOGIN_SUCCESS, payload: response });
   } catch (error) {
     yield put({ type: LOGIN_FAIL, error });

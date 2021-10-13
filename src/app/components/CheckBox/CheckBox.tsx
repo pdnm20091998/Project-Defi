@@ -12,7 +12,7 @@ interface IProps {
 const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
 
 function CheckBoxField(props: IProps) {
-  const { name, title, type, img } = props;
+  const { name, title, img } = props;
   return (
     <Wrapper>
       <Checkbox

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState, useEffect } from 'react';
 import FilterLend from './features/FilterLend/FilterLend';
 import ResultLendComponent from './features/ResultLend';
 import IconFilter from './assets/iconFilter.svg';
@@ -9,9 +9,20 @@ import Footer from 'app/components/Footer';
 import { Container, Row, Col } from 'react-bootstrap';
 import { Wrapper } from './style/style';
 
+import { useDispatch } from 'react-redux';
+import { resultLendNftAction } from 'app/actions/Lend NTF/resultLendNft-Action';
+
 export default function ResultLendCrypt() {
   const isNoneFilter = useMediaQuery('(max-width:992px)');
   const [openFilter, setOpenFilter] = useState(false);
+
+  const dispatch = useDispatch();
+
+  const data = {};
+  useEffect(() => {
+    dispatch(resultLendNftAction(data));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const closeFilter = () => {
     setOpenFilter(false);
@@ -25,14 +36,14 @@ export default function ResultLendCrypt() {
       <Wrapper>
         <Container className="px-sm-0">
           <Row className="wrapper">
-            <Col lg={{ span: 9 }} md={{ span: 12 }}>
+            <Col lg={9} md={12}>
               {' '}
               <div className="icon-filter" onClick={() => setOpenFilter(true)}>
                 <img src={IconFilter} alt="filter" />
               </div>
               <ResultLendComponent />
             </Col>
-            <Col lg={{ span: 3 }}>
+            <Col lg={3}>
               {' '}
               {isNoneFilter ? (
                 <FilterLendMobile open={openFilter} closeFilter={closeFilter} />

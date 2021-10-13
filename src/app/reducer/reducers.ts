@@ -3,12 +3,14 @@
  */
 
 import { combineReducers } from '@reduxjs/toolkit';
-import { authReducer } from './auth';
-import { userReducer } from './userReducer';
+import { authReducer } from './auth/auth';
+import { userReducer } from './auth/userReducer';
+import { resultLendNftReducer } from './lendNft/resultReducer';
 
 const rootReducer = combineReducers({
   auth: authReducer,
   user: userReducer,
+  lendnft: resultLendNftReducer,
 });
 
 export type RootState = ReturnType<typeof rootReducer>;

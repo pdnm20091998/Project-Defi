@@ -1,5 +1,5 @@
 import { Drawer } from '@mui/material';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import FilterLend from './FilterLend';
 

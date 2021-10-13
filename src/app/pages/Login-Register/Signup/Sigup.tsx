@@ -17,7 +17,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
 import { useDispatch } from 'react-redux';
 
-import { registerUserAction } from '../../../actions/authActions';
+import { registerUserAction } from '../../../actions/auth/authActions';
 
 type UserSubmitFormSignup = {
   fullname: string;
