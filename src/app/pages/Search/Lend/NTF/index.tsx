@@ -11,18 +11,26 @@ import { Wrapper } from './style/style';
 
 import { useDispatch } from 'react-redux';
 import { resultLendNftAction } from 'app/actions/Lend NTF/resultLendNft-Action';
+import { useLendContext } from 'app/components/common/context';
 
 export default function ResultLendCrypt() {
+  const dispatch = useDispatch();
   const isNoneFilter = useMediaQuery('(max-width:992px)');
   const [openFilter, setOpenFilter] = useState(false);
-
-  const dispatch = useDispatch();
-
-  const data = {};
+  const { page, loanAmount, loanSymbol, loanDuration, loanDurationType, name } =
+    useLendContext();
+  const data = {
+    page,
+    loanAmount,
+    loanSymbol,
+    loanDuration,
+    loanDurationType,
+    name,
+  };
   useEffect(() => {
     dispatch(resultLendNftAction(data));
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [data]);
 
   const closeFilter = () => {
     setOpenFilter(false);

@@ -24,6 +24,7 @@ import configureStore from 'store/configureStore';
 
 import reportWebVitals from 'reportWebVitals';
 
+import { ContextProvider } from './app/components/common/context';
 // Initialize languages
 import './locales/i18n';
 
@@ -37,7 +38,9 @@ ReactDOM.render(
   <Provider store={store}>
     <HelmetProvider>
       <React.StrictMode>
-        <App />
+        <ContextProvider>
+          <App />
+        </ContextProvider>
       </React.StrictMode>
     </HelmetProvider>
   </Provider>,

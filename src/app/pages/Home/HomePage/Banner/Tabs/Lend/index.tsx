@@ -13,7 +13,8 @@ import { MultiSelect } from 'react-multi-select-component';
 import { getAsset } from '../../../../../../service/apiAsset/apiAsset';
 import { Link } from 'react-router-dom';
 import { Div, InputField, P, Main } from '../../../components/style';
-import { ComboBoxExample } from '../../../components/combobox';
+import ComboBox from 'react-responsive-combo-box';
+import { useLendContext } from 'app/components/common/context';
 
 interface OptionsItem {
   label: string;
@@ -129,6 +130,42 @@ interface Props {
 }
 export function Lend(props: Props) {
   const [component, setComponent] = useState(true);
+  const week = ['All', 'Weeks', 'Months'];
+  const loanCurrency = [
+    {
+      name: 'dfy',
+      img: 'https://app.defiforyou.uk/_nuxt/img/DFY.a0b985b.png',
+      title: 'DFY',
+    },
+    {
+      name: 'usdt',
+      img: 'https://app.defiforyou.uk/_nuxt/img/USDT.b7a5381.png',
+      title: 'USTD',
+    },
+    {
+      name: 'usdc',
+      img: 'https://app.defiforyou.uk/_nuxt/img/USDC.10ea0ad.png',
+      title: 'USDC',
+    },
+    {
+      name: 'dai',
+      img: 'https://app.defiforyou.uk/_nuxt/img/DAI.71410d0.png',
+      title: 'DAI',
+    },
+    {
+      name: 'busd',
+      img: 'https://app.defiforyou.uk/_nuxt/img/BUSD.3aa6751.png',
+      title: 'BUSD',
+    },
+  ];
+  const { setLoanAmount, setLoanSymbol, setLoanDuration, setLoanDurationType } =
+    useLendContext();
+  const handleLoanAmountChange = e => {
+    setLoanAmount(e.target.value);
+  };
+  const handleLoanDurationChange = e => {
+    setLoanDuration(e.target.value);
+  };
   return (
     <Main>
       <div>
@@ -144,10 +181,9 @@ export function Lend(props: Props) {
                         <div className="input ">
                           <input
                             type="number"
-                            id="tentacles"
-                            name="tentacles"
                             className="input input-slot"
                             placeholder="Enter amount"
+                            onChange={handleLoanAmountChange}
                           ></input>
                           <DefiButton
                             className="defi-btn"
@@ -160,11 +196,17 @@ export function Lend(props: Props) {
                       </InputField>
                     </Col>
                     <Col sm="3" xs="3">
-                      <ComboBoxExample
-                        name="Currency"
-                        array="data"
-                        dataAsset={props.dataAsset}
-                      />
+                      <div className="drop">
+                        <ComboBox
+                          className={`option`}
+                          selectedOptionColor="#2c4059"
+                          defaultValue={`${week[0]}`}
+                          placeholder="Currency"
+                          options={week}
+                          enableAutocomplete
+                          onSelect={option => setLoanSymbol({ option })}
+                        />
+                      </div>
                     </Col>
                   </Div>
                 </Row>
@@ -182,20 +224,33 @@ export function Lend(props: Props) {
                         <div className="input ">
                           <input
                             type="number"
-                            id="tentacles"
-                            name="tentacles"
                             className="input input-slot"
                             placeholder="Duration"
+                            onChange={handleLoanDurationChange}
                           ></input>
                         </div>
                       </InputField>
                     </Col>
                     <Col sm="3" xs="3">
-                      <ComboBoxExample
-                        name="Duration"
-                        array="week"
-                        dataAsset={props.dataAsset}
-                      />
+                      <div className="drop">
+                        <ComboBox
+                          className={`option`}
+                          selectedOptionColor="#2c4059"
+                          defaultValue={`${week[0]}`}
+                          placeholder="Currency"
+                          options={week}
+                          enableAutocomplete
+                          onSelect={option => {
+                            if (option === 'All') {
+                              setLoanDurationType();
+                            } else if (option === 'Weeks') {
+                              setLoanDurationType(0);
+                            } else if (option === 'Months') {
+                              setLoanDurationType(1);
+                            }
+                          }}
+                        />
+                      </div>
                     </Col>
                   </Div>
                 </Row>

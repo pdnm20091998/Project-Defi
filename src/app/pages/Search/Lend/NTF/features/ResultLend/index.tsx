@@ -5,11 +5,15 @@ import DefiButton from 'app/components/DefiButton/DefiButton';
 import { useSelector } from 'react-redux';
 import { RootState } from 'app/reducer/reducers';
 import { Pagination } from '../Pagination/Pagination';
+import { useLendContext } from 'app/components/common/context';
 
 export default function ResultLendComponent() {
+  const { setPage } = useLendContext();
   const result: any = useSelector((state: RootState) => state.lendnft);
 
-  const handlePageChange = e => {};
+  const handlePageChange = e => {
+    setPage(e);
+  };
   return (
     <Result>
       <div>
