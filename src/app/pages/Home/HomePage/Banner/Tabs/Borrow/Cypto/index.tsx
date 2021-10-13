@@ -38,6 +38,9 @@ const Main = styled.div`
     text-transform: capitalize;
     color: #dba83d;
   }
+  .btn {
+    box-shadow: none !important;
+  }
   .mt {
     margin-top: 6px;
     &[title]:after {
@@ -83,7 +86,7 @@ export function Crypto(props: Props) {
             ></Form>
             <Container fluid="lg">
               <P>Or</P>
-              <Button className="mb-3">Choose Existing collateral</Button>
+              <Button className="btn mb-3">Choose Existing collateral</Button>
             </Container>
             <Form
               name="Duration"

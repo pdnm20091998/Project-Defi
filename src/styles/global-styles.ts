@@ -31,4 +31,29 @@ export const GlobalStyle = createGlobalStyle`
     font-family: inherit;
     font-size: inherit;
   }
+    /* width */
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  width: 12px;
+    background: #2f3543;
+    border-left: 0 solid #fff;
+    border-right: 0 solid #fff;
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #45484f;
+    width: 0;
+    height: 25%;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #45484f;
+}
+
 `;
