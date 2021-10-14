@@ -133,34 +133,13 @@ export function Lend(props: Props) {
   // Combobox duration type
   const week = ['All', 'Weeks', 'Months'];
   // combobox loan type
-  const loanCurrency = [
-    {
-      name: 'dfy',
-      img: 'https://app.defiforyou.uk/_nuxt/img/DFY.a0b985b.png',
-      title: 'DFY',
-    },
-    {
-      name: 'usdt',
-      img: 'https://app.defiforyou.uk/_nuxt/img/USDT.b7a5381.png',
-      title: 'USTD',
-    },
-    {
-      name: 'usdc',
-      img: 'https://app.defiforyou.uk/_nuxt/img/USDC.10ea0ad.png',
-      title: 'USDC',
-    },
-    {
-      name: 'dai',
-      img: 'https://app.defiforyou.uk/_nuxt/img/DAI.71410d0.png',
-      title: 'DAI',
-    },
-    {
-      name: 'busd',
-      img: 'https://app.defiforyou.uk/_nuxt/img/BUSD.3aa6751.png',
-      title: 'BUSD',
-    },
-  ];
-  // import useContext
+  const loanCurrency: any[] = ['All'];
+  const data = props.dataAsset;
+  data &&
+    data.map((e: any) => {
+      e.isWhitelistSupply && loanCurrency.push(e.symbol);
+      return loanCurrency;
+    });
   const { setLoanAmount, setLoanSymbol, setLoanDuration, setLoanDurationType } =
     useLendContext();
 
@@ -204,9 +183,9 @@ export function Lend(props: Props) {
                         <ComboBox
                           className={`option`}
                           selectedOptionColor="#2c4059"
-                          defaultValue={`${week[0]}`}
+                          defaultValue={`${loanCurrency[0]}`}
                           placeholder="Currency"
-                          options={week}
+                          options={loanCurrency}
                           enableAutocomplete
                           onSelect={option => setLoanSymbol({ option })}
                         />

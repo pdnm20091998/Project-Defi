@@ -13,6 +13,8 @@ import DefiButton from '../../../../../../../components/DefiButton/DefiButton';
 import { Container, Row, Col } from 'react-bootstrap';
 import { Form } from '../../../Form/index';
 import { Link } from 'react-router-dom';
+import ComboBox from 'react-responsive-combo-box';
+import { Div, InputField } from 'app/pages/Home/HomePage/components/style';
 interface Props {
   dataAsset?: Array<object>;
 }
@@ -71,37 +73,138 @@ const Main = styled.div`
   }
 `;
 export function Crypto(props: Props) {
+  // combobox duration type
+  const duration: any[] = ['All', 'Weeks', 'Months'];
+  // combobox collateral type
+  const collateral: any[] = ['All'];
+  const data = props.dataAsset;
+  data &&
+    data.map((e: any) => {
+      e.isWhitelistCollateral && collateral.push(e.symbol);
+      return collateral;
+    });
+  // combobox loan type
+  const loanCurrency: any[] = ['All'];
+  const dataLoan = props.dataAsset;
+  dataLoan &&
+    dataLoan.map((e: any) => {
+      e.isWhitelistSupply && loanCurrency.push(e.symbol);
+      return loanCurrency;
+    });
+  const handleCollateralChange = e => {};
   return (
     <Main>
       <div>
         <Row>
           <Col>
-            <Form
-              name="Collateral"
-              placeholder="Enter amount"
-              filter="Currency"
-              arr="data"
-              button={true}
-              dataAsset={props.dataAsset}
-            ></Form>
+            <div>
+              <Container fluid="lg">
+                <P>Collateral</P>
+                <Row>
+                  <Div className="mx-1">
+                    <Col sm="9" xs="9">
+                      <InputField>
+                        <div className="input ">
+                          <input
+                            type="number"
+                            className="input input-slot"
+                            placeholder="Enter amount"
+                            onChange={handleCollateralChange}
+                          ></input>
+                        </div>
+                      </InputField>
+                    </Col>
+                    <Col sm="3" xs="3">
+                      <div className="drop">
+                        <ComboBox
+                          className={`option`}
+                          selectedOptionColor="#2c4059"
+                          defaultValue={`${collateral[0]}`}
+                          placeholder="Currency"
+                          options={collateral}
+                          enableAutocomplete
+                        />
+                      </div>
+                    </Col>
+                  </Div>
+                </Row>
+                <div className="pt-3 pb-2"></div>
+              </Container>
+            </div>
             <Container fluid="lg">
               <P>Or</P>
-              <Button className="btn mb-3">Choose Existing collateral</Button>
+              <Button className="btn mb-3 px-4 py-2">
+                Choose Existing collateral
+              </Button>
             </Container>
-            <Form
-              name="Duration"
-              placeholder="Duration"
-              filter="Duration"
-              arr="week"
-              dataAsset={props.dataAsset}
-            ></Form>
-            <Form
-              name="Loan amount"
-              placeholder="Enter amount"
-              arr="data2"
-              filter="Loan"
-              dataAsset={props.dataAsset}
-            ></Form>
+            <div>
+              <Container fluid="lg">
+                <P>Duration</P>
+                <Row>
+                  <Div className="mx-1">
+                    <Col sm="9" xs="9">
+                      <InputField>
+                        <div className="input ">
+                          <input
+                            type="number"
+                            className="input input-slot"
+                            placeholder="Duration"
+                            onChange={handleCollateralChange}
+                          ></input>
+                        </div>
+                      </InputField>
+                    </Col>
+                    <Col sm="3" xs="3">
+                      <div className="drop">
+                        <ComboBox
+                          className={`option`}
+                          selectedOptionColor="#2c4059"
+                          defaultValue={`${duration[0]}`}
+                          placeholder="Currency"
+                          options={duration}
+                          enableAutocomplete
+                        />
+                      </div>
+                    </Col>
+                  </Div>
+                </Row>
+                <div className="pt-3 pb-2"></div>
+              </Container>
+            </div>
+            <div>
+              <Container fluid="lg">
+                <P>Loan Amount</P>
+                <Row>
+                  <Div className="mx-1">
+                    <Col sm="9" xs="9">
+                      <InputField>
+                        <div className="input ">
+                          <input
+                            type="number"
+                            className="input input-slot"
+                            placeholder="Enter amount"
+                            onChange={handleCollateralChange}
+                          ></input>
+                        </div>
+                      </InputField>
+                    </Col>
+                    <Col sm="3" xs="3">
+                      <div className="drop">
+                        <ComboBox
+                          className={`option`}
+                          selectedOptionColor="#2c4059"
+                          defaultValue={`${loanCurrency[0]}`}
+                          placeholder="Currency"
+                          options={loanCurrency}
+                          enableAutocomplete
+                        />
+                      </div>
+                    </Col>
+                  </Div>
+                </Row>
+                <div className="pt-3 pb-2"></div>
+              </Container>
+            </div>
             <Container fluid="lg">
               <P
                 className="mt"
