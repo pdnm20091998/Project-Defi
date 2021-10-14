@@ -64,6 +64,7 @@ export default function NavBar(props: Props) {
     setClicked(!clicked);
     setOpen(!open);
   }
+  // Logout
   const handleLogout = () => {
     localStorage.clear();
     window.location.href = '/';

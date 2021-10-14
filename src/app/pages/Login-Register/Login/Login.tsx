@@ -52,7 +52,7 @@ export default function Login() {
   } = useForm<UserSubmitForm>({
     resolver: yupResolver(validationSchema),
   });
-
+  // Submit login form
   const onSubmit = (data: UserSubmitForm) => {
     const dataLogin = JSON.parse(JSON.stringify(data));
     const username = dataLogin.email;

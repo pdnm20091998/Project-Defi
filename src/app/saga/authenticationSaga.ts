@@ -11,7 +11,7 @@ import {
   LOGIN_FAIL,
   GET_USER,
 } from 'app/actions/types';
-
+// Get Api register
 export function* registerSaga(payload) {
   try {
     const response = yield call(registerUserService, payload);
@@ -20,6 +20,7 @@ export function* registerSaga(payload) {
     yield put({ type: REGISTER_FAIL, error });
   }
 }
+//Get Api login
 export function* LoginSaga(payload) {
   try {
     const response = yield call(loginUserService, payload);

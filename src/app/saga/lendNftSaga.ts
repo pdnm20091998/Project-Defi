@@ -14,7 +14,7 @@ export function* filterLendNFT(payload) {
     yield put({ type: GET_FILTER_LEND_NFT_FAIL, error });
   }
 }
-
+// get api result
 export function* resultLendNFT(payload) {
   try {
     const response = yield call(ResultLendNftService, payload);

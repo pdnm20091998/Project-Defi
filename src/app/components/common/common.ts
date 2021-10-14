@@ -1,3 +1,4 @@
+// Check token localstorage
 export const getToken = () => {
   const userToken = localStorage.getItem('token');
   if (userToken) {
@@ -6,6 +7,9 @@ export const getToken = () => {
     return null;
   }
 };
+
+// Check name localstorage
+
 export const getNameLocal = () => {
   const userName = localStorage.getItem('name');
   if (userName) {

@@ -14,7 +14,7 @@ import { getAsset } from '../../../../../../service/apiAsset/apiAsset';
 import { Link } from 'react-router-dom';
 import { Div, InputField, P, Main } from '../../../components/style';
 import ComboBox from 'react-responsive-combo-box';
-import { useLendContext } from 'app/components/common/context';
+import { useLendContext } from 'app/components/common/lendNftContext';
 
 interface OptionsItem {
   label: string;
@@ -130,7 +130,9 @@ interface Props {
 }
 export function Lend(props: Props) {
   const [component, setComponent] = useState(true);
+  // Combobox duration type
   const week = ['All', 'Weeks', 'Months'];
+  // combobox loan type
   const loanCurrency = [
     {
       name: 'dfy',
@@ -158,8 +160,10 @@ export function Lend(props: Props) {
       title: 'BUSD',
     },
   ];
+  // import useContext
   const { setLoanAmount, setLoanSymbol, setLoanDuration, setLoanDurationType } =
     useLendContext();
+
   const handleLoanAmountChange = e => {
     setLoanAmount(e.target.value);
   };

@@ -5,7 +5,7 @@ import DefiButton from 'app/components/DefiButton/DefiButton';
 import { useSelector } from 'react-redux';
 import { RootState } from 'app/reducer/reducers';
 import { Pagination } from '../Pagination/Pagination';
-import { useLendContext } from 'app/components/common/context';
+import { useLendContext } from 'app/components/common/lendNftContext';
 
 export default function ResultLendComponent() {
   const { setPage } = useLendContext();

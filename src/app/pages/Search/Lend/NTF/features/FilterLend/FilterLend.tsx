@@ -4,7 +4,7 @@ import { BiSearch } from 'react-icons/bi';
 import styled from 'styled-components';
 import FilterListComponent from './FilterListComponent';
 import { AiFillCloseCircle } from 'react-icons/ai';
-import { useLendContext } from 'app/components/common/context';
+import { useLendContext } from 'app/components/common/lendNftContext';
 
 interface FilterLendProps {
   handleClose: Function;
