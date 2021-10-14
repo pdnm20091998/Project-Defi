@@ -24,7 +24,7 @@ import configureStore from 'store/configureStore';
 
 import reportWebVitals from 'reportWebVitals';
 
-import { LendNftContextProvider } from './app/components/common/lendNftContext';
+import { LendNftContextProvider } from './app/components/common/context/lendNftContext';
 // Initialize languages
 import './locales/i18n';
 

@@ -14,7 +14,7 @@ import { getAsset } from '../../../../../../service/apiAsset/apiAsset';
 import { Link } from 'react-router-dom';
 import { Div, InputField, P, Main } from '../../../components/style';
 import ComboBox from 'react-responsive-combo-box';
-import { useLendContext } from 'app/components/common/lendNftContext';
+import { useLendContext } from 'app/components/common/context/lendNftContext';
 
 interface OptionsItem {
   label: string;

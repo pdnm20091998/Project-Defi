@@ -11,7 +11,7 @@ import { Wrapper } from './style/style';
 
 import { useDispatch } from 'react-redux';
 import { resultLendNftAction } from 'app/actions/Lend NTF/resultLendNft-Action';
-import { useLendContext } from 'app/components/common/lendNftContext';
+import { useLendContext } from 'app/components/common/context/lendNftContext';
 
 export default function ResultLendCrypt() {
   const dispatch = useDispatch();
