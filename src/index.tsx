@@ -25,6 +25,7 @@ import configureStore from 'store/configureStore';
 import reportWebVitals from 'reportWebVitals';
 
 import { LendNftContextProvider } from './app/components/common/context/lendNftContext';
+import { BorrowCryptoContextProvider } from 'app/components/common/context/borrowCryptoContext';
 // Initialize languages
 import './locales/i18n';
 
@@ -39,7 +40,9 @@ ReactDOM.render(
     <HelmetProvider>
       <React.StrictMode>
         <LendNftContextProvider>
-          <App />
+          <BorrowCryptoContextProvider>
+            <App />
+          </BorrowCryptoContextProvider>
         </LendNftContextProvider>
       </React.StrictMode>
     </HelmetProvider>

@@ -1,4 +1,4 @@
-import { PropsOf } from '@emotion/react';
+import { useBorrowContext } from 'app/components/common/context/borrowCryptoContext';
 import { Container } from 'react-bootstrap';
 import styled from 'styled-components/macro';
 import Filter from './components/Filter';
@@ -8,8 +8,8 @@ interface Props {
   // changePage: Function;
   changeInterestRange: Function;
   changeLoanRange: Function;
-  changeCollateral: Function;
-  changeLoanSymbol: Function;
+  // changeCollateral: Function;
+  // changeLoanSymbol: Function;
   changeLoanType: Function;
   changeDuration: Function;
 }
@@ -29,8 +29,56 @@ const imgObject = {
   BNB: '/BNB.978ee2b.png',
 };
 export default function FilterZone(props: Props) {
+  const {
+    setInterestRanges,
+    setLoanToValueRanges,
+    loanTypes,
+    setLoanTypes,
+    collateralSymbols,
+    setCollateralSymbols,
+    loanSymbols,
+    setLoanSymbols,
+    durationTypes,
+    setDurationTypes,
+  } = useBorrowContext();
   const collateralAccepted: Array<object> = [];
+  const handleCollateral = data => {
+    if (collateralSymbols === '') {
+      setCollateralSymbols(data);
+    } else {
+      setCollateralSymbols(collateralSymbols.concat(',', data));
+    }
+    if (collateralSymbols.includes(data)) {
+      let x = ',' + data;
+      let y = data + ',';
+      if (collateralSymbols.includes(x)) {
+        setCollateralSymbols(collateralSymbols.replace(x, ''));
+      } else if (collateralSymbols.includes(y)) {
+        setCollateralSymbols(collateralSymbols.replace(y, ''));
+      } else {
+        setCollateralSymbols(collateralSymbols.replace(data, ''));
+      }
+    }
+  };
   const loanToken: Array<object> = [];
+  const handleLoanSymbol = data => {
+    if (loanSymbols === '') {
+      setLoanSymbols(data);
+    } else {
+      setLoanSymbols(loanSymbols.concat(',', data));
+    }
+    if (loanSymbols.includes(data)) {
+      let x = ',' + data;
+      let y = data + ',';
+      if (loanSymbols.includes(x)) {
+        setLoanSymbols(loanSymbols.replace(x, ''));
+      } else if (loanSymbols.includes(y)) {
+        setLoanSymbols(loanSymbols.replace(y, ''));
+      } else {
+        setLoanSymbols(loanSymbols.replace(data, ''));
+      }
+    }
+  };
   const interestRange = [
     { name: '0-10%', title: '0-10%', value: '0:0.1' },
     { name: '10-25%', title: '10-25%', value: '0.1:0.25' },
@@ -48,10 +96,46 @@ export default function FilterZone(props: Props) {
     { name: 'semi-auto', title: 'semi-auto', value: '1' },
     { name: 'negotiation', title: 'negotiation', value: '2' },
   ];
+  const handleLoanType = data => {
+    if (loanTypes === '') {
+      setLoanTypes(data);
+    } else {
+      setLoanTypes(loanTypes.concat(',', data));
+    }
+    if (loanTypes.includes(data)) {
+      let x = ',' + data;
+      let y = data + ',';
+      if (loanTypes.includes(x)) {
+        setLoanTypes(loanTypes.replace(x, ''));
+      } else if (loanTypes.includes(y)) {
+        setLoanTypes(loanTypes.replace(y, ''));
+      } else {
+        setLoanTypes(loanTypes.replace(data, ''));
+      }
+    }
+  };
   const duration = [
     { name: 'week', title: 'week', value: '0' },
     { name: 'month', title: 'month', value: '1' },
   ];
+  const handleDurationTypes = data => {
+    if (durationTypes === '') {
+      setDurationTypes(data);
+    } else {
+      setDurationTypes(durationTypes.concat(',', data));
+    }
+    if (durationTypes.includes(data)) {
+      let x = ',' + data;
+      let y = data + ',';
+      if (durationTypes.includes(x)) {
+        setDurationTypes(durationTypes.replace(x, ''));
+      } else if (durationTypes.includes(y)) {
+        setDurationTypes(durationTypes.replace(y, ''));
+      } else {
+        setDurationTypes(durationTypes.replace(data, ''));
+      }
+    }
+  };
   props.dataAsset &&
     props.dataAsset.map((data: any) => {
       if (data.isWhitelistCollateral) {
@@ -76,6 +160,7 @@ export default function FilterZone(props: Props) {
       }
       return 0;
     });
+
   const { handleClose } = props;
   return (
     <Div>
@@ -87,7 +172,7 @@ export default function FilterZone(props: Props) {
         <Filter
           title="Interest range"
           listCheckBox={interestRange}
-          change={props.changeInterestRange}
+          change={setInterestRanges}
         />
       </FilterHolder>
       <Border />
@@ -95,7 +180,7 @@ export default function FilterZone(props: Props) {
         <Filter
           title="loan to value"
           listCheckBox={loanToValue}
-          change={props.changeLoanRange}
+          change={setLoanToValueRanges}
         />
       </FilterHolder>
       <Border />
@@ -103,7 +188,7 @@ export default function FilterZone(props: Props) {
         <Filter
           title="Collateral accepted"
           listCheckBox={collateralAccepted}
-          change={props.changeCollateral}
+          change={handleCollateral}
         />
       </FilterHolder>
       <Border />
@@ -111,7 +196,7 @@ export default function FilterZone(props: Props) {
         <Filter
           title="Loan token"
           listCheckBox={loanToken}
-          change={props.changeLoanSymbol}
+          change={handleLoanSymbol}
         />
       </FilterHolder>
       <Border />
@@ -119,7 +204,7 @@ export default function FilterZone(props: Props) {
         <Filter
           title="Loan type"
           listCheckBox={loanType}
-          change={props.changeLoanType}
+          change={handleLoanType}
         />
       </FilterHolder>
       <Border />
@@ -127,7 +212,7 @@ export default function FilterZone(props: Props) {
         <Filter
           title="Duration"
           listCheckBox={duration}
-          change={props.changeDuration}
+          change={handleDurationTypes}
         />
       </FilterHolder>
       <Border />
