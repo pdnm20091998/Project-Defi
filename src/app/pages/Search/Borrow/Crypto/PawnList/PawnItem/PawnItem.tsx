@@ -5,6 +5,7 @@ import styled from 'styled-components/macro';
 import image from '../assests/image.svg';
 import Type from './components/Type';
 import styles from './style/PawnItem.module.css';
+import star from './assests/star.svg';
 interface Props {
   shopname: string;
   interest: string;
@@ -16,13 +17,14 @@ interface Props {
   durationqtymin: string;
   durationqtytype: number;
   loantovalue: string;
-  symbol: string;
+  symbol: any;
   accept: Array<any>;
   reputation: number;
   avatar: string;
   type: number;
 }
 export default function PawnItem(props: Props) {
+  // console.log(props);
   return (
     <Div>
       <Container className="my-1">
@@ -42,7 +44,10 @@ export default function PawnItem(props: Props) {
                     <Title className={styles.small_title}>
                       {props.shopname}
                     </Title>
-                    <Detail>{props.reputation}</Detail>
+                    <div className="d-flex">
+                      <img src={star} className="me-2" alt="star" />
+                      <Detail>{props.reputation}</Detail>
+                    </div>
                   </Stack>
                 </Col>
               </Row>
@@ -68,10 +73,16 @@ export default function PawnItem(props: Props) {
                         <Label>Limit</Label>
                       </Col>
                       <Col xs={true} sm={true} md={true} lg={true}>
-                        <Detail>
-                          {props.allowedloanmin} - {props.allowedloanmax}{' '}
-                          {props.symbol}
-                        </Detail>
+                        {props.symbol.length > 0 ? (
+                          <Detail>
+                            {props.allowedloanmin} - {props.allowedloanmax}{' '}
+                            {props.symbol[0].symbol}
+                          </Detail>
+                        ) : (
+                          <Detail>
+                            {props.allowedloanmin} - {props.allowedloanmax}{' '}
+                          </Detail>
+                        )}
                       </Col>
                     </Row>
                     <Row>
@@ -122,10 +133,29 @@ export default function PawnItem(props: Props) {
               <Label className={`mt-2 mb-1 ${styles.text_small}`}>
                 collateral accepted
               </Label>
-              <Detail className={styles.text_small}>
-                {props.accept[0].symbol}, {props.accept[1].symbol},{' '}
-                {props.accept[2].symbol} & {props.accept.length - 3}+ more
-              </Detail>
+              {props.accept.length === 1 && (
+                <Detail className={styles.text_small}>
+                  {props.accept[0].symbol}
+                </Detail>
+              )}
+              {props.accept.length === 2 && (
+                <Detail className={styles.text_small}>
+                  {props.accept[0].symbol}, {props.accept[1].symbol},{' '}
+                </Detail>
+              )}
+              {props.accept.length === 3 && (
+                <Detail className={styles.text_small}>
+                  {props.accept[0].symbol}, {props.accept[1].symbol},{' '}
+                  {props.accept[2].symbol}
+                </Detail>
+              )}
+              {props.accept.length > 3 && (
+                <Detail className={styles.text_small}>
+                  {props.accept[0].symbol}, {props.accept[1].symbol},{' '}
+                  {props.accept[2].symbol} & {props.accept.length - 3}+ more
+                </Detail>
+              )}
+
               {props.type === 0 && (
                 <Type
                   backgroundColor="rgba(37, 150, 255, 0.2)"

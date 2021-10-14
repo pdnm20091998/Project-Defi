@@ -7,12 +7,14 @@ interface IProps {
   title?: string;
   type?: 'checkCoin';
   img?: string;
+  value: string;
+  change: Function;
 }
 
 const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
 
 function CheckBoxField(props: IProps) {
-  const { name, title, type, img } = props;
+  const { name, title, type, img, value, change } = props;
   return (
     <Wrapper>
       <Checkbox
@@ -24,6 +26,8 @@ function CheckBoxField(props: IProps) {
             color: '#DBA83D',
           },
         }}
+        value={value}
+        onClick={e => change((e.target as HTMLInputElement).value)}
       />
       {img !== undefined ? (
         <>

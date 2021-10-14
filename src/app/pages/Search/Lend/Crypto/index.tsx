@@ -22,7 +22,6 @@ const Div = styled.div`
 
   .page-item {
     margin: 0px 6px;
-
     .page-link {
       color: #fff;
       background-color: transparent;
@@ -40,9 +39,6 @@ const Div = styled.div`
     color: #fff;
     background: rgba(40, 44, 55, 0.5);
     border-radius: 10px 10px 10px 10px;
-    .Advertisement {
-      margin: 20px 0px;
-    }
     .items {
       background: #282c37;
       &:hover {
@@ -55,7 +51,6 @@ const Div = styled.div`
         border-bottom: none;
       }
     }
-
     .Id {
       text-align: center;
     }
@@ -113,17 +108,15 @@ const imgObject = {
   BUSD: '/BUSD.3aa6751.png',
   USDC: '/USDC.10ea0ad.png',
   DAI: '/DAI.71410d0.png',
+  BNB: '/BNB.978ee2b.png',
 };
 const Wrapper = styled.div`
   .wrapper {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-
     width: 100%;
-
     position: relative;
-
     .icon-filter {
       width: 30px;
       height: 30px;
@@ -136,31 +129,25 @@ const Wrapper = styled.div`
         right: 16px;
       }
     }
-
     @media (max-width: 767px) {
       width: 100%;
       margin: 0px auto;
     }
-
     @media (min-width: 768px) {
       width: 768px;
       margin: 0px auto;
     }
-
     @media (max-width: 1024px) {
       flex-direction: column;
-
       .icon-filter {
         display: block;
         z-index: 1;
       }
     }
-
     @media (min-width: 1025px) {
       width: 1024px;
       margin: 0px auto;
     }
-
     @media (min-width: 1280px) {
       width: 1280px;
       margin: 0px auto;
@@ -179,8 +166,6 @@ export default function ResultLendCrypto() {
   const [dataasset, setDataAsset] = useState<Array<object>>([]);
   const isNoneFilter = useMediaQuery('(max-width:1024px)');
   const [openFilter, setOpenFilter] = useState(false);
-  console.log(dataApi);
-
   useEffect(() => {
     const resultAsset = () => {
       const data = getAsset()
@@ -245,8 +230,8 @@ export default function ResultLendCrypto() {
                 <img src={IconFilter} alt="filter" />
               </div>
             </div>
-            <Col lg="9" sm="12">
-              <SumCollateral sum={total} />
+            <SumCollateral sum={total} />
+            <Col lg={9} sm={12} xs={12}>
               <Table className="table mt-sm-4">
                 <thead className="table__head">
                   <tr>
@@ -259,72 +244,13 @@ export default function ResultLendCrypto() {
                   </tr>
                 </thead>
                 <tbody className="table__body">
-                  {dataApi &&
-                    dataApi.map((data?: any, index?: any) => {
-                      const walletAddress = data.walletAddress;
-                      const shortAddress = `${walletAddress.slice(
-                        0,
-                        5,
-                      )}...${walletAddress.slice(-5)}`;
-                      if (index % 4 === 0 && index % 8 !== 0) {
-                        return (
-                          <>
-                            <tr key={index} className="items">
-                              <td className="Id">
-                                <P>{index + 1}</P>
-                              </td>
-                              <td className="d-flex flex-column">
-                                <Address>{shortAddress}</Address>
-                                <Start>
-                                  <img className="pe-2" src={imgStar} alt="" />
-                                  {data.reputation} {' | '}
-                                  {data.completedContracts} Contracts
-                                </Start>
-                              </td>
-                              <td>
-                                <P>
-                                  <img
-                                    src={`https://staging.app.defiforyou.uk/_nuxt/img${
-                                      imgObject[data.collateralSymbol]
-                                    }`}
-                                    alt=""
-                                  />
-                                  {data.collateralSymbol}{' '}
-                                  {data.collateralAmount}
-                                </P>
-                              </td>
-                              <td>
-                                <P>
-                                  <img
-                                    src={`https://staging.app.defiforyou.uk/_nuxt/img${
-                                      imgObject[data.loanSymbol]
-                                    }`}
-                                    alt=""
-                                  />
-                                  {data.loanSymbol}
-                                </P>
-                              </td>
-                              <td>
-                                <P>
-                                  {data.durationType
-                                    ? `${data.durationQty} Months`
-                                    : `${data.durationQty} Weeks`}
-                                </P>
-                              </td>
-                              <td className="d-flex justify-content-center">
-                                <DefiButton
-                                  width="60%"
-                                  margin="14px 23px 14px 64px"
-                                  padding="9.5px 0px"
-                                >
-                                  Send Offer
-                                </DefiButton>
-                              </td>
-                            </tr>
-                            <Advertisement />
-                          </>
-                        );
-                      } else {
+                  {dataApi && dataApi.length >= 5
+                    ? dataApi.slice(5).map((data?: any, index?: any) => {
+                        const walletAddress = data.walletAddress;
+                        const shortAddress = `${walletAddress.slice(
+                          0,
+                          5,
+                        )}...${walletAddress.slice(-5)}`;
                         return (
                           <tr key={index} className="items">
                             <td className="Id">
@@ -378,7 +304,129 @@ export default function ResultLendCrypto() {
                             </td>
                           </tr>
                         );
-                      }
+                      })
+                    : dataApi.map((data?: any, index?: any) => {
+                        const walletAddress = data.walletAddress;
+                        const shortAddress = `${walletAddress.slice(
+                          0,
+                          5,
+                        )}...${walletAddress.slice(-5)}`;
+                        return (
+                          <tr key={index} className="items">
+                            <td className="Id">
+                              <P>{index + 1}</P>
+                            </td>
+                            <td className="d-flex flex-column">
+                              <Address>{shortAddress}</Address>
+                              <Start>
+                                <img className="pe-2" src={imgStar} alt="" />
+                                {data.reputation} {' | '}
+                                {data.completedContracts} Contracts
+                              </Start>
+                            </td>
+                            <td>
+                              <P>
+                                <img
+                                  src={`https://staging.app.defiforyou.uk/_nuxt/img${
+                                    imgObject[data.collateralSymbol]
+                                  }`}
+                                  alt=""
+                                />
+                                {data.collateralSymbol} {data.collateralAmount}
+                              </P>
+                            </td>
+                            <td>
+                              <P>
+                                <img
+                                  src={`https://staging.app.defiforyou.uk/_nuxt/img${
+                                    imgObject[data.loanSymbol]
+                                  }`}
+                                  alt=""
+                                />
+                                {data.loanSymbol}
+                              </P>
+                            </td>
+                            <td>
+                              <P>
+                                {data.durationType
+                                  ? `${data.durationQty} Months`
+                                  : `${data.durationQty} Weeks`}
+                              </P>
+                            </td>
+                            <td className="d-flex justify-content-center">
+                              <DefiButton
+                                width="60%"
+                                margin="14px 23px 14px 64px"
+                                padding="9.5px 0px"
+                              >
+                                Send Offer
+                              </DefiButton>
+                            </td>
+                          </tr>
+                        );
+                      })}
+                  <Advertisement />
+                  {dataApi &&
+                    dataApi.length >= 5 &&
+                    dataApi.slice(-5).map((data?: any, index?: any) => {
+                      const walletAddress = data.walletAddress;
+                      const shortAddress = `${walletAddress.slice(
+                        0,
+                        5,
+                      )}...${walletAddress.slice(-5)}`;
+                      return (
+                        <tr key={index} className="items">
+                          <td className="Id">
+                            <P>{index + 6}</P>
+                          </td>
+                          <td className="d-flex flex-column">
+                            <Address>{shortAddress}</Address>
+                            <Start>
+                              <img className="pe-2" src={imgStar} alt="" />
+                              {data.reputation} {' | '}
+                              {data.completedContracts} Contracts
+                            </Start>
+                          </td>
+                          <td>
+                            <P>
+                              <img
+                                src={`https://staging.app.defiforyou.uk/_nuxt/img${
+                                  imgObject[data.collateralSymbol]
+                                }`}
+                                alt=""
+                              />
+                              {data.collateralSymbol} {data.collateralAmount}
+                            </P>
+                          </td>
+                          <td>
+                            <P>
+                              <img
+                                src={`https://staging.app.defiforyou.uk/_nuxt/img${
+                                  imgObject[data.loanSymbol]
+                                }`}
+                                alt=""
+                              />
+                              {data.loanSymbol}
+                            </P>
+                          </td>
+                          <td>
+                            <P>
+                              {data.durationType
+                                ? `${data.durationQty} Months`
+                                : `${data.durationQty} Weeks`}
+                            </P>
+                          </td>
+                          <td className="d-flex justify-content-center">
+                            <DefiButton
+                              width="60%"
+                              margin="14px 23px 14px 64px"
+                              padding="9.5px 0px"
+                            >
+                              Send Offer
+                            </DefiButton>
+                          </td>
+                        </tr>
+                      );
                     })}
                 </tbody>
               </Table>
@@ -387,7 +435,7 @@ export default function ResultLendCrypto() {
                 changePage={e => handlePageChange(e)}
               />
             </Col>
-            <Col lg="3">
+            <Col lg={3}>
               {isNoneFilter ? (
                 <FilterLendMobile
                   dataAsset={imgAsset}

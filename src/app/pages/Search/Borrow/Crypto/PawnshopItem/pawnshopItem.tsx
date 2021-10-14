@@ -9,8 +9,12 @@ import Dcoin from '../InfoTitle/asset/Dcoin.svg';
 import rhombus from '../InfoTitle/asset/rhombus.svg';
 import DefiButton from 'app/components/DefiButton/DefiButton';
 import { Row, Col } from 'react-bootstrap';
+interface Props {
+  data: any;
+}
+const PawnShopItem = (props: Props) => {
+  // console.log(props.data.data);
 
-const PawnShopItem = () => {
   return (
     <PawnShop>
       <div className="pawnshop__header">
@@ -24,17 +28,27 @@ const PawnShopItem = () => {
         <Col sm={6}>
           <div className="pawnshop__item">
             <div className="pawnshop__item--title">
-              QQ ‘s Pawnshop
+              {`${props.data.data.content[0].associatedAddress.slice(
+                0,
+                10,
+              )}...${props.data.data.content[0].associatedAddress.slice(-10)}`}
               <img src={tick} alt="Notick" />
             </div>
             <div className="rating">
               <img src={star} alt="Nopicture" />
-              <span className="rating__number">1000</span>
+              <span className="rating__number">
+                {props.data.data.content[0].reputation}
+              </span>
               <span className="rating__line">|</span>
-              <span className="rating__text">100 signed contracts</span>
+              <span className="rating__text">
+                {props.data.data.content[0].completedContracts} signed contracts
+              </span>
             </div>
             <div className="rating__info">
-              <span>10 - 12% interest rate</span>
+              <span>
+                {props.data.data.content[0].minInterestRate} -{' '}
+                {props.data.data.content[0].maxInterestRate}% interest rate
+              </span>
               <img src={infomation} alt="No picutre" />
             </div>
             <div className="listed">
@@ -58,7 +72,7 @@ const PawnShopItem = () => {
                 <img src={compass} alt="Nopicture" />
                 <img src={Dcoin} alt="Nopicture" />
                 <img src={rhombus} alt="Nopicture" />
-                <span className="text__last">& 20 more</span>
+                <span className="text__last">& 4 more</span>
               </div>
             </div>
             <div className="button___request">
@@ -69,17 +83,27 @@ const PawnShopItem = () => {
         <Col sm={6}>
           <div className="pawnshop__item">
             <div className="pawnshop__item--title">
-              QQ ‘s Pawnshop
+              {`${props.data.data.content[1].associatedAddress.slice(
+                0,
+                10,
+              )}...${props.data.data.content[1].associatedAddress.slice(-10)}`}
               <img src={tick} alt="Notick" />
             </div>
             <div className="rating">
               <img src={star} alt="Nopicture" />
-              <span className="rating__number">1000</span>
+              <span className="rating__number">
+                {props.data.data.content[1].reputation}
+              </span>
               <span className="rating__line">|</span>
-              <span className="rating__text">100 signed contracts</span>
+              <span className="rating__text">
+                {props.data.data.content[1].completedContracts} signed contracts
+              </span>
             </div>
             <div className="rating__info">
-              <span>10 - 12% interest rate</span>
+              <span>
+                {props.data.data.content[1].minInterestRate} -{' '}
+                {props.data.data.content[1].maxInterestRate}% interest rate
+              </span>
               <img src={infomation} alt="No picutre" />
             </div>
             <div className="listed">
@@ -103,7 +127,7 @@ const PawnShopItem = () => {
                 <img src={compass} alt="Nopicture" />
                 <img src={Dcoin} alt="Nopicture" />
                 <img src={rhombus} alt="Nopicture" />
-                <span className="text__last">& 20 more</span>
+                <span className="text__last">& 4 more</span>
               </div>
             </div>
             <div className="button___request">

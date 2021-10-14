@@ -7,6 +7,7 @@ interface Iprops {
   title: string;
   listCheckBox: any;
   type?: 'sortList';
+  change?: any;
 }
 function FilterComponent(props: Iprops) {
   const { title, listCheckBox, type } = props;
@@ -34,6 +35,8 @@ function FilterComponent(props: Iprops) {
                 name={item.name}
                 title={item.title}
                 img={item.img}
+                value={item.value}
+                change={props.change}
               />
             ))}
           </div>
@@ -45,6 +48,8 @@ function FilterComponent(props: Iprops) {
                 name={item.name}
                 title={item.title}
                 img={item.img}
+                value={item.value}
+                change={props.change}
               />
             ))}
           </div>

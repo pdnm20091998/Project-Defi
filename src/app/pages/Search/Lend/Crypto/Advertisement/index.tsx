@@ -34,7 +34,7 @@ const Wrapper = styled.tr`
 
 export function Advertisement(props: Props) {
   return (
-    <Wrapper className="Advertisement">
+    <Wrapper>
       <td colSpan={5}>
         <div className="content">
           <h2>Become your own bank</h2>
