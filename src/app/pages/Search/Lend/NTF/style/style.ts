@@ -36,6 +36,11 @@ export const Wrapper = styled.div`
 export const Result = styled.div`
   width: 100%;
   color: #ffffff;
+  .pagination {
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+  }
 `;
 export const SingleWrapper = styled.div`
   background: #282c37;

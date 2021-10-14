@@ -18,8 +18,16 @@ export default function ResultLendCrypt() {
   const isNoneFilter = useMediaQuery('(max-width:992px)');
   const [openFilter, setOpenFilter] = useState(false);
   // useContext
-  const { page, loanAmount, loanSymbol, loanDuration, loanDurationType, name } =
-    useLendContext();
+  const {
+    page,
+    loanAmount,
+    loanSymbol,
+    loanDuration,
+    loanDurationType,
+    name,
+    nftType,
+    assetType,
+  } = useLendContext();
   const data = {
     page,
     loanAmount,
@@ -27,7 +35,10 @@ export default function ResultLendCrypt() {
     loanDuration,
     loanDurationType,
     name,
+    nftType,
+    assetType,
   };
+  console.log(data);
   useEffect(() => {
     dispatch(resultLendNftAction(data));
     // eslint-disable-next-line react-hooks/exhaustive-deps

@@ -26,14 +26,6 @@ export const loginUserService = request => {
       return response.data;
     })
     .catch((req: any) => {
-      if (req.response.status === 401) {
-        alert('Your username or password is not correct, please try again');
-      }
-      if (req.response.status === 404) {
-        alert(
-          'This account has not been activated yet. Please confirm email to activate your account',
-        );
-      }
       return req.response;
     });
 };

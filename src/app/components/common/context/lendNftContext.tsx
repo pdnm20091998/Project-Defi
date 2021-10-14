@@ -13,17 +13,22 @@ interface InitContext {
   setLoanDurationType?: any;
   name?: any;
   setName?: any;
+  nftType?: any;
+  setNftType?: any;
+  assetType?: any;
+  setAssetType?: any;
 }
 export const LendNftContext = createContext({} as InitContext);
 
 export const LendNftContextProvider = ({ children }) => {
   const [page, setPage] = useState(0);
   const [loanAmount, setLoanAmount] = useState();
-  const [loanSymbol, setLoanSymbol] = useState();
+  const [loanSymbol, setLoanSymbol] = useState('');
   const [loanDuration, setLoanDuration] = useState();
-  const [loanDurationType, setLoanDurationType] = useState();
+  const [loanDurationType, setLoanDurationType] = useState('');
   const [name, setName] = useState('');
-
+  const [nftType, setNftType] = useState('');
+  const [assetType, setAssetType] = useState('');
   const data: any = {
     setPage,
     page,
@@ -37,6 +42,10 @@ export const LendNftContextProvider = ({ children }) => {
     setLoanDurationType,
     name,
     setName,
+    nftType,
+    setNftType,
+    assetType,
+    setAssetType,
   };
 
   return (

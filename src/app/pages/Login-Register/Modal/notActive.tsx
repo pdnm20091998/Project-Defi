@@ -2,7 +2,7 @@ import Modal from 'react-bootstrap/Modal';
 import DefiButton from 'app/components/DefiButton/DefiButton';
 import styled from 'styled-components/macro';
 
-export const WrongPasswordModal = props => {
+export const NotActiveModal = props => {
   return (
     <CustomModal
       {...props}
@@ -10,8 +10,10 @@ export const WrongPasswordModal = props => {
       centered
     >
       <Modal.Body className="body">
-        {' '}
-        <p>Your username or password is not correct, please try again</p>
+        <p>
+          This account has not been activated yet. Please confirm email to
+          activate your account
+        </p>
         <DefiButton
           className="btn"
           onClick={props.onHide}
@@ -24,7 +26,6 @@ export const WrongPasswordModal = props => {
     </CustomModal>
   );
 };
-
 const CustomModal = styled(Modal)`
   box-shadow: #000000 0px 3px 1px -2px;
   font-weight: 500;
@@ -38,7 +39,6 @@ const CustomModal = styled(Modal)`
   }
   .body {
     border-radius: 24px;
-    margin: 12px 20px;
   }
   .btn {
     margin-top: 24px;

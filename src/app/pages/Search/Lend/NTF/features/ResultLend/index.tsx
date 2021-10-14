@@ -1,10 +1,9 @@
-import { Result } from '../../style/style';
+import { Result, SingleWrapper, LoanWrapper } from '../../style/style';
 import { Container, Row, Col } from 'react-bootstrap';
-import { SingleWrapper, LoanWrapper } from '../../style/style';
 import DefiButton from 'app/components/DefiButton/DefiButton';
 import { useSelector } from 'react-redux';
 import { RootState } from 'app/reducer/reducers';
-import { Pagination } from '../Pagination/Pagination';
+import { Pagination } from 'app/components/Pagination/Pagination';
 import { useLendContext } from 'app/components/common/context/lendNftContext';
 
 export default function ResultLendComponent() {
@@ -102,10 +101,13 @@ export default function ResultLendComponent() {
             );
           })
         : ''}
-      <Pagination
-        totalPage={result.result ? result.result.total_pages : 0}
-        changePage={e => handlePageChange(e)}
-      />
+      <div className="pagination">
+        {' '}
+        <Pagination
+          totalPage={result.result ? result.result.total_pages : 0}
+          changePage={e => handlePageChange(e)}
+        />
+      </div>
     </Result>
   );
 }

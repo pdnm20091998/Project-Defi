@@ -24,6 +24,7 @@ import configureStore from 'store/configureStore';
 
 import reportWebVitals from 'reportWebVitals';
 
+//import context
 import { LendNftContextProvider } from './app/components/common/context/lendNftContext';
 import { BorrowCryptoContextProvider } from 'app/components/common/context/borrowCryptoContext';
 // Initialize languages
