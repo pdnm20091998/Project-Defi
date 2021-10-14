@@ -83,6 +83,7 @@ export function Crypto(props: Props) {
       e.isWhitelistCollateral && collateral.push(e.symbol);
       return collateral;
     });
+  // combobox loan type
   const loanCurrency: any[] = ['All'];
   const dataLoan = props.dataAsset;
   dataLoan &&
