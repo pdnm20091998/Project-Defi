@@ -9,6 +9,9 @@ import PawnList from './PawnList';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useBorrowContext } from 'app/components/common/context/borrowCryptoContext';
+import { useDispatch } from 'react-redux';
+import { resultBorrowAction } from 'app/actions/borrow/borrowAction';
+
 const Div = styled.div`
   background-color: #171a23;
 `;
@@ -22,6 +25,9 @@ export default function ResultBorrowCrypto() {
   const [dataasset, setDataAsset] = useState<Array<object>>([]);
   const dataAsset: Array<object> = [];
   const handleClose = () => {};
+  const dispatch = useDispatch();
+
+  // get Asset
   useEffect(() => {
     const resultAsset = () => {
       const data = axios
@@ -209,12 +215,9 @@ export default function ResultBorrowCrypto() {
     durationTypes,
     collateralAmount,
   };
-  console.log(data);
   useEffect(() => {
-    axios.get(url3, { data }).then(res => {
-      setShop(res.data);
-    });
-  }, []);
+    dispatch(resultBorrowAction(data));
+  }, [data]);
 
   const imgAsset = [...dataasset];
   return (

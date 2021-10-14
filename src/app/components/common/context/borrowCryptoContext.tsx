@@ -32,7 +32,7 @@ export const BorrowCryptoContextProvider = ({ children }) => {
   const [collateralSymbols, setCollateralSymbols] = useState('');
   const [loanSymbols, setLoanSymbols] = useState('');
   const [durationTypes, setDurationTypes] = useState('');
-  const [collateralAmount, setCollateralAmount] = useState(0);
+  const [collateralAmount, setCollateralAmount] = useState('');
 
   const data: any = {
     page,

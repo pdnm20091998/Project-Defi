@@ -15,6 +15,10 @@ import { Advertisement } from './Advertisement';
 import { useMediaQuery } from '@mui/material';
 import FilterLendMobile from './Filter/FilterLendMobie';
 import IconFilter from './assets/Group 6152.svg';
+
+import { useDispatch } from 'react-redux';
+import { resultLendCryptoAction } from 'app/actions/lendCrypto/lendCryptoAction';
+
 const Div = styled.div`
   background-color: #171a23;
   border-bottom: 1px solid rgba(125, 111, 125, 0.2);
@@ -159,6 +163,7 @@ const Wrapper = styled.div`
     }
   }
 `;
+
 export default function ResultLendCrypto() {
   const [total, setTotal] = useState(0);
   const [dataApi, setDataApi] = useState<Array<object>>([]);
@@ -166,6 +171,8 @@ export default function ResultLendCrypto() {
   const [dataasset, setDataAsset] = useState<Array<object>>([]);
   const isNoneFilter = useMediaQuery('(max-width:1024px)');
   const [openFilter, setOpenFilter] = useState(false);
+  const dispatch = useDispatch();
+
   useEffect(() => {
     const resultAsset = () => {
       const data = getAsset()
@@ -187,38 +194,32 @@ export default function ResultLendCrypto() {
     });
   }, []);
   const imgAsset = [...dataasset];
+  // data for api
+  const data = {};
+  //call api
   useEffect(() => {
-    getResultLenCrypto(0, 10)
-      .then((result: any) => {
-        return result.data;
-      })
-      .then((data: any) => {
-        return data.data;
-      })
-      .then((e: any) => {
-        setTotal(e.total);
-        setDataApi(e.content);
-        return e.content;
-      });
-  }, []);
+    dispatch(resultLendCryptoAction(data));
+  }, [data]);
+
   const handleClose = () => {};
   const closeFilter = () => {
     setOpenFilter(false);
   };
   const handlePageChange = e => {
-    getResultLenCrypto(e, 10)
-      .then((result: any) => {
-        return result.data;
-      })
-      .then((data: any) => {
-        return data.data;
-      })
-      .then((e: any) => {
-        setTotal(e.total);
-        setDataApi(e.content);
-        return e.content;
-      });
+    // getResultLenCrypto(e, 10)
+    //   .then((result: any) => {
+    //     return result.data;
+    //   })
+    //   .then((data: any) => {
+    //     return data.data;
+    //   })
+    //   .then((e: any) => {
+    //     setTotal(e.total);
+    //     setDataApi(e.content);
+    //     return e.content;
+    //   });
   };
+
   return (
     <Wrapper>
       <Navbar />

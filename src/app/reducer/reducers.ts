@@ -5,16 +5,18 @@
 import { combineReducers } from '@reduxjs/toolkit';
 import { authReducer } from './auth/auth';
 import { userReducer } from './auth/userReducer';
-import { resultLendNftReducer } from './lendNft/resultReducer';
 import { resultBorrowReducer } from './borrow/borrowReducer';
+import { resultPersonalBorrowReducer } from './borrow/personalBorrowReducer';
+import { resultLendNftReducer } from './lendNft/resultReducer';
 import { resultLendCryptoReducer } from './lendCrypto/lendCryptoReducer';
 
 const rootReducer = combineReducers({
+  borrow: resultBorrowReducer,
+  personborrow: resultPersonalBorrowReducer,
+  lendnft: resultLendNftReducer,
+  lendcrypto: resultLendCryptoReducer,
   auth: authReducer,
   user: userReducer,
-  lendnft: resultLendNftReducer,
-  borrow: resultBorrowReducer,
-  lendcrypto: resultLendCryptoReducer,
 });
 
 export type RootState = ReturnType<typeof rootReducer>;

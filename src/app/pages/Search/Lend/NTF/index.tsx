@@ -38,7 +38,6 @@ export default function ResultLendCrypt() {
     nftType,
     assetType,
   };
-  console.log(data);
   useEffect(() => {
     dispatch(resultLendNftAction(data));
     // eslint-disable-next-line react-hooks/exhaustive-deps

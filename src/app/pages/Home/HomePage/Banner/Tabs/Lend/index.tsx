@@ -15,6 +15,7 @@ import { Link } from 'react-router-dom';
 import { Div, InputField, P, Main } from '../../../components/style';
 import ComboBox from 'react-responsive-combo-box';
 import { useLendContext } from 'app/components/common/context/lendNftContext';
+import { setMaxListeners } from 'process';
 
 interface OptionsItem {
   label: string;
@@ -144,10 +145,13 @@ export function Lend(props: Props) {
   // import lendNftContext
   const { setLoanAmount, setLoanSymbol, setLoanDuration, setLoanDurationType } =
     useLendContext();
+  // import lendCryptoContext
 
+  // get data loan amount
   const handleLoanAmountChange = e => {
     setLoanAmount(e.target.value);
   };
+  //get data duration
   const handleLoanDurationChange = e => {
     setLoanDuration(e.target.value);
   };

@@ -22,7 +22,7 @@ export function App() {
   return (
     <BrowserRouter>
       <Helmet
-        titleTemplate="%s - React Boilerplate"
+        titleTemplate="Defi for you"
         defaultTitle="Defi for you"
         htmlAttributes={{ lang: i18n.language }}
       >
