@@ -5,26 +5,16 @@ import increase from './assests/increase.svg';
 import styles from './style/PawnList.module.css';
 import PawnItem from './PawnItem/PawnItem';
 import ReactPaginate from 'react-paginate';
+import { useBorrowContext } from 'app/components/common/context/borrowCryptoContext';
 
-import axios from 'axios';
 interface Props {
   dataShop: any;
-  changePage: Function;
-  changeCusSort: Function;
+  // changePage: Function;
+  // changeCusSort: Function;
 }
-interface DataArr {
-  data: any;
-}
-const url =
-  'https://staginggw.defiforyou.uk/defi-pawn-crypto-service/public-api/v1.0.0/pawn-shop-package/search?collateralAmount=&collateralSymbols=&durationQty=&durationTypes=&loanAmount=&loanSymbols=&status=3&size=10';
-const url2 =
-  'https://staginggw.defiforyou.uk/defi-pawn-crypto-service/public-api/v1.0.0/pawn-shop/search-p2p-lenders?status=3&size=10';
-const url3 =
-  'https://staginggw.defiforyou.uk/defi-pawn-crypto-service/public-api/v1.0.0/pawn-shop-package/search?size=10&status=3&page=0';
 export default function PawnList(props: Props) {
   const [pick, setPick] = useState(0);
-  const [shop, setShop] = useState<null | { data: any }>(null);
-  const [shop2, setShop2] = useState<null | { data: any }>(null);
+  const { setPage, setCusSort } = useBorrowContext();
   // useEffect(() => {
   //   // axios.get(url).then(res => {
   //   //   setShop(res.data);
@@ -49,7 +39,7 @@ export default function PawnList(props: Props) {
             onClick={e => {
               e.preventDefault();
               setPick(1);
-              props.changeCusSort('interest,asc');
+              setCusSort('interest,asc');
             }}
             xs={{ span: 5 }}
             sm={true}
@@ -80,6 +70,7 @@ export default function PawnList(props: Props) {
             onClick={e => {
               e.preventDefault();
               setPick(2);
+              setCusSort('loanToValue,asc');
             }}
             xs={{ span: 5, offset: 1 }}
             sm={{ span: true, offset: 0 }}
@@ -109,6 +100,7 @@ export default function PawnList(props: Props) {
             onClick={e => {
               e.preventDefault();
               setPick(3);
+              setCusSort('durationQty,asc');
             }}
             xs={{ span: 5, offset: 0 }}
             sm={{ span: true, offset: 0 }}
@@ -138,6 +130,7 @@ export default function PawnList(props: Props) {
             onClick={e => {
               e.preventDefault();
               setPick(4);
+              setCusSort('limitation,asc');
             }}
             xs={{ span: 5, offset: 1 }}
             sm={{ span: true, offset: 0 }}
@@ -167,6 +160,7 @@ export default function PawnList(props: Props) {
             onClick={e => {
               e.preventDefault();
               setPick(5);
+              setCusSort('reputation,asc');
             }}
             xs={5}
             sm={true}
@@ -232,9 +226,10 @@ export default function PawnList(props: Props) {
         pageLinkClassName={styles.pagiLink}
         previousLinkClassName={styles.pagiLink}
         nextLinkClassName={styles.pagiLink}
-        onPageChange={e => {
-          return props.changePage(e.selected);
-        }}
+        // onPageChange={e => {
+        //   return props.changePage(e.selected);
+        // }}
+        onPageChange={e => setPage(e.selected)}
       />
       {/* )} */}
     </>

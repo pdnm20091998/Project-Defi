@@ -8,6 +8,7 @@ import InfoTitle from './InfoTitle';
 import PawnList from './PawnList';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import { useBorrowContext } from 'app/components/common/context/borrowCryptoContext';
 const Div = styled.div`
   background-color: #171a23;
 `;
@@ -42,15 +43,16 @@ export default function ResultBorrowCrypto() {
       setDataAsset(e);
     });
   }, []);
-  const [shop, setShop] = useState<null | { data: any }>(null);
+  // const [shop, setShop] = useState<null | { data: any }>(null);
+  const [shop, setShop] = useState<any>();
   const [shop2, setShop2] = useState<null | { data: any }>(null);
   const [rerender, setRerender] = useState(true);
   const [pageNum, setPageNum] = useState(0);
-  const [cusSort, setCusSort] = useState('');
+  // const [cusSort, setCusSort] = useState('');
   const [interest, setInterest] = useState('');
   const [loan, setLoan] = useState('');
-  const [collateral, setCollateral] = useState('');
-  const [loanSymbol, setLoanSymbol] = useState('');
+  // const [collateral, setCollateral] = useState('');
+  // const [loanSymbol, setLoanSymbol] = useState('');
   const [loanType, setLoanType] = useState('');
   const [duration, setDuration] = useState('');
   let params = {
@@ -58,20 +60,21 @@ export default function ResultBorrowCrypto() {
     // interestRange: '0 - 0.1',
     interestRanges: interest, //0:0,1|| 0,1:0.25|| 0.25:0.5|| 0.5:1
     loanToValueRanges: loan, // 0:25 || 0.25:0.5 || 0.5:0.75 || 0.75:1
-    collateralSymbols: collateral, //XRP ETH LTC BTC DFY BNB DOT WBNB ADA
-    loanSymbols: loanSymbol, //USDT,DFY,BUSD,USDC,DAI
+    // collateralSymbols: collateral, //XRP ETH LTC BTC DFY BNB DOT WBNB ADA
+    // loanSymbols: loanSymbol, //USDT,DFY,BUSD,USDC,DAI
     loanTypes: loanType, // 0,1,2
     durationTypes: duration, //0,1
-    cusSort: cusSort, //interest,asc || loanToValue,asc || durationQty,asc || limitation,asc || reputation,asc
+    // cusSort: cusSort, //interest,asc || loanToValue,asc || durationQty,asc || limitation,asc || reputation,asc
   };
-  const changePage = data => {
-    setPageNum(data);
-    setRerender(!rerender);
-  };
-  const changeCusSort = data => {
-    setCusSort(data);
-    setRerender(!rerender);
-  };
+
+  // const changePage = data => {
+  //   setPageNum(data);
+  //   setRerender(!rerender);
+  // };
+  // const changeCusSort = data => {
+  //   setCusSort(data);
+  //   setRerender(!rerender);
+  // };
   const changeInterestRange = data => {
     setInterest(data);
     setRerender(!rerender);
@@ -80,52 +83,52 @@ export default function ResultBorrowCrypto() {
     setLoan(data);
     setRerender(!rerender);
   };
-  const changeCollateral = data => {
-    if (collateral === '') {
-      setCollateral(data);
-      setRerender(!rerender);
-    } else {
-      setCollateral(collateral.concat(',', data));
-      setRerender(!rerender);
-    }
-    if (collateral.includes(data)) {
-      let x = ',' + data;
-      let y = data + ',';
-      if (collateral.includes(x)) {
-        setCollateral(collateral.replace(x, ''));
-        setRerender(!rerender);
-      } else if (collateral.includes(y)) {
-        setCollateral(collateral.replace(y, ''));
-        setRerender(!rerender);
-      } else {
-        setCollateral(collateral.replace(data, ''));
-        setRerender(!rerender);
-      }
-    }
-  };
-  const changeLoanSymbol = data => {
-    if (loanSymbol === '') {
-      setLoanSymbol(data);
-      setRerender(!rerender);
-    } else {
-      setLoanSymbol(loanSymbol.concat(',', data));
-      setRerender(!rerender);
-    }
-    if (loanSymbol.includes(data)) {
-      let x = ',' + data;
-      let y = data + ',';
-      if (loanSymbol.includes(x)) {
-        setLoanSymbol(loanSymbol.replace(x, ''));
-        setRerender(!rerender);
-      } else if (loanSymbol.includes(y)) {
-        setLoanSymbol(loanSymbol.replace(y, ''));
-        setRerender(!rerender);
-      } else {
-        setLoanSymbol(loanSymbol.replace(data, ''));
-        setRerender(!rerender);
-      }
-    }
-  };
+  // const changeCollateral = data => {
+  //   if (collateral === '') {
+  //     setCollateral(data);
+  //     setRerender(!rerender);
+  //   } else {
+  //     setCollateral(collateral.concat(',', data));
+  //     setRerender(!rerender);
+  //   }
+  //   if (collateral.includes(data)) {
+  //     let x = ',' + data;
+  //     let y = data + ',';
+  //     if (collateral.includes(x)) {
+  //       setCollateral(collateral.replace(x, ''));
+  //       setRerender(!rerender);
+  //     } else if (collateral.includes(y)) {
+  //       setCollateral(collateral.replace(y, ''));
+  //       setRerender(!rerender);
+  //     } else {
+  //       setCollateral(collateral.replace(data, ''));
+  //       setRerender(!rerender);
+  //     }
+  //   }
+  // };
+  // const changeLoanSymbol = data => {
+  //   if (loanSymbol === '') {
+  //     setLoanSymbol(data);
+  //     setRerender(!rerender);
+  //   } else {
+  //     setLoanSymbol(loanSymbol.concat(',', data));
+  //     setRerender(!rerender);
+  //   }
+  //   if (loanSymbol.includes(data)) {
+  //     let x = ',' + data;
+  //     let y = data + ',';
+  //     if (loanSymbol.includes(x)) {
+  //       setLoanSymbol(loanSymbol.replace(x, ''));
+  //       setRerender(!rerender);
+  //     } else if (loanSymbol.includes(y)) {
+  //       setLoanSymbol(loanSymbol.replace(y, ''));
+  //       setRerender(!rerender);
+  //     } else {
+  //       setLoanSymbol(loanSymbol.replace(data, ''));
+  //       setRerender(!rerender);
+  //     }
+  //   }
+  // };
   const changeLoanType = data => {
     if (loanType === '') {
       setLoanType(data);
@@ -176,13 +179,42 @@ export default function ResultBorrowCrypto() {
     // axios.get(url).then(res => {
     //   setShop(res.data);
     // });
-    axios.get(url3, { params }).then(res => {
-      setShop(res.data);
-    });
+    // axios.get(url3, { params }).then(res => {
+    //   setShop(res.data);
+    // });
     axios.get(url2).then(res => {
       setShop2(res.data);
     });
   }, [rerender]);
+
+  const {
+    page,
+    cusSort,
+    interestRanges,
+    loanToValueRanges,
+    loanTypes,
+    collateralSymbols,
+    loanSymbols,
+    durationTypes,
+    collateralAmount,
+  } = useBorrowContext();
+  const data = {
+    page,
+    cusSort,
+    interestRanges,
+    loanToValueRanges,
+    loanTypes,
+    collateralSymbols,
+    loanSymbols,
+    durationTypes,
+    collateralAmount,
+  };
+  console.log(data);
+  useEffect(() => {
+    axios.get(url3, { data }).then(res => {
+      setShop(res.data);
+    });
+  }, []);
 
   const imgAsset = [...dataasset];
   return (
@@ -199,8 +231,8 @@ export default function ResultBorrowCrypto() {
               {shop && (
                 <PawnList
                   dataShop={shop!}
-                  changePage={changePage}
-                  changeCusSort={changeCusSort}
+                  // changePage={changePage}
+                  // changeCusSort={changeCusSort}
                 />
               )}
             </Col>
@@ -211,8 +243,8 @@ export default function ResultBorrowCrypto() {
                 dataAsset={imgAsset}
                 changeInterestRange={changeInterestRange}
                 changeLoanRange={changeLoanRange}
-                changeCollateral={changeCollateral}
-                changeLoanSymbol={changeLoanSymbol}
+                // changeCollateral={changeCollateral}
+                // changeLoanSymbol={changeLoanSymbol}
                 changeLoanType={changeLoanType}
                 changeDuration={changeDuration}
               />

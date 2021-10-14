@@ -15,6 +15,7 @@ import { Form } from '../../../Form/index';
 import { Link } from 'react-router-dom';
 import ComboBox from 'react-responsive-combo-box';
 import { Div, InputField } from 'app/pages/Home/HomePage/components/style';
+import { useBorrowContext } from 'app/components/common/context/borrowCryptoContext';
 interface Props {
   dataAsset?: Array<object>;
 }
@@ -91,7 +92,11 @@ export function Crypto(props: Props) {
       e.isWhitelistSupply && loanCurrency.push(e.symbol);
       return loanCurrency;
     });
-  const handleCollateralChange = e => {};
+  //use context
+  const { setCollateralAmount } = useBorrowContext();
+  const handleCollateralChange = e => {
+    setCollateralAmount(e.target.value);
+  };
   return (
     <Main>
       <div>
