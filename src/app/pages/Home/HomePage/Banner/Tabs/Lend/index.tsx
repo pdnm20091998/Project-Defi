@@ -140,6 +140,8 @@ export function Lend(props: Props) {
       e.isWhitelistSupply && loanCurrency.push(e.symbol);
       return loanCurrency;
     });
+
+  // import lendNftContext
   const { setLoanAmount, setLoanSymbol, setLoanDuration, setLoanDurationType } =
     useLendContext();
 
@@ -187,7 +189,7 @@ export function Lend(props: Props) {
                           placeholder="Currency"
                           options={loanCurrency}
                           enableAutocomplete
-                          onSelect={option => setLoanSymbol({ option })}
+                          onSelect={option => setLoanSymbol(option)}
                         />
                       </div>
                     </Col>
@@ -225,11 +227,11 @@ export function Lend(props: Props) {
                           enableAutocomplete
                           onSelect={option => {
                             if (option === 'All') {
-                              setLoanDurationType();
+                              setLoanDurationType('');
                             } else if (option === 'Weeks') {
-                              setLoanDurationType(0);
+                              setLoanDurationType('0');
                             } else if (option === 'Months') {
-                              setLoanDurationType(1);
+                              setLoanDurationType('1');
                             }
                           }}
                         />

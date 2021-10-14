@@ -1,5 +1,3 @@
-import { PropsOf } from '@emotion/react';
-import { Container } from 'react-bootstrap';
 import styled from 'styled-components/macro';
 import Filter from './components/Filter';
 interface Props {

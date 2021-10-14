@@ -18,9 +18,11 @@ export const ResultLendNftService = request => {
           request.data.loanAmount
             ? `&loanAmount=${request.data.loanAmount}`
             : ''
-        }${request.data.name ? `&name=${request.data.name}` : ''}&page=${
-          request.data.page
-        }&size=10`,
+        }${request.data.name ? `&name=${request.data.name}` : ''}${
+          request.data.nftType ? `&nftType=${request.data.nftType}` : ''
+        }${
+          request.data.assetType ? `&assetType=${request.data.assetType}` : ''
+        }&page=${request.data.page}&size=10`,
     )
     .then((res: any) => {
       return res.data;

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PasswordIcon from '../assets/img/showoff.png';
 import ShowIcon from '../assets/img/show.png';
 import DefiButton from '../../../components/DefiButton/DefiButton';
@@ -9,8 +9,11 @@ import { useHistory } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { loginUserAction } from '../../../actions/auth/authActions';
+import { WrongPasswordModal } from '../Modal/wrongPassword';
+import { NotActiveModal } from '../Modal/notActive';
+import { RootState } from 'app/reducer/reducers';
 
 type UserSubmitForm = {
   email: string;
@@ -65,6 +68,20 @@ export default function Login() {
   const handleClickShowPassword = () => {
     setValues(!values);
   };
+  // Modal
+  const [wrongPasswordShow, setwrongPasswordShow] = useState(false);
+  const [notActiveShow, setnotActiveShow] = useState(false);
+  const errorLogin: any = useSelector((state: RootState) => state.auth);
+  useEffect(() => {
+    if (errorLogin.access) {
+      if (errorLogin.access.status === 401) {
+        setwrongPasswordShow(true);
+      }
+      if (errorLogin.access.status === 404) {
+        setnotActiveShow(true);
+      }
+    }
+  }, [errorLogin]);
   return (
     <>
       <Form onSubmit={handleSubmit(onSubmit)}>
@@ -108,6 +125,14 @@ export default function Login() {
             Login
           </DefiButton>
         </Center>
+        <WrongPasswordModal
+          show={wrongPasswordShow}
+          onHide={() => setwrongPasswordShow(false)}
+        />
+        <NotActiveModal
+          show={notActiveShow}
+          onHide={() => setnotActiveShow(false)}
+        />
       </Form>
     </>
   );
