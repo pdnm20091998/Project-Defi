@@ -1,6 +1,6 @@
 import styled from 'styled-components/macro';
 const HeaderCrypto = props => {
-  console.log(props);
+  // console.log(props);
 
   return (
     <div className="header__crypto">

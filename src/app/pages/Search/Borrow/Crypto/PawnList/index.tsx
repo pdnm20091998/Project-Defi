@@ -7,28 +7,37 @@ import PawnItem from './PawnItem/PawnItem';
 import ReactPaginate from 'react-paginate';
 
 import axios from 'axios';
+interface Props {
+  dataShop: any;
+  changePage: Function;
+  changeCusSort: Function;
+}
+interface DataArr {
+  data: any;
+}
 const url =
   'https://staginggw.defiforyou.uk/defi-pawn-crypto-service/public-api/v1.0.0/pawn-shop-package/search?collateralAmount=&collateralSymbols=&durationQty=&durationTypes=&loanAmount=&loanSymbols=&status=3&size=10';
-// const url2 =
-// 'https://staginggw.defiforyou.uk/defi-pawn-crypto-service/public-api/v1.0.0/pawn-shop/search-p2p-lenders?status=3&size=10';
+const url2 =
+  'https://staginggw.defiforyou.uk/defi-pawn-crypto-service/public-api/v1.0.0/pawn-shop/search-p2p-lenders?status=3&size=10';
 const url3 =
-  'https://staginggw.defiforyou.uk/defi-pawn-crypto-service/public-api/v1.0.0/pawn-shop-package/search?size=10&status=3&durationTypes=';
-export default function PawnList() {
+  'https://staginggw.defiforyou.uk/defi-pawn-crypto-service/public-api/v1.0.0/pawn-shop-package/search?size=10&status=3&page=0';
+export default function PawnList(props: Props) {
   const [pick, setPick] = useState(0);
   const [shop, setShop] = useState<null | { data: any }>(null);
-  // const [shop2, setShop2] = useState<null | { data: any }>(null);
-  useEffect(() => {
-    // axios.get(url).then(res => {
-    //   setShop(res.data);
-    // });
-    axios.get(url3).then(res => {
-      setShop(res.data);
-    });
-    // axios.get(url).then(res => {
-    //   setShop2(res.data);
-    // });
-  }, []);
-  console.log(shop?.data);
+  const [shop2, setShop2] = useState<null | { data: any }>(null);
+  // useEffect(() => {
+  //   // axios.get(url).then(res => {
+  //   //   setShop(res.data);
+  //   // });
+  //   axios.get(url3).then(res => {
+  //     setShop(res.data);
+  //   });
+  //   axios.get(url2).then(res => {
+  //     setShop2(res.data);
+  //   });
+  // }, []);
+  // console.log(props.dataShop);
+  // console.log(shop?.data);
   // console.log('shop 2 ne');
   // console.log(shop2);
   return (
@@ -40,6 +49,7 @@ export default function PawnList() {
             onClick={e => {
               e.preventDefault();
               setPick(1);
+              props.changeCusSort('interest,asc');
             }}
             xs={{ span: 5 }}
             sm={true}
@@ -182,48 +192,51 @@ export default function PawnList() {
         </MyRow>
       </Div>
       {/* {shop && <PawnItem />} */}
-      {shop !== undefined &&
-        shop?.data.content.map((e, index) => (
-          <>
-            <PawnItem
-              shopname={e.pawnShop.name}
-              interest={e.interest}
-              interestmax={e.interestMax}
-              interestmin={e.interestMin}
-              allowedloanmax={e.allowedLoanMax}
-              allowedloanmin={e.allowedLoanMin}
-              durationqtymax={e.durationQtyMax}
-              durationqtymin={e.durationQtyMin}
-              durationqtytype={e.durationQtyType}
-              loantovalue={e.loanToValue}
-              symbol={e.acceptableAssetsAsLoan[0].symbol}
-              accept={e.acceptableAssetsAsCollateral}
-              reputation={e.pawnShop.reputation}
-              avatar={e.pawnShop.avatar}
-              key={index}
-              type={e.type}
-            />
-          </>
-        ))}
-      {shop !== undefined && (
-        <ReactPaginate
-          previousLabel={'<'}
-          nextLabel={'>'}
-          breakLabel={'...'}
-          breakClassName={'break-me text-white'}
-          marginPagesDisplayed={2}
-          pageRangeDisplayed={2}
-          containerClassName={`pagination mt-4 justify-content-center`}
-          activeClassName={styles.pagiactive}
-          pageCount={shop?.data.total_pages}
-          pageClassName={styles.pagiBtn}
-          previousClassName={styles.pagiBtn}
-          nextClassName={styles.pagiBtn}
-          pageLinkClassName={styles.pagiLink}
-          previousLinkClassName={styles.pagiLink}
-          nextLinkClassName={styles.pagiLink}
+      {/* {shop !== undefined && */}
+      {props.dataShop.data.content.map((e, index) => (
+        <PawnItem
+          shopname={e.pawnShop.name}
+          interest={e.interest}
+          interestmax={e.interestMax}
+          interestmin={e.interestMin}
+          allowedloanmax={e.allowedLoanMax}
+          allowedloanmin={e.allowedLoanMin}
+          durationqtymax={e.durationQtyMax}
+          durationqtymin={e.durationQtyMin}
+          durationqtytype={e.durationQtyType}
+          loantovalue={e.loanToValue}
+          // {e.acceptableAssetsAsLoan.length==0 ? symbol={}}
+          symbol={e.acceptableAssetsAsLoan}
+          accept={e.acceptableAssetsAsCollateral}
+          reputation={e.pawnShop.reputation}
+          avatar={e.pawnShop.avatar}
+          type={e.type}
+          key={index}
         />
-      )}
+      ))}
+      {/* } */}
+      {/* {shop !== undefined && ( */}
+      <ReactPaginate
+        previousLabel={'<'}
+        nextLabel={'>'}
+        breakLabel={'...'}
+        breakClassName={'break-me text-white'}
+        marginPagesDisplayed={2}
+        pageRangeDisplayed={2}
+        containerClassName={`pagination mt-4 justify-content-center`}
+        activeClassName={styles.pagiactive}
+        pageCount={props.dataShop.data.total_pages}
+        pageClassName={styles.pagiBtn}
+        previousClassName={styles.pagiBtn}
+        nextClassName={styles.pagiBtn}
+        pageLinkClassName={styles.pagiLink}
+        previousLinkClassName={styles.pagiLink}
+        nextLinkClassName={styles.pagiLink}
+        onPageChange={e => {
+          return props.changePage(e.selected);
+        }}
+      />
+      {/* )} */}
     </>
   );
 }

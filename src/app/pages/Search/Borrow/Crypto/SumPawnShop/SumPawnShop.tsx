@@ -4,18 +4,25 @@ import '../InfoTitle/Sass/mainCrypto.scss';
 import dolar from '../InfoTitle/asset/dolar.svg';
 import dolarHidden from '../InfoTitle/asset/dolarHidden.svg';
 import PawnShopItem from '../PawnshopItem/pawnshopItem';
-
-export default function SumPawnShop() {
+interface Props {
+  dataShop: any;
+  dataPerson: any;
+}
+export default function SumPawnShop(props: Props) {
+  // console.log(props.dataShop);
+  // console.log(props.dataPerson);
   return (
     <div className="headerCrypto">
-      <p className="crypto__title">10 pawnshop package match your search</p>
+      <p className="crypto__title">
+        {props.dataShop.data.total_elements} pawnshop package match your search
+      </p>
       <HeaderCrypto
         picture={dolar}
         title="You are not in a hurry and can wait?"
         text="Request a loan from a trusted P2P lender to get a better interest rate
         and LTV"
       />
-      <PawnShopItem />
+      {props.dataPerson && <PawnShopItem data={props.dataPerson} />}
       <HeaderCrypto
         picture={dolarHidden}
         title="Want an instant loan?"

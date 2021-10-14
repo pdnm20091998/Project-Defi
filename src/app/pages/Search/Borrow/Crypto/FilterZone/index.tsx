@@ -5,6 +5,13 @@ import Filter from './components/Filter';
 interface Props {
   dataAsset?: Array<object>;
   handleClose: Function;
+  // changePage: Function;
+  changeInterestRange: Function;
+  changeLoanRange: Function;
+  changeCollateral: Function;
+  changeLoanSymbol: Function;
+  changeLoanType: Function;
+  changeDuration: Function;
 }
 const imgObject = {
   XRP: '/XRP.7ff389b.png',
@@ -25,25 +32,25 @@ export default function FilterZone(props: Props) {
   const collateralAccepted: Array<object> = [];
   const loanToken: Array<object> = [];
   const interestRange = [
-    { name: '0-10%', title: '0-10%' },
-    { name: '10-25%', title: '10-25%' },
-    { name: '25-50%', title: '25-50%' },
-    { name: '>50%', title: '>50%' },
+    { name: '0-10%', title: '0-10%', value: '0:0.1' },
+    { name: '10-25%', title: '10-25%', value: '0.1:0.25' },
+    { name: '25-50%', title: '25-50%', value: '0.25:0.5' },
+    { name: '>50%', title: '>50%', value: '0.5:1' },
   ];
   const loanToValue = [
-    { name: '0-25%', title: '0-25%' },
-    { name: '25-50%', title: '25-50%' },
-    { name: '50-75%', title: '50-75%' },
-    { name: '>75%', title: '>75%' },
+    { name: '0-25%', title: '0-25%', value: '0:0.25' },
+    { name: '25-50%', title: '25-50%', value: '0.25:0.5' },
+    { name: '50-75%', title: '50-75%', value: '0.5:0.75' },
+    { name: '>75%', title: '>75%', value: '0.75:1' },
   ];
   const loanType = [
-    { name: 'auto', title: 'auto' },
-    { name: 'semi-auto', title: 'semi-auto' },
-    { name: 'negotiation', title: 'negotiation' },
+    { name: 'auto', title: 'auto', value: '0' },
+    { name: 'semi-auto', title: 'semi-auto', value: '1' },
+    { name: 'negotiation', title: 'negotiation', value: '2' },
   ];
   const duration = [
-    { name: 'week', title: 'week' },
-    { name: 'month', title: 'month' },
+    { name: 'week', title: 'week', value: '0' },
+    { name: 'month', title: 'month', value: '1' },
   ];
   props.dataAsset &&
     props.dataAsset.map((data: any) => {
@@ -54,6 +61,7 @@ export default function FilterZone(props: Props) {
           img: `https://staging.app.defiforyou.uk/_nuxt/img${
             imgObject[data.symbol]
           }`,
+          value: data.symbol,
         });
       }
       if (data.isWhitelistSupply) {
@@ -63,6 +71,7 @@ export default function FilterZone(props: Props) {
           img: `https://staging.app.defiforyou.uk/_nuxt/img${
             imgObject[data.symbol]
           }`,
+          value: data.symbol,
         });
       }
       return 0;
@@ -75,27 +84,51 @@ export default function FilterZone(props: Props) {
       </FilterHolder>
       <Border></Border>
       <FilterHolder>
-        <Filter title="Interest range" listCheckBox={interestRange} />
+        <Filter
+          title="Interest range"
+          listCheckBox={interestRange}
+          change={props.changeInterestRange}
+        />
       </FilterHolder>
       <Border />
       <FilterHolder>
-        <Filter title="loan to value" listCheckBox={loanToValue} />
+        <Filter
+          title="loan to value"
+          listCheckBox={loanToValue}
+          change={props.changeLoanRange}
+        />
       </FilterHolder>
       <Border />
       <FilterHolder>
-        <Filter title="Collateral accepted" listCheckBox={collateralAccepted} />
+        <Filter
+          title="Collateral accepted"
+          listCheckBox={collateralAccepted}
+          change={props.changeCollateral}
+        />
       </FilterHolder>
       <Border />
       <FilterHolder>
-        <Filter title="Loan token" listCheckBox={loanToken} />
+        <Filter
+          title="Loan token"
+          listCheckBox={loanToken}
+          change={props.changeLoanSymbol}
+        />
       </FilterHolder>
       <Border />
       <FilterHolder>
-        <Filter title="Loan type" listCheckBox={loanType} />
+        <Filter
+          title="Loan type"
+          listCheckBox={loanType}
+          change={props.changeLoanType}
+        />
       </FilterHolder>
       <Border />
       <FilterHolder>
-        <Filter title="Duration" listCheckBox={duration} />
+        <Filter
+          title="Duration"
+          listCheckBox={duration}
+          change={props.changeDuration}
+        />
       </FilterHolder>
       <Border />
     </Div>
