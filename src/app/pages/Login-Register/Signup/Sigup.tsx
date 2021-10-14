@@ -17,7 +17,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
 import { useDispatch } from 'react-redux';
 
-import { registerUserAction } from '../../../actions/authActions';
+import { registerUserAction } from '../../../actions/auth/authActions';
 
 type UserSubmitFormSignup = {
   fullname: string;
@@ -66,7 +66,7 @@ export default function Signup() {
   } = useForm<UserSubmitFormSignup>({
     resolver: yupResolver(validation),
   });
-
+  // SUbmit register form
   const onSubmitSignup = (data: UserSubmitFormSignup) => {
     console.log(JSON.stringify(data, null, 2));
     const dataSignup = JSON.parse(JSON.stringify(data));
@@ -86,7 +86,6 @@ export default function Signup() {
   };
   // get value Captcha
   const onChange = value => {
-    // console.log(value);
     setRecaptcha(value);
   };
   return (

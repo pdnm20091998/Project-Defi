@@ -4,9 +4,7 @@
  *
  */
 import * as React from 'react';
-import styled from 'styled-components/macro';
 import { Container, Row, Col } from 'react-bootstrap';
-import { Form } from '../../Form/index';
 import { useEffect, useState } from 'react';
 import DefiButton from '../../../../../../components/DefiButton/DefiButton';
 import imgSearch from '../../assets/search.svg';
@@ -14,6 +12,10 @@ import imgClose from '../../assets/x.svg';
 import { MultiSelect } from 'react-multi-select-component';
 import { getAsset } from '../../../../../../service/apiAsset/apiAsset';
 import { Link } from 'react-router-dom';
+import { Div, InputField, P, Main } from '../../../components/style';
+import ComboBox from 'react-responsive-combo-box';
+import { useLendContext } from 'app/components/common/lendNftContext';
+
 interface OptionsItem {
   label: string;
   value: string;
@@ -76,6 +78,7 @@ const Example = () => {
       await resultAsset();
     }
     asyncCall();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const customValueRenderer = selected => {
@@ -121,165 +124,143 @@ const Example = () => {
     </div>
   );
 };
-const Main = styled.div`
-  background: #171a23;
-  border-radius: 30px;
-  padding: 30px 0px;
-  color: #fff;
-  .rmsc {
-    --rmsc-bg: rgba(47, 53, 67, 1);
-    --rmsc-hover: #2d3341;
-    --rmsc-selected: rgba(219, 168, 61, 0.3);
-    --rmsc-radius: 22px;
-    box-sizing: border-box;
-    --rmsc-h: 44px;
-    --rmsc-main: #dba83d;
-    color: #fff;
-    .icon {
-      width: 20px;
-      height: 20px;
-      margin-right: 5px;
-      &__value {
-        width: 20px;
-        height: 20px;
-        margin: 5px;
-      }
-    }
-    .dropdown-container {
-      background-color: transparent !important;
-      .dropdown-heading {
-        height: auto;
-      }
-      .options {
-      }
-      .options::-webkit-scrollbar-track {
-        -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-        background-color: #2f3543;
-      }
-      .options::-webkit-scrollbar {
-        width: 5px;
-        background-color: #2f3543;
-      }
-      .options::-webkit-scrollbar-thumb {
-        background-color: #45484f;
-        border: none;
-      }
-      .dropdown-heading-value {
-        span {
-          display: flex;
-          flex-wrap: wrap;
-        }
-      }
-      .selectedItem {
-        border: none;
-        background: rgba(255, 255, 255, 0.1);
-        border-radius: 16.5px;
-        padding-right: 10px;
-        min-height: 33px;
-        box-sizing: border-box;
-        display: flex;
-        justify-content: space-space-evenly;
-        margin: 10px 10px 10px 0px;
-      }
-    }
-  }
 
-  .tabsRadio {
-    .true {
-      color: #dba83d;
-    }
-    .tab {
-      display: block;
-      position: relative;
-      padding-left: 35px;
-      margin-bottom: 12px;
-      cursor: pointer;
-      font-size: 22px;
-      -webkit-user-select: none;
-      -moz-user-select: none;
-      -ms-user-select: none;
-      user-select: none;
-      input {
-        position: absolute;
-        opacity: 0;
-        cursor: pointer;
-        &:checked ~ .checkmark {
-          background-color: transparent;
-          border: 2px solid #dba83d;
-        }
-        &:checked ~ .checkmark:after {
-          display: block;
-        }
-      }
-      .checkmark {
-        position: absolute;
-        top: -4px;
-        left: 0;
-        height: 24px;
-        width: 24px;
-        background-color: transparent;
-        border-radius: 50%;
-        border: 1px solid #fff;
-        &:after {
-          content: '';
-          position: absolute;
-          display: none;
-          top: 3px;
-          left: 3px;
-          width: 14px;
-          height: 14px;
-          border-radius: 50%;
-          background: #dba83d;
-        }
-
-        &:hover {
-          background-color: #ccc;
-        }
-      }
-    }
-    &__Crypto {
-      margin-right: 25%;
-    }
-  }
-  .search {
-    font-style: normal;
-    font-weight: 500;
-    font-size: 20px;
-    line-height: 24px;
-  }
-`;
-const P = styled.p`
-  font-style: normal;
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 20px;
-  display: flex;
-  align-items: center;
-`;
 interface Props {
   dataAsset?: Array<object>;
 }
 export function Lend(props: Props) {
   const [component, setComponent] = useState(true);
+  // Combobox duration type
+  const week = ['All', 'Weeks', 'Months'];
+  // combobox loan type
+  const loanCurrency = [
+    {
+      name: 'dfy',
+      img: 'https://app.defiforyou.uk/_nuxt/img/DFY.a0b985b.png',
+      title: 'DFY',
+    },
+    {
+      name: 'usdt',
+      img: 'https://app.defiforyou.uk/_nuxt/img/USDT.b7a5381.png',
+      title: 'USTD',
+    },
+    {
+      name: 'usdc',
+      img: 'https://app.defiforyou.uk/_nuxt/img/USDC.10ea0ad.png',
+      title: 'USDC',
+    },
+    {
+      name: 'dai',
+      img: 'https://app.defiforyou.uk/_nuxt/img/DAI.71410d0.png',
+      title: 'DAI',
+    },
+    {
+      name: 'busd',
+      img: 'https://app.defiforyou.uk/_nuxt/img/BUSD.3aa6751.png',
+      title: 'BUSD',
+    },
+  ];
+  // import useContext
+  const { setLoanAmount, setLoanSymbol, setLoanDuration, setLoanDurationType } =
+    useLendContext();
+
+  const handleLoanAmountChange = e => {
+    setLoanAmount(e.target.value);
+  };
+  const handleLoanDurationChange = e => {
+    setLoanDuration(e.target.value);
+  };
   return (
     <Main>
       <div>
         <Row>
           <Col>
-            <Form
-              name="Maximum loan amount"
-              placeholder="Enter amount"
-              filter="Currency"
-              arr="data"
-              button={true}
-              dataAsset={props.dataAsset}
-            ></Form>
-            <Form
-              name="Duration"
-              placeholder="Duration"
-              filter="Duration"
-              arr="week"
-            ></Form>
+            <div>
+              <Container fluid="lg">
+                <P>Maximum loan amount</P>
+                <Row>
+                  <Div className="mx-1">
+                    <Col sm="9" xs="9">
+                      <InputField>
+                        <div className="input ">
+                          <input
+                            type="number"
+                            className="input input-slot"
+                            placeholder="Enter amount"
+                            onChange={handleLoanAmountChange}
+                          ></input>
+                          <DefiButton
+                            className="defi-btn"
+                            width="64px"
+                            height="34px"
+                          >
+                            Max
+                          </DefiButton>
+                        </div>
+                      </InputField>
+                    </Col>
+                    <Col sm="3" xs="3">
+                      <div className="drop">
+                        <ComboBox
+                          className={`option`}
+                          selectedOptionColor="#2c4059"
+                          defaultValue={`${week[0]}`}
+                          placeholder="Currency"
+                          options={week}
+                          enableAutocomplete
+                          onSelect={option => setLoanSymbol({ option })}
+                        />
+                      </div>
+                    </Col>
+                  </Div>
+                </Row>
+                <div className="pt-3 pb-2"></div>
+              </Container>
+            </div>
+            <div>
+              {' '}
+              <Container fluid="lg">
+                <P>Duration</P>
+                <Row>
+                  <Div className="mx-1">
+                    <Col sm="9" xs="9">
+                      <InputField>
+                        <div className="input ">
+                          <input
+                            type="number"
+                            className="input input-slot"
+                            placeholder="Duration"
+                            onChange={handleLoanDurationChange}
+                          ></input>
+                        </div>
+                      </InputField>
+                    </Col>
+                    <Col sm="3" xs="3">
+                      <div className="drop">
+                        <ComboBox
+                          className={`option`}
+                          selectedOptionColor="#2c4059"
+                          defaultValue={`${week[0]}`}
+                          placeholder="Currency"
+                          options={week}
+                          enableAutocomplete
+                          onSelect={option => {
+                            if (option === 'All') {
+                              setLoanDurationType();
+                            } else if (option === 'Weeks') {
+                              setLoanDurationType(0);
+                            } else if (option === 'Months') {
+                              setLoanDurationType(1);
+                            }
+                          }}
+                        />
+                      </div>
+                    </Col>
+                  </Div>
+                </Row>
+                <div className="pt-3 pb-2"></div>
+              </Container>
+            </div>
             <Container fluid="lg">
               <P className="pb-2">Collateral</P>
               <div className="tabsRadio d-flex my-3">

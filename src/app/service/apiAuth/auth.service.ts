@@ -1,4 +1,5 @@
 import axios from 'axios';
+// Call Api Sign up
 export const registerUserService = request => {
   const REGISTER_API_ENDPOINT =
     'https://staginggw.defiforyou.uk/defi-user-service/public-api/v1.0.0/users/signup';
@@ -9,7 +10,7 @@ export const registerUserService = request => {
       return response.data;
     });
 };
-
+// Call Api Login
 export const loginUserService = request => {
   const LOGIN_API_ENDPOINT =
     'https://staginggw.defiforyou.uk/defi-user-service/public-api/v1.0.0/users/login';
@@ -33,8 +34,10 @@ export const loginUserService = request => {
           'This account has not been activated yet. Please confirm email to activate your account',
         );
       }
+      return req.response;
     });
 };
+//Cal Api get User
 export const getUser = request => {
   const token = request;
   return axios
@@ -50,8 +53,4 @@ export const getUser = request => {
       localStorage.setItem('name', JSON.stringify(res.data.data.name));
       return res.data;
     });
-};
-
-export const logout = () => {
-  localStorage.removeItem('user');
 };

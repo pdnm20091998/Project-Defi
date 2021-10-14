@@ -42,12 +42,15 @@ export const SingleWrapper = styled.div`
   border-radius: 20px;
   margin-top: 20px;
   .img {
-    margin: 20px;
+    margin: 20px 0px 20px 20px;
     padding: 0;
     max-width: 215px;
   }
   .detailResult {
     margin: 20px 0;
+  }
+  .detail {
+    margin-left: 20px;
   }
   .loan {
     margin: 20px 0;
@@ -116,12 +119,12 @@ export const LoanWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  @media (max-width: 1199px) {
+  @media (max-width: 1399px) {
     border-top: 1px solid #45484f;
     padding-top: 20px;
     align-items: flex-start;
   }
-  @media (min-width: 1200px) {
+  @media (min-width: 1400px) {
     border-left: 1px solid #45484f;
   }
   .detail {
@@ -129,7 +132,7 @@ export const LoanWrapper = styled.div`
     flex-direction: column;
     align-items: flex-end;
     justify-content: flex-start;
-    @media (max-width: 1199px) {
+    @media (max-width: 1399px) {
       align-items: flex-start;
     }
   }
@@ -152,7 +155,7 @@ export const LoanWrapper = styled.div`
     font-weight: 600;
     font-size: 30px;
     line-height: 37px;
-    text-align: center;
+    text-align: right;
 
     /* Color/ Semantic/ Green */
     color: #3fd762;

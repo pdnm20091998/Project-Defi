@@ -10,7 +10,7 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
 import { useDispatch } from 'react-redux';
-import { loginUserAction } from '../../../actions/authActions';
+import { loginUserAction } from '../../../actions/auth/authActions';
 
 type UserSubmitForm = {
   email: string;
@@ -52,7 +52,7 @@ export default function Login() {
   } = useForm<UserSubmitForm>({
     resolver: yupResolver(validationSchema),
   });
-
+  // Submit login form
   const onSubmit = (data: UserSubmitForm) => {
     const dataLogin = JSON.parse(JSON.stringify(data));
     const username = dataLogin.email;

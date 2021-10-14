@@ -1,5 +1,6 @@
-import { REGISTER_USER, LOGIN_USER } from './types';
+import { REGISTER_USER, LOGIN_USER } from '../types';
 
+//Register action
 export const registerUserAction = user => {
   return {
     type: REGISTER_USER,
@@ -7,6 +8,7 @@ export const registerUserAction = user => {
   };
 };
 
+//Login action
 export const loginUserAction = user => {
   return {
     type: LOGIN_USER,

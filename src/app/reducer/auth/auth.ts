@@ -3,7 +3,7 @@ import {
   REGISTER_FAIL,
   LOGIN_SUCCESS,
   LOGIN_FAIL,
-} from '../actions/types';
+} from 'app/actions/types';
 
 const initialState = {};
 
@@ -13,10 +13,12 @@ export const authReducer = (state = initialState, action) => {
     case REGISTER_SUCCESS:
       return {
         isLoggedIn: false,
+        access: payload,
       };
     case REGISTER_FAIL:
       return {
         isLoggedIn: false,
+        access: payload,
       };
     case LOGIN_SUCCESS:
       return {
@@ -26,7 +28,7 @@ export const authReducer = (state = initialState, action) => {
     case LOGIN_FAIL:
       return {
         isLoggedIn: true,
-        access: null,
+        access: payload,
       };
     default:
       return state;
