@@ -96,6 +96,7 @@ const Div = styled.div`
       position: absolute;
       top: 5px;
       right: 5px;
+      min-width: 52px;
     }
   }
 
