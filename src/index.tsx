@@ -24,7 +24,7 @@ import configureStore from 'store/configureStore';
 
 import reportWebVitals from 'reportWebVitals';
 
-import { ContextProvider } from './app/components/common/lendNftContext';
+import { LendNftContextProvider } from './app/components/common/lendNftContext';
 // Initialize languages
 import './locales/i18n';
 
@@ -38,9 +38,9 @@ ReactDOM.render(
   <Provider store={store}>
     <HelmetProvider>
       <React.StrictMode>
-        <ContextProvider>
+        <LendNftContextProvider>
           <App />
-        </ContextProvider>
+        </LendNftContextProvider>
       </React.StrictMode>
     </HelmetProvider>
   </Provider>,

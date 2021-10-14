@@ -14,15 +14,16 @@ interface InitContext {
   name?: any;
   setName?: any;
 }
-export const Context = createContext({} as InitContext);
+export const LendNftContext = createContext({} as InitContext);
 
-export const ContextProvider = ({ children }) => {
+export const LendNftContextProvider = ({ children }) => {
   const [page, setPage] = useState(0);
   const [loanAmount, setLoanAmount] = useState();
   const [loanSymbol, setLoanSymbol] = useState();
   const [loanDuration, setLoanDuration] = useState();
   const [loanDurationType, setLoanDurationType] = useState();
   const [name, setName] = useState('');
+
   const data: any = {
     setPage,
     page,
@@ -38,9 +39,11 @@ export const ContextProvider = ({ children }) => {
     setName,
   };
 
-  return <Context.Provider value={data}>{children}</Context.Provider>;
+  return (
+    <LendNftContext.Provider value={data}>{children}</LendNftContext.Provider>
+  );
 };
 
 export const useLendContext = () => {
-  return useContext(Context);
+  return useContext(LendNftContext);
 };
