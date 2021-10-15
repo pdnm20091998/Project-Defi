@@ -5,31 +5,23 @@ import increase from './assests/increase.svg';
 import styles from './style/PawnList.module.css';
 import PawnItem from './PawnItem/PawnItem';
 import ReactPaginate from 'react-paginate';
-import { useBorrowContext } from 'app/components/common/context/borrowCryptoContext';
+import { RootState } from 'app/reducer/reducers';
 
-interface Props {
-  dataShop: any;
-  // changePage: Function;
-  // changeCusSort: Function;
-}
-export default function PawnList(props: Props) {
+import { useBorrowContext } from 'app/components/common/context/borrowCryptoContext';
+import { useSelector } from 'react-redux';
+
+export default function PawnList() {
+  //redux
+  const result: any = useSelector((state: RootState) => state.borrow);
+  //state init
   const [pick, setPick] = useState(0);
+  const [pickInterest, setPickInterest] = useState(false);
+  const [pickLoan, setPickLoan] = useState(false);
+  const [pickDuration, setPickDuration] = useState(false);
+  const [pickLimitation, setPickLimitation] = useState(false);
+  const [pickRating, setPickRating] = useState(false);
+  //use context
   const { setPage, setCusSort } = useBorrowContext();
-  // useEffect(() => {
-  //   // axios.get(url).then(res => {
-  //   //   setShop(res.data);
-  //   // });
-  //   axios.get(url3).then(res => {
-  //     setShop(res.data);
-  //   });
-  //   axios.get(url2).then(res => {
-  //     setShop2(res.data);
-  //   });
-  // }, []);
-  // console.log(props.dataShop);
-  // console.log(shop?.data);
-  // console.log('shop 2 ne');
-  // console.log(shop2);
   return (
     <>
       <Div className={`${styles.bg_on_small_scr} mb-4`}>
@@ -39,7 +31,13 @@ export default function PawnList(props: Props) {
             onClick={e => {
               e.preventDefault();
               setPick(1);
-              setCusSort('interest,asc');
+              setPickInterest(!pickInterest);
+
+              if (pickInterest === true) {
+                setCusSort('interest,asc');
+              } else {
+                setCusSort('interest,desc');
+              }
             }}
             xs={{ span: 5 }}
             sm={true}
@@ -54,14 +52,15 @@ export default function PawnList(props: Props) {
                   Interest Rate
                 </p>
               </MyCol>
-              <MyCol
-                // sm={2}
-                // lg={{ span: 2 }}
-                xs={2}
-                className={pick === 1 ? styles.activeIcon : ''}
-              >
-                <img className={styles.img_small} src={increase} alt="icon" />
-              </MyCol>
+              {pick === 1 && pickInterest ? (
+                <MyCol xs={2} className={styles.activeIcon}>
+                  <img className={styles.img_small} src={increase} alt="icon" />
+                </MyCol>
+              ) : (
+                <MyCol xs={2}>
+                  <img className={styles.img_small} src={increase} alt="icon" />
+                </MyCol>
+              )}
             </MyRow>
           </MyCol>
 
@@ -70,7 +69,12 @@ export default function PawnList(props: Props) {
             onClick={e => {
               e.preventDefault();
               setPick(2);
-              setCusSort('loanToValue,asc');
+              setPickLoan(!pickLoan);
+              if (pickLoan === true) {
+                setCusSort('loanToValue,asc');
+              } else {
+                setCusSort('loanToValue,desc');
+              }
             }}
             xs={{ span: 5, offset: 1 }}
             sm={{ span: true, offset: 0 }}
@@ -85,14 +89,15 @@ export default function PawnList(props: Props) {
                   Loan to value
                 </p>
               </MyCol>
-              <MyCol
-                lg={{ span: 2 }}
-                sm={2}
-                xs={2}
-                className={pick === 2 ? styles.activeIcon : ''}
-              >
-                <img className={styles.img_small} src={increase} alt="icon" />
-              </MyCol>
+              {pick === 2 && pickLoan ? (
+                <MyCol xs={2} className={styles.activeIcon}>
+                  <img className={styles.img_small} src={increase} alt="icon" />
+                </MyCol>
+              ) : (
+                <MyCol xs={2}>
+                  <img className={styles.img_small} src={increase} alt="icon" />
+                </MyCol>
+              )}
             </MyRow>
           </MyCol>
           <MyCol
@@ -100,7 +105,12 @@ export default function PawnList(props: Props) {
             onClick={e => {
               e.preventDefault();
               setPick(3);
-              setCusSort('durationQty,asc');
+              setPickDuration(!pickDuration);
+              if (pickLoan === true) {
+                setCusSort('durationQty,asc');
+              } else {
+                setCusSort('durationQty,desc');
+              }
             }}
             xs={{ span: 5, offset: 0 }}
             sm={{ span: true, offset: 0 }}
@@ -115,14 +125,15 @@ export default function PawnList(props: Props) {
                   Duration
                 </p>
               </MyCol>
-              <MyCol
-                lg={{ span: 2 }}
-                sm={2}
-                xs={2}
-                className={pick === 3 ? styles.activeIcon : ''}
-              >
-                <img className={styles.img_small} src={increase} alt="icon" />
-              </MyCol>
+              {pick === 3 && pickDuration ? (
+                <MyCol xs={2} className={styles.activeIcon}>
+                  <img className={styles.img_small} src={increase} alt="icon" />
+                </MyCol>
+              ) : (
+                <MyCol xs={2}>
+                  <img className={styles.img_small} src={increase} alt="icon" />
+                </MyCol>
+              )}
             </MyRow>
           </MyCol>
           <MyCol
@@ -130,7 +141,12 @@ export default function PawnList(props: Props) {
             onClick={e => {
               e.preventDefault();
               setPick(4);
-              setCusSort('limitation,asc');
+              setPickLimitation(!pickLimitation);
+              if (pickLimitation === true) {
+                setCusSort('limitation,asc');
+              } else {
+                setCusSort('limitation,desc');
+              }
             }}
             xs={{ span: 5, offset: 1 }}
             sm={{ span: true, offset: 0 }}
@@ -145,14 +161,15 @@ export default function PawnList(props: Props) {
                   Limitation
                 </p>
               </MyCol>
-              <MyCol
-                lg={{ span: 2 }}
-                sm={2}
-                xs={2}
-                className={pick === 4 ? styles.activeIcon : ''}
-              >
-                <img className={styles.img_small} src={increase} alt="icon" />
-              </MyCol>
+              {pick === 4 && pickLimitation ? (
+                <MyCol xs={2} className={styles.activeIcon}>
+                  <img className={styles.img_small} src={increase} alt="icon" />
+                </MyCol>
+              ) : (
+                <MyCol xs={2}>
+                  <img className={styles.img_small} src={increase} alt="icon" />
+                </MyCol>
+              )}
             </MyRow>
           </MyCol>
           <MyCol
@@ -160,7 +177,12 @@ export default function PawnList(props: Props) {
             onClick={e => {
               e.preventDefault();
               setPick(5);
-              setCusSort('reputation,asc');
+              setPickRating(!pickRating);
+              if (pickRating === true) {
+                setCusSort('reputation,asc');
+              } else {
+                setCusSort('reputation,desc');
+              }
             }}
             xs={5}
             sm={true}
@@ -173,43 +195,40 @@ export default function PawnList(props: Props) {
                   Pawnshop rating
                 </p>
               </MyCol>
-              <MyCol
-                lg={{ span: 2 }}
-                sm={2}
-                xs={2}
-                className={pick === 5 ? styles.activeIcon : ''}
-              >
-                <img className={styles.img_small} src={increase} alt="icon" />
-              </MyCol>
+              {pick === 5 && pickRating ? (
+                <MyCol xs={2} className={styles.activeIcon}>
+                  <img className={styles.img_small} src={increase} alt="icon" />
+                </MyCol>
+              ) : (
+                <MyCol xs={2}>
+                  <img className={styles.img_small} src={increase} alt="icon" />
+                </MyCol>
+              )}
             </MyRow>
           </MyCol>
         </MyRow>
       </Div>
-      {/* {shop && <PawnItem />} */}
-      {/* {shop !== undefined && */}
-      {props.dataShop.data.content.map((e, index) => (
-        <PawnItem
-          shopname={e.pawnShop.name}
-          interest={e.interest}
-          interestmax={e.interestMax}
-          interestmin={e.interestMin}
-          allowedloanmax={e.allowedLoanMax}
-          allowedloanmin={e.allowedLoanMin}
-          durationqtymax={e.durationQtyMax}
-          durationqtymin={e.durationQtyMin}
-          durationqtytype={e.durationQtyType}
-          loantovalue={e.loanToValue}
-          // {e.acceptableAssetsAsLoan.length==0 ? symbol={}}
-          symbol={e.acceptableAssetsAsLoan}
-          accept={e.acceptableAssetsAsCollateral}
-          reputation={e.pawnShop.reputation}
-          avatar={e.pawnShop.avatar}
-          type={e.type}
-          key={index}
-        />
-      ))}
-      {/* } */}
-      {/* {shop !== undefined && ( */}
+      {result.result &&
+        result.result.content.map((e, index) => (
+          <PawnItem
+            shopname={e.pawnShop.name}
+            interest={e.interest}
+            interestmax={e.interestMax}
+            interestmin={e.interestMin}
+            allowedloanmax={e.allowedLoanMax}
+            allowedloanmin={e.allowedLoanMin}
+            durationqtymax={e.durationQtyMax}
+            durationqtymin={e.durationQtyMin}
+            durationqtytype={e.durationQtyType}
+            loantovalue={e.loanToValue}
+            symbol={e.acceptableAssetsAsLoan}
+            accept={e.acceptableAssetsAsCollateral}
+            reputation={e.pawnShop.reputation}
+            avatar={e.pawnShop.avatar}
+            type={e.type}
+            key={index}
+          />
+        ))}
       <ReactPaginate
         previousLabel={'<'}
         nextLabel={'>'}
@@ -219,19 +238,15 @@ export default function PawnList(props: Props) {
         pageRangeDisplayed={2}
         containerClassName={`pagination mt-4 justify-content-center`}
         activeClassName={styles.pagiactive}
-        pageCount={props.dataShop.data.total_pages}
         pageClassName={styles.pagiBtn}
         previousClassName={styles.pagiBtn}
         nextClassName={styles.pagiBtn}
         pageLinkClassName={styles.pagiLink}
         previousLinkClassName={styles.pagiLink}
         nextLinkClassName={styles.pagiLink}
-        // onPageChange={e => {
-        //   return props.changePage(e.selected);
-        // }}
+        pageCount={result.result ? result.result.total_pages : 0}
         onPageChange={e => setPage(e.selected)}
       />
-      {/* )} */}
     </>
   );
 }

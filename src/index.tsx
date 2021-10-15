@@ -32,6 +32,7 @@ import i18n from './translation/i18n';
 import { I18nextProvider } from 'react-i18next';
 
 import rootSaga from './app/saga/index';
+import { LendCryptoContextProvider } from 'app/components/common/context/lendCryptoContext';
 
 const store = configureStore();
 store.runSaga(rootSaga);
@@ -42,11 +43,13 @@ ReactDOM.render(
     <HelmetProvider>
       <React.StrictMode>
         <LendNftContextProvider>
-          <BorrowCryptoContextProvider>
-            <I18nextProvider i18n={i18n}>
+          <LendCryptoContextProvider>
+            <BorrowCryptoContextProvider>
+              <I18nextProvider i18n={i18n}>
               <App />
-            </I18nextProvider>
-          </BorrowCryptoContextProvider>
+                </I18nextProvider>
+            </BorrowCryptoContextProvider>
+          </LendCryptoContextProvider>
         </LendNftContextProvider>
       </React.StrictMode>
     </HelmetProvider>

@@ -69,16 +69,22 @@ export default function NavBar(props: Props) {
     localStorage.clear();
     window.location.href = '/';
   };
+  //ve home
+  const toHome = () => {
+    window.location.href = '/';
+  };
   return (
     <Div className={styles.container}>
       {t('')}
       {/*  {t(...messages.someThing())}  */}
       <Navbar expand="xl">
         <Container fluid>
-          <Navbar.Brand as="div" className="me-auto">
-            <Link to="/">
-              <Logo className={styles.logo} />
-            </Link>
+          <Navbar.Brand
+            as="div"
+            className="me-auto cursor-pointer"
+            onClick={toHome}
+          >
+            <Logo className={styles.logo} />
           </Navbar.Brand>
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto ms-xxl-5 ms-xl-2">
