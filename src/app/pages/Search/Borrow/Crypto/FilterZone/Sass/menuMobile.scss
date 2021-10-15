@@ -1,0 +1,30 @@
+.filtermobile {
+    background: rgb(39, 44, 55);
+    position: absolute;
+    top: 0;
+    opacity: 0;
+    .filterheader {
+        padding: 10px;
+        align-items: center;
+        color: #ffffff;
+        display: flex;
+        justify-content: space-between;
+    }
+}
+
+@media screen and (max-width:768px) {
+    .filterdesktop {
+        display: none !important;
+    }
+    .ShowFilter__Mobile {
+        position: fixed;
+        height: 100%;
+        overflow-x: hidden;
+        opacity: 1 !important;
+        right: 0;
+        z-index: 9999;
+    }
+    .HiddenFilter__Mobile {
+        display: none !important;
+    }
+}
