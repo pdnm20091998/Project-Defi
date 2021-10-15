@@ -4,7 +4,6 @@ import { BiSearch } from 'react-icons/bi';
 import styled from 'styled-components/macro';
 import Filter from './components/Filter';
 import '../FilterZone/Sass/menuMobile.scss';
-import menuMobile from '../FilterZone/asset/Menumobile.svg';
 import hiddenMenu from '../FilterZone/asset/x-circle.svg';
 interface Props {
   dataAsset?: Array<object>;
@@ -172,8 +171,6 @@ export default function FilterZone(props: Props) {
     setDurationTypes('');
   };
 
-  const { handleClose } = props;
-
   //xử lí menu mobile
   const HiddenFilterMobile = () => {
     let filtermobile = document.querySelector('.filtermobile');
@@ -195,11 +192,23 @@ export default function FilterZone(props: Props) {
           />
         </div>
         <Border></Border>
+        <div className="searchFilter">
+          <div className="iconSearch">
+            <BiSearch />
+          </div>
+          <input
+            className="search-input"
+            name="searchFilter"
+            placeholder="Search NFT"
+            onChange={handleSearchName}
+          />
+        </div>
         <FilterHolder>
           <Filter
             title="Interest range"
             listCheckBox={interestRange}
             change={setInterestRanges}
+            checked={interestRanges}
           />
         </FilterHolder>
         <Border />
@@ -208,6 +217,7 @@ export default function FilterZone(props: Props) {
             title="loan to value"
             listCheckBox={loanToValue}
             change={setLoanToValueRanges}
+            checked={loanToValueRanges}
           />
         </FilterHolder>
         <Border />
@@ -216,6 +226,7 @@ export default function FilterZone(props: Props) {
             title="Collateral accepted"
             listCheckBox={collateralAccepted}
             change={handleCollateral}
+            checked={collateralSymbols}
           />
         </FilterHolder>
         <Border />
@@ -224,6 +235,7 @@ export default function FilterZone(props: Props) {
             title="Loan token"
             listCheckBox={loanToken}
             change={handleLoanSymbol}
+            checked={loanSymbols}
           />
         </FilterHolder>
         <Border />
@@ -232,6 +244,7 @@ export default function FilterZone(props: Props) {
             title="Loan type"
             listCheckBox={loanType}
             change={handleLoanType}
+            checked={loanTypes}
           />
         </FilterHolder>
         <Border />
@@ -240,83 +253,85 @@ export default function FilterZone(props: Props) {
             title="Duration"
             listCheckBox={duration}
             change={handleDurationTypes}
+            checked={durationTypes}
           />
         </FilterHolder>
         <Border />
       </div>
       {/* End menu mobile */}
-    <Div>
-      <FilterHolder>
-        <Span onClick={handleReset}>Reset filter</Span>
-      </FilterHolder>
-      <Border></Border>
-      <div className="searchFilter">
-        <div className="iconSearch">
-          <BiSearch />
-        </div>
-        <input
-          className="search-input"
-          name="searchFilter"
-          placeholder="Search NFT"
-          onChange={handleSearchName}
-        />
-      </div>
-      <FilterHolder>
-        <Filter
-          title="Interest range"
-          listCheckBox={interestRange}
-          change={setInterestRanges}
-          checked={interestRanges}
-        />
-      </FilterHolder>
-      <Border />
-      <FilterHolder>
-        <Filter
-          title="loan to value"
-          listCheckBox={loanToValue}
-          change={setLoanToValueRanges}
-          checked={loanToValueRanges}
-        />
-      </FilterHolder>
-      <Border />
-      <FilterHolder>
-        <Filter
-          title="Collateral accepted"
-          listCheckBox={collateralAccepted}
-          change={handleCollateral}
-          checked={collateralSymbols}
-        />
-      </FilterHolder>
-      <Border />
-      <FilterHolder>
-        <Filter
-          title="Loan token"
-          listCheckBox={loanToken}
-          change={handleLoanSymbol}
-          checked={loanSymbols}
-        />
-      </FilterHolder>
-      <Border />
-      <FilterHolder>
-        <Filter
-          title="Loan type"
-          listCheckBox={loanType}
-          change={handleLoanType}
-          checked={loanTypes}
-        />
-      </FilterHolder>
-      <Border />
-      <FilterHolder>
-        <Filter
-          title="Duration"
-          listCheckBox={duration}
-          change={handleDurationTypes}
-          checked={durationTypes}
-        />
-      </FilterHolder>
-      <Border />
-    </Div>
+      <Div className="filterdesktop">
+        <FilterHolder>
+          <Span onClick={handleReset}>Reset filter</Span>
+        </FilterHolder>
+        <Border></Border>
+        <div className="searchFilter">
+          <div className="iconSearch">
+            <BiSearch />
           </div>
+          <input
+            className="search-input"
+            name="searchFilter"
+            placeholder="Search NFT"
+            onChange={handleSearchName}
+          />
+        </div>
+        <FilterHolder>
+          <Filter
+            title="Interest range"
+            listCheckBox={interestRange}
+            change={setInterestRanges}
+            checked={interestRanges}
+          />
+        </FilterHolder>
+        <Border />
+        <FilterHolder>
+          <Filter
+            title="loan to value"
+            listCheckBox={loanToValue}
+            change={setLoanToValueRanges}
+            checked={loanToValueRanges}
+          />
+        </FilterHolder>
+        <Border />
+        <FilterHolder>
+          <Filter
+            title="Collateral accepted"
+            listCheckBox={collateralAccepted}
+            change={handleCollateral}
+            checked={collateralSymbols}
+          />
+        </FilterHolder>
+        <Border />
+        <FilterHolder>
+          <Filter
+            title="Loan token"
+            listCheckBox={loanToken}
+            change={handleLoanSymbol}
+            checked={loanSymbols}
+          />
+        </FilterHolder>
+        <Border />
+        <FilterHolder>
+          <Filter
+            title="Loan type"
+            listCheckBox={loanType}
+            change={handleLoanType}
+            checked={loanTypes}
+          />
+        </FilterHolder>
+        <Border />
+        <FilterHolder>
+          <Filter
+            title="Duration"
+            listCheckBox={duration}
+            change={handleDurationTypes}
+            checked={durationTypes}
+          />
+        </FilterHolder>
+        <Border />
+      </Div>
+    </div>
+  );
 }
 const Div = styled.div`
   background-color: #282c37;

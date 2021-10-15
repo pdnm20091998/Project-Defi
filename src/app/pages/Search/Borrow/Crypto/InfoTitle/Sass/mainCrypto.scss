@@ -1,56 +1,57 @@
 .headerCrypto {
-    color: #ffffff;
-    .crypto__title {
-        padding: 30px 0 20px 0;
-        font-weight: 500;
-        font-size: 20px;
-        line-height: 24px;
+  color: #ffffff;
+  margin-bottom: 28px;
+  .crypto__title {
+    padding: 30px 0 20px 0;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 24px;
+  }
+  .header__crypto {
+    padding: 20px 0 19px 26px;
+    border: 1px solid #45484f;
+    box-sizing: border-box;
+    border-radius: 20px;
+    display: flex;
+    align-items: flex-start;
+    clear: both;
+    .header__imgCrypto {
+      margin: 0 41px 0 0;
     }
-    .header__crypto {
-        padding: 20px 0 19px 26px;
-        border: 1px solid #45484F;
-        box-sizing: border-box;
-        border-radius: 20px;
-        display: flex;
-        align-items: flex-start;
-        clear: both;
-        .header__imgCrypto {
-            margin: 0 41px 0 0;
-        }
-        .header__content {
-            padding-right: 15px;
-            .header__title {
-                color: #DBA83D;
-                margin-bottom: 8px;
-                font-weight: 600;
-                font-size: 24px;
-                line-height: 29px;
-            }
-            .header__text {
-                line-height: 20px;
-            }
-        }
+    .header__content {
+      padding-right: 15px;
+      .header__title {
+        color: #dba83d;
+        margin-bottom: 8px;
+        font-weight: 600;
+        font-size: 24px;
+        line-height: 29px;
+      }
+      .header__text {
+        line-height: 20px;
+      }
     }
+  }
 }
 
 @media screen and (max-width: 768px) {
-    .menuMobile {
-        display: block !important;
-    }
+  .menuMobile {
+    display: block !important;
+  }
 }
 
-@media screen and (max-width:420px) {
-    .headerCrypto {
-        .header__crypto {
-            display: block;
-            padding: 20px;
-            .header__image {
-                display: flex;
-                justify-content: center;
-                .header__imgCrypto {
-                    margin: 0;
-                }
-            }
+@media screen and (max-width: 420px) {
+  .headerCrypto {
+    .header__crypto {
+      display: block;
+      padding: 20px;
+      .header__image {
+        display: flex;
+        justify-content: center;
+        .header__imgCrypto {
+          margin: 0;
         }
+      }
     }
+  }
 }

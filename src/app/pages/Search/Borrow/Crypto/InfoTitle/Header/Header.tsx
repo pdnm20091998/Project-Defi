@@ -1,4 +1,3 @@
-import styled from 'styled-components/macro';
 const HeaderCrypto = props => {
   // console.log(props);
 

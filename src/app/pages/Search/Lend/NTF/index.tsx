@@ -4,7 +4,7 @@ import ResultLendComponent from './features/ResultLend';
 import IconFilter from './assets/iconFilter.svg';
 import { useMediaQuery } from '@mui/material';
 import FilterLendMobile from './features/FilterLend/FilterLendMobile';
-import Navbar from 'app/pages/Home/NavBar/index';
+import Navbar from 'app/components/NavBar/index';
 import Footer from 'app/components/Footer';
 import { Container, Row, Col } from 'react-bootstrap';
 import { Wrapper } from './style/style';

@@ -49,6 +49,9 @@ export const SingleWrapper = styled.div`
     margin: 20px 0px 20px 20px;
     padding: 0;
     max-width: 215px;
+    @media (max-width: 767px) {
+      margin: 20px auto;
+    }
   }
   .detailResult {
     margin: 20px 0;

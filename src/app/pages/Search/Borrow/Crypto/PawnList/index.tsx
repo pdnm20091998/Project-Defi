@@ -210,43 +210,46 @@ export default function PawnList() {
       </Div>
       {result.result &&
         result.result.content.map((e, index) => (
-          <PawnItem
-            shopname={e.pawnShop.name}
-            interest={e.interest}
-            interestmax={e.interestMax}
-            interestmin={e.interestMin}
-            allowedloanmax={e.allowedLoanMax}
-            allowedloanmin={e.allowedLoanMin}
-            durationqtymax={e.durationQtyMax}
-            durationqtymin={e.durationQtyMin}
-            durationqtytype={e.durationQtyType}
-            loantovalue={e.loanToValue}
-            symbol={e.acceptableAssetsAsLoan}
-            accept={e.acceptableAssetsAsCollateral}
-            reputation={e.pawnShop.reputation}
-            avatar={e.pawnShop.avatar}
-            type={e.type}
-            key={index}
-          />
+          <PawnItemDiv key={index}>
+            <PawnItem
+              shopname={e.pawnShop.name}
+              interest={e.interest}
+              interestmax={e.interestMax}
+              interestmin={e.interestMin}
+              allowedloanmax={e.allowedLoanMax}
+              allowedloanmin={e.allowedLoanMin}
+              durationqtymax={e.durationQtyMax}
+              durationqtymin={e.durationQtyMin}
+              durationqtytype={e.durationQtyType}
+              loantovalue={e.loanToValue}
+              symbol={e.acceptableAssetsAsLoan}
+              accept={e.acceptableAssetsAsCollateral}
+              reputation={e.pawnShop.reputation}
+              avatar={e.pawnShop.avatar}
+              type={e.type}
+            />
+          </PawnItemDiv>
         ))}
-      <ReactPaginate
-        previousLabel={'<'}
-        nextLabel={'>'}
-        breakLabel={'...'}
-        breakClassName={'break-me text-white'}
-        marginPagesDisplayed={2}
-        pageRangeDisplayed={2}
-        containerClassName={`pagination mt-4 justify-content-center`}
-        activeClassName={styles.pagiactive}
-        pageClassName={styles.pagiBtn}
-        previousClassName={styles.pagiBtn}
-        nextClassName={styles.pagiBtn}
-        pageLinkClassName={styles.pagiLink}
-        previousLinkClassName={styles.pagiLink}
-        nextLinkClassName={styles.pagiLink}
-        pageCount={result.result ? result.result.total_pages : 0}
-        onPageChange={e => setPage(e.selected)}
-      />
+      <Pagination>
+        <ReactPaginate
+          previousLabel={'<'}
+          nextLabel={'>'}
+          breakLabel={'...'}
+          breakClassName={'break-me text-white'}
+          marginPagesDisplayed={2}
+          pageRangeDisplayed={2}
+          containerClassName={`pagination mt-4 justify-content-center`}
+          activeClassName={styles.pagiactive}
+          pageClassName={styles.pagiBtn}
+          previousClassName={styles.pagiBtn}
+          nextClassName={styles.pagiBtn}
+          pageLinkClassName={styles.pagiLink}
+          previousLinkClassName={styles.pagiLink}
+          nextLinkClassName={styles.pagiLink}
+          pageCount={result.result ? result.result.total_pages : 0}
+          onPageChange={e => setPage(e.selected)}
+        />
+      </Pagination>
     </>
   );
 }
@@ -254,6 +257,13 @@ const Div = styled.div`
   background: #232732;
   border-radius: 9px;
   // height: 50px;
+`;
+const PawnItemDiv = styled.div`
+  margin-bottom: 16px;
+`;
+
+const Pagination = styled.div`
+  margin: 48px 0 64px 0;
 `;
 const MyCol = styled(Col)`
   padding: 0;

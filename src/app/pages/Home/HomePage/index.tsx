@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
-import NavBar from '../NavBar';
+import NavBar from 'app/components/NavBar/index';
 import Banner from './Banner/Banner';
 import Footer from '../../../components/Footer';
 import Content from './Content/Content';

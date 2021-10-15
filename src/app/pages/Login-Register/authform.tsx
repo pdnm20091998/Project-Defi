@@ -11,8 +11,9 @@ import Login from './Login/Login';
 import Signup from './Signup/Sigup';
 import { Container, Row, Col } from 'react-bootstrap';
 import styled from 'styled-components/macro';
-import Navbar from '../Home/NavBar/index';
+import Navbar from 'app/components/NavBar/index';
 import { useTranslation } from 'react-i18next';
+import Footer from 'app/components/Footer/index';
 
 const Img = styled.img`
   max-width: 100%;
@@ -115,6 +116,7 @@ export default function AuthForm() {
           </Row>
         </Container>
       </Content>
+      <Footer />
     </>
   );
 }

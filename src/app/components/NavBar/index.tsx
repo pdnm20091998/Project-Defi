@@ -6,7 +6,7 @@
 import { useState } from 'react';
 import styled from 'styled-components/macro';
 import { useTranslation } from 'react-i18next';
-import Logo from '../../../components/Logo';
+import Logo from '../Logo/index';
 import { Collapse, Container, Form, Image, Nav, Navbar } from 'react-bootstrap';
 import DefiButton from 'app/components/DefiButton/DefiButton';
 import NavButton from './components/NavButton';
@@ -21,7 +21,7 @@ import {
 import avatar from './assests/Vector.svg';
 import { Link, useLocation } from 'react-router-dom';
 import Btn from './assests/button1.png';
-import { getToken, getNameLocal } from '../../../components/common/common';
+import { getToken, getNameLocal } from 'app/components/common/common';
 import InforUser from './components/InforUser';
 
 interface Props {}

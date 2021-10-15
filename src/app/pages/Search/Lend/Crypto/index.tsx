@@ -1,4 +1,4 @@
-import Navbar from '../../../Home/NavBar/index';
+import Navbar from 'app/components/NavBar/index';
 import Footer from '../../../../components/Footer/index';
 import { Container, Col, Row } from 'react-bootstrap';
 import { getAsset } from '../../../../service/apiAsset/apiAsset';

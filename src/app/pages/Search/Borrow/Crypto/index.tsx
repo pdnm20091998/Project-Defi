@@ -1,10 +1,11 @@
 import styled from 'styled-components/macro';
-import Navbar from '../../../Home/NavBar/index';
+import Navbar from 'app/components/NavBar/index';
 import Footer from '../../../../components/Footer/index';
 import { Col, Container, Row } from 'react-bootstrap';
 import SumPawnShop from './SumPawnShop/SumPawnShop';
 import FilterZone from './FilterZone';
 import PawnList from './PawnList';
+import InfoTitle from './InfoTitle';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useBorrowContext } from 'app/components/common/context/borrowCryptoContext';
@@ -92,6 +93,7 @@ export default function ResultBorrowCrypto() {
         <Container>
           <Row>
             <Col md={9}>
+              <InfoTitle />
               <SumPawnShop />
               <PawnList />
             </Col>
