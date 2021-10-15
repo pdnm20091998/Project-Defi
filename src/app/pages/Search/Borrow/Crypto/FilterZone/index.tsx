@@ -1,6 +1,4 @@
-import { TextField } from '@mui/material';
 import { useBorrowContext } from 'app/components/common/context/borrowCryptoContext';
-import { Container } from 'react-bootstrap';
 import { BiSearch } from 'react-icons/bi';
 
 import styled from 'styled-components/macro';
@@ -177,7 +175,7 @@ export default function FilterZone(props: Props) {
     setLoanTypes('');
     setDurationTypes('');
   };
-  const { handleClose } = props;
+
   return (
     <Div>
       <FilterHolder>
@@ -274,11 +272,12 @@ const Div = styled.div`
       flex: 1;
       border-radius: 24px;
       background-color: transparent;
-      color: #A2A3A7;
+      color: #a2a3a7;
       border: none;
       font-size: 14px;
       outline: none;
     }
+  }
 `;
 
 const FilterHolder = styled.div`

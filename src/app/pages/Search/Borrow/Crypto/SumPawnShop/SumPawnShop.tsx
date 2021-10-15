@@ -1,4 +1,3 @@
-import styled from 'styled-components/macro';
 import HeaderCrypto from '../InfoTitle/Header/Header';
 import '../InfoTitle/Sass/mainCrypto.scss';
 import dolar from '../InfoTitle/asset/dolar.svg';
@@ -9,8 +8,6 @@ import { RootState } from 'app/reducer/reducers';
 
 export default function SumPawnShop() {
   const result: any = useSelector((state: RootState) => state.borrow);
-  // console.log(props.dataShop);
-  // console.log(props.dataPerson);
   return (
     <div className="headerCrypto">
       <p className="crypto__title">

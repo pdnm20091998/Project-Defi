@@ -3,7 +3,6 @@
  * Advertisement
  *
  */
-import * as React from 'react';
 import styled from 'styled-components/macro';
 import ImgFrame from '../assets/Frame.svg';
 interface Props {}

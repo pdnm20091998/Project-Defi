@@ -185,7 +185,7 @@ const PawnShop = styled.div`
 
   .rating {
     display: flex;
-    align-item: center;
+    align-items: center;
     margin-top: 10px;
     img {
       padding-right: 8px;

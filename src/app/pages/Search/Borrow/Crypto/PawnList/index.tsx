@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Col, Row } from 'react-bootstrap';
 import styled from 'styled-components/macro';
 import increase from './assests/increase.svg';

@@ -3,10 +3,9 @@
  * NavBar
  *
  */
-import React, { useState } from 'react';
+import { useState } from 'react';
 import styled from 'styled-components/macro';
 import { useTranslation } from 'react-i18next';
-// import { messages } from './messages';
 import Logo from '../../../components/Logo';
 import { Collapse, Container, Form, Image, Nav, Navbar } from 'react-bootstrap';
 import DefiButton from 'app/components/DefiButton/DefiButton';
@@ -75,8 +74,6 @@ export default function NavBar(props: Props) {
   };
   return (
     <Div className={styles.container}>
-      {t('')}
-      {/*  {t(...messages.someThing())}  */}
       <Navbar expand="xl">
         <Container fluid>
           <Navbar.Brand

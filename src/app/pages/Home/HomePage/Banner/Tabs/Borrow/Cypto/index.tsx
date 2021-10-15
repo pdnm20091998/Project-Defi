@@ -11,7 +11,6 @@ import img from '../../../assets/Vector.svg';
 import imgSearch from '../../../assets/search.svg';
 import DefiButton from '../../../../../../../components/DefiButton/DefiButton';
 import { Container, Row, Col } from 'react-bootstrap';
-import { Form } from '../../../Form/index';
 import { Link } from 'react-router-dom';
 import ComboBox from 'react-responsive-combo-box';
 import { Div, InputField } from 'app/pages/Home/HomePage/components/style';

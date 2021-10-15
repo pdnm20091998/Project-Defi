@@ -1,5 +1,4 @@
 import { TextField } from '@mui/material';
-import React from 'react';
 import { BiSearch } from 'react-icons/bi';
 import styled from 'styled-components';
 import FilterListComponent from './FilterListComponent';

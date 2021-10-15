@@ -3,20 +3,18 @@
  * Lend
  *
  */
-import * as React from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import { useEffect, useState } from 'react';
 import DefiButton from '../../../../../../components/DefiButton/DefiButton';
 import imgSearch from '../../assets/search.svg';
 import imgClose from '../../assets/x.svg';
-import { MultiSelect, SelectItem } from 'react-multi-select-component';
+import { MultiSelect } from 'react-multi-select-component';
 import { getAsset } from '../../../../../../service/apiAsset/apiAsset';
 import { Link } from 'react-router-dom';
 import { Div, InputField, P, Main } from '../../../components/style';
 import ComboBox from 'react-responsive-combo-box';
 import { useLendContext } from 'app/components/common/context/lendNftContext';
 import { useLendCryptoContext } from 'app/components/common/context/lendCryptoContext';
-import { setMaxListeners } from 'process';
 
 interface OptionsItem {
   label: string;
@@ -99,8 +97,7 @@ export function Lend(props: Props) {
   const { setLoanAmount, setLoanSymbol, setLoanDuration, setLoanDurationType } =
     useLendContext();
   // import lendCryptoContext
-  const { setLA, setLS, setLD, setLDType, setItem, item } =
-    useLendCryptoContext();
+  const { setLA, setLS, setLD, setLDType, setItem } = useLendCryptoContext();
   // get data loan amount
   const handleLoanAmountChange = e => {
     setLoanAmount(e.target.value);

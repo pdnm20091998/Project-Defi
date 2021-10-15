@@ -3,7 +3,6 @@
  * Banner
  *
  */
-import * as React from 'react';
 import styled from 'styled-components/macro';
 import img from '../assets/Frame.svg';
 import { Container, Row, Col } from 'react-bootstrap';

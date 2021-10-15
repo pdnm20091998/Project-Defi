@@ -6,10 +6,9 @@
 import * as React from 'react';
 import styled from 'styled-components/macro';
 import { SumCollateral } from '../SumCollateral/SumCollateral';
-import { Container, Col, Row, Table } from 'react-bootstrap';
+import { Table } from 'react-bootstrap';
 import { Address, P, Start } from '../Style';
 import imgStar from '../assets/Star.svg';
-import { useState } from 'react';
 import DefiButton from 'app/components/DefiButton/DefiButton';
 import { Advertisement } from '../Advertisement';
 import { Pagination } from 'app/components/Pagination/Pagination';
@@ -21,9 +20,6 @@ interface Props {}
 export function Result(props: Props) {
   const { setPage } = useLendCryptoContext();
   const result: any = useSelector((state: RootState) => state.lendcrypto);
-
-  console.log(result);
-
   const imgObject = {
     XRP: '/XRP.7ff389b.png',
     ETH: '/ETH.d810d23.png',

@@ -1,10 +1,9 @@
-import React from 'react';
 import styled from 'styled-components';
 import FilterComponent from './FilterComponents';
 import { AiFillCloseCircle } from 'react-icons/ai';
 import { useLendCryptoContext } from 'app/components/common/context/lendCryptoContext';
 import { Checkbox, FormControlLabel } from '@mui/material';
-import { IoIosArrowDown, IoIosArrowUp } from 'react-icons/io';
+import { IoIosArrowUp } from 'react-icons/io';
 interface Props {
   dataAsset?: Array<object>;
   handleClose: Function;

@@ -1,5 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-import styled from 'styled-components/macro';
 import Navbar from '../../../Home/NavBar/index';
 import Footer from '../../../../components/Footer/index';
 import { Container, Col, Row } from 'react-bootstrap';
@@ -11,7 +9,7 @@ import FilterLendMobile from './Filter/FilterLendMobie';
 import IconFilter from './assets/Group 6152.svg';
 
 import { useDispatch } from 'react-redux';
-import { resultLendCryptoAction } from 'app/actions/LendCrypto/lendCryptoAction';
+import { resultLendCryptoAction } from 'app/actions/lendCrypto/lendCryptoAction';
 import { Result } from './Result';
 import { useLendCryptoContext } from 'app/components/common/context/lendCryptoContext';
 import { Wrapper, Div } from './Style/index';
@@ -42,6 +40,7 @@ export default function ResultLendCrypto() {
     asyncCall().then(e => {
       setDataAsset(e);
     });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   const imgAsset = [...dataasset];
   // data for api
@@ -70,6 +69,7 @@ export default function ResultLendCrypto() {
   //call api
   useEffect(() => {
     dispatch(resultLendCryptoAction(data));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data]);
 
   const handleClose = () => {};

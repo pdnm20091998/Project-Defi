@@ -81,6 +81,7 @@ export const Div = styled.div`
       }
       ._WbEAz ::-webkit-scrollbar-track {
         -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+        box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
         background-color: #2f3543;
       }
       ._WbEAz ::-webkit-scrollbar {
@@ -142,13 +143,13 @@ export const Main = styled.div`
     }
     .dropdown-container {
       background-color: transparent !important;
+      box-shadow: none;
       .dropdown-heading {
         height: auto;
       }
-      .options {
-      }
       .options::-webkit-scrollbar-track {
         -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+        box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
         background-color: #2f3543;
       }
       .options::-webkit-scrollbar {

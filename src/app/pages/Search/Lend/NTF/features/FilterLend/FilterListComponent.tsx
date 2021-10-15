@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { IoIosArrowUp, IoIosArrowDown } from 'react-icons/io';
-import CheckBoxField from '../CheckBox/CheckBox';
+import CheckBoxField from 'app/components/CheckBox/CheckBox';
 
 interface Iprops {
   title: string;

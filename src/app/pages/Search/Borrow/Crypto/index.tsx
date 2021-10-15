@@ -4,7 +4,6 @@ import Footer from '../../../../components/Footer/index';
 import { Col, Container, Row } from 'react-bootstrap';
 import SumPawnShop from './SumPawnShop/SumPawnShop';
 import FilterZone from './FilterZone';
-import InfoTitle from './InfoTitle';
 import PawnList from './PawnList';
 import { useState, useEffect } from 'react';
 import axios from 'axios';

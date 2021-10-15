@@ -46,8 +46,8 @@ ReactDOM.render(
           <LendCryptoContextProvider>
             <BorrowCryptoContextProvider>
               <I18nextProvider i18n={i18n}>
-              <App />
-                </I18nextProvider>
+                <App />
+              </I18nextProvider>
             </BorrowCryptoContextProvider>
           </LendCryptoContextProvider>
         </LendNftContextProvider>
