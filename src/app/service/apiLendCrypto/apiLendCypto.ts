@@ -1,9 +1,23 @@
 import axios from 'axios';
 
-export const getResultLenCrypto = requet => {
+export const getResultLenCrypto = request => {
+  const BASE_API_URL = `https://staginggw.defiforyou.uk/defi-pawn-crypto-service/public-api/v1.0.0/collaterals/search`;
   return axios
     .get(
-      `https://staginggw.defiforyou.uk/defi-pawn-crypto-service/public-api/v1.0.0/collaterals/search?page=0&size=10`,
+      BASE_API_URL +
+        `?page=${request.data.page}&size=10${
+          request.data.item
+            ? `&collateralSymbols=${request.data.item}`
+            : '&collateralSymbols='
+        }${
+          request.data.loanSymbol
+            ? `&loanSymbols=${request.data.loanSymbol}`
+            : '&loanSymbols='
+        }${
+          request.data.loanDurationType !== undefined
+            ? `&durationTypes=${request.data.loanDurationType}`
+            : '&durationTypes='
+        }`,
     )
     .then(response => {
       return response.data;

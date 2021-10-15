@@ -1,15 +1,17 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { IoIosArrowUp, IoIosArrowDown } from 'react-icons/io';
-import CheckBoxField from '../../../../../components/CheckBox/CheckBox';
+import CheckBoxField from 'app/components/CheckBox/CheckBox';
 
 interface Iprops {
   title: string;
   listCheckBox: any;
   type?: 'sortList';
+  change?: any;
+  checked?: any;
 }
 function FilterComponent(props: Iprops) {
-  const { title, listCheckBox, type } = props;
+  const { title, listCheckBox, type, change, checked } = props;
 
   const [openList, setOpenList] = useState(true);
 
@@ -34,6 +36,9 @@ function FilterComponent(props: Iprops) {
                 name={item.name}
                 title={item.title}
                 img={item.img}
+                value={item.value}
+                change={change}
+                checked={checked}
               />
             ))}
           </div>
@@ -44,7 +49,10 @@ function FilterComponent(props: Iprops) {
                 key={index}
                 name={item.name}
                 title={item.title}
+                value={item.value}
                 img={item.img}
+                change={item.change}
+                checked={checked}
               />
             ))}
           </div>

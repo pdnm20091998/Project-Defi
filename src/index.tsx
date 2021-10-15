@@ -31,6 +31,7 @@ import { BorrowCryptoContextProvider } from 'app/components/common/context/borro
 import './locales/i18n';
 
 import rootSaga from './app/saga/index';
+import { LendCryptoContextProvider } from 'app/components/common/context/lendCryptoContext';
 
 const store = configureStore();
 store.runSaga(rootSaga);
@@ -41,9 +42,11 @@ ReactDOM.render(
     <HelmetProvider>
       <React.StrictMode>
         <LendNftContextProvider>
-          <BorrowCryptoContextProvider>
-            <App />
-          </BorrowCryptoContextProvider>
+          <LendCryptoContextProvider>
+            <BorrowCryptoContextProvider>
+              <App />
+            </BorrowCryptoContextProvider>
+          </LendCryptoContextProvider>
         </LendNftContextProvider>
       </React.StrictMode>
     </HelmetProvider>
