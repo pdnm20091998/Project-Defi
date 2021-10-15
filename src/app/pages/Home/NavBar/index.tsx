@@ -106,8 +106,9 @@ export default function NavBar(props: Props) {
               {location.pathname === '/login/tab=2' ||
               location.pathname === '/login' ? (
                 <SignupButton>
-                  <Link to="/login/tab=1"></Link>
-                  <img src={Btn} alt="" />
+                  <Link to="/login/tab=1">
+                    <img src={Btn} alt="" />
+                  </Link>
                 </SignupButton>
               ) : (
                 ''

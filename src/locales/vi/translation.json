@@ -1,0 +1,37 @@
+{
+  "home": {
+    "title": "Nhận các khoản cho vay tiền điện tử ngay lập tức, bất kể xếp hạng tín dụng của bạn ",
+    "content": {
+      "title": "Tại sao lại vay với chúng tôi?",
+      "quicker": "Nhanh hơn ngân hàng",
+      "quicker_description": "Các ngân hàng là tin tức của ngày hôm nay. Nhận số tiền bạn cần mà không cần phải chờ đợi.",
+      "better": "Lãi suất tốt hơn",
+      "better_description": "Cho vay P2P cho phép bạn thương lượng với người cho vay để thu xếp mức lãi suất tốt nhất có thể",
+      "finance": "Tài sản tài chính không cần bán",
+      "finance_description": "Đưa tài sản của bạn vào hoạt động để bạn có thể tiếp tục đáp ứng các nghĩa vụ tài chính của mình.",
+      "credit": "Không kiểm tra tín dụng",
+      "credit_description": "Vay mà không cần kiểm tra lý lịch. Bất kỳ ai cũng có thể nhận được nguồn tài chính mà họ cần."
+    },
+    "explore": {
+      "title": "Đối tác nổi bật"
+    }
+  },
+  "login": {
+    "title": "Độc quyền trên",
+    "description_start": "Đăng ký tài khoản DeFi For You mới từ ",
+    "description_to": " đến ",
+    "description_end": "để có 100% cơ hội nhận được DFY tokens",
+    "signup_tab": "Đăng ký",
+    "login_tab": "Đăng nhập",
+    "name": "Họ tên",
+    "password": "Mật khẩu",
+    "confirm_pass": "Xác nhận mật khẩu",
+    "forgot_password": "Quên mật khẩu?",
+    "login_btn": "Đăng nhập",
+    "signup_btn": "Tạo tài khoản",
+    "signup_description": "Chúng tôi sẽ không chia sẻ hoặc bán thông tin của bạn cho bên thứ ba."
+  },
+  "footer": {
+    "about": " là một phong cách giao dịch của Miles Mann Limited có văn phòng đăng ký tại 5 Southgate Street, Gloucester, Gloucestershire, GL1 1TG1 Được Cơ quan Quản lý Tài chính cấp phép và quản lý để thực hiện các quyền và nghĩa vụ của người cho vay theo một thỏa thuận tín dụng quy định (không bao gồm tín dụng ngắn hạn chi phí cao , hợp đồng bán hóa đơn và hợp đồng tín dụng thu tiền mua nhà), và có quyền thực hiện các quyền và nghĩa vụ của người cho vay theo một hợp đồng tín dụng được quy định (không bao gồm tín dụng ngắn hạn chi phí cao, hợp đồng mua bán hóa đơn và hợp đồng tín dụng thu tiền mua nhà)"
+  }
+}

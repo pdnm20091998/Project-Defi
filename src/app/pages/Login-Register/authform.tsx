@@ -12,6 +12,7 @@ import Signup from './Signup/Sigup';
 import { Container, Row, Col } from 'react-bootstrap';
 import styled from 'styled-components/macro';
 import Navbar from '../Home/NavBar/index';
+import { useTranslation } from 'react-i18next';
 
 const Img = styled.img`
   max-width: 100%;
@@ -54,6 +55,7 @@ const Tab = styled.div`
   }
 `;
 export default function AuthForm() {
+  const { t } = useTranslation();
   let { path, url } = useRouteMatch();
   let location = useLocation();
   return (
@@ -78,7 +80,7 @@ export default function AuthForm() {
                     }
                     to={`${url}/tab=1`}
                   >
-                    Sign up
+                    {t('login.signup_tab')}
                   </Link>
                 </span>
                 <span>
@@ -91,7 +93,7 @@ export default function AuthForm() {
                     }
                     to={`${url}/tab=2`}
                   >
-                    Log in
+                    {t('login.login_tab')}
                   </Link>
                 </span>
               </Tab>

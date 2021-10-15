@@ -28,7 +28,8 @@ import reportWebVitals from 'reportWebVitals';
 import { LendNftContextProvider } from './app/components/common/context/lendNftContext';
 import { BorrowCryptoContextProvider } from 'app/components/common/context/borrowCryptoContext';
 // Initialize languages
-import './locales/i18n';
+import i18n from './translation/i18n';
+import { I18nextProvider } from 'react-i18next';
 
 import rootSaga from './app/saga/index';
 
@@ -42,7 +43,9 @@ ReactDOM.render(
       <React.StrictMode>
         <LendNftContextProvider>
           <BorrowCryptoContextProvider>
-            <App />
+            <I18nextProvider i18n={i18n}>
+              <App />
+            </I18nextProvider>
           </BorrowCryptoContextProvider>
         </LendNftContextProvider>
       </React.StrictMode>
@@ -50,13 +53,6 @@ ReactDOM.render(
   </Provider>,
   MOUNT_NODE,
 );
-
-// Hot reloadable translation json files
-if (module.hot) {
-  module.hot.accept(['./locales/i18n'], () => {
-    // No need to render the App again because i18next works with the hooks
-  });
-}
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

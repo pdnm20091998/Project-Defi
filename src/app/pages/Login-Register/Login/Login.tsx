@@ -14,13 +14,14 @@ import { loginUserAction } from '../../../actions/auth/authActions';
 import { WrongPasswordModal } from '../Modal/wrongPassword';
 import { NotActiveModal } from '../Modal/notActive';
 import { RootState } from 'app/reducer/reducers';
-
+import { useTranslation } from 'react-i18next';
 type UserSubmitForm = {
   email: string;
   password: string;
 };
 
 export default function Login() {
+  const { t } = useTranslation();
   const [values, setValues] = useState(true);
   const dispatch = useDispatch();
   let history = useHistory();
@@ -98,7 +99,7 @@ export default function Login() {
           </div>
           <Validation>{errors.email?.message}</Validation>
         </InputField>
-        <Label>Password</Label>
+        <Label>{t('login.password')}</Label>
         <InputField color={errors.password ? '#ff5252' : '#74767b'}>
           <div className="password__field">
             {' '}
@@ -118,11 +119,11 @@ export default function Login() {
           <Validation>{errors.password?.message}</Validation>
         </InputField>
         <div>
-          <Forgot>Forgot your password?</Forgot>
+          <Forgot>{t('login.forgot_password')}</Forgot>
         </div>
         <Center>
           <DefiButton type="submit" width={'117px'} height={'48px'}>
-            Login
+            {t('login.login_btn')}
           </DefiButton>
         </Center>
         <WrongPasswordModal

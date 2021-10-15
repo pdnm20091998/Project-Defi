@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import ImgStart from '../assets/Star2.svg';
-import ImgPrice from '../assets/price.svg';
 import ImgDiamond from '../assets/diamond1.svg';
 import ImgArtwork from '../assets/art-palette1.svg';
 
@@ -103,13 +102,13 @@ export const SingleWrapper = styled.div`
     }
 
     .detail-content {
+      line-height: 20px;
       &__price {
-        padding-left: 22px;
-
-        background-image: url(${ImgPrice});
-        background-repeat: no-repeat;
-        background-size: 16px;
-        background-position: 0px 0px;
+        .evaluated-icon {
+          margin-right: 6px;
+          margin-left: 8px;
+          height: 19px;
+        }
       }
 
       &__borrower {
