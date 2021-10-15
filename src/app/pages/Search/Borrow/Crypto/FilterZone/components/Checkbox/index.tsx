@@ -9,33 +9,36 @@ interface IProps {
   img?: string;
   value: string;
   change: Function;
+  checked?: any;
 }
 
 const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
 
 function CheckBoxField(props: IProps) {
-  const { name, title, type, img, value, change } = props;
+  // const { name, title, type, img, value, change, checked } = props;
+  // console.log(props.checked);
   return (
     <Wrapper>
       <Checkbox
         {...label}
-        name={name}
+        name={props.name}
         sx={{
           color: '#fff',
           '&.Mui-checked': {
             color: '#DBA83D',
           },
         }}
-        value={value}
-        onClick={e => change((e.target as HTMLInputElement).value)}
+        value={props.value}
+        checked={props.checked.includes(props.value)}
+        onClick={e => props.change((e.target as HTMLInputElement).value)}
       />
-      {img !== undefined ? (
+      {props.img !== undefined ? (
         <>
-          <img src={img} alt="ảnh" />
-          <p>{title}</p>
+          <img src={props.img} alt="ảnh" />
+          <p>{props.title}</p>
         </>
       ) : (
-        <p>{title}</p>
+        <p>{props.title}</p>
       )}
     </Wrapper>
   );

@@ -7,6 +7,9 @@
 .linkColor {
   color: #d1d1d3 !important;
 }
+.logo {
+  cursor: pointer;
+}
 @media (max-width: 1199px) {
   .displayBtn {
     display: inline-block;

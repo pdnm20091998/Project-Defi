@@ -1,5 +1,7 @@
+import { TextField } from '@mui/material';
 import { useBorrowContext } from 'app/components/common/context/borrowCryptoContext';
 import { Container } from 'react-bootstrap';
+import { BiSearch } from 'react-icons/bi';
 
 import styled from 'styled-components/macro';
 import Filter from './components/Filter';
@@ -31,7 +33,9 @@ const imgObject = {
 };
 export default function FilterZone(props: Props) {
   const {
+    interestRanges,
     setInterestRanges,
+    loanToValueRanges,
     setLoanToValueRanges,
     loanTypes,
     setLoanTypes,
@@ -41,6 +45,7 @@ export default function FilterZone(props: Props) {
     setLoanSymbols,
     durationTypes,
     setDurationTypes,
+    setName,
   } = useBorrowContext();
   const collateralAccepted: Array<object> = [];
   const handleCollateral = data => {
@@ -161,19 +166,41 @@ export default function FilterZone(props: Props) {
       }
       return 0;
     });
-
+  const handleSearchName = e => {
+    setName(e.target.value);
+  };
+  const handleReset = e => {
+    setInterestRanges('');
+    setLoanToValueRanges('');
+    setCollateralSymbols('');
+    setLoanSymbols('');
+    setLoanTypes('');
+    setDurationTypes('');
+  };
   const { handleClose } = props;
   return (
     <Div>
       <FilterHolder>
-        <Span>Reset filter</Span>
+        <Span onClick={handleReset}>Reset filter</Span>
       </FilterHolder>
       <Border></Border>
+      <div className="searchFilter">
+        <div className="iconSearch">
+          <BiSearch />
+        </div>
+        <input
+          className="search-input"
+          name="searchFilter"
+          placeholder="Search NFT"
+          onChange={handleSearchName}
+        />
+      </div>
       <FilterHolder>
         <Filter
           title="Interest range"
           listCheckBox={interestRange}
           change={setInterestRanges}
+          checked={interestRanges}
         />
       </FilterHolder>
       <Border />
@@ -182,6 +209,7 @@ export default function FilterZone(props: Props) {
           title="loan to value"
           listCheckBox={loanToValue}
           change={setLoanToValueRanges}
+          checked={loanToValueRanges}
         />
       </FilterHolder>
       <Border />
@@ -190,6 +218,7 @@ export default function FilterZone(props: Props) {
           title="Collateral accepted"
           listCheckBox={collateralAccepted}
           change={handleCollateral}
+          checked={collateralSymbols}
         />
       </FilterHolder>
       <Border />
@@ -198,6 +227,7 @@ export default function FilterZone(props: Props) {
           title="Loan token"
           listCheckBox={loanToken}
           change={handleLoanSymbol}
+          checked={loanSymbols}
         />
       </FilterHolder>
       <Border />
@@ -206,6 +236,7 @@ export default function FilterZone(props: Props) {
           title="Loan type"
           listCheckBox={loanType}
           change={handleLoanType}
+          checked={loanTypes}
         />
       </FilterHolder>
       <Border />
@@ -214,6 +245,7 @@ export default function FilterZone(props: Props) {
           title="Duration"
           listCheckBox={duration}
           change={handleDurationTypes}
+          checked={durationTypes}
         />
       </FilterHolder>
       <Border />
@@ -224,6 +256,29 @@ const Div = styled.div`
   background-color: #282c37;
   border-radius: 20px;
   padding-bottom: 1rem;
+
+  .searchFilter {
+    border: 1px solid #a2a3a7;
+    border-radius: 24px;
+    margin: 16px 12px 0 12px;
+    background-color: #3e424b;
+    display: flex;
+
+    .iconSearch {
+      margin: 8px;
+      svg {
+        color: #a2a3a7;
+      }
+    }
+    .search-input {
+      flex: 1;
+      border-radius: 24px;
+      background-color: transparent;
+      color: #A2A3A7;
+      border: none;
+      font-size: 14px;
+      outline: none;
+    }
 `;
 
 const FilterHolder = styled.div`
@@ -238,4 +293,5 @@ const Span = styled.span`
   color: white;
   font-size: 14px;
   text-decoration: underline;
+  cursor: pointer;
 `;

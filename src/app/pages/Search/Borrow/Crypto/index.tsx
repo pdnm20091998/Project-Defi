@@ -10,7 +10,10 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useBorrowContext } from 'app/components/common/context/borrowCryptoContext';
 import { useDispatch } from 'react-redux';
-import { resultBorrowAction } from 'app/actions/borrow/borrowAction';
+import {
+  resultBorrowAction,
+  resultPersonalBorrowAction,
+} from 'app/actions/borrow/borrowAction';
 
 const Div = styled.div`
   background-color: #171a23;
@@ -19,8 +22,6 @@ const url =
   'https://staginggw.defiforyou.uk/defi-pawn-crypto-service/public-api/v1.0.0/crypto-asset';
 const url2 =
   'https://staginggw.defiforyou.uk/defi-pawn-crypto-service/public-api/v1.0.0/pawn-shop/search-p2p-lenders?status=3&size=10';
-const url3 =
-  'https://staginggw.defiforyou.uk/defi-pawn-crypto-service/public-api/v1.0.0/pawn-shop-package/search?size=10&status=3';
 export default function ResultBorrowCrypto() {
   const [dataasset, setDataAsset] = useState<Array<object>>([]);
   const dataAsset: Array<object> = [];
@@ -203,6 +204,9 @@ export default function ResultBorrowCrypto() {
     loanSymbols,
     durationTypes,
     collateralAmount,
+    durationQty,
+    loanAmount,
+    name,
   } = useBorrowContext();
   const data = {
     page,
@@ -214,9 +218,14 @@ export default function ResultBorrowCrypto() {
     loanSymbols,
     durationTypes,
     collateralAmount,
+    durationQty,
+    loanAmount,
+    name,
   };
+
   useEffect(() => {
     dispatch(resultBorrowAction(data));
+    dispatch(resultPersonalBorrowAction(data));
   }, [data]);
 
   const imgAsset = [...dataasset];
@@ -227,17 +236,12 @@ export default function ResultBorrowCrypto() {
         <Container>
           <Row>
             <Col md={9}>
-              {shop && shop2 && (
-                <SumPawnShop dataShop={shop!} dataPerson={shop2!} />
-              )}
-              <InfoTitle />
-              {shop && (
-                <PawnList
-                  dataShop={shop!}
-                  // changePage={changePage}
-                  // changeCusSort={changeCusSort}
-                />
-              )}
+              <SumPawnShop />
+
+              <PawnList
+              // changePage={changePage}
+              // changeCusSort={changeCusSort}
+              />
             </Col>
             <Col className="mt-3" md={3}>
               <FilterZone
