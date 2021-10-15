@@ -3,10 +3,9 @@
  * NavBar
  *
  */
-import React, { useState } from 'react';
+import { useState } from 'react';
 import styled from 'styled-components/macro';
 import { useTranslation } from 'react-i18next';
-// import { messages } from './messages';
 import Logo from '../../../components/Logo';
 import { Collapse, Container, Form, Image, Nav, Navbar } from 'react-bootstrap';
 import DefiButton from 'app/components/DefiButton/DefiButton';
@@ -69,16 +68,20 @@ export default function NavBar(props: Props) {
     localStorage.clear();
     window.location.href = '/';
   };
+  //ve home
+  const toHome = () => {
+    window.location.href = '/';
+  };
   return (
     <Div className={styles.container}>
-      {t('')}
-      {/*  {t(...messages.someThing())}  */}
       <Navbar expand="xl">
         <Container fluid>
-          <Navbar.Brand as="div" className="me-auto">
-            <Link to="/">
-              <Logo className={styles.logo} />
-            </Link>
+          <Navbar.Brand
+            as="div"
+            className="me-auto cursor-pointer"
+            onClick={toHome}
+          >
+            <Logo className={styles.logo} />
           </Navbar.Brand>
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto ms-xxl-5 ms-xl-2">
@@ -106,8 +109,9 @@ export default function NavBar(props: Props) {
               {location.pathname === '/login/tab=2' ||
               location.pathname === '/login' ? (
                 <SignupButton>
-                  <Link to="/login/tab=1"></Link>
-                  <img src={Btn} alt="" />
+                  <Link to="/login/tab=1">
+                    <img src={Btn} alt="" />
+                  </Link>
                 </SignupButton>
               ) : (
                 ''

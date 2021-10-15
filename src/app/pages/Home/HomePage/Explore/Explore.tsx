@@ -6,6 +6,7 @@ import explore_two from '../Explore/asset/Rectangle_two.png';
 import explore_three from '../Explore/asset/Rectangle_three.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
+import { useTranslation } from 'react-i18next';
 
 const DivCarousel = styled.div`
   padding: 60px 15px 80px 15px;
@@ -69,6 +70,7 @@ const SeeAll = styled.span`
 `;
 
 const Explore = () => {
+  const { t } = useTranslation();
   var settings = {
     dots: false,
     infinite: true,
@@ -104,7 +106,7 @@ const Explore = () => {
   return (
     <Container>
       <DivCarousel>
-        <TitleExplore>explore featured pawnshops</TitleExplore>
+        <TitleExplore>{t('home.explore.title')}</TitleExplore>
         <SeeAll>
           See all
           <FontAwesomeIcon icon={faArrowRight} />

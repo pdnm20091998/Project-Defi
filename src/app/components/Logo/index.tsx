@@ -3,7 +3,6 @@
  * Logo
  *
  */
-import * as React from 'react';
 // import styled from 'styled-components/macro';
 import logo from './assests/logo.svg';
 interface Props {
@@ -23,5 +22,3 @@ export default function Logo(props: Props) {
     />
   );
 }
-
-// const Div = styled.div``;

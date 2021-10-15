@@ -3,7 +3,6 @@
  * Tabs
  *
  */
-import * as React from 'react';
 import styled from 'styled-components/macro';
 import { Tabs, Tab } from 'react-bootstrap';
 import { Borrow } from './Borrow/index';

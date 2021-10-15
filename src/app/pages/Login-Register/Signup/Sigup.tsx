@@ -16,7 +16,7 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
 import { useDispatch } from 'react-redux';
-
+import { useTranslation } from 'react-i18next';
 import { registerUserAction } from '../../../actions/auth/authActions';
 
 type UserSubmitFormSignup = {
@@ -27,6 +27,7 @@ type UserSubmitFormSignup = {
 };
 
 export default function Signup() {
+  const { t } = useTranslation();
   const [values, setValues] = useState(true);
   const [valuesConfirm, setValuesConfirm] = useState(true);
   const [recaptcha_response, setRecaptcha] = useState('');
@@ -91,7 +92,7 @@ export default function Signup() {
   return (
     <>
       <Form onSubmit={handleSubmit(onSubmitSignup)}>
-        <Label>Name</Label>
+        <Label>{t('login.name')}</Label>
         <InputField color={errors.fullname ? '#ff5252' : '#74767b'}>
           <div className="email__field">
             {' '}
@@ -117,7 +118,7 @@ export default function Signup() {
           </div>
           <Validation>{errors.email?.message}</Validation>
         </InputField>
-        <Label>Password</Label>
+        <Label>{t('login.password')}</Label>
         <InputField color={errors.password ? '#ff5252' : '#74767b'}>
           <div className="password__field">
             {' '}
@@ -136,7 +137,7 @@ export default function Signup() {
           </div>
           <Validation>{errors.password?.message}</Validation>
         </InputField>
-        <Label>Confirm Password</Label>
+        <Label>{t('login.confirm_pass')}</Label>
         <InputField color={errors.confirmPassword ? '#ff5252' : '#74767b'}>
           <div className="password__field">
             {' '}
@@ -155,9 +156,7 @@ export default function Signup() {
           </div>
           <Validation>{errors.confirmPassword?.message}</Validation>
         </InputField>
-        <Description>
-          We will not share or sell your information to 3rd parties.
-        </Description>
+        <Description>{t('login.signup_description')}</Description>
         <DescriptionSd>
           By clicking on <strong>Create Account</strong>, you agree to DeFi For
           You’s Terms and Conditions of Use.
@@ -168,7 +167,7 @@ export default function Signup() {
         />
         <Center>
           <DefiButton type="submit" width={'174px'} height={'48px'}>
-            Create Account
+            {t('login.signup_btn')}
           </DefiButton>
         </Center>
       </Form>

@@ -5,6 +5,7 @@ import money from './asset/money-management.svg';
 import wallet from './asset/Group-wallet.svg';
 import { Container, Row, Col } from 'react-bootstrap';
 import './sass/content.scss';
+import { useTranslation } from 'react-i18next';
 
 const DivContent = styled.div`
   padding: 60px 0;
@@ -49,21 +50,22 @@ const ContentItem = styled.div`
 `;
 
 const Content = () => {
+  const { t } = useTranslation();
+
   return (
     <DivContent className="content">
       <Container>
         <Row>
-          <Title className="title">Why Borrow With Us?</Title>
+          <Title className="title">{t('home.content.title')}</Title>
         </Row>
         <Row>
           <Col sm={12} lg={3} className="content__col">
             <ContentItem className="content__item">
               <Image src={fast_time} alt={Error_img} />
               <div className="content__text">
-                <h3 className="content__title">Quicker than the bank</h3>
+                <h3 className="content__title">{t('home.content.quicker')}</h3>
                 <p className="content__info">
-                  Banks are yesterdays news. Get the money you need without
-                  having to wait.
+                  {t('home.content.quicker_description')}
                 </p>
               </div>
             </ContentItem>
@@ -72,10 +74,9 @@ const Content = () => {
             <ContentItem className="content__item">
               <Image src={arrow} alt={Error_img} />
               <div className="content__text">
-                <h3 className="content__title">Better interest rates</h3>
+                <h3 className="content__title">{t('home.content.better')}</h3>
                 <p className="content__info">
-                  P2P lending lets you negotiate with the lender to arrange the
-                  best possible interest rates
+                  {t('home.content.better_description')}
                 </p>
               </div>
             </ContentItem>
@@ -84,12 +85,9 @@ const Content = () => {
             <ContentItem className="content__item">
               <Image src={money} alt={Error_img} />
               <div className="content__text">
-                <h3 className="content__title">
-                  Finance assets without selling
-                </h3>
+                <h3 className="content__title">{t('home.content.finance')}</h3>
                 <p className="content__info">
-                  Put your assets to work so you can continue to meet your
-                  financial obligations.
+                  {t('home.content.finance_description')}
                 </p>
               </div>
             </ContentItem>
@@ -98,10 +96,9 @@ const Content = () => {
             <ContentItem className="content__item">
               <Image src={wallet} alt={Error_img} />
               <div className="content__text">
-                <h3 className="content__title">No credit checks</h3>
+                <h3 className="content__title">{t('home.content.credit')}</h3>
                 <p className="content__info">
-                  Borrow without the background checks. Anyone can get the
-                  financing they need.
+                  {t('home.content.credit_description')}
                 </p>
               </div>
             </ContentItem>

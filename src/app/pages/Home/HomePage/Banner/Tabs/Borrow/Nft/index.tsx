@@ -3,7 +3,6 @@
  * Nft
  *
  */
-import * as React from 'react';
 import styled from 'styled-components/macro';
 import { Container, Row, Col } from 'react-bootstrap';
 import img from '../../../assets/Frame1.svg';

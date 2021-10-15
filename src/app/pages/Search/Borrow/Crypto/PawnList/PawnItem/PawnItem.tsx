@@ -1,4 +1,3 @@
-import { style } from '@mui/system';
 import DefiButton from 'app/components/DefiButton/DefiButton';
 import { Col, Container, Row, Stack } from 'react-bootstrap';
 import styled from 'styled-components/macro';
@@ -24,7 +23,6 @@ interface Props {
   type: number;
 }
 export default function PawnItem(props: Props) {
-  // console.log(props);
   return (
     <Div>
       <Container className="my-1">

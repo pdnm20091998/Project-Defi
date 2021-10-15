@@ -1,5 +1,4 @@
 import { Checkbox } from '@mui/material';
-import React from 'react';
 import styled from 'styled-components';
 
 interface IProps {
@@ -7,31 +6,36 @@ interface IProps {
   title?: string;
   type?: 'checkCoin';
   img?: string;
+  value: string;
+  change: Function;
+  checked?: any;
 }
 
 const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
 
 function CheckBoxField(props: IProps) {
-  const { name, title, img } = props;
   return (
     <Wrapper>
       <Checkbox
         {...label}
-        name={name}
+        name={props.name}
         sx={{
           color: '#fff',
           '&.Mui-checked': {
             color: '#DBA83D',
           },
         }}
+        value={props.value}
+        checked={props.checked.includes(props.value)}
+        onClick={e => props.change((e.target as HTMLInputElement).value)}
       />
-      {img !== undefined ? (
+      {props.img !== undefined ? (
         <>
-          <img src={img} alt="ảnh" />
-          <p>{title}</p>
+          <img src={props.img} alt="ảnh" />
+          <p>{props.title}</p>
         </>
       ) : (
-        <p>{title}</p>
+        <p>{props.title}</p>
       )}
     </Wrapper>
   );

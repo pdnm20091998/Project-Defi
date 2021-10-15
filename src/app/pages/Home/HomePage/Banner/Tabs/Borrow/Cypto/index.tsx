@@ -11,7 +11,6 @@ import img from '../../../assets/Vector.svg';
 import imgSearch from '../../../assets/search.svg';
 import DefiButton from '../../../../../../../components/DefiButton/DefiButton';
 import { Container, Row, Col } from 'react-bootstrap';
-import { Form } from '../../../Form/index';
 import { Link } from 'react-router-dom';
 import ComboBox from 'react-responsive-combo-box';
 import { Div, InputField } from 'app/pages/Home/HomePage/components/style';
@@ -93,9 +92,22 @@ export function Crypto(props: Props) {
       return loanCurrency;
     });
   //use context
-  const { setCollateralAmount } = useBorrowContext();
+  const {
+    setCollateralAmount,
+    setCollateralSymbols,
+    setDurationTypes,
+    setLoanSymbols,
+    setDurationQty,
+    setLoanAmount,
+  } = useBorrowContext();
   const handleCollateralChange = e => {
     setCollateralAmount(e.target.value);
+  };
+  const handleDurationQty = e => {
+    setDurationQty(e.target.value);
+  };
+  const handleLoanAmount = e => {
+    setLoanAmount(e.target.value);
   };
   return (
     <Main>
@@ -128,6 +140,7 @@ export function Crypto(props: Props) {
                           placeholder="Currency"
                           options={collateral}
                           enableAutocomplete
+                          onSelect={e => setCollateralSymbols(e)}
                         />
                       </div>
                     </Col>
@@ -154,7 +167,7 @@ export function Crypto(props: Props) {
                             type="number"
                             className="input input-slot"
                             placeholder="Duration"
-                            onChange={handleCollateralChange}
+                            onChange={handleDurationQty}
                           ></input>
                         </div>
                       </InputField>
@@ -168,6 +181,16 @@ export function Crypto(props: Props) {
                           placeholder="Currency"
                           options={duration}
                           enableAutocomplete
+                          // onSelect={e => setDurationTypes(e)}
+                          onSelect={option => {
+                            if (option === 'All') {
+                              setDurationTypes('');
+                            } else if (option === 'Weeks') {
+                              setDurationTypes('0');
+                            } else if (option === 'Months') {
+                              setDurationTypes('1');
+                            }
+                          }}
                         />
                       </div>
                     </Col>
@@ -188,7 +211,7 @@ export function Crypto(props: Props) {
                             type="number"
                             className="input input-slot"
                             placeholder="Enter amount"
-                            onChange={handleCollateralChange}
+                            onChange={handleLoanAmount}
                           ></input>
                         </div>
                       </InputField>
@@ -202,6 +225,7 @@ export function Crypto(props: Props) {
                           placeholder="Currency"
                           options={loanCurrency}
                           enableAutocomplete
+                          onSelect={e => setLoanSymbols(e)}
                         />
                       </div>
                     </Col>

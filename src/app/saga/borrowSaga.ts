@@ -5,7 +5,10 @@ import {
   GET_RESULT_PERSONAL_BORROW_SUCCESS,
   GET_RESULT_PERSONAL_BORROW_FAIL,
 } from 'app/actions/types';
-import { ResultBorrowCryptoService } from 'app/service/apiBorrowCrypto/borrowCrypto.service';
+import {
+  ResultBorrowCryptoService,
+  ResultPersonalCryptoService,
+} from 'app/service/apiBorrowCrypto/borrowCrypto.service';
 // get api result
 export function* resultBorrow(payload) {
   try {
@@ -18,7 +21,7 @@ export function* resultBorrow(payload) {
 
 export function* resultPersonBorrow(payload) {
   try {
-    const response = yield call(ResultBorrowCryptoService, payload);
+    const response = yield call(ResultPersonalCryptoService, payload);
     yield put({ type: GET_RESULT_PERSONAL_BORROW_SUCCESS, payload: response });
   } catch (error) {
     yield put({ type: GET_RESULT_PERSONAL_BORROW_FAIL, error });

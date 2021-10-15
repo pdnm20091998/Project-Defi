@@ -1,6 +1,6 @@
 import styled from 'styled-components/macro';
-
-const Title = styled.h1`
+import { useTranslation } from 'react-i18next';
+const TitleSt = styled.h1`
   font-size: 54px;
   font-weight: bold;
   color: #ffffff;
@@ -22,15 +22,17 @@ const Description = styled.p`
     color: #dba83d;
   }
 `;
-export default function title() {
+export default function Title() {
+  const { t } = useTranslation();
   return (
     <>
-      <Title as="h1">
-        Exclusive on <strong>DeFi For You</strong>!!!
-      </Title>
+      <TitleSt as="h1">
+        {t('login.title')} <strong>DeFi For You</strong>!!!
+      </TitleSt>
       <Description>
-        Register new DeFi For You account from <strong>01/08/2021</strong> to{' '}
-        <strong>31/12/2021</strong> to have 100% chance of receiving DFY tokens
+        {t('login.description_start')} <strong>01/08/2021</strong>{' '}
+        {t('login.description_to')} <strong>31/12/2021</strong>{' '}
+        {t('login.description_end')}
       </Description>
     </>
   );

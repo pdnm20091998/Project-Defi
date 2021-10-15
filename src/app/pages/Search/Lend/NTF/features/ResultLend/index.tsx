@@ -5,6 +5,8 @@ import { useSelector } from 'react-redux';
 import { RootState } from 'app/reducer/reducers';
 import { Pagination } from 'app/components/Pagination/Pagination';
 import { useLendContext } from 'app/components/common/context/lendNftContext';
+import ImgPrice from '../../assets/price.svg';
+import Avt from '../../assets/Frame.svg';
 
 export default function ResultLendComponent() {
   const { setPage } = useLendContext();
@@ -26,7 +28,7 @@ export default function ResultLendComponent() {
                 <Container fluid>
                   <Row>
                     <Col className="img" xs={12} md={6} xxl={3}>
-                      <img src={data.nftAvatarCid} alt="Nft avatar" />
+                      <img src={Avt} alt="Nft avatar" />
                     </Col>
                     <Col className="detailResult px-0" xs={12} md={6} xxl={6}>
                       <div className="detail">
@@ -59,6 +61,11 @@ export default function ResultLendComponent() {
                               Evaluated price:
                             </span>
                             <span className="detail-content detail-content__price">
+                              <img
+                                className="evaluated-icon"
+                                src={ImgPrice}
+                                alt=""
+                              />
                               {data.nftEvaluatedPrice} {data.nftEvaluatedSymbol}
                             </span>
                           </p>

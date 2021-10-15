@@ -9,11 +9,11 @@ import Dcoin from '../InfoTitle/asset/Dcoin.svg';
 import rhombus from '../InfoTitle/asset/rhombus.svg';
 import DefiButton from 'app/components/DefiButton/DefiButton';
 import { Row, Col } from 'react-bootstrap';
-interface Props {
-  data: any;
-}
+import { useSelector } from 'react-redux';
+import { RootState } from 'app/reducer/reducers';
+interface Props {}
 const PawnShopItem = (props: Props) => {
-  // console.log(props.data.data);
+  const result: any = useSelector((state: RootState) => state.personborrow);
 
   return (
     <PawnShop>
@@ -28,26 +28,30 @@ const PawnShopItem = (props: Props) => {
         <Col sm={6}>
           <div className="pawnshop__item">
             <div className="pawnshop__item--title">
-              {`${props.data.data.content[0].associatedAddress.slice(
-                0,
-                10,
-              )}...${props.data.data.content[0].associatedAddress.slice(-10)}`}
+              {result.result
+                ? `${result.result.content[0].associatedAddress.slice(
+                    0,
+                    10,
+                  )}...${result.result.content[0].associatedAddress.slice(-10)}`
+                : null}
               <img src={tick} alt="Notick" />
             </div>
             <div className="rating">
               <img src={star} alt="Nopicture" />
               <span className="rating__number">
-                {props.data.data.content[0].reputation}
+                {result.result ? result.result.content[0].reputation : null}
               </span>
               <span className="rating__line">|</span>
               <span className="rating__text">
-                {props.data.data.content[0].completedContracts} signed contracts
+                {result.result && result.result.content[0].completedContracts}{' '}
+                signed contracts
               </span>
             </div>
             <div className="rating__info">
               <span>
-                {props.data.data.content[0].minInterestRate} -{' '}
-                {props.data.data.content[0].maxInterestRate}% interest rate
+                {result.result && result.result.content[0].minInterestRate} -{' '}
+                {result.result && result.result.content[0].maxInterestRate}%
+                interest rate
               </span>
               <img src={infomation} alt="No picutre" />
             </div>
@@ -83,26 +87,30 @@ const PawnShopItem = (props: Props) => {
         <Col sm={6}>
           <div className="pawnshop__item">
             <div className="pawnshop__item--title">
-              {`${props.data.data.content[1].associatedAddress.slice(
-                0,
-                10,
-              )}...${props.data.data.content[1].associatedAddress.slice(-10)}`}
+              {result.result
+                ? `${result.result.content[1].associatedAddress.slice(
+                    0,
+                    10,
+                  )}...${result.result.content[1].associatedAddress.slice(-10)}`
+                : null}
               <img src={tick} alt="Notick" />
             </div>
             <div className="rating">
               <img src={star} alt="Nopicture" />
               <span className="rating__number">
-                {props.data.data.content[1].reputation}
+                {result.result && result.result.content[1].reputation}
               </span>
               <span className="rating__line">|</span>
               <span className="rating__text">
-                {props.data.data.content[1].completedContracts} signed contracts
+                {result.result && result.result.content[1].completedContracts}{' '}
+                signed contracts
               </span>
             </div>
             <div className="rating__info">
               <span>
-                {props.data.data.content[1].minInterestRate} -{' '}
-                {props.data.data.content[1].maxInterestRate}% interest rate
+                {result.result && result.result.content[1].minInterestRate} -{' '}
+                {result.result && result.result.content[1].maxInterestRate}%
+                interest rate
               </span>
               <img src={infomation} alt="No picutre" />
             </div>
@@ -177,7 +185,7 @@ const PawnShop = styled.div`
 
   .rating {
     display: flex;
-    align-item: center;
+    align-items: center;
     margin-top: 10px;
     img {
       padding-right: 8px;

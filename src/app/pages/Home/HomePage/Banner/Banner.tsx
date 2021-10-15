@@ -34,6 +34,7 @@ function Banner(props: Props) {
     asyncCall().then(e => {
       setDataAsset(e);
     });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   const imgAsset = [...dataasset];
   return (

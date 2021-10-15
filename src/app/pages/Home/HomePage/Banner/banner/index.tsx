@@ -3,11 +3,12 @@
  * Banner
  *
  */
-import * as React from 'react';
 import styled from 'styled-components/macro';
 import img from '../assets/Frame.svg';
 import { Container, Row, Col } from 'react-bootstrap';
 import ReactTypingEffect from 'react-typing-effect';
+import { useTranslation } from 'react-i18next';
+
 interface Props {}
 const H1 = styled.span`
   font-style: normal;
@@ -33,6 +34,7 @@ const Div = styled.div`
 `;
 
 export function BannerLeft(props: Props) {
+  const { t } = useTranslation();
   return (
     <Div>
       <Container className="d-flex flex-column banner">
@@ -50,7 +52,7 @@ export function BannerLeft(props: Props) {
               <H1 color="#fff"> with </H1>
               <H1 color="rgb(219, 168, 61)">DeFi For You.</H1>
             </div>
-            <P>Get Crypto Loans Instantly, Regardless of Your Credit Rating</P>
+            <P>{t('home.title')}</P>
           </Col>
           <Col sm="12">
             <img className="image-zone__img" src={img} alt="" />

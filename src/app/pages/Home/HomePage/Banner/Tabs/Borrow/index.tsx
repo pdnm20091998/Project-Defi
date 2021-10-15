@@ -3,9 +3,8 @@
  * Borrow
  *
  */
-import * as React from 'react';
 import styled from 'styled-components/macro';
-import { Container, Row, Col } from 'react-bootstrap';
+import { Col } from 'react-bootstrap';
 import { Crypto } from './Cypto/index';
 import { Nft } from './Nft/index';
 import {

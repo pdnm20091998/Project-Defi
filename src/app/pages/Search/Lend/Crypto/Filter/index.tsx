@@ -1,7 +1,9 @@
-import React from 'react';
 import styled from 'styled-components';
 import FilterComponent from './FilterComponents';
 import { AiFillCloseCircle } from 'react-icons/ai';
+import { useLendCryptoContext } from 'app/components/common/context/lendCryptoContext';
+import { Checkbox, FormControlLabel } from '@mui/material';
+import { IoIosArrowUp } from 'react-icons/io';
 interface Props {
   dataAsset?: Array<object>;
   handleClose: Function;
@@ -24,13 +26,19 @@ const imgObject = {
 export default function FilterLend(props: Props) {
   const collateral: Array<object> = [];
   const loanCurrency: Array<object> = [];
+  const {
+    setLA,
+    loanSymbol,
+    setLS,
+    setLD,
+    loanDurationType,
+    setLDType,
+    item,
+    setItem,
+  } = useLendCryptoContext();
   const durationList = [
-    { name: ' Weeks', title: 'Weeks' },
-    { name: 'Months', title: 'Months' },
-  ];
-  const nft = [
-    { name: ' All', title: 'All' },
-    { name: 'Evaluated', title: 'Evaluated' },
+    { name: ' Weeks', title: 'Weeks', value: '0' },
+    { name: 'Months', title: 'Months', value: '1' },
   ];
   props.dataAsset &&
     props.dataAsset.map((data: any) => {
@@ -41,6 +49,7 @@ export default function FilterLend(props: Props) {
           img: `https://staging.app.defiforyou.uk/_nuxt/img${
             imgObject[data.symbol]
           }`,
+          value: data.symbol,
         });
       }
       if (data.isWhitelistSupply) {
@@ -50,37 +59,121 @@ export default function FilterLend(props: Props) {
           img: `https://staging.app.defiforyou.uk/_nuxt/img${
             imgObject[data.symbol]
           }`,
+          value: data.symbol,
         });
       }
       return 0;
     });
+  // exit menu
   const { handleClose } = props;
   const handleExitMenu = () => {
     handleClose();
+  };
+  //reset filter state
+  const handleReset = () => {
+    setLA('');
+    setLS('');
+    setLD('');
+    setLDType('');
+    setItem('');
+  };
+  // Change Collateral
+  const changeCollateral = data => {
+    if (item === '') {
+      setItem(data);
+    } else {
+      setItem(item.concat(',', data));
+    }
+    if (item.includes(data)) {
+      let x = ',' + data;
+      let y = data + ',';
+      if (item.includes(x)) {
+        setItem(item.replace(x, ''));
+      } else if (item.includes(y)) {
+        setItem(item.replace(y, ''));
+      } else {
+        setItem(item.replace(data, ''));
+      }
+    }
+  };
+  // Change loanCurrency
+  const changeLoanCurrency = data => {
+    if (loanSymbol === '') {
+      setLS(data);
+    } else {
+      setLS(loanSymbol.concat(',', data));
+    }
+    if (loanSymbol.includes(data)) {
+      let x = ',' + data;
+      let y = data + ',';
+      if (loanSymbol.includes(x)) {
+        setLS(loanSymbol.replace(x, ''));
+      } else if (loanSymbol.includes(y)) {
+        setLS(loanSymbol.replace(y, ''));
+      } else {
+        setLS(loanSymbol.replace(data, ''));
+      }
+    }
+  };
+  // Change Collateral
+  const changeDuration = data => {
+    if (loanDurationType === '') {
+      setLDType(data);
+    } else {
+      setLDType(loanDurationType.concat(',', data));
+    }
+    if (loanDurationType.includes(data)) {
+      let x = ',' + data;
+      let y = data + ',';
+      if (loanDurationType.includes(x)) {
+        setLDType(loanDurationType.replace(x, ''));
+      } else if (loanDurationType.includes(y)) {
+        setLDType(loanDurationType.replace(y, ''));
+      } else {
+        setLDType(loanDurationType.replace(data, ''));
+      }
+    }
   };
   return (
     <Wrapper>
       <div className="container">
         <div className="header">
-          <span>Reset filter</span>
+          <span onClick={handleReset}>Reset filter</span>
           <div className="exitMenu" onClick={handleExitMenu}>
             <AiFillCloseCircle />
           </div>
         </div>
 
         <div className="borderBottom"></div>
-        <FilterComponent title="Collateral" listCheckBox={collateral} />
-        <div className="borderBottom"></div>
-        <FilterComponent title="loanCurrency" listCheckBox={loanCurrency} />
         <FilterComponent
-          type="sortList"
-          title="NFT Evaluetion"
-          listCheckBox={nft}
+          change={changeCollateral}
+          title="Collateral"
+          listCheckBox={collateral}
+          checked={item}
         />
+        <div className="borderBottom"></div>
         <FilterComponent
+          change={changeLoanCurrency}
+          title="loanCurrency"
+          listCheckBox={loanCurrency}
+          checked={loanSymbol}
+        />
+        <div className="headerFilter block d-flex justify-content-between">
+          <span>NFT Evaluation</span>
+          <div className="icons me-2 mb-2">
+            <IoIosArrowUp />
+          </div>
+        </div>
+        <div className="d-flex flex-column">
+          <FormControlLabel disabled control={<Checkbox />} label="All" />
+          <FormControlLabel disabled control={<Checkbox />} label="Evaluated" />
+        </div>
+        <FilterComponent
+          change={changeDuration}
           type="sortList"
           title="Duration"
           listCheckBox={durationList}
+          checked={loanDurationType}
         />
       </div>
     </Wrapper>
@@ -88,6 +181,13 @@ export default function FilterLend(props: Props) {
 }
 
 const Wrapper = styled.div`
+  .block {
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 20px;
+    color: #53565f;
+  }
   .container {
     width: 293px;
     background-color: #282c37;
