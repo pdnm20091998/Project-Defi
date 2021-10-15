@@ -33,6 +33,12 @@
     }
 }
 
+@media screen and (max-width: 768px) {
+    .menuMobile {
+        display: block !important;
+    }
+}
+
 @media screen and (max-width:420px) {
     .headerCrypto {
         .header__crypto {

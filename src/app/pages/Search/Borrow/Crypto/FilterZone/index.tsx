@@ -3,6 +3,9 @@ import { BiSearch } from 'react-icons/bi';
 
 import styled from 'styled-components/macro';
 import Filter from './components/Filter';
+import '../FilterZone/Sass/menuMobile.scss';
+import menuMobile from '../FilterZone/asset/Menumobile.svg';
+import hiddenMenu from '../FilterZone/asset/x-circle.svg';
 interface Props {
   dataAsset?: Array<object>;
   handleClose: Function;
@@ -169,7 +172,79 @@ export default function FilterZone(props: Props) {
     setDurationTypes('');
   };
 
+  const { handleClose } = props;
+
+  //xử lí menu mobile
+  const HiddenFilterMobile = () => {
+    let filtermobile = document.querySelector('.filtermobile');
+    filtermobile?.classList.add('HiddenFilter__Mobile');
+    filtermobile?.classList.remove('ShowFilter__Mobile');
+  };
+
   return (
+    <div>
+      {/* insert menumobile */}
+      <div className="filtermobile">
+        <div className="filterheader">
+          <span>Reset filter</span>
+          <img
+            className="exitfilter-icon"
+            src={hiddenMenu}
+            alt="No-icon"
+            onClick={HiddenFilterMobile}
+          />
+        </div>
+        <Border></Border>
+        <FilterHolder>
+          <Filter
+            title="Interest range"
+            listCheckBox={interestRange}
+            change={setInterestRanges}
+          />
+        </FilterHolder>
+        <Border />
+        <FilterHolder>
+          <Filter
+            title="loan to value"
+            listCheckBox={loanToValue}
+            change={setLoanToValueRanges}
+          />
+        </FilterHolder>
+        <Border />
+        <FilterHolder>
+          <Filter
+            title="Collateral accepted"
+            listCheckBox={collateralAccepted}
+            change={handleCollateral}
+          />
+        </FilterHolder>
+        <Border />
+        <FilterHolder>
+          <Filter
+            title="Loan token"
+            listCheckBox={loanToken}
+            change={handleLoanSymbol}
+          />
+        </FilterHolder>
+        <Border />
+        <FilterHolder>
+          <Filter
+            title="Loan type"
+            listCheckBox={loanType}
+            change={handleLoanType}
+          />
+        </FilterHolder>
+        <Border />
+        <FilterHolder>
+          <Filter
+            title="Duration"
+            listCheckBox={duration}
+            change={handleDurationTypes}
+          />
+        </FilterHolder>
+        <Border />
+      </div>
+      {/* End menu mobile */}
     <Div>
       <FilterHolder>
         <Span onClick={handleReset}>Reset filter</Span>
@@ -241,7 +316,7 @@ export default function FilterZone(props: Props) {
       </FilterHolder>
       <Border />
     </Div>
-  );
+          </div>
 }
 const Div = styled.div`
   background-color: #282c37;
