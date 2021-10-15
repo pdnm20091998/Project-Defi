@@ -232,6 +232,7 @@ const Wrapper = styled.div`
     background-color: #282c37;
     color: #fff;
     border-radius: 20px;
+    padding: 0;
 
     @media (max-width: 1024px) {
       border-radius: 0px;

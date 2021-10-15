@@ -1,3 +1,37 @@
 {
-  "title": "welcome"
+  "home": {
+    "title": "Get Crypto Loans Instantly, Regardless of Your Credit Rating",
+    "content": {
+      "title": "Why Borrow With Us?",
+      "quicker": "Quicker Than The Bank",
+      "quicker_description": "Banks are yesterdays news. Get the money you need without having to wait.",
+      "better": "Better Interest Rates",
+      "better_description": "P2P lending lets you negotiate with the lender to arrange the best possible interest rates",
+      "finance": "Finance Assets Without Selling",
+      "finance_description": "Put your assets to work so you can continue to meet your financial obligations.",
+      "credit": "No Credit Checks",
+      "credit_description": "Borrow without the background checks. Anyone can get the financing they need."
+    },
+    "explore": {
+      "title": "explore featured pawnshops"
+    }
+  },
+  "login": {
+    "title": "Exclusive on",
+    "description_start": "Register new DeFi For You account from ",
+    "description_to": " to ",
+    "description_end": "to have 100% chance of receiving DFY tokens",
+    "signup_tab": "Sign up",
+    "login_tab": "Log in",
+    "name": "Name",
+    "password": "Password",
+    "confirm_pass": "Confirm Password",
+    "forgot_password": "Forgot Your Password?",
+    "login_btn": "Login",
+    "signup_btn": "Create Account",
+    "signup_description": "We will not share or sell your information to 3rd parties."
+  },
+  "footer": {
+    "about": " is a trading style of Miles Mann Limited registered office at 5 Southgate Street, Gloucester, Gloucestershire, GL1 1TG1 Licensed authorised and regulated by the Financial Conduct Authority to exercise lender's rights and duties under a regulated credit agreement (excluding high-cost short-term credit, bill of sale agreement, and home collected credit agreement), and has the right to exercise lender's rights and duties under a regulated credit agreement (excluding high-cost short-term credit, bill of sale agreement, and home collected credit agreement)"
+  }
 }
