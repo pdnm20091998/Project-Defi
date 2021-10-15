@@ -9,12 +9,13 @@ import { useEffect, useState } from 'react';
 import DefiButton from '../../../../../../components/DefiButton/DefiButton';
 import imgSearch from '../../assets/search.svg';
 import imgClose from '../../assets/x.svg';
-import { MultiSelect } from 'react-multi-select-component';
+import { MultiSelect, SelectItem } from 'react-multi-select-component';
 import { getAsset } from '../../../../../../service/apiAsset/apiAsset';
 import { Link } from 'react-router-dom';
 import { Div, InputField, P, Main } from '../../../components/style';
 import ComboBox from 'react-responsive-combo-box';
 import { useLendContext } from 'app/components/common/context/lendNftContext';
+import { useLendCryptoContext } from 'app/components/common/context/lendCryptoContext';
 import { setMaxListeners } from 'process';
 
 interface OptionsItem {
@@ -49,9 +50,69 @@ const dataSymbol = {
   ADA: 'ADA.4647c52.png',
   WBNB: 'WBNB.978ee2b.png',
 };
-const Example = () => {
+
+interface Props {
+  dataAsset?: Array<object>;
+}
+export function Lend(props: Props) {
+  const [component, setComponent] = useState(true);
+  // Combobox duration type
+  const week = ['All', 'Weeks', 'Months'];
+  // combobox loan type
+  const loanCurrency: any[] = ['All'];
+  const data = props.dataAsset;
+  data &&
+    data.map((e: any) => {
+      e.isWhitelistSupply && loanCurrency.push(e.symbol);
+      return loanCurrency;
+    });
   const [selected, setSelected] = useState([]);
   const [options, setOptions] = useState<Array<OptionsItem>>([]);
+
+  const handleSelected = item => {
+    setSelected(item);
+    const arrLabel = item?.map(option => option.label);
+    setItem(arrLabel.join(','));
+  };
+  const customValueRenderer = selected => {
+    return selected.length
+      ? selected.map(({ label, value }) => {
+          return (
+            <div key={label}>
+              <span className="selectedItem ">
+                <div className="d-flex me-2">
+                  <img
+                    className="icon__value"
+                    src={`https://staging.app.defiforyou.uk/_nuxt/img/${value}`}
+                    alt=""
+                  />
+                  <P>{label}</P>
+                </div>
+                <img src={imgClose} alt="" />
+              </span>
+            </div>
+          );
+        })
+      : '😶 No Items Selected';
+  };
+  // import lendNftContext
+  const { setLoanAmount, setLoanSymbol, setLoanDuration, setLoanDurationType } =
+    useLendContext();
+  // import lendCryptoContext
+  const { setLA, setLS, setLD, setLDType, setItem, item } =
+    useLendCryptoContext();
+  // get data loan amount
+  const handleLoanAmountChange = e => {
+    setLoanAmount(e.target.value);
+    setLA(e.target.value);
+  };
+  //get data duration
+  const handleLoanDurationChange = e => {
+    setLoanDuration(e.target.value);
+    setLD(e.target.value);
+  };
+
+  // items crypto
   const optionsItems: any[] = [];
   useEffect(() => {
     const resultAsset = () => {
@@ -82,79 +143,6 @@ const Example = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const customValueRenderer = selected => {
-    return selected.length
-      ? selected.map(({ label, value }) => {
-          return (
-            <div key={label}>
-              <span className="selectedItem ">
-                <div className="d-flex me-2">
-                  <img
-                    className="icon__value"
-                    src={`https://staging.app.defiforyou.uk/_nuxt/img/${value}`}
-                    alt=""
-                  />
-                  <P>{label}</P>
-                </div>
-                <img src={imgClose} alt="" />
-              </span>
-            </div>
-          );
-        })
-      : '😶 No Items Selected';
-  };
-  return (
-    <div>
-      <MultiSelect
-        options={options}
-        value={selected}
-        onChange={setSelected}
-        labelledBy="Select"
-        hasSelectAll={true}
-        disableSearch={true}
-        ItemRenderer={item => (
-          <DefaultItemRenderer
-            checked={item.checked}
-            option={item.option}
-            onClick={item.onClick}
-            disabled={item.disabled}
-          />
-        )}
-        valueRenderer={customValueRenderer}
-      />
-    </div>
-  );
-};
-
-interface Props {
-  dataAsset?: Array<object>;
-}
-export function Lend(props: Props) {
-  const [component, setComponent] = useState(true);
-  // Combobox duration type
-  const week = ['All', 'Weeks', 'Months'];
-  // combobox loan type
-  const loanCurrency: any[] = ['All'];
-  const data = props.dataAsset;
-  data &&
-    data.map((e: any) => {
-      e.isWhitelistSupply && loanCurrency.push(e.symbol);
-      return loanCurrency;
-    });
-
-  // import lendNftContext
-  const { setLoanAmount, setLoanSymbol, setLoanDuration, setLoanDurationType } =
-    useLendContext();
-  // import lendCryptoContext
-
-  // get data loan amount
-  const handleLoanAmountChange = e => {
-    setLoanAmount(e.target.value);
-  };
-  //get data duration
-  const handleLoanDurationChange = e => {
-    setLoanDuration(e.target.value);
-  };
   return (
     <Main>
       <div>
@@ -193,7 +181,10 @@ export function Lend(props: Props) {
                           placeholder="Currency"
                           options={loanCurrency}
                           enableAutocomplete
-                          onSelect={option => setLoanSymbol(option)}
+                          onSelect={option => {
+                            setLS(option);
+                            setLoanSymbol(option);
+                          }}
                         />
                       </div>
                     </Col>
@@ -232,10 +223,13 @@ export function Lend(props: Props) {
                           onSelect={option => {
                             if (option === 'All') {
                               setLoanDurationType('');
+                              setLDType('');
                             } else if (option === 'Weeks') {
                               setLoanDurationType('0');
+                              setLDType('0');
                             } else if (option === 'Months') {
                               setLoanDurationType('1');
+                              setLDType('1');
                             }
                           }}
                         />
@@ -272,7 +266,26 @@ export function Lend(props: Props) {
               {component ? (
                 <div>
                   <Row>
-                    <Example />
+                    <div>
+                      <MultiSelect
+                        options={options}
+                        value={selected}
+                        onChange={item => handleSelected(item)}
+                        labelledBy="Select"
+                        hasSelectAll={true}
+                        disableSearch={true}
+                        ItemRenderer={item => (
+                          <DefaultItemRenderer
+                            checked={item.checked}
+                            option={item.option}
+                            onClick={item.onClick}
+                            disabled={item.disabled}
+                          />
+                        )}
+                        valueRenderer={customValueRenderer}
+                      />
+                    </div>
+                    <div />
                   </Row>
                   <Row>
                     <Link to="/resultLendCrypto">
