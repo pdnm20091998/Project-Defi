@@ -17,7 +17,7 @@ export const Address = styled.p`
   text-decoration-line: underline;
   color: #2596ff;
 `;
-export const Start = styled.p`
+export const Start = styled.div`
   font-style: normal;
   font-weight: normal;
   font-size: 14px;

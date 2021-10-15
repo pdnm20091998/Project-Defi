@@ -6,7 +6,7 @@
 import * as React from 'react';
 import styled from 'styled-components/macro';
 import { SumCollateral } from '../SumCollateral/SumCollateral';
-import { Col, Container, Row, Table } from 'react-bootstrap';
+import { Col, Container, Row } from 'react-bootstrap';
 import { Address, P, Start } from '../Style';
 import imgStar from '../assets/Star.svg';
 import DefiButton from 'app/components/DefiButton/DefiButton';
@@ -40,7 +40,7 @@ export function Result(props: Props) {
     setRender(!render);
   };
   return (
-    <div>
+    <Div>
       <SumCollateral sum={result.result ? result.result.total_elements : 0} />
       <div className="table mt-sm-4">
         <Container>
@@ -266,10 +266,12 @@ export function Result(props: Props) {
           </div>
         </Container>
       </div>
-      <Pagination
-        totalPage={result.result ? result.result.total_pages : 0}
-        changePage={e => handlePageChange(e)}
-      />
+      <div className="pagi">
+        <Pagination
+          totalPage={result.result ? result.result.total_pages : 0}
+          changePage={e => handlePageChange(e)}
+        />
+      </div>
     </Div>
   );
 }
@@ -277,5 +279,11 @@ export function Result(props: Props) {
 const Div = styled.div`
   .row {
     --bs-gutter-x: 0px !important;
+  }
+  .pagi {
+    margin-top: 32px;
+    margin-bottom: 120px;
+    display: flex;
+    justify-content: center;
   }
 `;

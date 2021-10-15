@@ -9,7 +9,7 @@ import FilterLendMobile from './Filter/FilterLendMobie';
 import IconFilter from './assets/Group 6152.svg';
 
 import { useDispatch } from 'react-redux';
-import { resultLendCryptoAction } from 'app/actions/LendCrypto/lendCryptoAction';
+import { resultLendCryptoAction } from 'app/actions/lendCrypto/lendCryptoAction';
 import { Result } from './Result';
 import { useLendCryptoContext } from 'app/components/common/context/lendCryptoContext';
 import { Wrapper, Div } from './Style/index';

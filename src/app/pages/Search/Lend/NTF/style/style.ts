@@ -26,7 +26,6 @@ export const Wrapper = styled.div`
     @media (max-width: 992px) {
       .icon-filter {
         display: block;
-        z-index: 1;
       }
     }
   }

@@ -7,6 +7,7 @@ import { Col, Container, Row } from 'react-bootstrap';
 import styled from 'styled-components/macro';
 import ImgFrame from '../assets/Frame.svg';
 interface Props {}
+
 const Wrapper = styled.div`
   background: #475674 !important;
   border-radius: 10px;
