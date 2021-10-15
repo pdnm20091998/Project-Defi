@@ -28,8 +28,19 @@ const P = styled.span`
   color: #ffffff;
 `;
 const Div = styled.div`
+  position: relative;
   .image-zone__img {
+    height: 416px;
+    margin-top: 80px;
     width: 100%;
+    @media (min-width: 1600px) {
+      position: absolute;
+      left: -172px;
+      width: 668px;
+    }
+  }
+  .description {
+    margin-top: 28px;
   }
 `;
 
@@ -43,16 +54,16 @@ export function BannerLeft(props: Props) {
             <div>
               <H1 color="#fff">
                 <ReactTypingEffect
-                  text={['Borrow', 'Lend']}
+                  text={[`${t('home.borrow')}`, `${t('home.lend')}`]}
                   cursor=" "
                   eraseDelay="2000"
                   typingDelay="0"
                 />
               </H1>
-              <H1 color="#fff"> with </H1>
+              <H1 color="#fff"> {t('home.with')} </H1>
               <H1 color="rgb(219, 168, 61)">DeFi For You.</H1>
             </div>
-            <P>{t('home.title')}</P>
+            <P className="description">{t('home.title')}</P>
           </Col>
           <Col sm="12">
             <img className="image-zone__img" src={img} alt="" />

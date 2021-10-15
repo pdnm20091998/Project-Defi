@@ -3,7 +3,7 @@
  * Cypto
  *
  */
-import * as React from 'react';
+import { useTranslation } from 'react-i18next';
 import { Button } from 'react-bootstrap';
 import styled from 'styled-components/macro';
 import 'react-responsive-combo-box/dist/index.css';
@@ -20,8 +20,9 @@ interface Props {
 }
 
 const P = styled.p`
-  margin-bottom: 5px;
+  margin-bottom: 6px;
   color: #fff;
+  line-height: 17px;
   img {
     width: 10px;
     height: 10px;
@@ -42,27 +43,19 @@ const Main = styled.div`
   }
   .btn {
     box-shadow: none !important;
+    @media (max-width: 576px) {
+      width: 100%;
+    }
   }
   .mt {
-    margin-top: 6px;
-    &[title]:after {
-      position: absolute;
-      content: attr(title);
-      background-color: #c9cacd83;
-      border: none;
-      padding: 5px;
-      color: #ffffff;
-      display: block;
-      border-radius: 5px;
-      padding: 5px 20px 5px 15px;
-      transform: scale(0);
-      -webkit-transition: all 1s;
-      transition: all 1s;
-    }
-    &[title]:hover:after {
-      transform: scale(1);
-      -webkit-transition: all 1s;
-      transition: all 1s;
+    color: #fff;
+    line-height: 15px;
+  }
+  .btnSearch {
+    margin-top: 12px;
+    margin-bottom: 60px;
+    @media (max-width: 576px) {
+      margin: 40px 0;
     }
   }
   .search {
@@ -73,6 +66,7 @@ const Main = styled.div`
   }
 `;
 export function Crypto(props: Props) {
+  const { t } = useTranslation();
   // combobox duration type
   const duration: any[] = ['All', 'Weeks', 'Months'];
   // combobox collateral type
@@ -112,10 +106,10 @@ export function Crypto(props: Props) {
   return (
     <Main>
       <div>
-        <Row>
-          <Col>
-            <div>
-              <Container fluid="lg">
+        <Container fluid="lg">
+          <Row>
+            <Col>
+              <div>
                 <P>Collateral</P>
                 <Row>
                   <Div className="mx-1">
@@ -147,16 +141,18 @@ export function Crypto(props: Props) {
                   </Div>
                 </Row>
                 <div className="pt-3 pb-2"></div>
+              </div>
+              <Container className="px-0">
+                <P>Or</P>
+                <Row>
+                  <Col xs="9">
+                    <Button className="btn mb-3 px-4 py-2">
+                      Choose Existing collateral
+                    </Button>
+                  </Col>
+                </Row>
               </Container>
-            </div>
-            <Container fluid="lg">
-              <P>Or</P>
-              <Button className="btn mb-3 px-4 py-2">
-                Choose Existing collateral
-              </Button>
-            </Container>
-            <div>
-              <Container fluid="lg">
+              <div>
                 <P>Duration</P>
                 <Row>
                   <Div className="mx-1">
@@ -197,10 +193,8 @@ export function Crypto(props: Props) {
                   </Div>
                 </Row>
                 <div className="pt-3 pb-2"></div>
-              </Container>
-            </div>
-            <div>
-              <Container fluid="lg">
+              </div>
+              <div>
                 <P>Loan Amount</P>
                 <Row>
                   <Div className="mx-1">
@@ -232,29 +226,27 @@ export function Crypto(props: Props) {
                   </Div>
                 </Row>
                 <div className="pt-3 pb-2"></div>
-              </Container>
-            </div>
-            <Container fluid="lg">
-              <P
+              </div>
+              <p
                 className="mt"
                 title="To get a loan quickly, you should set the desired loan amount between 50-70% of the collateral value"
               >
                 Recommended amount <img src={img} alt="" />
-              </P>
-              <div>
+              </p>
+              <div className="btnSearch">
                 <Link to="/resultBorrowCrypto">
                   <DefiButton
                     className="search my-sm-5 mb-xs-5"
                     width="100%"
                     height="54px"
                   >
-                    <img src={imgSearch} alt="" /> Search
+                    <img src={imgSearch} alt="" /> {t('home.search')}
                   </DefiButton>
                 </Link>
               </div>
-            </Container>
-          </Col>
-        </Row>
+            </Col>
+          </Row>
+        </Container>
       </div>
     </Main>
   );

@@ -25,6 +25,8 @@ interface InitContext {
   setLoanAmount?: any;
   name?: any;
   setName?: any;
+  render?: any;
+  setRender?: any;
 }
 
 export const BorrowCryptoContext = createContext({} as InitContext);
@@ -42,6 +44,7 @@ export const BorrowCryptoContextProvider = ({ children }) => {
   const [durationQty, setDurationQty] = useState('');
   const [loanAmount, setLoanAmount] = useState('');
   const [name, setName] = useState('');
+  const [render, setRender] = useState(false);
   const data: any = {
     page,
     setPage,
@@ -67,6 +70,8 @@ export const BorrowCryptoContextProvider = ({ children }) => {
     setLoanAmount,
     name,
     setName,
+    render,
+    setRender,
   };
   return (
     <BorrowCryptoContext.Provider value={data}>

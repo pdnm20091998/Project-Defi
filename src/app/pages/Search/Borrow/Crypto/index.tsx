@@ -63,6 +63,7 @@ export default function ResultBorrowCrypto() {
     durationQty,
     loanAmount,
     name,
+    render,
   } = useBorrowContext();
   const data = {
     page,
@@ -83,7 +84,7 @@ export default function ResultBorrowCrypto() {
     dispatch(resultBorrowAction(data));
     dispatch(resultPersonalBorrowAction(data));
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [data]);
+  }, [render]);
 
   const imgAsset = [...dataasset];
   return (

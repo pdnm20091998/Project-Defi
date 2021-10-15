@@ -35,10 +35,11 @@ export const Wrapper = styled.div`
 export const Result = styled.div`
   width: 100%;
   color: #ffffff;
-  .pagination {
+  .pagi {
     margin-top: 50px;
     display: flex;
     justify-content: center;
+    margin-bottom: 4px;
   }
 `;
 export const SingleWrapper = styled.div`
@@ -61,6 +62,9 @@ export const SingleWrapper = styled.div`
   }
   .loan {
     margin: 20px 0;
+    @media (max-width: 768px) {
+      margin-top: 0px;
+    }
   }
   .title {
     font-style: normal;
@@ -200,5 +204,8 @@ export const LoanWrapper = styled.div`
   }
   .sendBtn {
     margin-top: 70px;
+    @media (max-width: 768px) {
+      margin-top: 24px;
+    }
   }
 `;

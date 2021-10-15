@@ -26,7 +26,7 @@ const Div = styled.div`
     border: none;
     background: #282c37;
     border-radius: 27px;
-    margin-bottom: 30px;
+    margin-bottom: 32px;
     padding: 5px;
     .active {
       background: linear-gradient(
@@ -65,10 +65,7 @@ export function Borrow(props: Props) {
   return (
     <Div>
       <div>
-        <Col
-          sm="12"
-          className=" d-flex justify-content-center align-items-center"
-        >
+        <Col className=" d-flex justify-content-center align-items-center">
           <div className="Tabs d-flex justify-content-center align-items-center">
             <div>
               <Tab>

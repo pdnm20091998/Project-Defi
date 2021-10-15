@@ -35,6 +35,8 @@ export default function FilterLend(props: Props) {
     setLDType,
     item,
     setItem,
+    render,
+    setRender,
   } = useLendCryptoContext();
   const durationList = [
     { name: ' Weeks', title: 'Weeks', value: '0' },
@@ -76,23 +78,29 @@ export default function FilterLend(props: Props) {
     setLD('');
     setLDType('');
     setItem('');
+    setRender(!render);
   };
   // Change Collateral
   const changeCollateral = data => {
     if (item === '') {
       setItem(data);
+      setRender(!render);
     } else {
       setItem(item.concat(',', data));
+      setRender(!render);
     }
     if (item.includes(data)) {
       let x = ',' + data;
       let y = data + ',';
       if (item.includes(x)) {
         setItem(item.replace(x, ''));
+        setRender(!render);
       } else if (item.includes(y)) {
         setItem(item.replace(y, ''));
+        setRender(!render);
       } else {
         setItem(item.replace(data, ''));
+        setRender(!render);
       }
     }
   };
@@ -100,18 +108,23 @@ export default function FilterLend(props: Props) {
   const changeLoanCurrency = data => {
     if (loanSymbol === '') {
       setLS(data);
+      setRender(!render);
     } else {
       setLS(loanSymbol.concat(',', data));
+      setRender(!render);
     }
     if (loanSymbol.includes(data)) {
       let x = ',' + data;
       let y = data + ',';
       if (loanSymbol.includes(x)) {
         setLS(loanSymbol.replace(x, ''));
+        setRender(!render);
       } else if (loanSymbol.includes(y)) {
         setLS(loanSymbol.replace(y, ''));
+        setRender(!render);
       } else {
         setLS(loanSymbol.replace(data, ''));
+        setRender(!render);
       }
     }
   };
@@ -119,18 +132,23 @@ export default function FilterLend(props: Props) {
   const changeDuration = data => {
     if (loanDurationType === '') {
       setLDType(data);
+      setRender(!render);
     } else {
       setLDType(loanDurationType.concat(',', data));
+      setRender(!render);
     }
     if (loanDurationType.includes(data)) {
       let x = ',' + data;
       let y = data + ',';
       if (loanDurationType.includes(x)) {
         setLDType(loanDurationType.replace(x, ''));
+        setRender(!render);
       } else if (loanDurationType.includes(y)) {
         setLDType(loanDurationType.replace(y, ''));
+        setRender(!render);
       } else {
         setLDType(loanDurationType.replace(data, ''));
+        setRender(!render);
       }
     }
   };

@@ -44,7 +44,7 @@ function Banner(props: Props) {
     <Main>
       <Container fluid="xxl">
         <Row>
-          <Col lg="5">
+          <Col lg={5}>
             <BannerLeft />
           </Col>
           <Col lg={{ span: 6, offset: 1 }}>

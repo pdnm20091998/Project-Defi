@@ -115,12 +115,12 @@ export const P = styled.p`
   line-height: 20px;
   display: flex;
   align-items: center;
-  margin-bottom: 6px;
+  vertical-align: baseline;
 `;
 export const Main = styled.div`
   background: #171a23;
   border-radius: 30px;
-  padding: 30px 0px;
+  padding: 30px 0px 12px 0px;
   color: #fff;
   .rmsc {
     --rmsc-bg: rgba(47, 53, 67, 1);
@@ -132,12 +132,12 @@ export const Main = styled.div`
     --rmsc-main: #dba83d;
     color: #fff;
     .icon {
-      width: 20px;
-      height: 20px;
+      width: 40px;
+      height: 40px;
       margin-right: 5px;
       &__value {
-        width: 20px;
-        height: 20px;
+        width: 40px;
+        height: 40px;
         margin: 5px;
       }
     }
@@ -145,7 +145,7 @@ export const Main = styled.div`
       background-color: transparent !important;
       box-shadow: none;
       .dropdown-heading {
-        height: auto;
+        height: 44px;
       }
       .options::-webkit-scrollbar-track {
         -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
@@ -179,16 +179,30 @@ export const Main = styled.div`
       }
     }
   }
-
+  .multi-select {
+    height: 44px;
+  }
+  .field {
+    margin-top: 6px;
+  }
+  .multi {
+    height: 44px;
+  }
+  .lendCrypto--Search {
+    margin-top: 14px;
+  }
+  .lendnft--Search {
+    margin-bottom: 94px;
+  }
   .tabsRadio {
     .true {
       color: #dba83d;
     }
     .tab {
-      display: block;
+      display: flex;
+      align-items: center;
       position: relative;
       padding-left: 35px;
-      margin-bottom: 12px;
       cursor: pointer;
       font-size: 22px;
       -webkit-user-select: none;
@@ -209,7 +223,7 @@ export const Main = styled.div`
       }
       .checkmark {
         position: absolute;
-        top: -4px;
+        top: -2px;
         left: 0;
         height: 24px;
         width: 24px;
@@ -234,7 +248,7 @@ export const Main = styled.div`
       }
     }
     &__Crypto {
-      margin-right: 25%;
+      margin-right: 28%;
     }
   }
   .search {
