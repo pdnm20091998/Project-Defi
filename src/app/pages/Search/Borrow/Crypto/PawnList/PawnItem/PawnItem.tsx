@@ -23,7 +23,6 @@ interface Props {
   type: number;
 }
 export default function PawnItem(props: Props) {
-  // console.log(props);
   return (
     <Div>
       <Container className="my-1">

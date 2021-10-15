@@ -6,13 +6,6 @@ import Filter from './components/Filter';
 interface Props {
   dataAsset?: Array<object>;
   handleClose: Function;
-  // changePage: Function;
-  changeInterestRange: Function;
-  changeLoanRange: Function;
-  // changeCollateral: Function;
-  // changeLoanSymbol: Function;
-  changeLoanType: Function;
-  changeDuration: Function;
 }
 const imgObject = {
   XRP: '/XRP.7ff389b.png',
