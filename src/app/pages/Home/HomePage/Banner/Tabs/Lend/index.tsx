@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /**
  *
  * Lend
@@ -10,7 +11,6 @@ import DefiButton from '../../../../../../components/DefiButton/DefiButton';
 import imgSearch from '../../assets/search.svg';
 import imgClose from '../../assets/x.svg';
 import { MultiSelect } from 'react-multi-select-component';
-import { getAsset } from '../../../../../../service/apiAsset/apiAsset';
 import { Link } from 'react-router-dom';
 import { Div, InputField, P, Main } from '../../../components/style';
 import ComboBox from 'react-responsive-combo-box';
@@ -113,33 +113,30 @@ export function Lend(props: Props) {
 
   // items crypto
   const optionsItems: any[] = [];
+  //bỏ api
+  // lỗi to many re-renders nên phải thêm useEffect
+  // bên Crypto cũng lấy data , không cần useEffect mà không lỗi to many re-renders
   useEffect(() => {
-    const resultAsset = () => {
-      getAsset()
-        .then(asset => asset.data)
-        .then((e: any) => {
-          e.data.map((o: any) => {
-            o.isWhitelistCollateral && optionsItems.push(o);
-            return o;
-          });
-          return optionsItems;
-        })
-        .then((o: any[]) => {
-          const tmpOption = o.map(item => {
-            return {
-              label: item.symbol,
-              value: dataSymbol[item.symbol],
-            };
-          });
-          setOptions(tmpOption);
-        })
-        .catch(e => e);
-    };
-    async function asyncCall() {
-      await resultAsset();
+    const arrAsset = props.dataAsset;
+    console.log(arrAsset);
+    if (arrAsset) {
+      arrAsset.map((o: any) => {
+        console.log(o);
+
+        o.isWhitelistCollateral && optionsItems.push(o);
+        return optionsItems;
+      });
+      console.log(optionsItems);
+      if (optionsItems) {
+        const tmpOption = optionsItems.map(item => {
+          return {
+            label: item.symbol,
+            value: dataSymbol[item.symbol],
+          };
+        });
+        setOptions(tmpOption);
+      }
     }
-    asyncCall();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

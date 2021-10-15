@@ -6,7 +6,7 @@
 import * as React from 'react';
 import styled from 'styled-components/macro';
 import { SumCollateral } from '../SumCollateral/SumCollateral';
-import { Table } from 'react-bootstrap';
+import { Col, Container, Row, Table } from 'react-bootstrap';
 import { Address, P, Start } from '../Style';
 import imgStar from '../assets/Star.svg';
 import DefiButton from 'app/components/DefiButton/DefiButton';
@@ -42,39 +42,191 @@ export function Result(props: Props) {
   return (
     <div>
       <SumCollateral sum={result.result ? result.result.total_elements : 0} />
-      <Table className="table mt-sm-4">
-        <thead className="table__head">
-          <tr>
-            <th className="Id">#</th>
-            <th>Borrow</th>
-            <th>Collateral</th>
-            <th>Loan currency</th>
-            <th>Duration</th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody className="table__body">
-          {result.result && result.result.content.length >= 5
-            ? result.result.content.slice(5).map((data?: any, index?: any) => {
+      <div className="table mt-sm-4">
+        <Container>
+          <Row className="table__head d-flex">
+            <Col lg={1} className="id">
+              #
+            </Col>
+            <Col lg={3} className="borrow">
+              Borrow
+            </Col>
+            <Col lg={2}>Collateral</Col>
+            <Col lg={2} className="loanCurrency">
+              Loan currency
+            </Col>
+            <Col lg={3} className="duration">
+              Duration
+            </Col>
+          </Row>
+
+          <div className="table__body">
+            {result.result && result.result.content.length >= 5
+              ? result.result.content
+                  .slice(0, 5)
+                  .map((data?: any, index?: any) => {
+                    const walletAddress = data.walletAddress;
+                    const shortAddress = `${walletAddress.slice(
+                      0,
+                      5,
+                    )}...${walletAddress.slice(-5)}`;
+                    return (
+                      <Row key={index} className="items d-flex flex-row">
+                        <Col lg={1} sm={12} className="id">
+                          <P>{index + 1}</P>
+                        </Col>
+                        <Col
+                          lg={3}
+                          sm={12}
+                          className="borrow d-flex flex-column"
+                        >
+                          <Address className="borrow__address">
+                            {shortAddress}
+                          </Address>
+                          <Start>
+                            <img className="start" src={imgStar} alt="" />
+                            <p className="contracts">
+                              {' '}
+                              {data.reputation} &nbsp;{' | '} &nbsp;{' '}
+                              {data.completedContracts} Contracts
+                            </p>
+                          </Start>
+                        </Col>
+                        <Col lg={2} sm={12}>
+                          <P>
+                            <img
+                              src={`https://staging.app.defiforyou.uk/_nuxt/img${
+                                imgObject[data.collateralSymbol]
+                              }`}
+                              alt=""
+                            />
+                            {data.collateralSymbol} {data.collateralAmount}
+                          </P>
+                        </Col>
+                        <Col lg={2} sm={12}>
+                          <P>
+                            <img
+                              src={`https://staging.app.defiforyou.uk/_nuxt/img${
+                                imgObject[data.loanSymbol]
+                              }`}
+                              alt=""
+                            />
+                            {data.loanSymbol}
+                          </P>
+                        </Col>
+                        <Col lg={2} sm={12}>
+                          <P>
+                            {data.durationType
+                              ? `${data.durationQty} Months`
+                              : `${data.durationQty} Weeks`}
+                          </P>
+                        </Col>
+                        <Col
+                          lg={2}
+                          sm={12}
+                          className="send d-flex justify-content-center align-items-center"
+                        >
+                          <DefiButton width="116px" height="36px">
+                            Send Offer
+                          </DefiButton>
+                        </Col>
+                      </Row>
+                    );
+                  })
+              : result.result &&
+                result.result.content.map((data?: any, index?: any) => {
+                  const walletAddress = data.walletAddress;
+                  const shortAddress = `${walletAddress.slice(
+                    0,
+                    5,
+                  )}...${walletAddress.slice(-5)}`;
+                  return (
+                    <Row key={index} className="items d-flex flex-row">
+                      <Col lg={1} sm={12} className="id">
+                        <P>{index + 1}</P>
+                      </Col>
+                      <Col lg={3} sm={12} className="borrow d-flex flex-column">
+                        <Address className="borrow__address">
+                          {shortAddress}
+                        </Address>
+                        <Start>
+                          <img className="start" src={imgStar} alt="" />
+                          <p className="contracts">
+                            {' '}
+                            {data.reputation} &nbsp;{' | '} &nbsp;{' '}
+                            {data.completedContracts} Contracts
+                          </p>
+                        </Start>
+                      </Col>
+                      <Col lg={2} sm={12}>
+                        <P>
+                          <img
+                            src={`https://staging.app.defiforyou.uk/_nuxt/img${
+                              imgObject[data.collateralSymbol]
+                            }`}
+                            alt=""
+                          />
+                          {data.collateralSymbol} {data.collateralAmount}
+                        </P>
+                      </Col>
+                      <Col lg={2} sm={12}>
+                        <P>
+                          <img
+                            src={`https://staging.app.defiforyou.uk/_nuxt/img${
+                              imgObject[data.loanSymbol]
+                            }`}
+                            alt=""
+                          />
+                          {data.loanSymbol}
+                        </P>
+                      </Col>
+                      <Col lg={2} sm={12}>
+                        <P>
+                          {data.durationType
+                            ? `${data.durationQty} Months`
+                            : `${data.durationQty} Weeks`}
+                        </P>
+                      </Col>
+                      <Col
+                        lg={2}
+                        sm={12}
+                        className="send d-flex justify-content-center align-items-center"
+                      >
+                        <DefiButton width="116px" height="36px">
+                          Send Offer
+                        </DefiButton>
+                      </Col>
+                    </Row>
+                  );
+                })}
+            <Advertisement />
+            {result.result &&
+              result.result.content.length >= 5 &&
+              result.result.content.slice(5).map((data?: any, index?: any) => {
                 const walletAddress = data.walletAddress;
                 const shortAddress = `${walletAddress.slice(
                   0,
                   5,
                 )}...${walletAddress.slice(-5)}`;
                 return (
-                  <tr key={index} className="items">
-                    <td className="Id">
-                      <P>{index + 1}</P>
-                    </td>
-                    <td className="d-flex flex-column">
-                      <Address>{shortAddress}</Address>
+                  <Row key={index} className="items d-flex flex-row">
+                    <Col lg={1} sm={12} className="id">
+                      <P>{index + 6}</P>
+                    </Col>
+                    <Col lg={3} sm={12} className="borrow d-flex flex-column">
+                      <Address className="borrow__address">
+                        {shortAddress}
+                      </Address>
                       <Start>
-                        <img className="pe-2" src={imgStar} alt="" />
-                        {data.reputation} {' | '}
-                        {data.completedContracts} Contracts
+                        <img className="start" src={imgStar} alt="" />
+                        <p className="contracts">
+                          {' '}
+                          {data.reputation} &nbsp;{' | '} &nbsp;{' '}
+                          {data.completedContracts} Contracts
+                        </p>
                       </Start>
-                    </td>
-                    <td>
+                    </Col>
+                    <Col lg={2} sm={12}>
                       <P>
                         <img
                           src={`https://staging.app.defiforyou.uk/_nuxt/img${
@@ -84,8 +236,8 @@ export function Result(props: Props) {
                         />
                         {data.collateralSymbol} {data.collateralAmount}
                       </P>
-                    </td>
-                    <td>
+                    </Col>
+                    <Col lg={2} sm={12}>
                       <P>
                         <img
                           src={`https://staging.app.defiforyou.uk/_nuxt/img${
@@ -95,165 +247,35 @@ export function Result(props: Props) {
                         />
                         {data.loanSymbol}
                       </P>
-                    </td>
-                    <td>
+                    </Col>
+                    <Col lg={2} sm={12}>
                       <P>
                         {data.durationType
                           ? `${data.durationQty} Months`
                           : `${data.durationQty} Weeks`}
                       </P>
-                    </td>
-                    <td className="d-flex justify-content-center">
-                      <DefiButton
-                        width="60%"
-                        margin="14px 23px 14px 64px"
-                        padding="9.5px 0px"
-                      >
+                    </Col>
+                    <Col className="send d-flex justify-content-center align-items-center">
+                      <DefiButton width="116px" height="36px">
                         Send Offer
                       </DefiButton>
-                    </td>
-                  </tr>
-                );
-              })
-            : result.result &&
-              result.result.content.map((data?: any, index?: any) => {
-                const walletAddress = data.walletAddress;
-                const shortAddress = `${walletAddress.slice(
-                  0,
-                  5,
-                )}...${walletAddress.slice(-5)}`;
-                return (
-                  <tr key={index} className="items">
-                    <td className="Id">
-                      <P>{index + 1}</P>
-                    </td>
-                    <td className="d-flex flex-column">
-                      <Address>{shortAddress}</Address>
-                      <Start>
-                        <img className="pe-2" src={imgStar} alt="" />
-                        {data.reputation} {' | '}
-                        {data.completedContracts} Contracts
-                      </Start>
-                    </td>
-                    <td>
-                      <P>
-                        <img
-                          src={`https://staging.app.defiforyou.uk/_nuxt/img${
-                            imgObject[data.collateralSymbol]
-                          }`}
-                          alt=""
-                        />
-                        {data.collateralSymbol} {data.collateralAmount}
-                      </P>
-                    </td>
-                    <td>
-                      <P>
-                        <img
-                          src={`https://staging.app.defiforyou.uk/_nuxt/img${
-                            imgObject[data.loanSymbol]
-                          }`}
-                          alt=""
-                        />
-                        {data.loanSymbol}
-                      </P>
-                    </td>
-                    <td>
-                      <P>
-                        {data.durationType
-                          ? `${data.durationQty} Months`
-                          : `${data.durationQty} Weeks`}
-                      </P>
-                    </td>
-                    <td className="d-flex justify-content-center">
-                      <DefiButton
-                        width="60%"
-                        margin="14px 23px 14px 64px"
-                        padding="9.5px 0px"
-                      >
-                        Send Offer
-                      </DefiButton>
-                    </td>
-                  </tr>
+                    </Col>
+                  </Row>
                 );
               })}
-          <Advertisement />
-          {result.result &&
-            result.result.content.length >= 5 &&
-            result.result.content.slice(-5).map((data?: any, index?: any) => {
-              const walletAddress = data.walletAddress;
-              const shortAddress = `${walletAddress.slice(
-                0,
-                5,
-              )}...${walletAddress.slice(-5)}`;
-              return (
-                <tr key={index} className="items">
-                  <td className="Id">
-                    <P>{index + 6}</P>
-                  </td>
-                  <td className="d-flex flex-column">
-                    <Address>{shortAddress}</Address>
-                    <Start>
-                      <img className="pe-2" src={imgStar} alt="" />
-                      {data.reputation} {' | '}
-                      {data.completedContracts} Contracts
-                    </Start>
-                  </td>
-                  <td>
-                    <P>
-                      <img
-                        src={`https://staging.app.defiforyou.uk/_nuxt/img${
-                          imgObject[data.collateralSymbol]
-                        }`}
-                        alt=""
-                      />
-                      {data.collateralSymbol} {data.collateralAmount}
-                    </P>
-                  </td>
-                  <td>
-                    <P>
-                      <img
-                        src={`https://staging.app.defiforyou.uk/_nuxt/img${
-                          imgObject[data.loanSymbol]
-                        }`}
-                        alt=""
-                      />
-                      {data.loanSymbol}
-                    </P>
-                  </td>
-                  <td>
-                    <P>
-                      {data.durationType
-                        ? `${data.durationQty} Months`
-                        : `${data.durationQty} Weeks`}
-                    </P>
-                  </td>
-                  <td className="d-flex justify-content-center">
-                    <DefiButton
-                      width="60%"
-                      margin="14px 23px 14px 64px"
-                      padding="9.5px 0px"
-                    >
-                      Send Offer
-                    </DefiButton>
-                  </td>
-                </tr>
-              );
-            })}
-        </tbody>
-      </Table>
-      <Pag>
-        <Pagination
-          totalPage={result.result ? result.result.total_pages : 0}
-          changePage={e => handlePageChange(e)}
-        />
-      </Pag>
-    </div>
+          </div>
+        </Container>
+      </div>
+      <Pagination
+        totalPage={result.result ? result.result.total_pages : 0}
+        changePage={e => handlePageChange(e)}
+      />
+    </Div>
   );
 }
 
-const Pag = styled.div`
-  display: flex;
-  justify-content: center;
-  margin-top: 48px;
-  margin-bottom: 120px;
+const Div = styled.div`
+  .row {
+    --bs-gutter-x: 0px !important;
+  }
 `;

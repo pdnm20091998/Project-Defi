@@ -9,7 +9,7 @@ import FilterLendMobile from './Filter/FilterLendMobie';
 import IconFilter from './assets/Group 6152.svg';
 
 import { useDispatch } from 'react-redux';
-import { resultLendCryptoAction } from 'app/actions/lendCrypto/lendCryptoAction';
+import { resultLendCryptoAction } from 'app/actions/LendCrypto/lendCryptoAction';
 import { Result } from './Result';
 import { useLendCryptoContext } from 'app/components/common/context/lendCryptoContext';
 import { Wrapper, Div } from './Style/index';
@@ -17,7 +17,7 @@ import { Wrapper, Div } from './Style/index';
 export default function ResultLendCrypto() {
   const dataAsset: Array<object> = [];
   const [dataasset, setDataAsset] = useState<Array<object>>([]);
-  const isNoneFilter = useMediaQuery('(max-width:1024px)');
+  const isNoneFilter = useMediaQuery('(max-width:992px)');
   const [openFilter, setOpenFilter] = useState(false);
   const dispatch = useDispatch();
 
