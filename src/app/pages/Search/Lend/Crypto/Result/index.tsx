@@ -18,7 +18,7 @@ import { useLendCryptoContext } from 'app/components/common/context/lendCryptoCo
 interface Props {}
 
 export function Result(props: Props) {
-  const { setPage } = useLendCryptoContext();
+  const { setPage, render, setRender } = useLendCryptoContext();
   const result: any = useSelector((state: RootState) => state.lendcrypto);
   const imgObject = {
     XRP: '/XRP.7ff389b.png',
@@ -37,9 +37,10 @@ export function Result(props: Props) {
   };
   const handlePageChange = e => {
     setPage(e);
+    setRender(!render);
   };
   return (
-    <Div>
+    <div>
       <SumCollateral sum={result.result ? result.result.total_elements : 0} />
       <Table className="table mt-sm-4">
         <thead className="table__head">
@@ -240,12 +241,19 @@ export function Result(props: Props) {
             })}
         </tbody>
       </Table>
-      <Pagination
-        totalPage={result.result ? result.result.total_pages : 0}
-        changePage={e => handlePageChange(e)}
-      />
-    </Div>
+      <Pag>
+        <Pagination
+          totalPage={result.result ? result.result.total_pages : 0}
+          changePage={e => handlePageChange(e)}
+        />
+      </Pag>
+    </div>
   );
 }
 
-const Div = styled.div``;
+const Pag = styled.div`
+  display: flex;
+  justify-content: center;
+  margin-top: 48px;
+  margin-bottom: 120px;
+`;

@@ -3,7 +3,7 @@ import { Container, Row, Col } from 'react-bootstrap';
 import DefiButton from 'app/components/DefiButton/DefiButton';
 import backgroundImg from '../PawnShop/asset/watch.png';
 import '../PawnShop/sass/pawnshop.scss';
-
+import { useTranslation } from 'react-i18next';
 const DivPawnShop = styled.div`
   padding: 60px 20px;
   background: rgb(26, 26, 35);
@@ -42,6 +42,7 @@ const DivPawnShop = styled.div`
 `;
 
 const PawnShop = () => {
+  const { t } = useTranslation();
   return (
     <DivPawnShop>
       <Container>
@@ -51,14 +52,12 @@ const PawnShop = () => {
               className="pawnShop"
               style={{ backgroundImage: `url(${backgroundImg})` }}
             >
-              <h3 className="pawnShop__title">Become a Pawnshop</h3>
+              <h3 className="pawnShop__title">{t('home.become.bc')}</h3>
               <p className="pawnShop__info">
-                Open your own pawn shop and discover a new business opportunity
-                with an unmatched ROI. Be a part of the world's financial
-                revolution.
+                {t('home.become.bc_description')}
               </p>
               <DefiButton className="button__learnMore" padding="14px 24px">
-                Learn more
+                {t('home.become.learn')}
               </DefiButton>
             </div>
           </Col>

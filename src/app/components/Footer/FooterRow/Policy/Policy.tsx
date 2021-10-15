@@ -1,13 +1,10 @@
 import styled from 'styled-components/macro';
 import divider from './assests/divider.svg';
-import ChangeLang from 'app/components/changeLang/changeLang';
 
 export default function Policy() {
   return (
     <div className="d-flex flex-row justify-content-md-end justify-content-center">
-      <Change>
-        <ChangeLang />
-      </Change>
+      <Change></Change>
       <A href="https://defi-for-you.gitbook.io/faq/p2p-lending/terms-of-service">
         Terms of Service{' '}
       </A>
