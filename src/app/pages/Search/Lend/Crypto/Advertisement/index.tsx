@@ -3,12 +3,15 @@
  * Advertisement
  *
  */
+import { Col, Container, Row } from 'react-bootstrap';
 import styled from 'styled-components/macro';
 import ImgFrame from '../assets/Frame.svg';
 interface Props {}
-const Wrapper = styled.tr`
-  background: #475674;
+const Wrapper = styled.div`
+  background: #475674 !important;
   border-radius: 10px;
+  min-width: 100%;
+  margin: 20px 0px;
   .content {
     h2 {
       margin: 9px 0px 8px 24px;
@@ -34,20 +37,25 @@ const Wrapper = styled.tr`
 export function Advertisement(props: Props) {
   return (
     <Wrapper>
-      <td colSpan={5}>
-        <div className="content">
-          <h2>Become your own bank</h2>
-          <p>
-            Sign up for pawnshop to get great benefits from{' '}
-            <span className="content--defi">DeFi For You.</span>
-          </p>
-        </div>
-      </td>
-      <td colSpan={1}>
-        <div>
-          <img src={ImgFrame} alt="Become your own bank" />
-        </div>
-      </td>
+      <Container>
+        <Row className="d-flex justify-content-between">
+          <Col xl={6} sm={6} md={6} xs={12} className="content">
+            <h2>Become your own bank</h2>
+            <p>
+              Sign up for pawnshop to get great benefits from{' '}
+              <span className="content--defi">DeFi For You.</span>
+            </p>
+          </Col>
+          <Col
+            xl={{ span: 3, offset: 3 }}
+            md={{ span: 4, offset: 2 }}
+            sm={{ span: 5, offset: 1 }}
+            xs={12}
+          >
+            <img src={ImgFrame} alt="Become your own bank" />
+          </Col>
+        </Row>
+      </Container>
     </Wrapper>
   );
 }
