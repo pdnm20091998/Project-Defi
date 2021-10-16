@@ -54,7 +54,7 @@ export const Div = styled.div`
     border-radius: 22px;
     height: 44px;
     width: 100%;
-    margin: 12px;
+    margin: 12px 0 12px 12px;
     color: #fff;
     &:hover {
       border-color: #ffffff;
@@ -62,6 +62,7 @@ export const Div = styled.div`
 
     ._3tcyg {
       width: 100%;
+      height: 100%;
 
       ._WbEAz {
         background-color: #2f3543;
@@ -128,7 +129,7 @@ export const Main = styled.div`
     --rmsc-selected: rgba(219, 168, 61, 0.3);
     --rmsc-radius: 22px;
     box-sizing: border-box;
-    --rmsc-h: 44px;
+    /* --rmsc-h: 90px; */
     --rmsc-main: #dba83d;
     color: #fff;
     .icon {
@@ -183,7 +184,7 @@ export const Main = styled.div`
     height: 44px;
   }
   .field {
-    margin-top: 6px;
+    margin: 6px 0 0 0;
   }
   .multi {
     height: 44px;
