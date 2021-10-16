@@ -32,7 +32,6 @@ function Banner(props: Props) {
       return dataAsset;
     }
     asyncCall().then(e => {
-      console.log(e);
       setDataAsset(e);
     });
 

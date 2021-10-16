@@ -5,7 +5,7 @@
  *
  */
 import { Container, Row, Col } from 'react-bootstrap';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import DefiButton from '../../../../../../components/DefiButton/DefiButton';
 import imgSearch from '../../assets/search.svg';
 import imgClose from '../../assets/x.svg';
@@ -65,8 +65,6 @@ export function Lend(props: Props) {
       return loanCurrency;
     });
   const [selected, setSelected] = useState([]);
-  const [options, setOptions] = useState<Array<OptionsItem>>([]);
-
   const handleSelected = item => {
     setSelected(item);
     const arrLabel = item?.map(option => option.label);
@@ -111,31 +109,22 @@ export function Lend(props: Props) {
 
   // items crypto
   const optionsItems: any[] = [];
+  const tmpOption: Array<OptionsItem> = [];
   //bỏ api
-  // lỗi to many re-renders nên phải thêm useEffect
-  // bên Crypto cũng lấy data , không cần useEffect mà không lỗi to many re-renders
-  useEffect(() => {
-    const arrAsset = props.dataAsset;
-    console.log(arrAsset);
-    if (arrAsset) {
-      arrAsset.map((o: any) => {
-        console.log(o);
-
-        o.isWhitelistCollateral && optionsItems.push(o);
-        return optionsItems;
-      });
-      console.log(optionsItems);
-      if (optionsItems) {
-        const tmpOption = optionsItems.map(item => {
-          return {
-            label: item.symbol,
-            value: dataSymbol[item.symbol],
-          };
+  if (data) {
+    data.map((o: any) => {
+      o.isWhitelistCollateral && optionsItems.push(o);
+      return optionsItems;
+    });
+    if (optionsItems) {
+      optionsItems.map(item => {
+        tmpOption.push({
+          label: item.symbol,
+          value: dataSymbol[item.symbol],
         });
-        setOptions(tmpOption);
-      }
+      });
     }
-  }, []);
+  }
 
   return (
     <Main>
@@ -262,7 +251,7 @@ export function Lend(props: Props) {
                   <Row>
                     <div>
                       <MultiSelect
-                        options={options}
+                        options={tmpOption}
                         value={selected}
                         onChange={item => handleSelected(item)}
                         labelledBy="Select"

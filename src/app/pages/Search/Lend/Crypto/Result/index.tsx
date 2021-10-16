@@ -6,7 +6,7 @@
 import * as React from 'react';
 import styled from 'styled-components/macro';
 import { SumCollateral } from '../SumCollateral/SumCollateral';
-import { Col, Container, Row, Table } from 'react-bootstrap';
+import { Col, Container, Row } from 'react-bootstrap';
 import { Address, P, Start } from '../Style';
 import imgStar from '../assets/Star.svg';
 import DefiButton from 'app/components/DefiButton/DefiButton';
