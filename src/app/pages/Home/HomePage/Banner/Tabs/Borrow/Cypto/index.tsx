@@ -110,7 +110,7 @@ export function Crypto(props: Props) {
           <Row>
             <Col>
               <div>
-                <P>Collateral</P>
+                <P>{t('home.collateral')}</P>
                 <Row>
                   <Div className="mx-1">
                     <Col sm="9" xs="9">
@@ -119,7 +119,7 @@ export function Crypto(props: Props) {
                           <input
                             type="number"
                             className="input input-slot"
-                            placeholder="Enter amount"
+                            placeholder={t('home.enter_amount')}
                             onChange={handleCollateralChange}
                           ></input>
                         </div>
@@ -143,17 +143,17 @@ export function Crypto(props: Props) {
                 <div className="pt-3 pb-2"></div>
               </div>
               <Container className="px-0">
-                <P>Or</P>
+                <P>{t('home.or')}</P>
                 <Row>
                   <Col xs="9">
                     <Button className="btn mb-3 px-4 py-2">
-                      Choose Existing collateral
+                      {t('home.choose')}
                     </Button>
                   </Col>
                 </Row>
               </Container>
               <div>
-                <P>Duration</P>
+                <P>{t('home.duration')}</P>
                 <Row>
                   <Div className="mx-1">
                     <Col sm="9" xs="9">
@@ -162,7 +162,7 @@ export function Crypto(props: Props) {
                           <input
                             type="number"
                             className="input input-slot"
-                            placeholder="Duration"
+                            placeholder={t('home.duration')}
                             onChange={handleDurationQty}
                           ></input>
                         </div>
@@ -195,7 +195,7 @@ export function Crypto(props: Props) {
                 <div className="pt-3 pb-2"></div>
               </div>
               <div>
-                <P>Loan Amount</P>
+                <P>{t('home.loan_amount')}</P>
                 <Row>
                   <Div className="mx-1">
                     <Col sm="9" xs="9">
@@ -204,7 +204,7 @@ export function Crypto(props: Props) {
                           <input
                             type="number"
                             className="input input-slot"
-                            placeholder="Enter amount"
+                            placeholder={t('home.enter_amount')}
                             onChange={handleLoanAmount}
                           ></input>
                         </div>
@@ -231,7 +231,7 @@ export function Crypto(props: Props) {
                 className="mt"
                 title="To get a loan quickly, you should set the desired loan amount between 50-70% of the collateral value"
               >
-                Recommended amount <img src={img} alt="" />
+                {t('home.recommended')} <img src={img} alt="" />
               </p>
               <div className="btnSearch">
                 <Link to="/resultBorrowCrypto">

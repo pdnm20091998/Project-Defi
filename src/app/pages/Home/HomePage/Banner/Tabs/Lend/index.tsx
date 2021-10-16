@@ -5,7 +5,7 @@
  *
  */
 import { Container, Row, Col } from 'react-bootstrap';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import DefiButton from '../../../../../../components/DefiButton/DefiButton';
 import imgSearch from '../../assets/search.svg';
@@ -135,7 +135,7 @@ export function Lend(props: Props) {
           <Row>
             <Col>
               <div>
-                <P>Maximum loan amount</P>
+                <P>{t('home.maximum')}</P>
                 <Row className="field">
                   <Div className="mx-1">
                     <Col sm="9" xs="9">
@@ -144,7 +144,7 @@ export function Lend(props: Props) {
                           <input
                             type="number"
                             className="input input-slot"
-                            placeholder="Enter amount"
+                            placeholder={t('home.enter_amount')}
                             onChange={handleLoanAmountChange}
                           ></input>
                           <DefiButton
@@ -179,7 +179,7 @@ export function Lend(props: Props) {
               </div>
               <div>
                 {' '}
-                <P>Duration</P>
+                <P>{t('home.duration')}</P>
                 <Row className="field">
                   <Div className="mx-1">
                     <Col sm="9" xs="9">
@@ -188,7 +188,7 @@ export function Lend(props: Props) {
                           <input
                             type="number"
                             className="input input-slot"
-                            placeholder="Duration"
+                            placeholder={t('home.duration')}
                             onChange={handleLoanDurationChange}
                           ></input>
                         </div>
@@ -222,7 +222,7 @@ export function Lend(props: Props) {
                 </Row>
                 <div className="pt-3 pb-2"></div>
               </div>
-              <P className="pb-2">Collateral</P>
+              <P className="pb-2">{t('home.collateral')}</P>
               <div className="tabsRadio d-flex my-3">
                 <label className="tabsRadio__Crypto tab ">
                   <input
