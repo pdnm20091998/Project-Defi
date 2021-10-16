@@ -5,6 +5,9 @@ import image from './assests/avatar.png';
 import Type from './components/Type';
 import styles from './style/PawnItem.module.css';
 import star from './assests/star.svg';
+import whiteheart from './assests/whiteheart.png';
+import pinkheart from './assests/pinkheart.png';
+import tick from './assests/tick.png';
 interface Props {
   shopname: string;
   interest: string;
@@ -21,6 +24,7 @@ interface Props {
   reputation: number;
   avatar: string;
   type: number;
+  favourite: any;
 }
 export default function PawnItem(props: Props) {
   return (
@@ -30,17 +34,36 @@ export default function PawnItem(props: Props) {
           <Col md={8}>
             <MyRow className={`${styles.border_bot} pb-md-0 pb-2`}>
               <Row>
-                <Col className="mb-2 mb-lg-0" md={5} xs={6}>
+                <Col className="mb-2 mb-lg-0 position-relative" md={5} xs={6}>
                   {props.avatar ? (
                     <img src={props.avatar} width="100%" alt="imag" />
                   ) : (
                     <img src={image} alt="imag" width="100%" />
+                  )}
+                  {props.favourite ? (
+                    <img
+                      src={pinkheart}
+                      alt="heart"
+                      className={`position-absolute ${styles.heart}`}
+                    />
+                  ) : (
+                    <img
+                      src={whiteheart}
+                      alt="heart"
+                      className={`position-absolute ${styles.heart}`}
+                    />
                   )}
                 </Col>
                 <Col xs={6} md={7}>
                   <Stack gap={0}>
                     <Title className={styles.small_title}>
                       {props.shopname}
+                      <img
+                        src={tick}
+                        className="ms-1"
+                        alt="tick"
+                        width="20px"
+                      />
                     </Title>
                     <div className="d-flex">
                       <img src={star} className="me-2" alt="star" />

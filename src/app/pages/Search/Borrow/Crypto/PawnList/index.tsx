@@ -232,6 +232,7 @@ export default function PawnList() {
               reputation={e.pawnShop.reputation}
               avatar={e.pawnShop.avatar}
               type={e.type}
+              favourite={e.isFavourite}
             />
           </PawnItemDiv>
         ))}
