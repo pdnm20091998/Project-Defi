@@ -67,8 +67,6 @@ export function Lend(props: Props) {
       return loanCurrency;
     });
   const [selected, setSelected] = useState([]);
-  const [options, setOptions] = useState<Array<OptionsItem>>([]);
-
   const handleSelected = item => {
     setSelected(item);
     const arrLabel = item?.map(option => option.label);
@@ -113,31 +111,22 @@ export function Lend(props: Props) {
 
   // items crypto
   const optionsItems: any[] = [];
+  const tmpOption: Array<OptionsItem> = [];
   //bỏ api
-  // lỗi to many re-renders nên phải thêm useEffect
-  // bên Crypto cũng lấy data , không cần useEffect mà không lỗi to many re-renders
-  useEffect(() => {
-    const arrAsset = props.dataAsset;
-    console.log(arrAsset);
-    if (arrAsset) {
-      arrAsset.map((o: any) => {
-        console.log(o);
-
-        o.isWhitelistCollateral && optionsItems.push(o);
-        return optionsItems;
-      });
-      console.log(optionsItems);
-      if (optionsItems) {
-        const tmpOption = optionsItems.map(item => {
-          return {
-            label: item.symbol,
-            value: dataSymbol[item.symbol],
-          };
+  if (data) {
+    data.map((o: any) => {
+      o.isWhitelistCollateral && optionsItems.push(o);
+      return optionsItems;
+    });
+    if (optionsItems) {
+      optionsItems.map(item => {
+        tmpOption.push({
+          label: item.symbol,
+          value: dataSymbol[item.symbol],
         });
-        setOptions(tmpOption);
-      }
+      });
     }
-  }, []);
+  }
 
   return (
     <Main>
@@ -258,28 +247,30 @@ export function Lend(props: Props) {
               {component ? (
                 <div>
                   <Row className="multi">
-                    <MultiSelect
-                      options={options}
-                      value={selected}
-                      onChange={item => handleSelected(item)}
-                      labelledBy="Select"
-                      hasSelectAll={true}
-                      disableSearch={true}
-                      ItemRenderer={item => (
-                        <DefaultItemRenderer
-                          checked={item.checked}
-                          option={item.option}
-                          onClick={item.onClick}
-                          disabled={item.disabled}
-                        />
-                      )}
-                      valueRenderer={customValueRenderer}
-                    />
+                    <div>
+                      <MultiSelect
+                        options={tmpOption}
+                        value={selected}
+                        onChange={item => handleSelected(item)}
+                        labelledBy="Select"
+                        hasSelectAll={true}
+                        disableSearch={true}
+                        ItemRenderer={item => (
+                          <DefaultItemRenderer
+                            checked={item.checked}
+                            option={item.option}
+                            onClick={item.onClick}
+                            disabled={item.disabled}
+                          />
+                        )}
+                        valueRenderer={customValueRenderer}
+                      />
+                    </div>
                   </Row>
                   <div className="lendCrypto--Search">
                     <Link to="/resultLendCrypto">
                       <DefiButton
-                        className="search mb-lg-5 mb-sm-3 mb-xs-3"
+                        className="search mb-lg-5 mb-sm-3"
                         width="100%"
                         height="3.4rem"
                         margin="38px 0px"
@@ -293,7 +284,7 @@ export function Lend(props: Props) {
                 <div className="lendnft--Search">
                   <Link to="/resultLendNFT">
                     <DefiButton
-                      className="search mb-lg-5 mb-sm-3 mb-xs-3"
+                      className="search mb-lg-5 mb-sm-3"
                       width="100%"
                       height="54px"
                       margin="38px 0px"
