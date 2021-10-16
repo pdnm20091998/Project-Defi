@@ -6,7 +6,7 @@ import { RootState } from 'app/reducer/reducers';
 import { Pagination } from 'app/components/Pagination/Pagination';
 import { useLendContext } from 'app/components/common/context/lendNftContext';
 import ImgPrice from '../../assets/price.svg';
-import Avt from '../../assets/Frame.svg';
+import Avt from '../../assets/defaultAvata.png';
 
 export default function ResultLendComponent() {
   const { setPage } = useLendContext();
@@ -108,7 +108,7 @@ export default function ResultLendComponent() {
             );
           })
         : ''}
-      <div className="pagination">
+      <div className="pagi">
         {' '}
         <Pagination
           totalPage={result.result ? result.result.total_pages : 0}

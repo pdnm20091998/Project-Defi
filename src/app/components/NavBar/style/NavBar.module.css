@@ -70,7 +70,10 @@
         height: 60px;
     }
 }
-
+.login_active {
+  color: #dba83d !important;
+  position: relative;
+}
 .active {
     color: #dba83d !important;
     position: relative;

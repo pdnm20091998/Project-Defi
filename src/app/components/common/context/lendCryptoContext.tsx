@@ -19,6 +19,8 @@ interface InitContext {
   setAssetType?: any;
   item?: any;
   setItem?: any;
+  render?: any;
+  setRender?: any;
 }
 export const LendCryptoContext = createContext({} as InitContext);
 
@@ -32,6 +34,7 @@ export const LendCryptoContextProvider = ({ children }) => {
   const [nftType, setNftType] = useState('');
   const [assetType, setAssetType] = useState('');
   const [item, setItem] = useState('');
+  const [render, setRender] = useState(false);
   const data: any = {
     setPage,
     page,
@@ -51,6 +54,8 @@ export const LendCryptoContextProvider = ({ children }) => {
     setAssetType,
     item,
     setItem,
+    render,
+    setRender,
   };
 
   return (

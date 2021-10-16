@@ -39,23 +39,30 @@ export default function FilterZone(props: Props) {
     durationTypes,
     setDurationTypes,
     setName,
+    render,
+    setRender,
   } = useBorrowContext();
   const collateralAccepted: Array<object> = [];
   const handleCollateral = data => {
     if (collateralSymbols === '') {
       setCollateralSymbols(data);
+      setRender(!render);
     } else {
       setCollateralSymbols(collateralSymbols.concat(',', data));
+      setRender(!render);
     }
     if (collateralSymbols.includes(data)) {
       let x = ',' + data;
       let y = data + ',';
       if (collateralSymbols.includes(x)) {
         setCollateralSymbols(collateralSymbols.replace(x, ''));
+        setRender(!render);
       } else if (collateralSymbols.includes(y)) {
         setCollateralSymbols(collateralSymbols.replace(y, ''));
+        setRender(!render);
       } else {
         setCollateralSymbols(collateralSymbols.replace(data, ''));
+        setRender(!render);
       }
     }
   };
@@ -63,18 +70,23 @@ export default function FilterZone(props: Props) {
   const handleLoanSymbol = data => {
     if (loanSymbols === '') {
       setLoanSymbols(data);
+      setRender(!render);
     } else {
       setLoanSymbols(loanSymbols.concat(',', data));
+      setRender(!render);
     }
     if (loanSymbols.includes(data)) {
       let x = ',' + data;
       let y = data + ',';
       if (loanSymbols.includes(x)) {
         setLoanSymbols(loanSymbols.replace(x, ''));
+        setRender(!render);
       } else if (loanSymbols.includes(y)) {
         setLoanSymbols(loanSymbols.replace(y, ''));
+        setRender(!render);
       } else {
         setLoanSymbols(loanSymbols.replace(data, ''));
+        setRender(!render);
       }
     }
   };
@@ -84,6 +96,18 @@ export default function FilterZone(props: Props) {
     { name: '25-50%', title: '25-50%', value: '0.25:0.5' },
     { name: '>50%', title: '>50%', value: '0.5:1' },
   ];
+  const handleInterestRanges = data => {
+    setInterestRanges(data);
+    console.log(data);
+    console.log(interestRanges);
+    setRender(!render);
+  };
+  const handleLoanToValueRanges = data => {
+    setLoanToValueRanges(data);
+    console.log(data);
+    console.log(loanToValueRanges);
+    setRender(!render);
+  };
   const loanToValue = [
     { name: '0-25%', title: '0-25%', value: '0:0.25' },
     { name: '25-50%', title: '25-50%', value: '0.25:0.5' },
@@ -98,18 +122,23 @@ export default function FilterZone(props: Props) {
   const handleLoanType = data => {
     if (loanTypes === '') {
       setLoanTypes(data);
+      setRender(!render);
     } else {
       setLoanTypes(loanTypes.concat(',', data));
+      setRender(!render);
     }
     if (loanTypes.includes(data)) {
       let x = ',' + data;
       let y = data + ',';
       if (loanTypes.includes(x)) {
         setLoanTypes(loanTypes.replace(x, ''));
+        setRender(!render);
       } else if (loanTypes.includes(y)) {
         setLoanTypes(loanTypes.replace(y, ''));
+        setRender(!render);
       } else {
         setLoanTypes(loanTypes.replace(data, ''));
+        setRender(!render);
       }
     }
   };
@@ -120,18 +149,23 @@ export default function FilterZone(props: Props) {
   const handleDurationTypes = data => {
     if (durationTypes === '') {
       setDurationTypes(data);
+      setRender(!render);
     } else {
       setDurationTypes(durationTypes.concat(',', data));
+      setRender(!render);
     }
     if (durationTypes.includes(data)) {
       let x = ',' + data;
       let y = data + ',';
       if (durationTypes.includes(x)) {
         setDurationTypes(durationTypes.replace(x, ''));
+        setRender(!render);
       } else if (durationTypes.includes(y)) {
         setDurationTypes(durationTypes.replace(y, ''));
+        setRender(!render);
       } else {
         setDurationTypes(durationTypes.replace(data, ''));
+        setRender(!render);
       }
     }
   };
@@ -161,6 +195,7 @@ export default function FilterZone(props: Props) {
     });
   const handleSearchName = e => {
     setName(e.target.value);
+    setRender(!render);
   };
   const handleReset = e => {
     setInterestRanges('');
@@ -169,6 +204,7 @@ export default function FilterZone(props: Props) {
     setLoanSymbols('');
     setLoanTypes('');
     setDurationTypes('');
+    setRender(!render);
   };
 
   //xử lí menu mobile
@@ -183,7 +219,7 @@ export default function FilterZone(props: Props) {
       {/* insert menumobile */}
       <div className="filtermobile">
         <div className="filterheader">
-          <span>Reset filter</span>
+          <span onClick={handleReset}>Reset filter</span>
           <img
             className="exitfilter-icon"
             src={hiddenMenu}
@@ -207,7 +243,7 @@ export default function FilterZone(props: Props) {
           <Filter
             title="Interest range"
             listCheckBox={interestRange}
-            change={setInterestRanges}
+            change={handleInterestRanges}
             checked={interestRanges}
           />
         </FilterHolder>
@@ -216,7 +252,7 @@ export default function FilterZone(props: Props) {
           <Filter
             title="loan to value"
             listCheckBox={loanToValue}
-            change={setLoanToValueRanges}
+            change={handleLoanToValueRanges}
             checked={loanToValueRanges}
           />
         </FilterHolder>

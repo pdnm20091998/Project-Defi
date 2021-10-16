@@ -17,7 +17,7 @@ export const Address = styled.p`
   text-decoration-line: underline;
   color: #2596ff;
 `;
-export const Start = styled.p`
+export const Start = styled.div`
   font-style: normal;
   font-weight: normal;
   font-size: 14px;
@@ -59,22 +59,27 @@ export const Div = styled.div`
   }
   .table {
     color: #fff;
-    background: rgba(40, 44, 55, 0.5);
-    border-radius: 10px 10px 10px 10px;
     .items {
       background: #282c37;
+      border-radius: 4px 4px 0px 0px;
+      margin-bottom: 4px;
+      padding-left: 24px;
+      min-height: 80px;
       &:hover {
         background-color: #475674;
       }
-    }
-    tr {
-      border: 4px solid #171a23;
-      td {
-        border-bottom: none;
+      .borrow {
+        margin-top: 8px;
+        &__address {
+          margin-bottom: 7px;
+        }
+        .start {
+          padding-right: 10px;
+        }
+        .contracts {
+          padding-top: 1px;
+        }
       }
-    }
-    .Id {
-      text-align: center;
     }
     &__head {
       font-style: normal;
@@ -82,12 +87,24 @@ export const Div = styled.div`
       font-size: 14px;
       line-height: 17px;
       background: rgba(40, 44, 55, 0.5);
+      min-height: 50px;
+      border-radius: 10px 10px 0px 0px;
+      padding: 16px 0px 17px 24px;
+
+      @media only screen and (max-width: 1024px) {
+        display: none !important;
+      }
     }
     &__body {
       font-style: normal;
       font-weight: 500;
       font-size: 16px;
       line-height: 20px;
+      .send {
+        @media (max-width: 576px) {
+          margin: 1rem 0rem;
+        }
+      }
     }
   }
 `;
@@ -119,7 +136,7 @@ export const Wrapper = styled.div`
       width: 768px;
       margin: 0px auto;
     }
-    @media (max-width: 1024px) {
+    @media (max-width: 992px) {
       flex-direction: column;
       .icon-filter {
         display: block;

@@ -1,6 +1,14 @@
 {
   "home": {
     "title": "Nhận các khoản cho vay tiền điện tử ngay lập tức, bất kể xếp hạng tín dụng của bạn ",
+    "borrow": "Vay",
+    "lend": "Cho vay",
+    "myacc": "Tài khoản",
+    "pawn": "Tiệm",
+    "search": "Tìm kiếm",
+    "connect": "Kết nối",
+    "profile": "Hồ sơ Bên vay",
+    "with": "với",
     "content": {
       "title": "Tại sao lại vay với chúng tôi?",
       "quicker": "Nhanh hơn ngân hàng",
@@ -14,6 +22,11 @@
     },
     "explore": {
       "title": "Đối tác nổi bật"
+    },
+    "become": {
+      "bc": "Trở thành tiệm cầm đồ",
+      "bc_description": "Mở cửa hàng cầm đồ của riêng bạn và khám phá cơ hội kinh doanh mới với ROI chưa từng có. Trở thành một phần của cuộc cách mạng tài chính thế giới.",
+      "learn": "Tìm hiểu thêm"
     }
   },
   "login": {

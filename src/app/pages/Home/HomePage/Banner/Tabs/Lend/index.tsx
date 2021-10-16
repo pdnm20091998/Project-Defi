@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /**
  *
  * Lend
@@ -5,11 +6,11 @@
  */
 import { Container, Row, Col } from 'react-bootstrap';
 import { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import DefiButton from '../../../../../../components/DefiButton/DefiButton';
 import imgSearch from '../../assets/search.svg';
 import imgClose from '../../assets/x.svg';
 import { MultiSelect } from 'react-multi-select-component';
-import { getAsset } from '../../../../../../service/apiAsset/apiAsset';
 import { Link } from 'react-router-dom';
 import { Div, InputField, P, Main } from '../../../components/style';
 import ComboBox from 'react-responsive-combo-box';
@@ -53,6 +54,7 @@ interface Props {
   dataAsset?: Array<object>;
 }
 export function Lend(props: Props) {
+  const { t } = useTranslation();
   const [component, setComponent] = useState(true);
   // Combobox duration type
   const week = ['All', 'Weeks', 'Months'];
@@ -65,8 +67,6 @@ export function Lend(props: Props) {
       return loanCurrency;
     });
   const [selected, setSelected] = useState([]);
-  const [options, setOptions] = useState<Array<OptionsItem>>([]);
-
   const handleSelected = item => {
     setSelected(item);
     const arrLabel = item?.map(option => option.label);
@@ -111,44 +111,32 @@ export function Lend(props: Props) {
 
   // items crypto
   const optionsItems: any[] = [];
-  useEffect(() => {
-    const resultAsset = () => {
-      getAsset()
-        .then(asset => asset.data)
-        .then((e: any) => {
-          e.data.map((o: any) => {
-            o.isWhitelistCollateral && optionsItems.push(o);
-            return o;
-          });
-          return optionsItems;
-        })
-        .then((o: any[]) => {
-          const tmpOption = o.map(item => {
-            return {
-              label: item.symbol,
-              value: dataSymbol[item.symbol],
-            };
-          });
-          setOptions(tmpOption);
-        })
-        .catch(e => e);
-    };
-    async function asyncCall() {
-      await resultAsset();
+  const tmpOption: Array<OptionsItem> = [];
+  //bỏ api
+  if (data) {
+    data.map((o: any) => {
+      o.isWhitelistCollateral && optionsItems.push(o);
+      return optionsItems;
+    });
+    if (optionsItems) {
+      optionsItems.map(item => {
+        tmpOption.push({
+          label: item.symbol,
+          value: dataSymbol[item.symbol],
+        });
+      });
     }
-    asyncCall();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }
 
   return (
     <Main>
       <div>
-        <Row>
-          <Col>
-            <div>
-              <Container fluid="lg">
+        <Container fluid="lg">
+          <Row>
+            <Col>
+              <div>
                 <P>Maximum loan amount</P>
-                <Row>
+                <Row className="field">
                   <Div className="mx-1">
                     <Col sm="9" xs="9">
                       <InputField>
@@ -188,13 +176,11 @@ export function Lend(props: Props) {
                   </Div>
                 </Row>
                 <div className="pt-3 pb-2"></div>
-              </Container>
-            </div>
-            <div>
-              {' '}
-              <Container fluid="lg">
+              </div>
+              <div>
+                {' '}
                 <P>Duration</P>
-                <Row>
+                <Row className="field">
                   <Div className="mx-1">
                     <Col sm="9" xs="9">
                       <InputField>
@@ -235,9 +221,7 @@ export function Lend(props: Props) {
                   </Div>
                 </Row>
                 <div className="pt-3 pb-2"></div>
-              </Container>
-            </div>
-            <Container fluid="lg">
+              </div>
               <P className="pb-2">Collateral</P>
               <div className="tabsRadio d-flex my-3">
                 <label className="tabsRadio__Crypto tab ">
@@ -247,7 +231,7 @@ export function Lend(props: Props) {
                     onClick={() => setComponent(true)}
                     defaultChecked={true}
                   />
-                  <P className={component ? 'true' : ''}>Crypto</P>
+                  <P className={component ? 'true ' : ''}>Crypto</P>
                   <span className="checkmark"></span>
                 </label>
                 <label className="tabsRadio__NFT tab">
@@ -256,16 +240,16 @@ export function Lend(props: Props) {
                     name="radio"
                     onClick={() => setComponent(false)}
                   />
-                  <P className={!component ? 'true' : ''}>NFT</P>
+                  <P className={!component ? 'true ' : ''}>NFT</P>
                   <span className="checkmark"></span>
                 </label>
               </div>
               {component ? (
                 <div>
-                  <Row>
+                  <Row className="multi">
                     <div>
                       <MultiSelect
-                        options={options}
+                        options={tmpOption}
                         value={selected}
                         onChange={item => handleSelected(item)}
                         labelledBy="Select"
@@ -282,37 +266,38 @@ export function Lend(props: Props) {
                         valueRenderer={customValueRenderer}
                       />
                     </div>
-                    <div />
                   </Row>
-                  <Row>
+                  <div className="lendCrypto--Search">
                     <Link to="/resultLendCrypto">
                       <DefiButton
-                        className="search mb-lg-5 mb-sm-3 mb-xs-3"
+                        className="search mb-lg-5 mb-sm-3"
                         width="100%"
                         height="3.4rem"
                         margin="38px 0px"
                       >
-                        <img src={imgSearch} alt="" /> Search
+                        <img src={imgSearch} alt="" /> {t('home.search')}
                       </DefiButton>
                     </Link>
-                  </Row>
+                  </div>
                 </div>
               ) : (
-                <Link to="/resultLendNFT">
-                  <DefiButton
-                    className="search mb-lg-5 mb-sm-3 mb-xs-3"
-                    width="100%"
-                    height="54px"
-                    margin="38px 0px"
-                  >
-                    <img src={imgSearch} alt="" />
-                    Search
-                  </DefiButton>
-                </Link>
+                <div className="lendnft--Search">
+                  <Link to="/resultLendNFT">
+                    <DefiButton
+                      className="search mb-lg-5 mb-sm-3"
+                      width="100%"
+                      height="54px"
+                      margin="38px 0px"
+                    >
+                      <img src={imgSearch} alt="" />
+                      {t('home.search')}
+                    </DefiButton>
+                  </Link>
+                </div>
               )}
-            </Container>
-          </Col>
-        </Row>
+            </Col>
+          </Row>
+        </Container>
       </div>
     </Main>
   );

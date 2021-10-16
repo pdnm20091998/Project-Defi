@@ -23,6 +23,7 @@ import { Link, useLocation } from 'react-router-dom';
 import Btn from './assests/button1.png';
 import { getToken, getNameLocal } from 'app/components/common/common';
 import InforUser from './components/InforUser';
+import ChangeLang from 'app/components/changeLang/changeLang';
 
 interface Props {}
 
@@ -86,22 +87,28 @@ export default function NavBar(props: Props) {
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className={`me-auto ms-xl-2 ${styles.pawn}`}>
               <NavLink
-                href="#"
-                className={`pe-3 ps-0 ${styles.linkColor} ${styles.active}`}
+                href="/"
+                className={`pe-3 ps-0 ${styles.linkColor} ${
+                  location.pathname === '/login/tab=2' ||
+                  location.pathname === '/login' ||
+                  location.pathname === '/login/tab=1'
+                    ? styles.login_active
+                    : styles.active
+                }`}
               >
-                Pawn
+                {t('home.pawn')}
               </NavLink>
               <NavLink href="#" className={`pe-3 ps-0 ${styles.linkColor}`}>
-                Borrow
+                {t('home.borrow')}
               </NavLink>
               <NavLink href="#" className={`pe-3 ps-0 ${styles.linkColor}`}>
-                Lend
+                {t('home.lend')}
               </NavLink>
               <NavLink href="#" className={`pe-3 ps-0 ${styles.linkColor}`}>
                 NFT
               </NavLink>
               <NavLink href="#" className={`pe-3 ps-0 ${styles.linkColor}`}>
-                My account
+                {t('home.myacc')}
               </NavLink>
               <NavLink href="#" className={styles.linkColor}>
                 FAQ
@@ -126,13 +133,15 @@ export default function NavBar(props: Props) {
             ) : (
               <DefiButton className={styles.remove}>
                 <MyLink to="#">Become a Pawnshop</MyLink>
+              <DefiButton className={styles.remove}>
+                <MyLink to="#">{t('home.become.bc')}</MyLink>
               </DefiButton>
             )}
             <NavButton className={`ms-3 ${styles.remove}`}>
               <MyLink to="#">Buy DFY</MyLink>
             </NavButton>
             <NavButton className={`ms-3 ${styles.connect}`}>
-              <MyLink to="#">Connect</MyLink>
+              <MyLink to="#">{t('home.connect')}</MyLink>
             </NavButton>
             {getToken() ? (
               <div className={`ms-3 ${styles.remove}`}>
@@ -144,10 +153,11 @@ export default function NavBar(props: Props) {
                   style={{ padding: '10px 20px' }}
                   className={`ms-3 ${styles.remove}`}
                 >
-                  Login
+                  {t('login.login_tab')}
                 </NavButton>
               </MyLink>
             )}
+            <ChangeLang />
             {clicked === true ? (
               <FontAwesomeIcon
                 className={`ms-2 ${styles.displayBtn}`}
@@ -189,11 +199,11 @@ export default function NavBar(props: Props) {
           ) : (
             <MyLink to="/login">
               <NavButton width="80px" className="mt-2 mx-auto d-block">
-                Login
+                {t('login.login_tab')}
               </NavButton>
             </MyLink>
           )}
-          <Nav.Link className={styles.linkColor}>Pawn</Nav.Link>
+          <Nav.Link className={styles.linkColor}> {t('home.pawn')}</Nav.Link>
           <Nav.Link className={styles.linkColor}>Staking</Nav.Link>
           <Nav.Link className={styles.linkColor}>NFT</Nav.Link>
           <MyDropDown
@@ -202,7 +212,7 @@ export default function NavBar(props: Props) {
             onClick={handleOpenAcc}
             className={styles.linkColor}
           >
-            My account
+            {t('home.myacc')}
             {accOpen === true ? (
               <FontAwesomeIcon
                 icon={faAngleLeft}
@@ -214,7 +224,7 @@ export default function NavBar(props: Props) {
             {accOpen === true && (
               <>
                 <MyDropDown as="div" onClick={handleOpenBor}>
-                  Borrower Profile
+                  {t('home.profile')}
                   {borrow === true ? (
                     <FontAwesomeIcon
                       icon={faAngleLeft}

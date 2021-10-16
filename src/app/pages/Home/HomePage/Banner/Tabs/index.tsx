@@ -7,6 +7,7 @@ import styled from 'styled-components/macro';
 import { Tabs, Tab } from 'react-bootstrap';
 import { Borrow } from './Borrow/index';
 import { Lend } from './Lend/index';
+import { useTranslation } from 'react-i18next';
 interface Props {
   dataAsset?: Array<object>;
 }
@@ -29,7 +30,7 @@ const Div = styled.div`
 
       padding: 0px;
       :first-child {
-        margin-right: 15px;
+        margin-right: 32px;
       }
     }
     .active {
@@ -84,6 +85,7 @@ const Div = styled.div`
 `;
 
 export function PawnTabs(props: Props) {
+  const { t } = useTranslation();
   return (
     <Div>
       <Tabs
@@ -92,10 +94,10 @@ export function PawnTabs(props: Props) {
         id="noanim-tab-example"
         className="tabs"
       >
-        <Tab eventKey="Borrow" title="Borrow">
+        <Tab eventKey="Borrow" title={t('home.borrow')}>
           <Borrow dataAsset={props.dataAsset} />
         </Tab>
-        <Tab eventKey="Lend" title="Lend">
+        <Tab eventKey="Lend" title={t('home.lend')}>
           <Lend dataAsset={props.dataAsset} />
         </Tab>
       </Tabs>

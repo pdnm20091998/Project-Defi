@@ -17,7 +17,7 @@ import { Wrapper, Div } from './Style/index';
 export default function ResultLendCrypto() {
   const dataAsset: Array<object> = [];
   const [dataasset, setDataAsset] = useState<Array<object>>([]);
-  const isNoneFilter = useMediaQuery('(max-width:1024px)');
+  const isNoneFilter = useMediaQuery('(max-width:992px)');
   const [openFilter, setOpenFilter] = useState(false);
   const dispatch = useDispatch();
 
@@ -54,6 +54,7 @@ export default function ResultLendCrypto() {
     nftType,
     assetType,
     item,
+    render,
   } = useLendCryptoContext();
   const data = {
     page,
@@ -70,7 +71,7 @@ export default function ResultLendCrypto() {
   useEffect(() => {
     dispatch(resultLendCryptoAction(data));
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [data]);
+  }, [render]);
 
   const handleClose = () => {};
   const closeFilter = () => {
