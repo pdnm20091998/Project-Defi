@@ -65,18 +65,10 @@ export const Div = styled.div`
       margin-bottom: 4px;
       padding-left: 24px;
       min-height: 80px;
-
-      @media (max-width: 992px) {
-        text-align: center;
-      }
-
       &:hover {
         background-color: #475674;
       }
       .borrow {
-        @media (max-width: 992px) {
-          align-items: center;
-        }
         margin-top: 8px;
         &__address {
           margin-bottom: 7px;
@@ -108,6 +100,11 @@ export const Div = styled.div`
       font-weight: 500;
       font-size: 16px;
       line-height: 20px;
+      .send {
+        @media (max-width: 576px) {
+          margin: 1rem 0rem;
+        }
+      }
     }
   }
 `;

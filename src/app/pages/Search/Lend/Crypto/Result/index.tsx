@@ -123,7 +123,7 @@ export function Result(props: Props) {
                         <Col
                           lg={2}
                           sm={12}
-                          className="send d-flex justify-content-center align-items-center"
+                          className="send d-flex justify-content-center align-items-center my-sm-3 my-xs-3"
                         >
                           <DefiButton width="116px" height="36px">
                             Send Offer
@@ -189,7 +189,7 @@ export function Result(props: Props) {
                       <Col
                         lg={2}
                         sm={12}
-                        className="send d-flex justify-content-center align-items-center"
+                        className="send d-flex justify-content-center align-items-center my-sm-3 my-xs-3"
                       >
                         <DefiButton width="116px" height="36px">
                           Send Offer
@@ -254,7 +254,7 @@ export function Result(props: Props) {
                           : `${data.durationQty} Weeks`}
                       </P>
                     </Col>
-                    <Col className="send d-flex justify-content-center align-items-center">
+                    <Col className="send d-flex justify-content-center align-items-center my-sm-3 my-xs-3">
                       <DefiButton width="116px" height="36px">
                         Send Offer
                       </DefiButton>
