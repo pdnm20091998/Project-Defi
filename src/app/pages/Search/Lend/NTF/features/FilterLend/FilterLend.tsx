@@ -71,6 +71,8 @@ export default function FilterLend(props: FilterLendProps) {
     setNftType,
     assetType,
     setAssetType,
+    render,
+    setRender,
   } = useLendContext();
   //exitMenu
   const handleExitMenu = () => {
@@ -79,6 +81,7 @@ export default function FilterLend(props: FilterLendProps) {
   //get Name search
   const handleSearchName = e => {
     setName(e.target.value);
+    setRender(!render);
   };
   // Reset filter
   const handleReset = () => {
@@ -89,23 +92,33 @@ export default function FilterLend(props: FilterLendProps) {
     setName('');
     setNftType('');
     setAssetType('');
+    setRender(!render);
   };
   // Change duration
   const changeDuration = data => {
     if (loanDurationType === '') {
       setLoanDurationType(data);
+
+      setRender(!render);
     } else {
       setLoanDurationType(loanDurationType.concat(',', data));
+      setRender(!render);
     }
     if (loanDurationType.includes(data)) {
       let x = ',' + data;
       let y = data + ',';
       if (loanDurationType.includes(x)) {
         setLoanDurationType(loanDurationType.replace(x, ''));
+
+        setRender(!render);
       } else if (loanDurationType.includes(y)) {
         setLoanDurationType(loanDurationType.replace(y, ''));
+
+        setRender(!render);
       } else {
         setLoanDurationType(loanDurationType.replace(data, ''));
+
+        setRender(!render);
       }
     }
   };
@@ -113,18 +126,27 @@ export default function FilterLend(props: FilterLendProps) {
   const changeNftType = data => {
     if (nftType === '') {
       setNftType(data);
+
+      setRender(!render);
     } else {
       setNftType(nftType.concat(',', data));
+      setRender(!render);
     }
     if (nftType.includes(data)) {
       let x = ',' + data;
       let y = data + ',';
       if (nftType.includes(x)) {
         setNftType(nftType.replace(x, ''));
+
+        setRender(!render);
       } else if (nftType.includes(y)) {
         setNftType(nftType.replace(y, ''));
+
+        setRender(!render);
       } else {
         setNftType(nftType.replace(data, ''));
+
+        setRender(!render);
       }
     }
   };
@@ -132,18 +154,27 @@ export default function FilterLend(props: FilterLendProps) {
   const changeAssetType = data => {
     if (assetType === '') {
       setAssetType(data);
+
+      setRender(!render);
     } else {
       setAssetType(assetType.concat(',', data));
+      setRender(!render);
     }
     if (assetType.includes(data)) {
       let x = ',' + data;
       let y = data + ',';
       if (assetType.includes(x)) {
         setAssetType(assetType.replace(x, ''));
+
+        setRender(!render);
       } else if (assetType.includes(y)) {
         setAssetType(assetType.replace(y, ''));
+
+        setRender(!render);
       } else {
         setAssetType(assetType.replace(data, ''));
+
+        setRender(!render);
       }
     }
   };
@@ -151,20 +182,27 @@ export default function FilterLend(props: FilterLendProps) {
   const changeLoanSymbol = data => {
     if (loanSymbol === '') {
       setLoanSymbol(data);
-    } else {
-      console.log(loanSymbol, data);
 
+      setRender(!render);
+    } else {
       setLoanSymbol(loanSymbol.concat(',', data));
+      setRender(!render);
     }
     if (loanSymbol.includes(data)) {
       let x = ',' + data;
       let y = data + ',';
       if (loanSymbol.includes(x)) {
         setLoanSymbol(loanSymbol.replace(x, ''));
+
+        setRender(!render);
       } else if (loanSymbol.includes(y)) {
         setLoanSymbol(loanSymbol.replace(y, ''));
+
+        setRender(!render);
       } else {
         setLoanSymbol(loanSymbol.replace(data, ''));
+
+        setRender(!render);
       }
     }
   };

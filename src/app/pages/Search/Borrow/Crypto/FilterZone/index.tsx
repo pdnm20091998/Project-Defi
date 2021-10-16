@@ -38,6 +38,7 @@ export default function FilterZone(props: Props) {
     setLoanSymbols,
     durationTypes,
     setDurationTypes,
+    name,
     setName,
     render,
     setRender,
@@ -115,9 +116,9 @@ export default function FilterZone(props: Props) {
     { name: '>75%', title: '>75%', value: '0.75:1' },
   ];
   const loanType = [
-    { name: 'auto', title: 'auto', value: '0' },
-    { name: 'semi-auto', title: 'semi-auto', value: '1' },
-    { name: 'negotiation', title: 'negotiation', value: '2' },
+    { name: 'auto', title: 'Auto', value: '0' },
+    { name: 'semi-auto', title: 'Semi-auto', value: '1' },
+    { name: 'negotiation', title: 'Negotiation', value: '2' },
   ];
   const handleLoanType = data => {
     if (loanTypes === '') {
@@ -143,8 +144,8 @@ export default function FilterZone(props: Props) {
     }
   };
   const duration = [
-    { name: 'week', title: 'week', value: '0' },
-    { name: 'month', title: 'month', value: '1' },
+    { name: 'week', title: 'Week', value: '0' },
+    { name: 'month', title: 'Month', value: '1' },
   ];
   const handleDurationTypes = data => {
     if (durationTypes === '') {
@@ -204,6 +205,7 @@ export default function FilterZone(props: Props) {
     setLoanSymbols('');
     setLoanTypes('');
     setDurationTypes('');
+    setName('');
     setRender(!render);
   };
 
@@ -235,7 +237,8 @@ export default function FilterZone(props: Props) {
           <input
             className="search-input"
             name="searchFilter"
-            placeholder="Search NFT"
+            value={name}
+            placeholder="Search pawnshops"
             onChange={handleSearchName}
           />
         </div>
@@ -307,7 +310,8 @@ export default function FilterZone(props: Props) {
           <input
             className="search-input"
             name="searchFilter"
-            placeholder="Search NFT"
+            value={name}
+            placeholder="Search pawnshops"
             onChange={handleSearchName}
           />
         </div>
@@ -315,7 +319,7 @@ export default function FilterZone(props: Props) {
           <Filter
             title="Interest range"
             listCheckBox={interestRange}
-            change={setInterestRanges}
+            change={handleInterestRanges}
             checked={interestRanges}
           />
         </FilterHolder>
@@ -324,7 +328,7 @@ export default function FilterZone(props: Props) {
           <Filter
             title="loan to value"
             listCheckBox={loanToValue}
-            change={setLoanToValueRanges}
+            change={handleLoanToValueRanges}
             checked={loanToValueRanges}
           />
         </FilterHolder>

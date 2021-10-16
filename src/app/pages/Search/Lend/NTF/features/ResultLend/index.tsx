@@ -9,10 +9,11 @@ import ImgPrice from '../../assets/price.svg';
 import Avt from '../../assets/defaultAvata.png';
 
 export default function ResultLendComponent() {
-  const { setPage } = useLendContext();
+  const { setPage, render, setRender } = useLendContext();
   const result: any = useSelector((state: RootState) => state.lendnft);
 
   const handlePageChange = e => {
+    setRender(!render);
     setPage(e);
   };
   return (

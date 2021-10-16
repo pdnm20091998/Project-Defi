@@ -27,6 +27,7 @@ export default function ResultLendCrypt() {
     name,
     nftType,
     assetType,
+    render,
   } = useLendContext();
   const data = {
     page,
@@ -41,7 +42,7 @@ export default function ResultLendCrypt() {
   useEffect(() => {
     dispatch(resultLendNftAction(data));
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [data]);
+  }, [render]);
 
   const closeFilter = () => {
     setOpenFilter(false);

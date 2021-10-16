@@ -17,6 +17,8 @@ interface InitContext {
   setNftType?: any;
   assetType?: any;
   setAssetType?: any;
+  render?: any;
+  setRender?: any;
 }
 export const LendNftContext = createContext({} as InitContext);
 
@@ -29,6 +31,7 @@ export const LendNftContextProvider = ({ children }) => {
   const [name, setName] = useState('');
   const [nftType, setNftType] = useState('');
   const [assetType, setAssetType] = useState('');
+  const [render, setRender] = useState(false);
   const data: any = {
     setPage,
     page,
@@ -46,6 +49,8 @@ export const LendNftContextProvider = ({ children }) => {
     setNftType,
     assetType,
     setAssetType,
+    render,
+    setRender,
   };
 
   return (

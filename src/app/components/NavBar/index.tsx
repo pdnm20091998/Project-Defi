@@ -27,6 +27,46 @@ import ChangeLang from 'app/components/changeLang/changeLang';
 
 interface Props {}
 
+const Div = styled.div`
+  background: #232732;
+  border-bottom: 1px solid rgba(125, 111, 125, 0.2);
+  .center {
+    margin-top: 8px;
+    text-align: center;
+    color: #d1d1d3;
+  }
+`;
+const NavLink = styled(Nav.Link)`
+  font-size: 16px;
+  font-weight: 500;
+  &:hover,
+  visited {
+    color: #dba83d !important;
+  }
+`;
+const MiniNav = styled(Nav)`
+  background: #171a23;
+  position: absolute;
+  display: block;
+  width: 100%;
+  z-index: 1;
+`;
+const MyDropDown = styled(Nav.Link)`
+  padding: 0.5rem 0 0 1rem;
+  cursor: pointer;
+`;
+const MyLink = styled(Link)`
+  color: inherit;
+  text-decoration: none;
+  &:hover {
+    color: inherit;
+  }
+`;
+const MyForm = styled(Form)`
+  display: flex;
+  align-items: center;
+`;
+
 export default function NavBar(props: Props) {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { t, i18n } = useTranslation();
@@ -132,14 +172,9 @@ export default function NavBar(props: Props) {
               ''
             ) : (
               <DefiButton className={styles.remove}>
-                <MyLink to="#">Become a Pawnshop</MyLink>
-              <DefiButton className={styles.remove}>
                 <MyLink to="#">{t('home.become.bc')}</MyLink>
               </DefiButton>
             )}
-            <NavButton className={`ms-3 ${styles.remove}`}>
-              <MyLink to="#">Buy DFY</MyLink>
-            </NavButton>
             <NavButton className={`ms-3 ${styles.connect}`}>
               <MyLink to="#">{t('home.connect')}</MyLink>
             </NavButton>
@@ -317,43 +352,3 @@ export default function NavBar(props: Props) {
     </Div>
   );
 }
-
-const Div = styled.div`
-  background: #232732;
-  border-bottom: 1px solid rgba(125, 111, 125, 0.2);
-  .center {
-    margin-top: 8px;
-    text-align: center;
-    color: #d1d1d3;
-  }
-`;
-const NavLink = styled(Nav.Link)`
-  font-size: 16px;
-  font-weight: 500;
-  &:hover,
-  visited {
-    color: #dba83d !important;
-  }
-`;
-const MiniNav = styled(Nav)`
-  background: #171a23;
-  position: absolute;
-  display: block;
-  width: 100%;
-  z-index: 1;
-`;
-const MyDropDown = styled(Nav.Link)`
-  padding: 0.5rem 0 0 1rem;
-  cursor: pointer;
-`;
-const MyLink = styled(Link)`
-  color: inherit;
-  text-decoration: none;
-  &:hover {
-    color: inherit;
-  }
-`;
-const MyForm = styled(Form)`
-  display: flex;
-  align-items: center;
-`;
