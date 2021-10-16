@@ -85,7 +85,7 @@ export default function NavBar(props: Props) {
             <Logo className={styles.logo} />
           </Navbar.Brand>
           <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className="me-auto ms-xxl-5 ms-xl-2">
+            <Nav className={`me-auto ms-xl-2 ${styles.pawn}`}>
               <NavLink
                 href="/"
                 className={`pe-3 ps-0 ${styles.linkColor} ${
@@ -131,14 +131,16 @@ export default function NavBar(props: Props) {
             location.pathname === '/login/tab=1' ? (
               ''
             ) : (
-              <DefiButton className={styles.remove} width="190px" height="36px">
+              <DefiButton className={styles.remove}>
+                <MyLink to="#">Become a Pawnshop</MyLink>
+              <DefiButton className={styles.remove}>
                 <MyLink to="#">{t('home.become.bc')}</MyLink>
               </DefiButton>
             )}
-            <NavButton width="100px" className={`ms-3 ${styles.remove}`}>
+            <NavButton className={`ms-3 ${styles.remove}`}>
               <MyLink to="#">Buy DFY</MyLink>
             </NavButton>
-            <NavButton width="100px" className="ms-3">
+            <NavButton className={`ms-3 ${styles.connect}`}>
               <MyLink to="#">{t('home.connect')}</MyLink>
             </NavButton>
             {getToken() ? (
@@ -147,7 +149,10 @@ export default function NavBar(props: Props) {
               </div>
             ) : (
               <MyLink to="/login">
-                <NavButton width="80px" className={`ms-3 ${styles.remove}`}>
+                <NavButton
+                  style={{ padding: '10px 20px' }}
+                  className={`ms-3 ${styles.remove}`}
+                >
                   {t('login.login_tab')}
                 </NavButton>
               </MyLink>

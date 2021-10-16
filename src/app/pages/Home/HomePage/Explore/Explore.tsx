@@ -7,11 +7,12 @@ import explore_three from '../Explore/asset/Rectangle_three.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import { useTranslation } from 'react-i18next';
+import SlideItem from './component/slideItem';
 
 const DivCarousel = styled.div`
   padding: 60px 15px 80px 15px;
   .slide__item {
-    padding: 0 10px;
+    margin: 0 10px;
   }
   .slide__text {
     color: white;
@@ -51,10 +52,40 @@ const DivCarousel = styled.div`
       margin-left: 6px;
     }
   }
+
+  .slick-slider {
+    .slick-arrow {
+      top: 40% !important;
+    }
+    .slick-next {
+      right: -15px;
+    }
+    .slick-prev {
+      left: -34px;
+    }
+    .slick-next:before,
+    .slick-prev:before {
+      font-size: 40px !important;
+    }
+
+    @media screen and (max-width: 540px) {
+      .slick-arrow {
+        top: 30% !important;
+      }
+      .slick-next {
+        right: 10px !important;
+      }
+      .slick-prev {
+        position: absolute;
+        left: -10px !important;
+        z-index: 1;
+      }
+    }
+  }
 `;
 
 const TitleExplore = styled.h3`
-  margin-bottom: 100px;
+  margin-bottom: 64px;
   color: #dba83d;
   font-weight: 600;
   font-size: 36px;
@@ -67,6 +98,11 @@ const TitleExplore = styled.h3`
 
 const SeeAll = styled.span`
   color: #ffffff;
+  transition: 0.3s ease-in-out all;
+  &:hover {
+    color: #dba83d;
+    transition: 0.3s ease-in-out all;
+  }
 `;
 
 const Explore = () => {
@@ -112,33 +148,26 @@ const Explore = () => {
           <FontAwesomeIcon icon={faArrowRight} />
         </SeeAll>
         <Slider {...settings}>
-          <div className="slide__item">
-            <img src={explore_one} alt="" />
-            <div className="slide__text">
-              <h3 className="slide__title">Pawnshop America</h3>
-              <p className="slide__param">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              </p>
-            </div>
-          </div>
-          <div className="slide__item">
-            <img src={explore_two} alt="" />
-            <div className="slide__text">
-              <h3 className="slide__title">Pawnshop America</h3>
-              <p className="slide__param">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              </p>
-            </div>
-          </div>
-          <div className="slide__item">
-            <img src={explore_three} alt="" />
-            <div className="slide__text">
-              <h3 className="slide__title">Pawnshop America</h3>
-              <p className="slide__param">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              </p>
-            </div>
-          </div>
+          <SlideItem
+            picture={explore_one}
+            title="Pawnshop America"
+            text="Lorem ipsum dolor sit amet consectetur adipisicing elit"
+          />
+          <SlideItem
+            picture={explore_two}
+            title="Pawnshop America"
+            text="Lorem ipsum dolor sit amet consectetur adipisicing elit"
+          />
+          <SlideItem
+            picture={explore_three}
+            title="Pawnshop America"
+            text="Lorem ipsum dolor sit amet consectetur adipisicing elit"
+          />
+          <SlideItem
+            picture={explore_two}
+            title="Pawnshop America"
+            text="Lorem ipsum dolor sit amet consectetur adipisicing elit"
+          />
         </Slider>
       </DivCarousel>
     </Container>
