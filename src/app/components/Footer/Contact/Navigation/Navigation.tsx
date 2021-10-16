@@ -20,7 +20,7 @@ export default function Navigation() {
           <FontAwesomeIcon icon={faArrowRight} size="xs" color="#9FA6B2" />
         </A>
         <A href="#">
-          <P className="me-1">
+          <P className="me-1 me-md-0 me-lg-1">
             Buy <b>DFY</b> on Exchanges{' '}
           </P>
           <FontAwesomeIcon icon={faArrowRight} size="xs" color="#9FA6B2" />

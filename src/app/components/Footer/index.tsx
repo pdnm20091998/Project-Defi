@@ -7,7 +7,7 @@ import styles from './style/Footer.module.css';
 export default function Footer() {
   return (
     <Div className={`pt-md-5 ${styles.bg}`}>
-      <Container className="mt-5 px-xxl-5 px-xl-3 pt-5">
+      <Container className="mt-5 px-xxl-5 px-xl-3 pt-3 pt-md-5">
         <Contact />
       </Container>
       <MyContainer fluid>
