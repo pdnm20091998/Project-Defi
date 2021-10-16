@@ -1,5 +1,10 @@
 .negaMargin {
-  margin-top: -7rem;
+  margin-top: -8rem;
+}
+@media (max-width: 1399px) {
+  .negaMargin {
+    margin-top: -6rem;
+  }
 }
 @media (max-width: 1199px) {
   .negaMargin {

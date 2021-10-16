@@ -10,10 +10,10 @@ export default function Contact() {
   return (
     <div className="mb-4">
       <Row>
-        <Col md={4} xs={12}>
+        <Col md={4} lg={3} xs={12}>
           <FooterLogo />
         </Col>
-        <Col md={8} xs={12}>
+        <Col md={8} lg={9} xs={12}>
           <Row>
             <Col md={7} xs={12}>
               <HanoiOffice />

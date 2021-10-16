@@ -1,7 +1,7 @@
 import DefiButton from 'app/components/DefiButton/DefiButton';
 import { Col, Container, Row, Stack } from 'react-bootstrap';
 import styled from 'styled-components/macro';
-import image from '../assests/image.svg';
+import image from './assests/avatar.png';
 import Type from './components/Type';
 import styles from './style/PawnItem.module.css';
 import star from './assests/star.svg';
@@ -49,17 +49,12 @@ export default function PawnItem(props: Props) {
                   </Stack>
                 </Col>
               </Row>
-              {/* <Col md={7} xs={6}> */}
-              {/* <Stack gap={4}> */}
+
               <Row className={`justify-content-lg-end ${styles.negaMargin}`}>
-                {/* <Stack gap={0}>
-                  <Title>{props.shopname}</Title>
-                  <Detail>{props.reputation}</Detail>
-                </Stack> */}
                 <Col xs={12} lg={7}>
                   <Stack gap={2} className={styles.text_small}>
                     <Row>
-                      <Col xs={4} sm={3} md={4} lg={5}>
+                      <Col xs={5} sm={3} md={4} lg={5}>
                         <Label>Available</Label>
                       </Col>
                       <Col xs={true} sm={true} md={true} lg={true}>
@@ -67,7 +62,7 @@ export default function PawnItem(props: Props) {
                       </Col>
                     </Row>
                     <Row>
-                      <Col xs={4} md={4} sm={3} lg={5}>
+                      <Col xs={5} md={4} sm={3} lg={5}>
                         <Label>Limit</Label>
                       </Col>
                       <Col xs={true} sm={true} md={true} lg={true}>
@@ -84,7 +79,7 @@ export default function PawnItem(props: Props) {
                       </Col>
                     </Row>
                     <Row>
-                      <Col xs={4} sm={3} md={4} lg={5}>
+                      <Col xs={5} sm={3} md={4} lg={5}>
                         <Label>Duration</Label>
                       </Col>
                       <Col xs={true} sm={true} md={true} lg={true}>
@@ -101,7 +96,7 @@ export default function PawnItem(props: Props) {
                     </Row>
                     {props.loantovalue && (
                       <Row>
-                        <Col xs={4} sm={3} md={4} lg={5}>
+                        <Col xs={5} sm={3} md={4} lg={5}>
                           <Label>LTV</Label>
                         </Col>
                         <Col xs={true} sm={true} md={true} lg={true}>
@@ -111,9 +106,7 @@ export default function PawnItem(props: Props) {
                     )}
                   </Stack>
                 </Col>
-                {/* </Stack> */}
               </Row>
-              {/* </Col> */}
             </MyRow>
           </Col>
           <Col md={4} className="mt-md-0 mt-2">

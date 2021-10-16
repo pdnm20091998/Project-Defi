@@ -70,7 +70,6 @@ export default function ResultLendCrypt() {
                 <FilterLend handleClose={handleClose} />
               )}
             </Col>
-            {/*  */}
           </Row>
         </Container>
       </Wrapper>

@@ -4,6 +4,6 @@
 @media (max-width: 768px) {
   .bg {
     background-position-y: 3%;
-    background-size: 70%;
+    background-size: 100%;
   }
 }
