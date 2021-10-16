@@ -1,6 +1,10 @@
 .negaMargin {
   margin-top: -8rem;
 }
+.heart {
+  right: 22px;
+  top: 10px;
+}
 @media (max-width: 1399px) {
   .negaMargin {
     margin-top: -6rem;

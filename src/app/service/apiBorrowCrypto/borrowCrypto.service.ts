@@ -42,7 +42,7 @@ export const ResultBorrowCryptoService = request => {
           request.data.loanTypes ? `&loanTypes=${request.data.loanTypes}` : ''
         }${request.data.cusSort ? `&cusSort=${request.data.cusSort}` : ''}${
           request.data.name ? `&name=${request.data.name}` : ''
-        }&page=${request.data.page + 1}&size=10
+        }&page=${request.data.page}&size=10
       `,
     )
     .then((response: any) => {
