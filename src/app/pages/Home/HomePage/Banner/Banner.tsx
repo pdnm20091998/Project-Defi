@@ -10,6 +10,9 @@ interface Props {}
 
 const Main = styled.div`
   padding: 83px 0px 66px 0px;
+  @media (max-width: 475px) {
+    padding: 28px 0px 20px 0px;
+  }
 `;
 
 function Banner(props: Props) {

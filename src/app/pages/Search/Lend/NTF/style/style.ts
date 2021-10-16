@@ -40,11 +40,63 @@ export const Result = styled.div`
     justify-content: center;
     margin-bottom: 4px;
   }
+  .total {
+    @media (max-width: 400px) {
+      margin-top: 62px;
+    }
+  }
 `;
 export const SingleWrapper = styled.div`
   background: #282c37;
   border-radius: 20px;
   margin-top: 20px;
+  position: relative;
+  .nft-type--tag {
+    position: absolute;
+    top: 23px;
+    left: -8px;
+    z-index: 2;
+    background: linear-gradient(
+      270deg,
+      #dba83d -1.04%,
+      #ebb23a 28.12%,
+      #e9ad30 47.56%,
+      #edb53f 62.42%,
+      #f9c65b 80.61%,
+      #f4d289 105.71%
+    );
+    clip-path: polygon(
+      0% 15%,
+      0 0,
+      15% 0%,
+      75% 0,
+      80% 5%,
+      90% 17%,
+      95% 35%,
+      97% 50%,
+      100% 0,
+      97% 50%,
+      95% 65%,
+      90% 83%,
+      80% 95%,
+      75% 100%,
+      15% 100%,
+      0 100%,
+      0% 85%
+    );
+    .hard {
+      padding: 11px 12px 9px 8px;
+    }
+  }
+  .small_tag {
+    position: absolute;
+    left: -8px;
+    top: 20px;
+    z-index: 1;
+  }
+  .hidden {
+    display: none;
+  }
   .img {
     margin: 20px 0px 20px 20px;
     padding: 0;
@@ -63,6 +115,11 @@ export const SingleWrapper = styled.div`
     margin: 20px 0;
     @media (max-width: 768px) {
       margin-top: 0px;
+    }
+    .detail {
+      @media (max-width: 1399px) {
+        margin-left: 0;
+      }
     }
   }
   .title {

@@ -17,6 +17,10 @@ const H1 = styled.span`
   line-height: 73px;
   text-transform: capitalize;
   color: ${props => props.color};
+  @media (max-width: 475px) {
+    font-size: 36px;
+    line-height: 44px;
+  }
 `;
 const P = styled.span`
   font-style: normal;
@@ -26,6 +30,10 @@ const P = styled.span`
   display: flex;
   align-items: center;
   color: #ffffff;
+  @media (max-width: 475px) {
+    font-size: 14px;
+    line-height: 17px;
+  }
 `;
 const Div = styled.div`
   position: relative;
@@ -33,10 +41,9 @@ const Div = styled.div`
     height: 416px;
     margin-top: 80px;
     width: 100%;
-    @media (min-width: 1600px) {
-      position: absolute;
-      left: -172px;
-      width: 668px;
+    @media (max-width: 475px) {
+      margin-top: 14px;
+      height: 214px;
     }
   }
   .description {

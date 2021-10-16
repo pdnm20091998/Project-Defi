@@ -7,7 +7,8 @@ import { Pagination } from 'app/components/Pagination/Pagination';
 import { useLendContext } from 'app/components/common/context/lendNftContext';
 import ImgPrice from '../../assets/price.svg';
 import Avt from '../../assets/defaultAvata.png';
-
+import HardNft from '../../assets/HARDNFT.png';
+import Tag1 from '../../assets/tag1.png';
 export default function ResultLendComponent() {
   const { setPage, render, setRender } = useLendContext();
   const result: any = useSelector((state: RootState) => state.lendnft);
@@ -18,7 +19,7 @@ export default function ResultLendComponent() {
   };
   return (
     <Result>
-      <div>
+      <div className="total">
         {result.result ? result.result.total_elements : '0'} collateral offers
         match your search
       </div>
@@ -31,7 +32,7 @@ export default function ResultLendComponent() {
                     <Col className="img" xs={12} md={6} xxl={3}>
                       <img src={Avt} alt="Nft avatar" />
                     </Col>
-                    <Col className="detailResult px-0" xs={12} md={6} xxl={6}>
+                    <Col className="detailResult px-0" xs={12} md={6} xxl={5}>
                       <div className="detail">
                         <div className="title">{data.nftName}</div>
                         <div className="amount-star">1</div>
@@ -73,7 +74,7 @@ export default function ResultLendComponent() {
                         </div>
                       </div>
                     </Col>
-                    <Col className="loan" xxl={{ span: 3 }}>
+                    <Col className="loan" xxl={4}>
                       <LoanWrapper>
                         <div className="detail">
                           <p>Expected loan</p>
@@ -105,6 +106,12 @@ export default function ResultLendComponent() {
                     </Col>
                   </Row>
                 </Container>
+                <div className={data.nftType === 1 ? 'hidden' : ''}>
+                  <div className="nft-type--tag ">
+                    <img className="hard" src={HardNft} alt="" />
+                  </div>
+                  <img className="small_tag" src={Tag1} alt="" />
+                </div>
               </SingleWrapper>
             );
           })
