@@ -5,39 +5,22 @@
  *
  */
 import { Container, Row, Col } from 'react-bootstrap';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import DefiButton from '../../../../../../components/DefiButton/DefiButton';
 import imgSearch from '../../assets/search.svg';
-import imgClose from '../../assets/x.svg';
-import { MultiSelect } from 'react-multi-select-component';
 import { Link } from 'react-router-dom';
 import { Div, InputField, P, Main } from '../../../components/style';
 import ComboBox from 'react-responsive-combo-box';
 import { useLendContext } from 'app/components/common/context/lendNftContext';
 import { useLendCryptoContext } from 'app/components/common/context/lendCryptoContext';
+import { SelectAll } from './Select';
 
 interface OptionsItem {
   label: string;
   value: string;
+  color: string;
 }
-
-const DefaultItemRenderer = ({ checked, option, onClick, disabled }) => (
-  <div
-    key={option.label}
-    onClick={onClick}
-    className={`item-renderer ${disabled && 'disabled'}`}
-  >
-    {option.value && (
-      <img
-        className="icon"
-        src={`https://staging.app.defiforyou.uk/_nuxt/img/${option.value}`}
-        alt=""
-      />
-    )}
-    <P>{option.label}</P>
-  </div>
-);
 const dataSymbol = {
   XRP: 'XRP.7ff389b.png',
   ETH: 'ETH.d810d23.png',
@@ -66,32 +49,9 @@ export function Lend(props: Props) {
       e.isWhitelistSupply && loanCurrency.push(e.symbol);
       return loanCurrency;
     });
-  const [selected, setSelected] = useState([]);
   const handleSelected = item => {
-    setSelected(item);
-    const arrLabel = item?.map(option => option.label);
+    const arrLabel = item?.map(option => option.value);
     setItem(arrLabel.join(','));
-  };
-  const customValueRenderer = selected => {
-    return selected.length
-      ? selected.map(({ label, value }) => {
-          return (
-            <div key={label}>
-              <span className="selectedItem ">
-                <div className="d-flex me-2">
-                  <img
-                    className="icon__value"
-                    src={`https://staging.app.defiforyou.uk/_nuxt/img/${value}`}
-                    alt=""
-                  />
-                  <P>{label}</P>
-                </div>
-                <img src={imgClose} alt="" />
-              </span>
-            </div>
-          );
-        })
-      : '😶 No Items Selected';
   };
   // import lendNftContext
   const { setLoanAmount, setLoanSymbol, setLoanDuration, setLoanDurationType } =
@@ -111,7 +71,7 @@ export function Lend(props: Props) {
 
   // items crypto
   const optionsItems: any[] = [];
-  const tmpOption: Array<OptionsItem> = [];
+  const colourOptions: Array<OptionsItem> = [];
   //bỏ api
   if (data) {
     data.map((o: any) => {
@@ -120,9 +80,10 @@ export function Lend(props: Props) {
     });
     if (optionsItems) {
       optionsItems.map(item => {
-        tmpOption.push({
+        colourOptions.push({
           label: item.symbol,
           value: dataSymbol[item.symbol],
+          color: '#fff',
         });
       });
     }
@@ -247,25 +208,12 @@ export function Lend(props: Props) {
               {component ? (
                 <div>
                   <Row className="multi">
-                    <div>
-                      <MultiSelect
-                        options={tmpOption}
-                        value={selected}
-                        onChange={item => handleSelected(item)}
-                        labelledBy="Select"
-                        hasSelectAll={true}
-                        disableSearch={true}
-                        ItemRenderer={item => (
-                          <DefaultItemRenderer
-                            checked={item.checked}
-                            option={item.option}
-                            onClick={item.onClick}
-                            disabled={item.disabled}
-                          />
-                        )}
-                        valueRenderer={customValueRenderer}
-                      />
-                    </div>
+                    <SelectAll
+                      // chưa lấy được data
+                      onChange={item => handleSelected(item)}
+                      heightOption="255px"
+                      data={colourOptions}
+                    />
                   </Row>
                   <div className="lendCrypto--Search">
                     <Link to="/resultLendCrypto">
