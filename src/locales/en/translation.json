@@ -1,6 +1,14 @@
 {
   "home": {
     "title": "Get Crypto Loans Instantly, Regardless of Your Credit Rating",
+    "borrow": "Borrow",
+    "lend": "Lend",
+    "myacc": "My account",
+    "pawn": "Pawn",
+    "search": "Search",
+    "connect": "Connect",
+    "profile": "Borrower Profile",
+    "with": "with",
     "content": {
       "title": "Why Borrow With Us?",
       "quicker": "Quicker Than The Bank",
@@ -14,6 +22,11 @@
     },
     "explore": {
       "title": "explore featured pawnshops"
+    },
+    "become": {
+      "bc": "Become a Pawnshop",
+      "bc_description": "Open your own pawn shop and discover a new business opportunity with an unmatched ROI. Be a part of the world's financial revolution.",
+      "learn": "Learn more"
     }
   },
   "login": {

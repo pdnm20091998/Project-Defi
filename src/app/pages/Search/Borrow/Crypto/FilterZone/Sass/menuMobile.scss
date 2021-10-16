@@ -1,0 +1,53 @@
+.filtermobile {
+  background: rgb(39, 44, 55);
+  position: absolute;
+  top: 0;
+  opacity: 0;
+  .filterheader {
+    padding: 10px;
+    align-items: center;
+    color: #ffffff;
+    display: flex;
+    justify-content: space-between;
+  }
+  .searchFilter {
+    border: 1px solid #a2a3a7;
+    border-radius: 24px;
+    margin: 16px 12px 0 12px;
+    background-color: #3e424b;
+    display: flex;
+
+    .iconSearch {
+      margin: 8px;
+      svg {
+        color: #a2a3a7;
+      }
+    }
+    .search-input {
+      flex: 1;
+      border-radius: 24px;
+      background-color: transparent;
+      color: #a2a3a7;
+      border: none;
+      font-size: 14px;
+      outline: none;
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .filterdesktop {
+    display: none !important;
+  }
+  .ShowFilter__Mobile {
+    position: fixed;
+    height: 100%;
+    overflow-x: hidden;
+    opacity: 1 !important;
+    right: 0;
+    z-index: 9999;
+  }
+  .HiddenFilter__Mobile {
+    display: none !important;
+  }
+}

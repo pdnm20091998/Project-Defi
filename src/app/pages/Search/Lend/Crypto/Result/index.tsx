@@ -18,7 +18,7 @@ import { useLendCryptoContext } from 'app/components/common/context/lendCryptoCo
 interface Props {}
 
 export function Result(props: Props) {
-  const { setPage } = useLendCryptoContext();
+  const { setPage, render, setRender } = useLendCryptoContext();
   const result: any = useSelector((state: RootState) => state.lendcrypto);
   const imgObject = {
     XRP: '/XRP.7ff389b.png',
@@ -37,6 +37,7 @@ export function Result(props: Props) {
   };
   const handlePageChange = e => {
     setPage(e);
+    setRender(!render);
   };
   return (
     <Div>
@@ -265,10 +266,12 @@ export function Result(props: Props) {
           </div>
         </Container>
       </div>
-      <Pagination
-        totalPage={result.result ? result.result.total_pages : 0}
-        changePage={e => handlePageChange(e)}
-      />
+      <div className="pagi">
+        <Pagination
+          totalPage={result.result ? result.result.total_pages : 0}
+          changePage={e => handlePageChange(e)}
+        />
+      </div>
     </Div>
   );
 }
@@ -276,5 +279,11 @@ export function Result(props: Props) {
 const Div = styled.div`
   .row {
     --bs-gutter-x: 0px !important;
+  }
+  .pagi {
+    margin-top: 32px;
+    margin-bottom: 120px;
+    display: flex;
+    justify-content: center;
   }
 `;

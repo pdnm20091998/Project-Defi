@@ -14,6 +14,7 @@ export const Forgot = styled(Label)`
 `;
 export const Center = styled.div`
   text-align: center;
+  margin-top: 40px;
 `;
 export const Validation = styled.span`
   color: #ff5252;

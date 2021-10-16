@@ -1,4 +1,4 @@
-import Navbar from '../../../Home/NavBar/index';
+import Navbar from 'app/components/NavBar/index';
 import Footer from '../../../../components/Footer/index';
 import { Container, Col, Row } from 'react-bootstrap';
 import { getAsset } from '../../../../service/apiAsset/apiAsset';
@@ -9,7 +9,7 @@ import FilterLendMobile from './Filter/FilterLendMobie';
 import IconFilter from './assets/Group 6152.svg';
 
 import { useDispatch } from 'react-redux';
-import { resultLendCryptoAction } from 'app/actions/LendCrypto/lendCryptoAction';
+import { resultLendCryptoAction } from 'app/actions/lendCrypto/lendCryptoAction';
 import { Result } from './Result';
 import { useLendCryptoContext } from 'app/components/common/context/lendCryptoContext';
 import { Wrapper, Div } from './Style/index';
@@ -54,6 +54,7 @@ export default function ResultLendCrypto() {
     nftType,
     assetType,
     item,
+    render,
   } = useLendCryptoContext();
   const data = {
     page,
@@ -70,7 +71,7 @@ export default function ResultLendCrypto() {
   useEffect(() => {
     dispatch(resultLendCryptoAction(data));
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [data]);
+  }, [render]);
 
   const handleClose = () => {};
   const closeFilter = () => {

@@ -6,9 +6,9 @@ import Button from '@mui/material/Button';
 import Divider from '@mui/material/Divider';
 import Avatar from '@mui/material/Avatar';
 import styled from 'styled-components/macro';
-import { getNameLocal } from '../../../../components/common/common';
+import { getNameLocal } from '../../common/common';
 import { useSelector } from 'react-redux';
-import { RootState } from '../../../../reducer/reducers';
+import { RootState } from 'app/reducer/reducers';
 
 export default function InforUser() {
   const [anchorEl, setAnchorEl] = useState(null);

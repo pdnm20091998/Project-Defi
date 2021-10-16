@@ -21,7 +21,7 @@ export default function PawnList() {
   const [pickLimitation, setPickLimitation] = useState(false);
   const [pickRating, setPickRating] = useState(false);
   //use context
-  const { setPage, setCusSort } = useBorrowContext();
+  const { setPage, setCusSort, render, setRender } = useBorrowContext();
   return (
     <>
       <Div className={`${styles.bg_on_small_scr} mb-4`}>
@@ -32,6 +32,7 @@ export default function PawnList() {
               e.preventDefault();
               setPick(1);
               setPickInterest(!pickInterest);
+              setRender(!render);
 
               if (pickInterest === true) {
                 setCusSort('interest,asc');
@@ -70,6 +71,7 @@ export default function PawnList() {
               e.preventDefault();
               setPick(2);
               setPickLoan(!pickLoan);
+              setRender(!render);
               if (pickLoan === true) {
                 setCusSort('loanToValue,asc');
               } else {
@@ -106,6 +108,7 @@ export default function PawnList() {
               e.preventDefault();
               setPick(3);
               setPickDuration(!pickDuration);
+              setRender(!render);
               if (pickLoan === true) {
                 setCusSort('durationQty,asc');
               } else {
@@ -142,6 +145,7 @@ export default function PawnList() {
               e.preventDefault();
               setPick(4);
               setPickLimitation(!pickLimitation);
+              setRender(!render);
               if (pickLimitation === true) {
                 setCusSort('limitation,asc');
               } else {
@@ -178,6 +182,7 @@ export default function PawnList() {
               e.preventDefault();
               setPick(5);
               setPickRating(!pickRating);
+              setRender(!render);
               if (pickRating === true) {
                 setCusSort('reputation,asc');
               } else {
@@ -210,43 +215,49 @@ export default function PawnList() {
       </Div>
       {result.result &&
         result.result.content.map((e, index) => (
-          <PawnItem
-            shopname={e.pawnShop.name}
-            interest={e.interest}
-            interestmax={e.interestMax}
-            interestmin={e.interestMin}
-            allowedloanmax={e.allowedLoanMax}
-            allowedloanmin={e.allowedLoanMin}
-            durationqtymax={e.durationQtyMax}
-            durationqtymin={e.durationQtyMin}
-            durationqtytype={e.durationQtyType}
-            loantovalue={e.loanToValue}
-            symbol={e.acceptableAssetsAsLoan}
-            accept={e.acceptableAssetsAsCollateral}
-            reputation={e.pawnShop.reputation}
-            avatar={e.pawnShop.avatar}
-            type={e.type}
-            key={index}
-          />
+          <PawnItemDiv key={index}>
+            <PawnItem
+              shopname={e.pawnShop.name}
+              interest={e.interest}
+              interestmax={e.interestMax}
+              interestmin={e.interestMin}
+              allowedloanmax={e.allowedLoanMax}
+              allowedloanmin={e.allowedLoanMin}
+              durationqtymax={e.durationQtyMax}
+              durationqtymin={e.durationQtyMin}
+              durationqtytype={e.durationQtyType}
+              loantovalue={e.loanToValue}
+              symbol={e.acceptableAssetsAsLoan}
+              accept={e.acceptableAssetsAsCollateral}
+              reputation={e.pawnShop.reputation}
+              avatar={e.pawnShop.avatar}
+              type={e.type}
+            />
+          </PawnItemDiv>
         ))}
-      <ReactPaginate
-        previousLabel={'<'}
-        nextLabel={'>'}
-        breakLabel={'...'}
-        breakClassName={'break-me text-white'}
-        marginPagesDisplayed={2}
-        pageRangeDisplayed={2}
-        containerClassName={`pagination mt-4 justify-content-center`}
-        activeClassName={styles.pagiactive}
-        pageClassName={styles.pagiBtn}
-        previousClassName={styles.pagiBtn}
-        nextClassName={styles.pagiBtn}
-        pageLinkClassName={styles.pagiLink}
-        previousLinkClassName={styles.pagiLink}
-        nextLinkClassName={styles.pagiLink}
-        pageCount={result.result ? result.result.total_pages : 0}
-        onPageChange={e => setPage(e.selected)}
-      />
+      <Pagination>
+        <ReactPaginate
+          previousLabel={'<'}
+          nextLabel={'>'}
+          breakLabel={'...'}
+          breakClassName={'break-me text-white'}
+          marginPagesDisplayed={2}
+          pageRangeDisplayed={2}
+          containerClassName={`pagination mt-4 justify-content-center`}
+          activeClassName={styles.pagiactive}
+          pageClassName={styles.pagiBtn}
+          previousClassName={styles.pagiBtn}
+          nextClassName={styles.pagiBtn}
+          pageLinkClassName={styles.pagiLink}
+          previousLinkClassName={styles.pagiLink}
+          nextLinkClassName={styles.pagiLink}
+          pageCount={result.result ? result.result.total_pages : 0}
+          onPageChange={e => {
+            setPage(e.selected);
+            setRender(!render);
+          }}
+        />
+      </Pagination>
     </>
   );
 }
@@ -254,6 +265,13 @@ const Div = styled.div`
   background: #232732;
   border-radius: 9px;
   // height: 50px;
+`;
+const PawnItemDiv = styled.div`
+  margin-bottom: 16px;
+`;
+
+const Pagination = styled.div`
+  margin: 48px 0 64px 0;
 `;
 const MyCol = styled(Col)`
   padding: 0;

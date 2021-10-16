@@ -3,16 +3,11 @@ import { BiSearch } from 'react-icons/bi';
 
 import styled from 'styled-components/macro';
 import Filter from './components/Filter';
+import '../FilterZone/Sass/menuMobile.scss';
+import hiddenMenu from '../FilterZone/asset/x-circle.svg';
 interface Props {
   dataAsset?: Array<object>;
   handleClose: Function;
-  // changePage: Function;
-  changeInterestRange: Function;
-  changeLoanRange: Function;
-  // changeCollateral: Function;
-  // changeLoanSymbol: Function;
-  changeLoanType: Function;
-  changeDuration: Function;
 }
 const imgObject = {
   XRP: '/XRP.7ff389b.png',
@@ -44,23 +39,30 @@ export default function FilterZone(props: Props) {
     durationTypes,
     setDurationTypes,
     setName,
+    render,
+    setRender,
   } = useBorrowContext();
   const collateralAccepted: Array<object> = [];
   const handleCollateral = data => {
     if (collateralSymbols === '') {
       setCollateralSymbols(data);
+      setRender(!render);
     } else {
       setCollateralSymbols(collateralSymbols.concat(',', data));
+      setRender(!render);
     }
     if (collateralSymbols.includes(data)) {
       let x = ',' + data;
       let y = data + ',';
       if (collateralSymbols.includes(x)) {
         setCollateralSymbols(collateralSymbols.replace(x, ''));
+        setRender(!render);
       } else if (collateralSymbols.includes(y)) {
         setCollateralSymbols(collateralSymbols.replace(y, ''));
+        setRender(!render);
       } else {
         setCollateralSymbols(collateralSymbols.replace(data, ''));
+        setRender(!render);
       }
     }
   };
@@ -68,18 +70,23 @@ export default function FilterZone(props: Props) {
   const handleLoanSymbol = data => {
     if (loanSymbols === '') {
       setLoanSymbols(data);
+      setRender(!render);
     } else {
       setLoanSymbols(loanSymbols.concat(',', data));
+      setRender(!render);
     }
     if (loanSymbols.includes(data)) {
       let x = ',' + data;
       let y = data + ',';
       if (loanSymbols.includes(x)) {
         setLoanSymbols(loanSymbols.replace(x, ''));
+        setRender(!render);
       } else if (loanSymbols.includes(y)) {
         setLoanSymbols(loanSymbols.replace(y, ''));
+        setRender(!render);
       } else {
         setLoanSymbols(loanSymbols.replace(data, ''));
+        setRender(!render);
       }
     }
   };
@@ -103,18 +110,23 @@ export default function FilterZone(props: Props) {
   const handleLoanType = data => {
     if (loanTypes === '') {
       setLoanTypes(data);
+      setRender(!render);
     } else {
       setLoanTypes(loanTypes.concat(',', data));
+      setRender(!render);
     }
     if (loanTypes.includes(data)) {
       let x = ',' + data;
       let y = data + ',';
       if (loanTypes.includes(x)) {
         setLoanTypes(loanTypes.replace(x, ''));
+        setRender(!render);
       } else if (loanTypes.includes(y)) {
         setLoanTypes(loanTypes.replace(y, ''));
+        setRender(!render);
       } else {
         setLoanTypes(loanTypes.replace(data, ''));
+        setRender(!render);
       }
     }
   };
@@ -125,18 +137,23 @@ export default function FilterZone(props: Props) {
   const handleDurationTypes = data => {
     if (durationTypes === '') {
       setDurationTypes(data);
+      setRender(!render);
     } else {
       setDurationTypes(durationTypes.concat(',', data));
+      setRender(!render);
     }
     if (durationTypes.includes(data)) {
       let x = ',' + data;
       let y = data + ',';
       if (durationTypes.includes(x)) {
         setDurationTypes(durationTypes.replace(x, ''));
+        setRender(!render);
       } else if (durationTypes.includes(y)) {
         setDurationTypes(durationTypes.replace(y, ''));
+        setRender(!render);
       } else {
         setDurationTypes(durationTypes.replace(data, ''));
+        setRender(!render);
       }
     }
   };
@@ -166,6 +183,7 @@ export default function FilterZone(props: Props) {
     });
   const handleSearchName = e => {
     setName(e.target.value);
+    setRender(!render);
   };
   const handleReset = e => {
     setInterestRanges('');
@@ -174,80 +192,169 @@ export default function FilterZone(props: Props) {
     setLoanSymbols('');
     setLoanTypes('');
     setDurationTypes('');
+    setRender(!render);
+  };
+
+  //xử lí menu mobile
+  const HiddenFilterMobile = () => {
+    let filtermobile = document.querySelector('.filtermobile');
+    filtermobile?.classList.add('HiddenFilter__Mobile');
+    filtermobile?.classList.remove('ShowFilter__Mobile');
   };
 
   return (
-    <Div>
-      <FilterHolder>
-        <Span onClick={handleReset}>Reset filter</Span>
-      </FilterHolder>
-      <Border></Border>
-      <div className="searchFilter">
-        <div className="iconSearch">
-          <BiSearch />
+    <div>
+      {/* insert menumobile */}
+      <div className="filtermobile">
+        <div className="filterheader">
+          <span>Reset filter</span>
+          <img
+            className="exitfilter-icon"
+            src={hiddenMenu}
+            alt="No-icon"
+            onClick={HiddenFilterMobile}
+          />
         </div>
-        <input
-          className="search-input"
-          name="searchFilter"
-          placeholder="Search NFT"
-          onChange={handleSearchName}
-        />
+        <Border></Border>
+        <div className="searchFilter">
+          <div className="iconSearch">
+            <BiSearch />
+          </div>
+          <input
+            className="search-input"
+            name="searchFilter"
+            placeholder="Search NFT"
+            onChange={handleSearchName}
+          />
+        </div>
+        <FilterHolder>
+          <Filter
+            title="Interest range"
+            listCheckBox={interestRange}
+            change={setInterestRanges}
+            checked={interestRanges}
+          />
+        </FilterHolder>
+        <Border />
+        <FilterHolder>
+          <Filter
+            title="loan to value"
+            listCheckBox={loanToValue}
+            change={setLoanToValueRanges}
+            checked={loanToValueRanges}
+          />
+        </FilterHolder>
+        <Border />
+        <FilterHolder>
+          <Filter
+            title="Collateral accepted"
+            listCheckBox={collateralAccepted}
+            change={handleCollateral}
+            checked={collateralSymbols}
+          />
+        </FilterHolder>
+        <Border />
+        <FilterHolder>
+          <Filter
+            title="Loan token"
+            listCheckBox={loanToken}
+            change={handleLoanSymbol}
+            checked={loanSymbols}
+          />
+        </FilterHolder>
+        <Border />
+        <FilterHolder>
+          <Filter
+            title="Loan type"
+            listCheckBox={loanType}
+            change={handleLoanType}
+            checked={loanTypes}
+          />
+        </FilterHolder>
+        <Border />
+        <FilterHolder>
+          <Filter
+            title="Duration"
+            listCheckBox={duration}
+            change={handleDurationTypes}
+            checked={durationTypes}
+          />
+        </FilterHolder>
+        <Border />
       </div>
-      <FilterHolder>
-        <Filter
-          title="Interest range"
-          listCheckBox={interestRange}
-          change={setInterestRanges}
-          checked={interestRanges}
-        />
-      </FilterHolder>
-      <Border />
-      <FilterHolder>
-        <Filter
-          title="loan to value"
-          listCheckBox={loanToValue}
-          change={setLoanToValueRanges}
-          checked={loanToValueRanges}
-        />
-      </FilterHolder>
-      <Border />
-      <FilterHolder>
-        <Filter
-          title="Collateral accepted"
-          listCheckBox={collateralAccepted}
-          change={handleCollateral}
-          checked={collateralSymbols}
-        />
-      </FilterHolder>
-      <Border />
-      <FilterHolder>
-        <Filter
-          title="Loan token"
-          listCheckBox={loanToken}
-          change={handleLoanSymbol}
-          checked={loanSymbols}
-        />
-      </FilterHolder>
-      <Border />
-      <FilterHolder>
-        <Filter
-          title="Loan type"
-          listCheckBox={loanType}
-          change={handleLoanType}
-          checked={loanTypes}
-        />
-      </FilterHolder>
-      <Border />
-      <FilterHolder>
-        <Filter
-          title="Duration"
-          listCheckBox={duration}
-          change={handleDurationTypes}
-          checked={durationTypes}
-        />
-      </FilterHolder>
-      <Border />
-    </Div>
+      {/* End menu mobile */}
+      <Div className="filterdesktop">
+        <FilterHolder>
+          <Span onClick={handleReset}>Reset filter</Span>
+        </FilterHolder>
+        <Border></Border>
+        <div className="searchFilter">
+          <div className="iconSearch">
+            <BiSearch />
+          </div>
+          <input
+            className="search-input"
+            name="searchFilter"
+            placeholder="Search NFT"
+            onChange={handleSearchName}
+          />
+        </div>
+        <FilterHolder>
+          <Filter
+            title="Interest range"
+            listCheckBox={interestRange}
+            change={setInterestRanges}
+            checked={interestRanges}
+          />
+        </FilterHolder>
+        <Border />
+        <FilterHolder>
+          <Filter
+            title="loan to value"
+            listCheckBox={loanToValue}
+            change={setLoanToValueRanges}
+            checked={loanToValueRanges}
+          />
+        </FilterHolder>
+        <Border />
+        <FilterHolder>
+          <Filter
+            title="Collateral accepted"
+            listCheckBox={collateralAccepted}
+            change={handleCollateral}
+            checked={collateralSymbols}
+          />
+        </FilterHolder>
+        <Border />
+        <FilterHolder>
+          <Filter
+            title="Loan token"
+            listCheckBox={loanToken}
+            change={handleLoanSymbol}
+            checked={loanSymbols}
+          />
+        </FilterHolder>
+        <Border />
+        <FilterHolder>
+          <Filter
+            title="Loan type"
+            listCheckBox={loanType}
+            change={handleLoanType}
+            checked={loanTypes}
+          />
+        </FilterHolder>
+        <Border />
+        <FilterHolder>
+          <Filter
+            title="Duration"
+            listCheckBox={duration}
+            change={handleDurationTypes}
+            checked={durationTypes}
+          />
+        </FilterHolder>
+        <Border />
+      </Div>
+    </div>
   );
 }
 const Div = styled.div`
