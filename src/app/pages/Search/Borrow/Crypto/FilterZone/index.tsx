@@ -96,6 +96,18 @@ export default function FilterZone(props: Props) {
     { name: '25-50%', title: '25-50%', value: '0.25:0.5' },
     { name: '>50%', title: '>50%', value: '0.5:1' },
   ];
+  const handleInterestRanges = data => {
+    setInterestRanges(data);
+    console.log(data);
+    console.log(interestRanges);
+    setRender(!render);
+  };
+  const handleLoanToValueRanges = data => {
+    setLoanToValueRanges(data);
+    console.log(data);
+    console.log(loanToValueRanges);
+    setRender(!render);
+  };
   const loanToValue = [
     { name: '0-25%', title: '0-25%', value: '0:0.25' },
     { name: '25-50%', title: '25-50%', value: '0.25:0.5' },
@@ -207,7 +219,7 @@ export default function FilterZone(props: Props) {
       {/* insert menumobile */}
       <div className="filtermobile">
         <div className="filterheader">
-          <span>Reset filter</span>
+          <span onClick={handleReset}>Reset filter</span>
           <img
             className="exitfilter-icon"
             src={hiddenMenu}
@@ -231,7 +243,7 @@ export default function FilterZone(props: Props) {
           <Filter
             title="Interest range"
             listCheckBox={interestRange}
-            change={setInterestRanges}
+            change={handleInterestRanges}
             checked={interestRanges}
           />
         </FilterHolder>
@@ -240,7 +252,7 @@ export default function FilterZone(props: Props) {
           <Filter
             title="loan to value"
             listCheckBox={loanToValue}
-            change={setLoanToValueRanges}
+            change={handleLoanToValueRanges}
             checked={loanToValueRanges}
           />
         </FilterHolder>

@@ -92,7 +92,7 @@ export default function NavBar(props: Props) {
                   location.pathname === '/login/tab=2' ||
                   location.pathname === '/login' ||
                   location.pathname === '/login/tab=1'
-                    ? ''
+                    ? styles.login_active
                     : styles.active
                 }`}
               >
