@@ -183,6 +183,10 @@ export const Main = styled.div`
       }
     }
   }
+  .mx-1 {
+    padding-left: 0;
+    margin: 0;
+  }
   .multi-select {
     height: 44px;
   }

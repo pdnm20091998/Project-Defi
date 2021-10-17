@@ -176,13 +176,13 @@ export default function FilterLend(props: Props) {
           listCheckBox={loanCurrency}
           checked={loanSymbol}
         />
-        <div className="headerFilter block d-flex justify-content-between">
+        <div className="disable headerFilter block d-flex justify-content-between">
           <span>NFT Evaluation</span>
           <div className="icons me-2 mb-2">
             <IoIosArrowUp />
           </div>
         </div>
-        <div className="d-flex flex-column">
+        <div className="disable d-flex flex-column">
           <FormControlLabel disabled control={<Checkbox />} label="All" />
           <FormControlLabel disabled control={<Checkbox />} label="Evaluated" />
         </div>
@@ -208,11 +208,14 @@ const Wrapper = styled.div`
   }
   .container {
     width: 293px;
+    padding: 0;
     background-color: #282c37;
     color: #fff;
     border-radius: 20px;
   }
-
+  .disable {
+    padding: 0 12px;
+  }
   .header {
     position: relative;
     border-bottom: 1px solid #45484f;

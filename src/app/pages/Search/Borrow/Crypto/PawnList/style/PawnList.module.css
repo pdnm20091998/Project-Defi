@@ -36,6 +36,11 @@
   border: 1px solid #dba83d;
   color: inherit;
 }
+@media (max-width: 768px) {
+  .text_small {
+    font-size: 12px;
+  }
+}
 @media (max-width: 575px) {
   .not_last_child {
     border: none;
