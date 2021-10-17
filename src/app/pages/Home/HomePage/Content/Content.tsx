@@ -11,6 +11,10 @@ const DivContent = styled.div`
   padding: 60px 0;
   width: 100%;
   background: rgb(26, 26, 35);
+  @media screen and (max-width: 540px) {
+    padding-top: 40px;
+    padding-bottom: 50px;
+  }
 `;
 
 const Title = styled.h3`

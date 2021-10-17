@@ -93,12 +93,12 @@ export default function ResultBorrowCrypto() {
       <Div>
         <Container>
           <Row>
-            <Col md={9}>
+            <Col xl={9}>
               <InfoTitle />
               <SumPawnShop />
               <PawnList />
             </Col>
-            <Col className="mt-3" md={3}>
+            <Col className="mt-3" xl={3}>
               <FilterZone handleClose={handleClose} dataAsset={imgAsset} />
             </Col>
           </Row>
