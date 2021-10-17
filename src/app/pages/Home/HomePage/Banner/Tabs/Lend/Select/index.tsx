@@ -91,7 +91,7 @@ export function SelectAll(props: any) {
         <img
           src={`https://staging.app.defiforyou.uk/_nuxt/img/${e.value}`}
           alt=""
-          style={{ height: '20px', width: '20px' }}
+          style={{ height: '20px', width: '20px', margin: '0px 8px 0 0' }}
         />
         <span>{e.label}</span>
       </>
