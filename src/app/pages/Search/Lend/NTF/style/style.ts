@@ -107,6 +107,9 @@ export const SingleWrapper = styled.div`
   }
   .detailResult {
     margin: 20px 0;
+    @media (max-width: 767px) {
+      margin: 0 0 4px 0;
+    }
   }
   .detail {
     margin-left: 20px;
@@ -126,25 +129,27 @@ export const SingleWrapper = styled.div`
     font-style: normal;
     font-weight: 600;
     font-size: 24px;
-
     height: 30px;
     line-height: 30px;
+    @media (max-width: 540px) {
+      margin-bottom: 0;
+    }
   }
 
   .amount-star {
     font-style: normal;
     font-weight: 500;
     font-size: 16px;
-
     line-height: 20px;
-
     padding-left: 22px;
     margin: 8px 0px 14px;
-
     background-image: url(${ImgStart});
     background-repeat: no-repeat;
     background-size: 16px;
     background-position: 0px 0px;
+    @media (max-width: 540px) {
+      margin-bottom: 19px;
+    }
   }
 
   .detail-result {
