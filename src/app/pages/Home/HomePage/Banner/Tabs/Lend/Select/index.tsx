@@ -159,7 +159,7 @@ export function SelectAll(props: any) {
     }),
     control: provided => ({
       ...provided,
-      height: 'auto',
+      height: '100%',
       width: '100%',
       outline: 'none',
       borderRadius: '30px',
