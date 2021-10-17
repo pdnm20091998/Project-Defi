@@ -187,7 +187,8 @@ export const Main = styled.div`
     margin: 6px 0 0 0;
   }
   .multi {
-    height: 44px;
+    height: auto;
+    min-height: 44px;
   }
   .lendCrypto--Search {
     margin-top: 14px;
