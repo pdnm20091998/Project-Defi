@@ -24,6 +24,9 @@ const SelectA = styled(Select)`
   .css-182fo9s-option {
     display: flex;
     justify-content: flex-start;
+    img {
+      margin-right: 8px;
+    }
   }
   .css-y6e3hu-option {
     display: flex;
