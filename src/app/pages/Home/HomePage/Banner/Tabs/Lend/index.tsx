@@ -79,6 +79,7 @@ export function Lend(props: Props) {
       return optionsItems;
     });
     if (optionsItems) {
+      // eslint-disable-next-line array-callback-return
       optionsItems.map(item => {
         colourOptions.push({
           label: item.symbol,
