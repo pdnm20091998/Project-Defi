@@ -117,6 +117,9 @@ export const P = styled.p`
   display: flex;
   align-items: center;
   vertical-align: baseline;
+  @media (max-width: 575px) {
+    font-size: 14px;
+  }
 `;
 export const Main = styled.div`
   background: #171a23;
@@ -258,5 +261,8 @@ export const Main = styled.div`
     font-weight: 500;
     font-size: 20px;
     line-height: 24px;
+  }
+  @media (max-width: 575px) {
+    font-size: 14px;
   }
 `;

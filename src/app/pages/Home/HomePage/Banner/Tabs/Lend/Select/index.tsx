@@ -119,6 +119,7 @@ export function SelectAll(props: any) {
       ...provided,
       backgroundColor: '#161614',
       borderRadius: '20px',
+      width: '90%',
     }),
     indicatorContainer: provider => ({
       ...provider,

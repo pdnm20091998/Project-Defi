@@ -100,7 +100,7 @@ export function Lend(props: Props) {
                 <P>{t('home.maximum')}</P>
                 <Row className="field">
                   <Div className="mx-1">
-                    <Col sm="9" xs="9">
+                    <Col sm="9" xs="8">
                       <InputField>
                         <div className="input ">
                           <input
@@ -119,7 +119,7 @@ export function Lend(props: Props) {
                         </div>
                       </InputField>
                     </Col>
-                    <Col sm="3" xs="3">
+                    <Col sm="3" xs="4">
                       <div className="drop">
                         <ComboBox
                           className={`option`}
@@ -144,7 +144,7 @@ export function Lend(props: Props) {
                 <P>{t('home.duration')}</P>
                 <Row className="field">
                   <Div className="mx-1">
-                    <Col sm="9" xs="9">
+                    <Col sm="9" xs="8">
                       <InputField>
                         <div className="input ">
                           <input
@@ -156,7 +156,7 @@ export function Lend(props: Props) {
                         </div>
                       </InputField>
                     </Col>
-                    <Col sm="3" xs="3">
+                    <Col sm="3" xs="4">
                       <div className="drop">
                         <ComboBox
                           className={`option`}
