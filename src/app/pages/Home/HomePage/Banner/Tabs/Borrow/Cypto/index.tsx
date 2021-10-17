@@ -27,6 +27,9 @@ const P = styled.p`
     width: 10px;
     height: 10px;
   }
+  @media (max-width: 576px) {
+    font-size: 14px;
+  }
 `;
 const Main = styled.div`
   .btn-primary {
@@ -48,8 +51,11 @@ const Main = styled.div`
     }
   }
   .mt {
-    color: #fff;
+    color: #c9cacd;
     line-height: 15px;
+    @media (max-width: 576px) {
+      font-size: 12px;
+    }
   }
   .btnSearch {
     margin-top: 12px;
@@ -113,7 +119,7 @@ export function Crypto(props: Props) {
                 <P>{t('home.collateral')}</P>
                 <Row>
                   <Div className="mx-1">
-                    <Col sm="9" xs="9">
+                    <Col sm="9" xs="8">
                       <InputField>
                         <div className="input ">
                           <input
@@ -125,7 +131,7 @@ export function Crypto(props: Props) {
                         </div>
                       </InputField>
                     </Col>
-                    <Col sm="3" xs="3">
+                    <Col sm="3" xs="4">
                       <div className="drop">
                         <ComboBox
                           className={`option`}
@@ -156,7 +162,7 @@ export function Crypto(props: Props) {
                 <P>{t('home.duration')}</P>
                 <Row>
                   <Div className="mx-1">
-                    <Col sm="9" xs="9">
+                    <Col sm="9" xs="8">
                       <InputField>
                         <div className="input ">
                           <input
@@ -168,7 +174,7 @@ export function Crypto(props: Props) {
                         </div>
                       </InputField>
                     </Col>
-                    <Col sm="3" xs="3">
+                    <Col sm="3" xs="4">
                       <div className="drop">
                         <ComboBox
                           className={`option`}
@@ -198,7 +204,7 @@ export function Crypto(props: Props) {
                 <P>{t('home.loan_amount')}</P>
                 <Row>
                   <Div className="mx-1">
-                    <Col sm="9" xs="9">
+                    <Col sm="9" xs="8">
                       <InputField>
                         <div className="input ">
                           <input
@@ -210,7 +216,7 @@ export function Crypto(props: Props) {
                         </div>
                       </InputField>
                     </Col>
-                    <Col sm="3" xs="3">
+                    <Col sm="3" xs="4">
                       <div className="drop">
                         <ComboBox
                           className={`option`}
