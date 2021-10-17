@@ -1,103 +1,103 @@
 .container {
-    height: 100px;
+  height: 100px;
 }
 
 .displayBtn {
-    display: none;
+  display: none;
 }
 
 .linkColor {
-    color: #d1d1d3 !important;
+  color: #d1d1d3 !important;
 }
 
 .logo {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .pawn {
-    margin-left: 81px !important;
+  margin-left: 81px !important;
 }
 
 @media (max-width: 1199px) {
-    .displayBtn {
-        display: inline-block;
-    }
+  .displayBtn {
+    display: inline-block;
+  }
 }
 
 @media (max-width: 992px) {
-    .logo {
-        width: 200px;
-    }
-    .container {
-        height: 80px;
-    }
+  .logo {
+    width: 200px;
+  }
+  .container {
+    height: 80px;
+  }
 }
 
 .displayBtn {
-    margin-left: 21px !important;
+  margin-left: 21px !important;
 }
 
 @media (max-width: 991px) {
-    .remove {
-        display: none;
-    }
+  .remove {
+    display: none;
+  }
 }
 
-@media (max-width:768px) {
-    .connect {
-        padding: 7px 14px 7px 12px !important;
-    }
+@media (max-width: 768px) {
+  .connect {
+    padding: 7px 14px 7px 12px !important;
+  }
 }
 
 @media (max-width: 576px) {
-    .logo {
-        width: 126px;
-        height: 30px;
-    }
-    .container {
-        height: 60px;
-    }
-    .displayBtn {
-        margin-left: 10px !important;
-    }
+  .logo {
+    width: 126px;
+    height: 30px;
+  }
+  .container {
+    height: 60px;
+  }
+  .displayBtn {
+    margin-left: 10px !important;
+  }
 }
 
 @media (max-width: 300px) {
-    .logo {
-        width: 100px;
-    }
-    .container {
-        height: 60px;
-    }
+  .logo {
+    width: 100px;
+  }
+  .container {
+    height: 60px;
+  }
 }
 .login_active {
   color: #dba83d !important;
   position: relative;
 }
 .active {
-    color: #dba83d !important;
-    position: relative;
+  color: #dba83d !important;
+  position: relative;
 }
 
 .active::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    height: 1px;
-    width: 50%;
-    border-bottom: 1px solid#dba83d;
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 1px;
+  width: 50%;
+  border-bottom: 1px solid#dba83d;
 }
 
 .miniNav {
-    height: 100vh;
+  height: 100vh;
 }
 
 .remove {
-    padding: 10px 20px;
-    font-size: 14px;
+  padding: 10px 20px;
+  font-size: 14px;
 }
 
 .connect {
-    padding: 10px 20px;
+  padding: 10px 20px;
 }

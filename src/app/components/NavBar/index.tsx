@@ -30,6 +30,7 @@ interface Props {}
 const Div = styled.div`
   background: #232732;
   border-bottom: 1px solid rgba(125, 111, 125, 0.2);
+  z-index: 5;
   .center {
     margin-top: 8px;
     text-align: center;
@@ -40,7 +41,7 @@ const NavLink = styled(Nav.Link)`
   font-size: 16px;
   font-weight: 500;
   &:hover,
-  visited {
+  :visited {
     color: #dba83d !important;
   }
 `;
@@ -49,7 +50,8 @@ const MiniNav = styled(Nav)`
   position: absolute;
   display: block;
   width: 100%;
-  z-index: 1;
+  z-index: 5;
+  border-width: thin;
 `;
 const MyDropDown = styled(Nav.Link)`
   padding: 0.5rem 0 0 1rem;
@@ -341,8 +343,10 @@ export default function NavBar(props: Props) {
           <Nav.Link className={styles.linkColor}>FAQ</Nav.Link>
           {getNameLocal() ? (
             <>
-              <NavLink>Change password</NavLink>
-              <NavLink onClick={handleLogout}>Log out</NavLink>
+              <NavLink className={styles.linkColor}>Change password</NavLink>
+              <NavLink className={styles.linkColor} onClick={handleLogout}>
+                Log out
+              </NavLink>
             </>
           ) : (
             ''
