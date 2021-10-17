@@ -184,6 +184,8 @@ export function SelectAll(props: any) {
       options={options1}
       styles={styles}
       components={animatedComponents}
+      hideSelectedOptions={false}
+      closeMenuOnSelect={false}
       onChange={e => props.onChange(e)}
     ></SelectA>
   );
