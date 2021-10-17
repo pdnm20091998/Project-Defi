@@ -43,7 +43,7 @@ const SelectA = styled(Select)`
     display: flex;
     align-items: center;
     justify-content: space-between;
-    width: 94px;
+    /* width: 94px; */
     height: 33px;
     & > .css-1k48koi {
       svg:hover {
@@ -54,8 +54,13 @@ const SelectA = styled(Select)`
     }
     & > div {
       padding: 0px;
-      & > span {
-        margin-left: 5px;
+      img {
+        margin-right: 5px;
+      }
+      @media (max-width: 575px) {
+        span {
+          display: none;
+        }
       }
     }
   }
@@ -129,7 +134,7 @@ export function SelectAll(props: any) {
     }),
     valueContainer: provider => ({
       ...provider,
-      padding: '0px 0px 0px 0px',
+      padding: '6px',
     }),
     menuList: provided => ({
       ...provided,
@@ -174,6 +179,7 @@ export function SelectAll(props: any) {
   };
   return (
     <SelectA
+      className="react-select-container"
       isMulti
       options={options1}
       styles={styles}
