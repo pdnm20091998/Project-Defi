@@ -23,8 +23,8 @@ const durationList = [
 ];
 
 const NftType = [
-  { name: 'Soft NFT', title: 'Soft NFT', value: '0' },
-  { name: 'Hard NFT', title: 'Hard NFT', value: '1' },
+  { name: 'Soft NFT', title: 'Soft NFT', value: '1' },
+  { name: 'Hard NFT', title: 'Hard NFT', value: '0' },
 ];
 const loanCurrency = [
   {

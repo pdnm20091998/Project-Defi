@@ -1,4 +1,3 @@
-import styled from 'styled-components/macro';
 import Slider from 'react-slick';
 import { Container } from 'react-bootstrap';
 import explore_one from '../Explore/asset/Rectangle_one.png';
