@@ -1,6 +1,6 @@
 import { useBorrowContext } from 'app/components/common/context/borrowCryptoContext';
 import { BiSearch } from 'react-icons/bi';
-
+import NavBar from 'app/components/NavBar';
 import styled from 'styled-components/macro';
 import Filter from './components/Filter';
 import '../FilterZone/Sass/menuMobile.scss';
